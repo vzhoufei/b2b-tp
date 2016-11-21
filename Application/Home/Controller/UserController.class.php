@@ -153,24 +153,25 @@ class UserController extends BaseController {
      */
     public function reg(){
     	if($this->user_id > 0) header("Location: ".U('Home/User/index'));
-    	
         if(IS_POST){
             $logic = new UsersLogic();
             //验证码检验
-            $this->verifyHandle('user_reg');
+            //$this->verifyHandle('user_reg');
             $username = I('post.username','');
             $password = I('post.password','');
             $password2 = I('post.password2','');
             //是否开启注册验证码机制
-            if(check_mobile($username) && tpCache('sms.regis_sms_enable')){
+
+            //if(check_mobile($username) && tpCache('sms.regis_sms_enable')){
                 $code = I('post.code','');
                 if(!$code)
                     $this->error('请输入短信验证码');
+
                 $check_code = $logic->sms_code_verify($username,$code,$this->session_id);
                 if($check_code['status'] != 1)
                     $this->error($check_code['msg']);
 
-            }
+            //}
             //是否开启注册邮箱验证码机制
             if(check_email($username) && tpCache('smtp.regis_smtp_enable')){
                 if(!$code)
