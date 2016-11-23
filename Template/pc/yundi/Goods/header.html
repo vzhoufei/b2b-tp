@@ -1,0 +1,71 @@
+<header class="head">
+    <div class="left">Hi，你好  kky</div>
+    <nav class="nav">
+      <ul> 
+        <li><a href="register.html" target="_blank">注册</a></li>
+        <li><a href="login.html" target="_blank">登录</a></li><span>|</span>
+        <li><img src="__PUBLIC__/pc/images/index1.jpg" width="15" height="30"  alt="" style=" float:left;"/>&nbsp;&nbsp;<a href="#" target="_blank">我的订单</a></li><span>|</span>
+        <li><a href="#" target="_blank">购物车</a></li><span>|</span>
+        <li><a href="#" target="_blank">投诉举报</a></li><span>|</span>
+        <li><a href="#" target="_blank">客服中心</a></li><span>|</span>
+        <li><a href="#" target="_blank">帮助</a></li>
+      </ul>
+    </nav>
+  </header><!--顶部结束-->
+  <div class="prol">
+    <figure>
+        <img src="__PUBLIC__/pc/images/pro1.gif" width="200" height="70"  alt=""/> 
+    </figure>
+    <section class="search1">
+       <div id="tab">
+      <div class="tabList">
+        <ul>
+            <li class="cur">产品</li>
+            <li>信息</li>
+        </ul>
+      </div>
+        
+      <div class="tabCon">
+        <div class="cur">
+           <form name="sourch_form" id="sourch_form" method="post" action="{:U("/Home/Goods/search")}">
+            <input type="text" data-role="input-search" autocomplete="off" class="ssk" name="q" id="q" value="<?php echo I('q'); ?>" placeholder="搜索关键字"/>
+             <a data-role="btn" href="javascript:void(0);" class="but" onclick="if($.trim($('#q').val()) != '') $('#sourch_form').submit();"></a>
+            </form>
+            
+        </div>
+      </div>
+    </div>
+  </section>
+  </div>
+  <div class="pro">
+
+      <nav class="nav">
+        <ul>
+            <li class="yi"><a href="#" target="_blank">所有分类</a>
+               <ul class="dyj">
+                <tpshop sql="select * from `__PREFIX__goods_category` where is_show = 1 and `level` = 1  limit 15" key="k" item='v'>
+                  <li class="one"><a href="{:U('Home/Goods/goodsList',array('id'=>$v[id]))}" target="_blank">{$v.name}</a>
+                      <section>
+                        <foreach name='goods_category_tree[$v[id]]["tmenu"]' item='l'>
+                         <dl>
+                           <dt><a href="{:U('Home/Goods/goodsList',array('id'=>$l[id]))}" target="_blank">{$l.name}</a></dt>
+                           <dd>
+                            <foreach name ='l.sub_menu' item = 's'>
+                             <a href="{:U('Home/Goods/goodsList',array('id'=>$s[id]))}" target="_blank">{$s.name}</a>
+                             </foreach>   
+                           </dd>
+                         </dl>
+                        </foreach>
+                      </section>                  
+                  </li>
+                 </tpshop>
+               </ul><!--所有宝贝的弹出层-->
+            </li>
+             <tpshop sql="SELECT * FROM `__PREFIX__navigation` where is_show = 1 ORDER BY `sort` DESC limit 0,8" key="k" item='v'>
+               <li><a href="{$v[url]}" 
+                  <?php  if($_SERVER['REQUEST_URI']==str_replace('&amp;','&',$v[url])){ echo "class='menu-item menu-item-active'";}
+                  else{ echo "class='menu-item'"; } ?>> {$v[name]} </a></li>
+              </tpshop>
+        </ul>
+      </nav>
+  </div>
