@@ -275,7 +275,13 @@ footer{ margin:50px auto; font-size:14px; line-height:30px; text-align:center;}
 .Compre	.Compre_d h4:hover .Compre_T{display:block;}
 
 
-
+/**
+*	TP分页样式
+*/
+.page{display: table;margin: 10px auto;}
+.page .first,.prev,.num,.current,.next,.end{width: 50px;height: 50px;display: block;float: left;line-height: 50px;margin-left: -1px;text-align: center;border: 1px solid #008CC1;}
+.page .first:hover,.prev:hover,.num:hover,.current:hover,.next:hover,.end:hover{color: #fff;background-color: #008CC1;}
+.page .current{background-color: #008cc1;color:#fff;}
 
 
 
