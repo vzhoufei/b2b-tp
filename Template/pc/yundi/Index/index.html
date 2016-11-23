@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+<head>
+<meta content="IE=edge" http-equiv="X-UA-Compatible">
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<meta content="zh-cn" http-equiv="content-language">
+<meta name="renderer" content="webkit|ie-comp|ie-stand" />
+<meta http-equiv="Cache-control" content="public" max-age="no-cache" />
+<title>首页-{$tpshop_config['shop_info_store_title']} </title>
+<meta http-equiv="keywords" content="{$tpshop_config['shop_info_store_keyword']}" />
+<meta name="description" content="{$tpshop_config['shop_info_store_desc']}" />
+
+<link href="__PUBLIC__/pc/css/main.css" rel="stylesheet" type="text/css">		
+<script type="text/javascript" src="__PUBLIC__/pc/js/js.js"></script>
+</head>
+
+<body>
+<div class="warp">
+  <header class="head">
+    <nav class="nav">
+      <ul> 
+        <li><a href="{:U('Home/user/reg')}" target="_blank">注册</a></li>
+        <li><a href="{:U('Home/user/login')}" target="_blank">登录</a></li><span>|</span>
+        <li><img src="__PUBLIC__/pc/images/index1.jpg" width="15" height="30"  alt=""/>&nbsp;&nbsp;<a href="{:U('/Home/User/order_list')}" target="_blank">我的订单</a></li><span>|</span>
+        <li><a href="{:U('Home/Cart/cart')}" target="_blank">购物车</a></li><span>|</span>
+        <!-- 暂时注销
+        <li><a href="#" target="_blank">投诉举报</a></li><span>|</span>
+        <li><a href="#" target="_blank">客服中心</a></li><span>|</span>
+        <li><a href="#" target="_blank">帮助</a></li> -->
+      </ul>
+    </nav>
+  </header>
+  <section class="logo">
+       <img src="__PUBLIC__/pc/images/logo.jpg" width="145" height="43"  alt=""/> 
+       <p>护航中小型企业</p>
+      </section>
+  <section class="search">
+   <div id="tab">
+  <div class="tabList">
+	<ul>
+		<li class="cur">产品</li>
+	</ul>
+  </div>
+    
+  <div class="tabCon">
+	<div class="cur">
+       <form name="sourch_form" id="sourch_form" method="post" action="{:U("/Home/Goods/search")}">
+         <input  class="ssk" type="text" data-role="input-search" autocomplete="off" name="q" id="q" value="<?php echo I('q'); ?>" placeholder="搜索关键字" />
+         <input type="submit" value="" class="but" onclick="if($.trim($('#q').val()) != '') $('#sourch_form').submit();" />
+        </form>
+        <!-- 暂时注释
+        <dl>
+           <dd><a href="#" target="_blank" style="color:#008cba">连衣裙</a></dd>
+           <dd><a href="#" target="_blank">卫衣</a></dd>
+           <dd><a href="#" target="_blank">长袖T恤 </a></dd>
+           <dd><a href="#" target="_blank">斜跨包  </a></dd>
+           <dd><a href="#" target="_blank">秋季套装  </a></dd>
+           <dd><a href="#" target="_blank"> 牛仔短裙  </a></dd>
+           <dd><a href="#" target="_blank">打底裤  </a></dd>
+              </dl> -->
+    </div>
+  </div>
+</div>
+  </section>
+  <section class="side">
+    <div class="side1">
+     <dl class="left">
+      <dt><a href="products.html" target="_blank">产品</a></dt>
+      <foreach name="cateList" item="vg" key='k'>
+          <if condition='($k+2)%5 eq 0'>
+            <dd>
+            <a href="{:U('Home/Goods/goodsInfo',array('id'=>$vg[goods_id]))}" target="_blank"><img src="{$cateList[$k]['goods_id']|goods_thum_images=136,146}" /></a>
+            <p></p>
+            <a href="{:U('Home/Goods/goodsInfo',array('id'=>$vg[goods_id]))}" target="_blank"><img src="{$cateList[$k+1]['goods_id']|goods_thum_images=136,146}" /></a>
+            </dd>
+          <elseif condition='($k neq 4)and($k neq 9)'/>
+            <dd><a href="{:U('Home/Goods/goodsInfo',array('id'=>$vg[goods_id]))}" target="_blank"><img src="{$vg.goods_id|goods_thum_images=186,310}" /></a></dd>
+          </if>
+      </foreach>
+    </dl>
+     <div class="right">
+       <div class="title">资讯</div>
+       <ul>
+        <foreach name='article' item='a'>
+         <li>
+            <a href="{:U('Home/Article/detail',array('id'=>$a[article_id ]))}" target="_blank"><img src="{$a.thumb}" width="360" height="228"  alt=""/></a>
+            <a href="{:U('Home/Article/detail',array('id'=>$a[article_id ]))}" target="_blank" class="a1">{$a.title}3</a><br />
+            <a href="{:U('Home/Article/detail',array('id'=>$a[article_id ]))}" target="_blank" class="a2">{$a.description|substr=0,40}</a> <br />
+            <time>{$a.publish_time|date="y/m/d",###}</time>
+         </li>
+       </foreach>
+       </ul>
+     </div>
+    </div>
+  </section>
+  <footer>
+     广州云狄建站科技有限公司 版权所有<br />
+     粤ICP备09116842号
+ </footer>
+</div> 
+</body>
+</html>
+

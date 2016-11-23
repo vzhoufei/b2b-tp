@@ -371,7 +371,7 @@ class GoodsController extends BaseController {
         $page = new Page($count,20);
         if($count > 0)
         {
-            $goods_list = M('goods')->where("is_on_sale=1 and goods_id in (".  implode(',', $filter_goods_id).")")->order("$sort $sort_asc")->limit($page->firstRow.','.$page->listRows)->select();
+            $goods_list = M('goods')->join('INNER JOIN __STORE__ ON __STORE__.store_id = __GOODS__.store_id')->where("is_on_sale=1 and goods_id in (".  implode(',', $filter_goods_id).")")->order("$sort $sort_asc")->limit($page->firstRow.','.$page->listRows)->select();
             $filter_goods_id2 = get_arr_column($goods_list, 'goods_id');
             if($filter_goods_id2)
             $goods_images = M('goods_images')->where("goods_id in (".  implode(',', $filter_goods_id2).")")->select();       
