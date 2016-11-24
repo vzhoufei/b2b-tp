@@ -16,6 +16,75 @@ namespace Seller\Controller;
 use Think\Page;
 
 class StoreController extends BaseController{
+
+
+	/**
+	 * 选择模板周飞
+	 */
+	public function store_tpl()
+	{
+		$tpl = I('t','pc');
+		$arr = scandir("./Merchants_tpl/$tpl/");
+        $m = ($tpl == 'pc') ? 'Home' : 'Mobile';
+         foreach($arr as $key => $val)
+         {
+                if($val == '.' || $val == '..' )
+                    continue;                 
+                 $template_config[$val] = include "./Merchants_tpl/$tpl/$val/config.php";
+         }
+		
+		 $this->assign('tpl',$tpl);        
+        $tplconfig = include("./Application/$m/Conf/html.php");        
+        $this->assign('default_theme',$tplconfig['TPL']);
+        $this->assign('template_config',$template_config);
+        $this->display();
+	}
+
+
+
+	/**
+	 * 修改配置文件
+	 */
+	 public function changeTemplate()
+   {
+   		$key = I('key');
+   		$t = I('t','pc');
+
+   		$tpl = ($t == 'pc')?'Home':'Mobile';
+
+	if(!is_writeable("./Application/Home/conf/html.php")){
+            return "文件/Application/Home/conf/html.php不可写,不能启用魔板,请修改权限!!!";  
+		
+	}
+		$str = "<?php
+		return array(
+			'VIEW_PATH'       =>'./Template/pc/', // 改变某个模块的模板文件目录
+			'DEFAULT_THEME'    =>'soubao', // 模板名称
+			'TPL'				=>'{$key}',//--zhoufei 更改商户模板位置 
+			'TMPL_PARSE_STRING'  =>array(
+		//                '__PUBLIC__' => '/Common', // 更改默认的/Public 替换规则
+					'__STATIC__'     => '/Template/pc/soubao/Static', // 增加新的image  css js  访问路径  后面给 php 改了
+					'__STYLE__'      => '/Merchants_tpl/pc/{$key}',//--zhoufei 样式位置 
+			   ),
+			   //'DATA_CACHE_TIME'=>60, // 查询缓存时间
+			);
+
+		?>";
+   		$tplconfig = file_put_contents("./Application/Home/conf/html.php",$str);
+
+   		$this->success("操作成功!!!",U('store_tpl',array('t'=>$t)));
+
+   }
+
+
+
+
+
+
+
+
+
+
 	public function store_info(){
 		$store = M('store')->where("store_id=".STORE_ID)->find();
 		$this->assign('store',$store);
@@ -174,6 +243,7 @@ class StoreController extends BaseController{
 				$list[] = $val;
 			}
 		}
+		
 		$this->assign('list',$list);
 		$count = $Model->where('1=1')->count();
 		$Page = new \Think\Page($count,10);
@@ -194,6 +264,8 @@ class StoreController extends BaseController{
 	
 	public function navigationHandle(){
 		$data = I('post.');
+		// dump($data);
+
 		if($data['act'] == 'del'){
 			$r = M('store_navigation')->where('sn_id='.$data['sn_id'])->delete();
 			if($r) exit(json_encode(1));

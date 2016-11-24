@@ -168,7 +168,8 @@ class AdminController extends BaseController {
         }
         $this->display();
     }
-    
+   
+
     /**
      * 退出登陆
      */

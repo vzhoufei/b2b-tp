@@ -238,6 +238,7 @@ class GoodsController extends BaseController {
             $this->display('_goods');                                     
     } 
       
+
     /**
      * 更改指定表的指定字段
      */
