@@ -200,7 +200,7 @@ class GoodsController extends BaseController {
         $filter_attr  = $goodsLogic->get_filter_attr($filter_goods_id,$filter_param,'goodsList',1); // 获取指定分类下的帅选属性        
                                 
         $count = count($filter_goods_id);
-        $page = new Page($count,40);
+        $page = new Page($count,30);
         if($count > 0)
         {
             $goods_list = M('goods')->join('INNER JOIN __STORE__ ON __STORE__.store_id = __GOODS__.store_id')->where("goods_id in (".  implode(',', $filter_goods_id).")")->order("$sort $sort_asc")->limit($page->firstRow.','.$page->listRows)->select();
