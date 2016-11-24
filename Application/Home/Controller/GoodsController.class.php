@@ -345,17 +345,17 @@ class GoodsController extends BaseController {
         
         $search_goods = M('goods')->where($where)->getField('goods_id,cat_id3');
         $filter_goods_id = array_keys($search_goods);                
-        $filter_cat_id = array_unique($search_goods); // 分类需要去重
-        if($filter_cat_id)        
-        {
-            $cateArr = M('goods_category')->where("id in(".implode(',', $filter_cat_id).")")->select();            
-            $tmp = $filter_param;
-            foreach($cateArr as $k => $v)            
-            {
-                $tmp['id'] = $v['id'];
-                $cateArr[$k]['href'] = U("/Home/Goods/search",$tmp);                            
-            }                
-        }                        
+        //$filter_cat_id = array_unique($search_goods); // 分类需要去重
+        //if($filter_cat_id)        
+        //{
+        //    $cateArr = M('goods_category')->where("id in(".implode(',', $filter_cat_id).")")->select();            
+        //    $tmp = $filter_param;
+        //    foreach($cateArr as $k => $v)            
+        //    {
+        //        $tmp['id'] = $v['id'];
+        //        $cateArr[$k]['href'] = U("/Home/Goods/search",$tmp);                            
+        //    }                
+        //}                        
         // 过滤帅选的结果集里面找商品        
         if($brand_id || $price)// 品牌或者价格
         {
@@ -372,13 +372,18 @@ class GoodsController extends BaseController {
         if($count > 0)
         {
             $goods_list = M('goods')->join('INNER JOIN __STORE__ ON __STORE__.store_id = __GOODS__.store_id')->where("is_on_sale=1 and goods_id in (".  implode(',', $filter_goods_id).")")->order("$sort $sort_asc")->limit($page->firstRow.','.$page->listRows)->select();
-            $filter_goods_id2 = get_arr_column($goods_list, 'goods_id');
-            if($filter_goods_id2)
-            $goods_images = M('goods_images')->where("goods_id in (".  implode(',', $filter_goods_id2).")")->select();       
+            
+            $goods_about = M('goods')->join('INNER JOIN __STORE__ ON __STORE__.store_id = __GOODS__.store_id')->where("is_on_sale=1 and goods_id in (".  implode(',', $filter_goods_id).")")->order(" rand() ")->limit(1,12)->select();
+
+            //$filter_goods_id2 = get_arr_column($goods_list, 'goods_id');
+            //if($filter_goods_id2)
+            //$goods_images = M('goods_images')->where("goods_id in (".  implode(',', $filter_goods_id2).")")->select();       
         }    
                 
         $this->assign('goods_list',$goods_list);  
-        $this->assign('goods_images',$goods_images);  // 相册图片
+
+        $this->assign('goods_about',$goods_about);
+        //$this->assign('goods_images',$goods_images);  // 相册图片
         $this->assign('filter_menu',$filter_menu);  // 帅选菜单
         $this->assign('filter_brand',$filter_brand);  // 列表页帅选属性 - 商品品牌
         $this->assign('filter_price',$filter_price);// 帅选的价格期间
