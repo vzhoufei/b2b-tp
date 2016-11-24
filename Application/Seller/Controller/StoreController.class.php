@@ -34,7 +34,7 @@ class StoreController extends BaseController{
          }
 		
 		 $this->assign('tpl',$tpl);        
-        $tplconfig = include("./Application/$m/Conf/html.php");        
+        $tplconfig = include("./Application/$m/Conf/tpl.php");        
         $this->assign('default_theme',$tplconfig['TPL']);
         $this->assign('template_config',$template_config);
         $this->display();
@@ -52,25 +52,18 @@ class StoreController extends BaseController{
 
    		$tpl = ($t == 'pc')?'Home':'Mobile';
 
-	if(!is_writeable("./Application/Home/conf/html.php")){
-            return "文件/Application/Home/conf/html.php不可写,不能启用魔板,请修改权限!!!";  
+	if(!is_writeable("./Application/Home/conf/tpl.php")){
+            return "文件/Application/Home/conf/tpl.php不可写,不能启用魔板,请修改权限!!!";  
 		
 	}
 		$str = "<?php
 		return array(
-			'VIEW_PATH'       =>'./Template/pc/', // 改变某个模块的模板文件目录
-			'DEFAULT_THEME'    =>'soubao', // 模板名称
 			'TPL'				=>'{$key}',//--zhoufei 更改商户模板位置 
-			'TMPL_PARSE_STRING'  =>array(
-		//                '__PUBLIC__' => '/Common', // 更改默认的/Public 替换规则
-					'__STATIC__'     => '/Template/pc/soubao/Static', // 增加新的image  css js  访问路径  后面给 php 改了
-					'__STYLE__'      => '/Merchants_tpl/pc/{$key}',//--zhoufei 样式位置 
-			   ),
-			   //'DATA_CACHE_TIME'=>60, // 查询缓存时间
+			
 			);
 
 		?>";
-   		$tplconfig = file_put_contents("./Application/Home/conf/html.php",$str);
+   		$tplconfig = file_put_contents("./Application/Home/conf/tpl.php",$str);
 
    		$this->success("操作成功!!!",U('store_tpl',array('t'=>$t)));
 
