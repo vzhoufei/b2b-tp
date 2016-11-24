@@ -62,6 +62,8 @@ class TemplateController extends BaseController {
 			'TMPL_PARSE_STRING'  =>array(
 		//                '__PUBLIC__' => '/Common', // 更改默认的/Public 替换规则
 					'__STATIC__'     => '/Template/$t/{$_GET['key']}/Static', // 增加新的image  css js  访问路径  后面给 php 改了
+                    '__STYLE__'      => '/Merchants_tpl/pc/default2',//--zhoufei 商户前端样式位置
+
 			   ),
 			   //'DATA_CACHE_TIME'=>60, // 查询缓存时间
 			);

@@ -30,6 +30,13 @@ class StoreController extends Controller
         	if($store_info['store_state'] == 0){
         		$this->error('该店铺不存在或者已关闭', U('Index/index'));
         	}
+
+            // zhoufei
+            C('VIEW_PATH','./Merchants_tpl/pc/');
+            C('DEFAULT_THEME',C('TPL'));
+            // zhoufei
+
+
             $store_info['store_slide'] = explode(',', $store_info['store_slide']);
             $store_info['store_slide_url'] = explode(',', $store_info['store_slide_url']);
             $store_info['store_presales'] = unserialize($store_info['store_presales']);
@@ -48,16 +55,13 @@ class StoreController extends Controller
             $this->store = $store_info;
             $this->assign('store', $store_info);
             $this->assign('action',ACTION_NAME);
-        } else {
-            $this->error('该店铺不存在或者已关闭', U('Index/index'));
-        }
-    }
 
-    public function index()
-    {
+
+            // zhoufei
+
         $store_id = $this->store['store_id'];
         //店铺内部分类
-        $store_goods_class_list = M('store_goods_class')->where(array('store_id' => $store_id))->select();
+        $store_goods_class_list = M('store_goods_class')->where(array('store_id' => $store_id,'is_show'=>'1'))->select();//zhoufei 增加了 ,'is_show'=>'1'
         if ($store_goods_class_list) {
             $sub_cat = $main_cat = array();
             foreach ($store_goods_class_list as $val) {
@@ -70,6 +74,56 @@ class StoreController extends Controller
             $this->assign('main_cat', $main_cat);
             $this->assign('sub_cat', $sub_cat);
         }
+
+
+        $link_cat = M('store_goods_class')->where(array('store_id' => $store_id, 'is_nav_show'))->select();
+        if ($link_cat) {
+            $cat_id = get_arr_column($link_cat, 'cat_id');
+            $cat_id = implode(',', $cat_id);
+            $map = array('store_id' => $store_id, 'is_on_sale' => 1);
+            $map['_string'] = "store_cat_id1 in ($cat_id) OR store_cat_id2 in($cat_id)";
+            $cat_goods = M('goods')->field('goods_content', true)->where($map)->order('goods_id desc')->select();
+        }
+        $this->assign('link_cat',$link_cat);//zhoufei
+
+
+
+            // zhoufei
+
+
+
+
+
+        } else {
+            $this->error('该店铺不存在或者已关闭', U('Index/index'));
+        }
+    }
+
+    public function index()
+    {
+        $store_id = $this->store['store_id'];
+
+
+
+        /********************* 注释类容移动到了初始化控制器 _initialize  ***************/
+        //店铺内部分类
+        // $store_goods_class_list = M('store_goods_class')->where(array('store_id' => $store_id,'is_show'=>'1'))->select();//zhoufei 增加了 ,'is_show'=>'1'
+        // if ($store_goods_class_list) {
+        //     $sub_cat = $main_cat = array();
+        //     foreach ($store_goods_class_list as $val) {
+        //         if ($val['parent_id'] == 0) {
+        //             $main_cat[] = $val;
+        //         } else {
+        //             $sub_cat[$val['parent_id']][] = $val;
+        //         }
+        //     }
+        //     $this->assign('main_cat', $main_cat);
+        //     $this->assign('sub_cat', $sub_cat);
+        // }
+
+
+
+
         //热门商品排行
         $hot_goods = M('goods')->field('goods_content', true)->where(array('store_id' => $store_id))->order('sales_sum desc')->limit(10)->select();
         //收藏商品排行
@@ -83,23 +137,26 @@ class StoreController extends Controller
         if ($goods_id_arr)
             $goods_images = M('goods_images')->where("goods_id in (" . implode(',', $goods_id_arr) . ")")->cache(true)->select();
 
+        /********************* 注释类容移动到了初始化控制器 _initialize  ***************/
         //店铺分类导航
-        $link_cat = M('store_goods_class')->where(array('store_id' => $store_id, 'is_nav_show'))->select();
-        if ($link_cat) {
-            $cat_id = get_arr_column($link_cat, 'cat_id');
-            $cat_id = implode(',', $cat_id);
-            $map = array('store_id' => $store_id, 'is_on_sale' => 1);
-            $map['_string'] = "store_cat_id1 in ($cat_id) OR store_cat_id2 in($cat_id)";
-            $cat_goods = M('goods')->field('goods_content', true)->where($map)->order('goods_id desc')->select();
-        }
+        // $link_cat = M('store_goods_class')->where(array('store_id' => $store_id, 'is_nav_show'))->select();
+        // if ($link_cat) {
+        //     $cat_id = get_arr_column($link_cat, 'cat_id');
+        //     $cat_id = implode(',', $cat_id);
+        //     $map = array('store_id' => $store_id, 'is_on_sale' => 1);
+        //     $map['_string'] = "store_cat_id1 in ($cat_id) OR store_cat_id2 in($cat_id)";
+        //     $cat_goods = M('goods')->field('goods_content', true)->where($map)->order('goods_id desc')->select();
+        // }
+        // $this->assign('link_cat',$link_cat);//zhoufei
         $this->assign('navigation', $this->navigation);
         $this->assign('hot_goods', $hot_goods);
         $this->assign('collect_goods', $collect_goods);
         $this->assign('new_goods', $new_goods);
         $this->assign('recomend_goods', $recomend_goods);
         $this->assign('goods_images', $goods_images); //相册图片
-        $this->display();
+        $this->display('/index');
     }
+    
 
     /**
      * 收藏店铺
@@ -176,16 +233,18 @@ class StoreController extends Controller
         $this->assign('page_show', $page_show);// 赋值分页输出
         $this->assign('navigation', $this->navigation);
         $this->assign('keyword',$keyword);
-        $this->display();
+        $this->display('/goods_list');
     }
 
     function store_news()
     {
         $sn_id = I('sn_id');
         $news = M('store_navigation')->where(array('sn_store_id' => $this->store['store_id'], 'sn_id' => $sn_id))->find();
+        $banner = M('store')->where(array('store_id' => $this->store['store_id']))->getField('store_banner');
+        $this->assign('banner', $banner);
         $this->assign('news', $news);
         $this->assign('navigation', $this->navigation);
-        $this->display();
+        $this->display('/store_news');
     }
 
     public function dynamic()
@@ -202,7 +261,7 @@ class StoreController extends Controller
         $page_show = $Page->show();// 分页显示输出
         $this->assign('page_show', $page_show);// 赋值分页输出
         $this->assign('goods_list', $goods_list);
-        $this->display();
+        $this->display('/dynamic');
     }
 
     public function decoration_preview()
@@ -215,7 +274,7 @@ class StoreController extends Controller
         } else {
             //showMessage(L('param_error'), '', 'error');
         }
-        $this->display();
+        $this->display('/decoration_preview');
     }
 
     private function _output_decoration_info($decoration_info)
