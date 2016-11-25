@@ -1,13 +1,13 @@
 <?php
 return array(
 	//'配置项'=>'配置值'           
-        
-    //'DB_SQL_BUILD_CACHE' => true, // sql 缓存
-    //'DB_SQL_BUILD_QUEUE' => 'File', // 文件缓存
+
+    // 'DB_SQL_BUILD_CACHE' => true, // sql 缓存
+    // 'DB_SQL_BUILD_QUEUE' => 'File', // 文件缓存
    // 'DB_SQL_BUILD_LENGTH' => 200, // SQL缓存的队列长度
     //'DATA_CACHE_TIME' => 60,
    // 'DATA_CACHE_TYPE' =>  'File', 
-    'LOAD_EXT_CONFIG' => array('html','tpl'),    // 加载其他自定义配置文件 html.php
+    'LOAD_EXT_CONFIG' => 'html',    // 加载其他自定义配置文件 html.php
     'URL_HTML_SUFFIX'       =>  'html',
     'HTML_CACHE_ON'     =>    true, // 开启静态缓存   
     'HTML_CACHE_TIME'   =>    60,   // 全局静态缓存有效期（秒）

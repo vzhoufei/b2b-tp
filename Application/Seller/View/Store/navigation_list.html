@@ -36,38 +36,6 @@
 		                   </tr>
 		                 </thead>
 						<tbody>
-
-						<!-- <tpshop sql="select * from yd_column" item="v">
-							<if condition="($v['id'] neq 1)">
-							<tr role="row" align="center">
-		                     <td>0</td>
-		                     <td>{$v.name}</td>
-		                     <td>{$vo.sn_is_show}</td>
-		                     <td>{$vo.sn_new_open}</td>
-		                     <td>
-		                      <a class="btn btn-primary" href="{:U('Store/navigation',array('sn_id'=>$vo['sn_id']))}"><i class="fa fa-pencil"></i></a>
-		                      <a class="btn btn-danger" href="javascript:void(0)" data-url="{:U('/Seller/Store/navigationHandle')}" data-id="{$vo.sn_id}" onclick="delfun(this)"><i class="fa fa-trash-o"></i></a>
-		                      <if condition="($v['id'] eq 2)">
-		                      <a href="{:U('Store/navigation')}" class="btn btn-primary"><i class="fa fa-plus"></i>增加子导航</a>
-		                      </if>
-							</td>
-		                   </tr>
-		                   </if>
-		                     <if condition="($v['id'] eq 2)">
-			                   <foreach name="list" item="vo" key="k" >
-							  	<tr role="row" align="center">
-			                     <td>{$vo.sn_sort}</td>
-			                     <td>{$vo.sn_title}</td>
-			                     <td>{$vo.sn_is_show}</td>
-			                     <td>{$vo.sn_new_open}</td>
-			                     <td>
-			                      <a class="btn btn-primary" href="{:U('Store/navigation',array('sn_id'=>$vo['sn_id']))}"><i class="fa fa-pencil"></i></a>
-			                      <a class="btn btn-danger" href="javascript:void(0)" data-url="{:U('/Seller/Store/navigationHandle')}" data-id="{$vo.sn_id}" onclick="delfun(this)"><i class="fa fa-trash-o"></i></a>
-								</td>
-			                   </tr>
-			                  </foreach>
-			                  </if>
-						</tpshop> -->
 						  <foreach name="list" item="vo" key="k" >
 						  	<tr role="row" align="center">
 		                     <td>{$vo.sn_sort}</td>
@@ -82,7 +50,6 @@
 		                  </foreach>
 		                   </tbody>
 		                 <tfoot>
-		                 
 		                 </tfoot>
 		               </table>
 	               </div>

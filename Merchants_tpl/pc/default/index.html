@@ -1,0 +1,99 @@
+<include file="./header"/>
+
+
+      <!-- 轮播图 -->
+
+       <div id="wrapper">
+          <div class="fullwidthbanner-container">
+            <div class="fullwidthbanner">
+              <ul>
+          <foreach name="store[store_slide]" item="vimg">
+                <if condition="($vimg)">
+                <li data-transition="3dcurtain-horizontal" data-slotamount="15" data-masterspeed="300">
+                  <img src="{$vimg}" alt="" />                 
+                </li>
+                </if>
+          </foreach>     
+              </ul>
+            </div>
+          </div>
+      </div>
+       
+      <!-- 轮播图 -->
+
+
+
+		<!-- 最新产品 -->
+       <section class="canpany">
+           <ul>
+               <li><a href="#"> 最新</a></li>
+           </ul>
+             <p><br/></p>
+
+			<foreach name="new_goods" item="v">
+	           <dl>
+	               <dd><a href="{:U('Goods/goodsInfo',array('id'=>$v[goods_id]))}"> <img src="{$v.goods_id|goods_thum_images=240,240}"/> </a></dd>
+	               <dt>{$v.goods_name|getSubstr=0,30}</dt>
+	               <b>￥{$v.shop_price}</b>
+	           </dl>
+			</foreach>
+       </section>
+<div style="clear:both;width:100%;"></div>
+       <section class="canpany">
+           <ul>
+               <li><a >热门</a><span></span></li>
+           </ul>
+             <p><br/></p>
+
+			<foreach name="hot_goods" item="v">
+	           <dl>
+	               <dd><a href="{:U('Goods/goodsInfo',array('id'=>$v[goods_id]))}"> <img src="{$v.goods_id|goods_thum_images=240,240}"/> </a></dd>
+	               <dt>{$v.goods_name|getSubstr=0,30}</dt>
+	               <b>￥{$v.shop_price}</b>
+	           </dl>
+			</foreach>
+       </section>
+<div style="clear:both;width:100%;"></div>
+
+       <section class="canpany">
+           <ul>
+               <li><a>推荐</a></li>
+           </ul>
+             <p><br/></p>
+
+			<foreach name="recomend_goods" item="v">
+	           <dl>
+	               <dd><a href="{:U('Goods/goodsInfo',array('id'=>$v[goods_id]))}"> <img src="{$v.goods_id|goods_thum_images=240,240}"/> </a></dd>
+	               <dt>{$v.goods_name|getSubstr=0,30}</dt>
+	               <b>￥{$v.shop_price}</b>
+	           </dl>
+			</foreach>
+       </section>
+<div style="clear:both;width:100%;"></div>
+
+<div style="clear:both;width:100%;"></div>
+
+       <section class="canpany">
+           <ul>
+               <li><a>收藏排行榜</a></li>
+           </ul>
+             <p><br/></p>
+
+			<foreach name="collect_goods" item="v">
+	           <dl>
+	               <dd><a href="{:U('Goods/goodsInfo',array('id'=>$v[goods_id]))}"> <img src="{$v.goods_id|goods_thum_images=240,240}"/> </a></dd>
+	               <dt>{$v.goods_name|getSubstr=0,30}</dt>
+	               <b>￥{$v.shop_price}</b>
+	           </dl>
+			</foreach>
+       </section>
+<div style="clear:both;width:100%;"></div>
+
+       <!-- 底部部分固定不变 -->
+      <include file="./footer"/> 
+       <!--尾部结束-->
+
+
+   </div>
+</body>
+</html>

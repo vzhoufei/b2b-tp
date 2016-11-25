@@ -23,6 +23,7 @@ class StoreController extends BaseController{
 	 */
 	public function store_tpl()
 	{
+		$tpls = M('store')->where('store_id = '.session('store_id'))->getField('tpl');
 		$tpl = I('t','pc');
 		$arr = scandir("./Merchants_tpl/$tpl/");
         $m = ($tpl == 'pc') ? 'Home' : 'Mobile';
@@ -33,9 +34,8 @@ class StoreController extends BaseController{
                  $template_config[$val] = include "./Merchants_tpl/$tpl/$val/config.php";
          }
 		
-		 $this->assign('tpl',$tpl);        
-        $tplconfig = include("./Application/$m/Conf/tpl.php");        
-        $this->assign('default_theme',$tplconfig['TPL']);
+		$this->assign('tpl',$tpl);        
+        $this->assign('default_theme',$tpls);
         $this->assign('template_config',$template_config);
         $this->display();
 	}
@@ -47,25 +47,21 @@ class StoreController extends BaseController{
 	 */
 	 public function changeTemplate()
    {
-   		$key = I('key');
+   		$key['tpl'] = I('key');
    		$t = I('t','pc');
 
    		$tpl = ($t == 'pc')?'Home':'Mobile';
+   		$store = M('store');
+		$tpl = $store->where('store_id = '.session('store_id'))->field('tpl')->find();
+		if(!$tpl){$this->success("请先配置您的店铺!",U('store_setting'));exit;}
 
-	if(!is_writeable("./Application/Home/conf/tpl.php")){
-            return "文件/Application/Home/conf/tpl.php不可写,不能启用魔板,请修改权限!!!";  
-		
-	}
-		$str = "<?php
-		return array(
-			'TPL'				=>'{$key}',//--zhoufei 更改商户模板位置 
-			
-			);
+		$res = $store->where('store_id = '.session('store_id'))->save($key);
+		if($res){
+   			$this->success("操作成功!!!",U('store_tpl',array('t'=>$t)));
+		}else{
 
-		?>";
-   		$tplconfig = file_put_contents("./Application/Home/conf/tpl.php",$str);
-
-   		$this->success("操作成功!!!",U('store_tpl',array('t'=>$t)));
+   			$this->success("操作失败!!!",U('store_tpl',array('t'=>$t)));
+		}
 
    }
 
@@ -91,6 +87,7 @@ class StoreController extends BaseController{
 			$bind_class_list[$i]['class_2_name'] = $goods_class[$bind_class_list[$i]['class_2']];
 			$bind_class_list[$i]['class_3_name'] = $goods_class[$bind_class_list[$i]['class_3']];
 		}
+		
 		$this->assign('bind_class_list',$bind_class_list);
 		$this->display();
 	}
@@ -236,7 +233,7 @@ class StoreController extends BaseController{
 				$list[] = $val;
 			}
 		}
-		
+	
 		$this->assign('list',$list);
 		$count = $Model->where('1=1')->count();
 		$Page = new \Think\Page($count,10);

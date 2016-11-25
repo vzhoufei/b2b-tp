@@ -1,0 +1,35 @@
+<include file="./header"/>
+       <!-- <figure><img src="images/canpany1.jpg" /> </figure> -->
+       <style>.selected{background:#ccc;}</style>
+       <section class="canpany">
+           <ul>
+              <foreach name="link_arr" item="link">
+		        <li <if condition="$link[key] eq $keys">class='selected'</if>>
+		        <a  <if condition="$link[key] eq $keys">class="{$sort}"</if> href="{$link.url}">{$link.name}</a>
+		        </li>
+		      </foreach>
+           </ul>
+             <p><br/></p>
+
+         <foreach name="goods_list" item="vo">
+           <dl>
+               <dd><a href="{:U('Goods/goodsInfo',array('id'=>$vo[goods_id]))}" target="_blank"> 
+               <img src="{$vo.goods_id|goods_thum_images=240,240}" alt="{$vo.goods_name|getSubstr=0,30}" /> </a></dd>
+               <dt>{$vo.goods_name|getSubstr=0,20}</dt>
+               <b>￥{$vo.shop_price}</b>
+           </dl>
+         </foreach> 
+			<div style="clear:both;width:100%;"></div>
+           <p><br/></p>
+           <div style="width:100%;margin:0 auto;text-align:center;"> {$page_show}</div>
+          
+           <p><br/></p>
+
+       </section>
+       <!-- 底部部分固定不变 -->
+      <include file="./footer"/> 
+       <!--尾部结束-->
+
+   </div>
+</body>
+</html>
