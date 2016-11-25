@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{$store.store_name}</title>
+    <meta name="keywords" content="{$store.seo_keywords}" />
+    <meta name="description" content="{$store.seo_description}"/>
+    <script type="text/javascript" src='__STYLE__/js/jquery-1.7.2.min.js'></script>
+    <link href="__STYLE__/css/company.css" type="text/css" rel="stylesheet">
+    <link href="__STYLE__/css/page.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="__STYLE__/js/jquery.banner.revolution.min.js"></script>
+    <script type="text/javascript" src="__STYLE__/js/banner.js"></script>
+
+    <script type="text/javascript" src="__STYLE__/js/js.js"></script>
+    <link href="__STYLE__/css/main2.css" type="text/css" rel="stylesheet">
+   <link href="__STYLE__/css/style2.css" type="text/css" rel="stylesheet">
+<style>.xs{background:#21ACD4}</style>
+</head>
+<body>
+   <div class="warp">
+       <header class="head">
+        <if condition="$user.user_id gt 0">
+           <div class="left"><a href="{:U('User/index')}">您好！ {$user.nickname}</a></div>
+        </if>
+           <nav class="nav">
+               <ul>
+               <li><a href="/">云狄首页</a></li>
+                <if condition="$user.user_id eq 0">
+                   <li><a href="{:U('User/register')}" target="_blank">注册</a></li>
+                   <li><a href="{:U('User/login')}" target="_blank">登录</a></li><span>|</span>
+                </if>
+
+                   <li><img src="__STYLE__/images/index1.jpg" width="15" height="30"  alt=""/>&nbsp;&nbsp;<a href="{:U('User/order_list')}" target="_blank">我的订单</a></li><span>|</span>
+                   <li><a href="{:U('Home/Cart/cart')}" target="_blank">购物车</a></li><span>|</span>
+                   <li><a href="#" target="_blank">投诉举报</a></li><span>|</span>
+                   <li><a href="#" target="_blank">客服中心</a></li><span>|</span>
+                   <li><a href="#" target="_blank">帮助</a></li>
+               </ul>
+           </nav>
+       </header><!--顶部结束-->
+       <div class="prol">
+           <figure>
+             <if condition="$store[store_logo] neq ''">
+          <a href="{:U('Store/index',array('store_id'=>$store[store_id]))}"><img src="{$store.store_logo}" alt="{$store.store_name}" title="{$store.store_name}" height="70" /></a>
+      <else/>
+      <img src="__STATIC__/images/default_store_logo.gif" alt="{$store.store_name}" title="{$store.store_name}" height="70" />
+      </if>
+           </figure>
+           <article class="login">
+               <ul>
+                   <li>+<a href="#" target="_blank">收藏</a></li>
+                   <li><a href="#" target="_blank"><img src="__STYLE__/images/qq.jpg">私聊</a></li>
+               </ul>
+
+
+           </article>
+           <section class="search1">
+               <div id="tab">
+                   <div class="tabList">
+                       <ul>
+                           <li class="cur">产品</li>
+                           <!-- <li>信息</li> -->
+                       </ul>
+                   </div>
+
+                   <div class="tabCon">
+                       <div class="cur">
+                           <form method="get" action="{:U('Goods/search')}">
+                               <input type="hidden" value="search" id="search_act" name="act">
+                               <input type="text" name="q" class="ssk" placeholder="{$Think.get.keywords}" />
+                               <input type="submit" value="搜索" class="but" type=""/>
+                           </form>
+                           <button class="submitS" onclick="submits();">搜本店</button>
+                       </div>
+
+<!-- 
+                       <div style="display:none">
+                          <form method="get" action="{:U('Goods/search')}">
+                               <input type="hidden" value="search" id="search_act" name="act">
+                               <input type="text"  name="q" placeholder="女装大码" class="ssk"/>
+                               <input type="submit" value="搜索" class="but" />
+                           </form>
+                           <button class="submitS">搜本店</button>
+                       </div> -->
+                   </div>
+               </div>
+           </section>
+       </div><!--logo结束-->
+       <nav class="nav_c">
+           <ul>
+           <li class="sp"><a href="{:U('Store/index',array('store_id'=>$store[store_id]))}">首页</a> </li>
+           <li class="sp"><a href="{:U('Store/goods_list',array('store_id'=>$store[store_id]))}">全部商品</a> 
+          
+              <span id="triangle-down"></span>
+                            <ul class="dyj">
+
+                    <foreach name="main_cat" item="v">  <!-- 商品分类 -->
+                              <li onmouseover="xs({$v['cat_id']});"  ><a href="{:U('Store/goods_list',array('store_id'=>$store[store_id],'cat_id'=>$v[cat_id]))}">{$v.cat_name}</a> </li>
+                              <ul class="xsul">
+                              <foreach name="sub_cat[ $v['cat_id'] ]" item="vs">  <!-- 二级分类 -->
+                                 <li style="display:none;" class="xs{$v['cat_id']} xs"><a href="{:U('Store/goods_list',array('store_id'=>$store[store_id],'cat_id'=>$vs[cat_id]))}">{$vs.cat_name}</a></li>
+                             </foreach>
+                              <div style="clear:both;width:100%;"></div>
+                              </ul>
+                          </foreach>
+                          </ul>
+           </li>
+      <!-- 自定义导航 -->
+           <foreach name="navigation" item="vv" key="kk">
+          <li>
+          <if condition="empty($vv[sn_url])">
+          <a href="{:U('Store/store_news',array('store_id'=>$store[store_id],'sn_id'=>$vv[sn_id]))}">
+          <else/>
+          <a href="{$vv.sn_url}">
+          </if>
+          <span>{$vv.sn_title}<i></i></span></a>
+          </li>
+        </foreach>
+        <!-- 分类在导航显示 -->
+        <foreach name="link_cat" item="vz">
+      <li class="sp" ><a href="{:U('Store/goods_list',array('store_id'=>$store[store_id],'cat_id'=>$vz[cat_id]))}">{$vz.cat_name}</a> </li>
+        </foreach>
+
+   </ul>
+
+</nav><!--导航-->
+
+<script>
+   function xs(id){
+      $('.xs').css('display','none');
+      $('.xs' + id).css('display','');
+   }
+
+
+// 本店搜索
+function submits()
+{
+ var keywords = $('input[name=q]').val();
+ if(!keywords){alert('请输入关键字');return;}
+ window.location.href="{:U('Home/Store/search')}?store_id={$store[store_id]}&keywords="+keywords;
+}
+
+
+</script>

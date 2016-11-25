@@ -33,7 +33,7 @@ class StoreController extends Controller
 
             // zhoufei
             C('VIEW_PATH','./Merchants_tpl/pc/');
-            C('DEFAULT_THEME',C('TPL'));
+            C('DEFAULT_THEME',M('store')->where(array('store_id' => $store_id))->getField('tpl'));
             // zhoufei
 
 
@@ -288,5 +288,27 @@ class StoreController extends Controller
     	require_once 'ThinkPHP/Library/Vendor/phpqrcode/phpqrcode.php';
     	error_reporting(E_ERROR);
     	\QRcode::png(U('Store/index',array('store_id'=>$this->store['store_id'])));
+    }
+
+
+
+
+
+
+    public function search()
+    {
+        $keywords = I('get.keywords');
+        $cat_id = I('get.store_id');
+        if(!$keywords || !$cat_id){$this->redirect('Index/index'); }
+        $map['store_id'] = array('eq',$cat_id);
+        $where['goods_name'] = array('like','%'.$keywords.'%');
+        $where['keywords'] = array('like','%'.$keywords.'%');
+        $where['goods_remark'] = array('like','%'.$keywords.'%');
+        $where['_logic'] = 'or';
+        $map['_complex'] = $where;
+        $m = M('goods');
+        $goods = $m->where($map)->select();
+        $this->assign('goods_list',$goods);
+        $this->display('/goods_list');
     }
 }
