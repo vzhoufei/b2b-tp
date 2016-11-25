@@ -160,7 +160,7 @@
             <div class="one">
               	<p>￥{$v[shop_price]}元</p>
             </div>
-            <h1><a href="#" target="_blank">{$v[goods_name]|substr=0,62}...</a></h1>
+            <h1><a href="#" target="_blank">{$v[goods_name]|mb_substr=0,30,'utf-8'}...</a></h1>
             <div class="two">
               <h2>已成交{$v[sales_sum]}笔</h2>
               <!-- <span><img src="__PUBLIC__/pc/images/product3.jpg" width="33" height="17"  alt=""/><img src="__PUBLIC__/pc/images/product4.jpg" width="17" height="17"  alt=""/>1年</span> -->
