@@ -141,7 +141,7 @@ footer{ margin:50px auto; font-size:14px; line-height:30px; text-align:center;}
 /*第二级弹出结束*/
 .footer{ width:100%; /* height:430px; */ background:#f3f3f3; margin:0; padding-top:50px;}
 .footer .pr{ width:1200px; height:200px; margin:0 auto; border-bottom:1px solid #c7c7c7;}
-.footer dl{ width:220px; height:200px; float:left;}
+.footer dl{ width:150px; height:200px; float:left;}
 .footer dl dt{ height:60px; font-size:15px; line-height:60px;}
 .footer dl dd{ line-height:25px;}
 .footer dl dd a{ color:#757575;}
