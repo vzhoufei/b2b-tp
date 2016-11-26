@@ -1,0 +1,19 @@
+@charset "utf-8";
+/* CSS Document */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,textarea,p,blockquote,th,td a{ margin:0; padding:0; border:0; font-weight:normal;}
+fieldset,img {border:0; list-style:none;}
+label,input,img{vertical-align:middle}
+ol,ul, li{list-style: none;}
+*{margin:0;padding:0;font-family:"微软雅黑", "黑体";}
+a{color:#000;}
+a:link,a:visited{text-decoration:none;}
+img{border:0;}
+.cl{clear:both;}
+a, a:visited {text-decoration: none; cursor: pointer;}
+a {blr:expression(this.onFocus=this.blur()) } /*针对 IE*/
+a { outline:none; } /*针对firefox等*/
+body {font-size: 14px;font-family: "微软雅黑";}
+ul,li,ol{list-style: none; text-decoration: none;}
+form,dl,dt{margin:0; padding:0; }
+a, a:visited {text-decoration: none; cursor: pointer;}
+.inputarea {background-color:#ffffff}
