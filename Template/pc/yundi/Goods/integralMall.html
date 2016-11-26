@@ -29,18 +29,6 @@
 <include file="Public/header" />
 <div class="content">
     	<div class="main">
-        	<div class="exchange">
-                <ul id="cate_ul">
-                    <li <empty name="Think.get.id">class="travel"</empty> id="cate">
-                        <a href="{:U('Home/Goods/integralMall')}">全部分类</a>
-                    </li>
-                    <volist name="store_category" id="store">
-                        <li <if condition="$store['sc_id'] eq $_GET['id']">class="travel"</if>>
-                            <a href="{:U('Home/Goods/integralMall',array('id'=>$store['sc_id']))}">{$store['sc_name']}</a>
-                        </li>
-                    </volist>
-                 </ul>
-            </div>
             <div class="bdnr">
             	<div class="jffw">
                     <div id="range" style="display:inline-block;">
