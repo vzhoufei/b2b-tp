@@ -14,17 +14,12 @@
 <script src="__PUBLIC__/js/layer/layer.js"></script><!-- 弹窗js 参考文档 http://layer.layui.com/-->
 </head>
 <body>
-<include file="Public/sign-header"/>
+<include file="Public/header"/>
 <div class="fn-cart-pay"> 
    <!-- cart-title -->
    <div class="wrapper1190">
     <div class="order-header">
     	<div class="layout after">
-        	<div class="fl">
-            	<div class="logo pa-to-36 wi345">
-                	<a href="/"><img src="__STATIC__/images/newLogo.png" alt=""></a>
-                </div>
-            </div>
         	<div class="fr">
             	<div class="pa-to-36 progress-area">
                 	<div class="progress-area-wd" style="display:none">我的购物车</div>
@@ -146,7 +141,7 @@
         </div>
 <!--微信扫一扫支付对话框 / --> 
 <div id="addCardNewBind"></div>
-<include file="Public/min-footer"/>
+<include file="Public/footer"/>
 <script>
 $(document).ready(function(){
 	 $("input[name='pay_radio']").first().trigger('click');
