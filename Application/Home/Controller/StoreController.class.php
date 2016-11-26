@@ -32,8 +32,9 @@ class StoreController extends Controller
         	}
 
             // zhoufei
-            C('VIEW_PATH','./Merchants_tpl/pc/');
-            C('DEFAULT_THEME',M('store')->where(array('store_id' => $store_id))->getField('tpl'));
+            C('VIEW_PATH','./Merchants_tpl/pc/');//模板路径
+            C('DEFAULT_THEME',M('store')->where(array('store_id' => $store_id))->getField('tpl'));//模板名称
+            define('STYLE',substr(C('VIEW_PATH').C('DEFAULT_THEME'),1));
             // zhoufei
 
 
