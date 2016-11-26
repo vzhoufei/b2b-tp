@@ -9,9 +9,12 @@
 <title>首页-{$tpshop_config['shop_info_store_title']} </title>
 <meta http-equiv="keywords" content="{$tpshop_config['shop_info_store_keyword']}" />
 <meta name="description" content="{$tpshop_config['shop_info_store_desc']}" />
-
+ <script type="text/javascript" src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+<script src="__PUBLIC__/js/global.js"></script>
 <link href="__PUBLIC__/pc/css/main.css" rel="stylesheet" type="text/css">		
 <script type="text/javascript" src="__PUBLIC__/pc/js/js.js"></script>
+<script src="__PUBLIC__/js/global.js"></script>
+
 </head>
 
 <body>
@@ -19,16 +22,38 @@
   <header class="head">
     <nav class="nav">
       <ul> 
-        <li><a href="{:U('Home/user/reg')}" target="_blank">注册</a></li>
-        <li><a href="{:U('Home/user/login')}" target="_blank">登录</a></li><span>|</span>
-        <li><img src="__PUBLIC__/pc/images/index1.jpg" width="15" height="30"  alt=""/>&nbsp;&nbsp;<a href="{:U('/Home/User/order_list')}" target="_blank">我的订单</a></li><span>|</span>
-        <li><a href="{:U('Home/Cart/cart')}" target="_blank">购物车</a></li><span>|</span>
-        <!-- 暂时注销
+        <li>
+          <a href="{:U('Home/user/reg')}" class='nologin' >注册</a>
+          <a href="{:U('Home/user/index')}" class="islogin userinfo" title="" target="_self"></a>
+        </li>
+        <span>|</span>
+        <li>
+          <a href="{:U('Home/user/login')}" class='nologin' >登录</a>
+          <a href="{:U('Home/user/logout')}" class='islogin' style="margin:0 10px;" title="退出" target="_self">退出</a>
+        </li>
+        <li><img src="__PUBLIC__/pc/images/index1.jpg" width="15" height="30"  alt=""/>&nbsp;&nbsp;<a href="{:U('Home/Cart/cart')}" target="_blank">购物车</a></li><span>|</span>
+        <li><a href="{:U('/Home/User/order_list')}" target="_blank">我的订单</a></li>
+        <!-- 暂时注释
         <li><a href="#" target="_blank">投诉举报</a></li><span>|</span>
         <li><a href="#" target="_blank">客服中心</a></li><span>|</span>
         <li><a href="#" target="_blank">帮助</a></li> -->
       </ul>
     </nav>
+    <script type="text/javascript">
+    $(document).ready(function(){
+
+      var uname= getCookie('uname');
+      if(uname == ''){
+        $('.islogin').remove();
+        $('.nologin').show();
+      }else{
+        $('.nologin').remove();
+        $('.islogin').show();
+        $('.userinfo').html(decodeURIComponent(uname));
+      }
+  });
+
+  </script>
   </header>
   <section class="logo">
        <img src="__PUBLIC__/pc/images/logo.jpg" width="145" height="43"  alt=""/> 
