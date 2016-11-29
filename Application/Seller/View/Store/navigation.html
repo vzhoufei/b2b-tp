@@ -69,6 +69,17 @@
                                    
                                 </tr>
                                 <tr>
+                                    <td>banner图片：</td>
+                                    <td>
+
+                                        <img style="height: 120px;" src="<empty name='store.store_banner'>__PUBLIC__/images/not_adv.jpg<else/>{$info.sn_pic}</empty>" id="sn_pic" alt="">
+                                         <input type="hidden" name="sn_pic" value="{$info.sn_pic}">
+
+                                        <input type="button" class="form-control" style="width:100px;" name="" value="上传banner" onClick="GetUploadify(1,'sn_pic','seller','callback2')" >
+                                    </td>
+                                   
+                                </tr>
+                                <tr>
                                     <td>内容：</td>
                                     <td class="col-xs-10">
                              			<textarea class="span12 ckeditor" id="post_content" name="sn_content" title="">
@@ -93,6 +104,15 @@
     </section>
 </div>
 <script>
+
+
+function callback2(img_str){
+    $('input[name="sn_pic"]').val(img_str);
+    $('#sn_pic').attr('src',img_str);
+}
+
+
+
 function adsubmit(){
 	$('#handleposition').submit();
 }
