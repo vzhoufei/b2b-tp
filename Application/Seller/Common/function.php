@@ -145,7 +145,7 @@ function getMenuList() {
 			)),
 			'store' => array('name' => '店铺管理', 'icon'=>'fa-cog', 'child' => array(
 					array('name' => '店铺设置', 'act'=>'store_setting', 'op'=>'Store'),
-					// array('name' => '店铺装修', 'act'=>'store_decoration', 'op'=>'Store'),
+					array('name' => '店铺装修', 'act'=>'store_decoration', 'op'=>'Store'),
 					array('name' => '选择模板', 'act'=>'store_tpl', 'op'=>'Store'),
 					array('name' => '店铺导航', 'act'=>'navigation_list', 'op'=>'Store'),
 					array('name' => '经营类目', 'act'=>'bind_class_list', 'op'=>'Store'),

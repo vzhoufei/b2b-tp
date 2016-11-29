@@ -35,6 +35,8 @@ class StoreController extends Controller
             C('VIEW_PATH','./Merchants_tpl/pc/');//模板路径
             C('DEFAULT_THEME',M('store')->where(array('store_id' => $store_id))->getField('tpl'));//模板名称
             define('STYLE',substr(C('VIEW_PATH').C('DEFAULT_THEME'),1));
+            $this->assign('db',C('DB_PREFIX'));//表前缀
+
             // zhoufei
 
 
