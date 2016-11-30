@@ -22,73 +22,64 @@
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><i class="fa fa-list"></i> 编辑导航</h3>
+                    <h3 class="panel-title"><i class="fa fa-file"></i>发布文章</h3>
                 </div>
-                <div class="panel-body ">   
+                <div class="panel-body ">
                     <!--表单数据-->
-                    <form method="post" id="handleposition" action="{:U('Store/navigationHandle')}">                    
+                    <form method="post" id="handleposition" action="{:U('News/newsHandle')}">                    
                         <!--通用信息-->
                     <div class="tab-content col-md-12">                 	  
                         <div class="tab-pane active" id="tab_tongyong">                           
                             <table class="table table-bordered">
                                 <tbody>
                                 <tr>
-                                    <td class="col-sm-2">导航名称：</td>
+                                    <td class="col-sm-2">文章标题：</td>
                                     <td>
-                                        <input type="text" class="form-control" name="sn_title" value="{$info.sn_title}" >                                   
-                                    </td>
-                                </tr>  
-                                <tr>
-                                    <td>是否显示：</td>
-                                    <td >
-                         				<input type="radio" class="" name="sn_is_show" value="1" <if condition="$info[sn_is_show] eq 1"> checked="checked"</if>>是
-                      					<input type="radio" class="" name="sn_is_show" value="0" <if condition="$info[sn_is_show] eq 0"> checked="checked"</if>>否
-                                    </td>
-                                   
-                                </tr>  
-                                <tr>
-                                    <td>是否文章列表页：</td>
-                                    <td >
-                                        <input type="radio" class="" name="sn_is_list" value="1" <if condition="$info[sn_is_list] eq 1"> checked="checked"</if>>是
-                                        <input type="radio" class="" name="sn_is_list" value="0" <if condition="$info[sn_is_list] eq 0"> checked="checked"</if>>否
-                                    </td>
-                                   
-                                </tr> 
-                                <tr>
-                                    <td>是否新窗口打开：</td>
-                                    <td>
-                               			<input type="radio" class="" name="sn_new_open" value="1"  <if condition="$info[sn_new_open] eq 1"> checked="checked"</if>>是
-                      					<input type="radio" class="" name="sn_new_open" value="0"  <if condition="$info[sn_new_open] eq 0"> checked="checked"</if>>否     
-                                    </td>
-                                  
-                                </tr>  
-                                <tr>
-                                    <td>导航外链URL：</td>
-                                    <td>
-                      					<input type="text" class="form-control" name="sn_url" value="{$info.sn_url}" >
-                                    	<p class="text-warning">请填写包含http://的完整URL地址,如果填写此项则点击该导航会跳转到外链</p>
+                                        <input type="text" class="form-control" name="title" value="{$info.title}" >                                   
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>排序：</td>
+                                    <td class="col-sm-2">作者：</td>
                                     <td>
-                      					<input type="text" class="form-control" name="sn_sort" value="{$info.sn_sort}" >
+                                        <input type="text" class="form-control" name="author" value="{$info.author}" >                                   
                                     </td>
-                                   
+                                </tr>
+                                <tr>
+                                    <td>所属栏目：</td>
+                                    <td >
+	                                    	<input type="radio" name="sn_id" value="0" checked="checked">所有
+                                    	<foreach name='nav' item='n'>
+	                                    	<input type="radio" name="sn_id" value="{$n.sn_id}">{$n.sn_title}
+                                    	</foreach>
+                                    </td>
+                                </tr> 
+                                <tr>
+                                    <td>是否显示：</td>
+                                    <td >
+                         				<input type="radio" class="" name="is_show" value="1" checked="checked">是
+                      					<input type="radio" class="" name="is_show" value="0" >否
+                                    </td>
+                                </tr> 
+                                <tr>
+                                    <td>文章来源：</td>
+                                    <td>
+                      					<input type="text" class="form-control" name="rep" value="{$info.rep}" >
+                                    	<p class="text-warning">请填写包含http://的完整URL地址</p>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>内容：</td>
                                     <td class="col-xs-10">
-                             			<textarea class="span12 ckeditor" id="post_content" name="sn_content" title="">
-							            {$info.sn_content}
+                             			<textarea class="span12 ckeditor" id="post_content" name="content" title="">
+							            {$info.content}
 							        </textarea>
                                     </td>
                                 </tr>                                   
                                 </tbody> 
                                 <tfoot>
                                 	<tr>
-                                		<td><input type="hidden" name="sn_id" value="{$info.sn_id}"></td>
-                                		<td class="text-right"><input class="btn btn-primary" type="button" onclick="adsubmit()" value="保存"></td>
+                                		<td></td>
+                                		<td class="text-right"><input class="btn btn-primary" type="button" onclick="adsubmit()" value="发布"></td>
                                 	</tr>
                                 </tfoot>                               
                                 </table>
