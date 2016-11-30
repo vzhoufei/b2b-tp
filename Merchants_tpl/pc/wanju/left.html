@@ -3,9 +3,9 @@
 							<p>产品分类</p>
 							<ul>
 						 		<foreach name="main_cat" item="v">  <!-- 商品分类 -->
-									<li><a href="{:U('Store/goods_list',array('store_id'=>$store[store_id],'cat_id'=>$v[cat_id]))}">{$v.cat_name}</a></li>
+									<li><a target="_blank" href="{:U('Store/goods_list',array('store_id'=>$store[store_id],'cat_id'=>$v[cat_id]))}">{$v.cat_name}</a></li>
 									<foreach name="sub_cat[ $v['cat_id'] ]" item="vs">  <!-- 二级分类 -->
-													<li><a href="{:U('Store/goods_list',array('store_id'=>$store[store_id],'cat_id'=>$vs[cat_id]))}">{$vs.cat_name}</a></li>
+													<li><a target="_blank" href="{:U('Store/goods_list',array('store_id'=>$store[store_id],'cat_id'=>$vs[cat_id]))}">{$vs.cat_name}</a></li>
 											</foreach>
 								</foreach>	
 							</ul>
@@ -20,7 +20,7 @@
 								<li><artile><span class="mian_good6L2_numa">{$k+1}</span>成交<span class="mian_good6L2_numb">{$vo.sales_sum}</span>笔</artile>
 								<div class="mian_good6L2img">
 									<img src="{$vo.goods_id|goods_thum_images=240,240}">
-									<a href="{:U('Goods/goodsInfo',array('id'=>$vo[goods_id]))}">{$vo.goods_name|getSubstr=0,25}</a>
+									<a target="_blank" href="{:U('Goods/goodsInfo',array('id'=>$vo[goods_id]))}">{$vo.goods_name|getSubstr=0,25}</a>
 									<span>￥ <font style="color:#f00;">{$vo.shop_price}</font></span>
 								</div>
 								</li>
@@ -33,9 +33,9 @@
 							<p>收藏排行榜</p>
 							<ul>
 								<foreach name="collect_goods" item="vo">
-								<li><a href="{:U('Goods/goodsInfo',array('id'=>$vo[goods_id]))}"><img src="{$vo.goods_id|goods_thum_images=160,160}"></a>
+								<li><a target="_blank" href="{:U('Goods/goodsInfo',array('id'=>$vo[goods_id]))}"><img src="{$vo.goods_id|goods_thum_images=160,160}"></a>
 									<span class="mian_goodO5M">¥<b>{$vo.shop_price}</b></span>
-									<a href="{:U('Goods/goodsInfo',array('id'=>$vo[goods_id]))}" class="mian_goodO5T">{$vo.goods_name|getSubstr=0,25}</a>
+									<a target="_blank" href="{:U('Goods/goodsInfo',array('id'=>$vo[goods_id]))}" class="mian_goodO5T">{$vo.goods_name|getSubstr=0,25}</a>
 									<span  class="mian_goodO6R1M"></span>
 									<span class="mian_goodO6R1N">收藏({$vo.collect_sum})</span></li>
 								</foreach>
@@ -65,7 +65,7 @@
 
 						<div class='mian_good6L5'>
 							<p>联系方式</p>
-							<div><a href="">阙伟平</a>先生（运营部门 经理）</div>
+							<!-- <div><a href="">阙伟平</a>先生（运营部门 经理）</div> -->
 							<div><a href="http://amos.im.alisoft.com/msg.aw?v=2&uid={$store[store_aliwangwang]}&site=cntaobao&s=1&charset=utf-8"><img border="0" src="http://amos.im.alisoft.com/online.aw?v=2&uid={$store[store_aliwangwang]}&site=cntaobao&s=1&charset=utf-8" alt="点击这里给我发消息" /></a></div>
 							<dl><dd>电      话：{$store[store_phone]}</dd></dl>
 							<dl><dd>移动电话： {$store[store_phone]}</dd></dl>
@@ -73,7 +73,7 @@
 
 						<div class='mian_good6L6'>
 							<p>公司介绍</p>
-							<div>  云和县木丸子玩具有限公司是益智玩具、积木、拼板拼图、多米诺骨牌、串珠绕珠等产品专业生产加工的公司，拥有完整、科学的质量管理体系。云和县木丸子玩具有限公司的诚信、实力和产品质量获得业界的认可。欢迎各界朋友莅临参观、指导和业务洽谈。</div>
+							<div>{$store['seo_description']}</div>
 							
 						</div>
 						

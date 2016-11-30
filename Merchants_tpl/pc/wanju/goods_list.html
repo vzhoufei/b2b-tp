@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{$cat_name}</title>
+	 <meta name="keywords" content="{$store.seo_keywords}" />
+    <meta name="description" content="{$store.seo_description}"/>
 <include file="./header"/>
 <style>
 
@@ -6,6 +13,7 @@
 </style>
 
 <!-- 产品专区 -->
+ <if condition="($goods_list)"> 
 	<section class="main_goods">
 		<!-- 产品部分开始 -->
 		<div class="main_goodsO">
@@ -37,10 +45,21 @@
 
          						<foreach name="goods_list" item="vo">
 							
-								<li><a href="{:U('Goods/goodsInfo',array('id'=>$vo[goods_id]))}"><img src="{$vo.goods_id|goods_thum_images=240,240}" class="img" /></a>					
+								<li><a target="_blank" href="{:U('Goods/goodsInfo',array('id'=>$vo[goods_id]))}"><img src="{$vo.goods_id|goods_thum_images=240,240}" class="img" /></a>					
 									<span class="mian_goodO5M">¥<b>{$vo.shop_price}</b></span>
-									<a href="{:U('Goods/goodsInfo',array('id'=>$vo[goods_id]))}" class="mian_goodO5T">{$vo.goods_name|getSubstr=0,20}</a>
-									<a href="{:U('Goods/goodsInfo',array('id'=>$vo[goods_id]))}" class="qianggoua"><div class="qianggou"><span class="qianggou2">立即抢购</span></div></a>
+									<a target="_blank" href="{:U('Goods/goodsInfo',array('id'=>$vo[goods_id]))}" class="mian_goodO5T">{$vo.goods_name|getSubstr=0,20}</a>
+									<a target="_blank" href="{:U('Goods/goodsInfo',array('id'=>$vo[goods_id]))}" class="qianggoua">
+
+										<if condition="$vo[prom_type] gt 0">
+									<div class="qianggou"><span class="qianggou2">
+										                    <if condition="$vo[prom_type] eq 1">抢购商品</if>
+										                    <if condition="$vo[prom_type] eq 2">团购商品</if>
+										                    <if condition="$vo[prom_type] eq 3">限时折扣</if>
+									</span></div>
+										            </if>
+
+
+									</a>
 									<span  class="mian_goodO6R1M"><!-- <img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"> --></span>
 									<span class="mian_goodO6R1N">成交{$vo.sales_sum}笔</span>	
 										<div class="jiagou"><a href="{:U('Goods/goodsInfo',array('id'=>$vo[goods_id]))}">加入进货单</a></div>							
@@ -53,14 +72,9 @@
 							<div class="lastPage">
 								{$page_show}
 		
-
-
 							</div>
 
-
 						</div>
-
-						
 					</div>
 
 						<div class="cl"></div>
@@ -72,6 +86,9 @@
 		</div>
 
 	</section>
+	<else/>
+<div style="width:1200px;margin:0 auto;text-align:center;height:200px;line-height:200px;font-size:20px;"> 抱歉没有找到相关商品!       </div>
+	</if>
 
 	</main>
 

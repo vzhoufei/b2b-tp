@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{$store.store_name}</title>
+	 <meta name="keywords" content="{$store.seo_keywords}" />
+    <meta name="description" content="{$store.seo_description}"/>
 <include file="./header"/>
 	<!-- 轮播图部分 -->
 		<section class="main_ban">
@@ -156,10 +163,10 @@
 
 								<foreach name="new_goods" item="v">
 
-								<li><a href="{:U('Goods/goodsInfo',array('id'=>$v[goods_id]))}"><img src="{$v.goods_id|goods_thum_images=240,240}"></a>					
+								<li><a target="_blank" href="{:U('Goods/goodsInfo',array('id'=>$v[goods_id]))}"><img src="{$v.goods_id|goods_thum_images=240,240}"></a>					
 									<span class="mian_goodO5M">¥<b>{$v.shop_price}</b></span>
-									<a href="{:U('Goods/goodsInfo',array('id'=>$v[goods_id]))}" class="mian_goodO5T">{$v.goods_name|getSubstr=0,30}</a>
-									<a href="{:U('Goods/goodsInfo',array('id'=>$v[goods_id]))}" class="qianggoua">
+									<a target="_blank" href="{:U('Goods/goodsInfo',array('id'=>$v[goods_id]))}" class="mian_goodO5T">{$v.goods_name|getSubstr=0,30}</a>
+									<a target="_blank" href="{:U('Goods/goodsInfo',array('id'=>$v[goods_id]))}" class="qianggoua">
 
 										<if condition="$v[prom_type] gt 0">
 											<div class="qianggou"><span class="qianggou2">
@@ -182,10 +189,10 @@
 							<ul>
 							<foreach name="hot_goods" item="v">
 									
-								<li><a href="{:U('Goods/goodsInfo',array('id'=>$v[goods_id]))}"><img src="{$v.goods_id|goods_thum_images=240,240}"></a>
+								<li><a target="_blank" href="{:U('Goods/goodsInfo',array('id'=>$v[goods_id]))}"><img src="{$v.goods_id|goods_thum_images=240,240}"></a>
 									<span class="mian_goodO5M">¥<b>{$v.shop_price}</b></span>
-									<a href="{:U('Goods/goodsInfo',array('id'=>$v[goods_id]))}" class="mian_goodO5T">{$v.goods_name|getSubstr=0,30}</a>
-									<a href="{:U('Goods/goodsInfo',array('id'=>$v[goods_id]))}" class="qianggoua">
+									<a target="_blank" href="{:U('Goods/goodsInfo',array('id'=>$v[goods_id]))}" class="mian_goodO5T">{$v.goods_name|getSubstr=0,30}</a>
+									<a  target="_blank" href="{:U('Goods/goodsInfo',array('id'=>$v[goods_id]))}" class="qianggoua">
 
 										<if condition="$v[prom_type] gt 0">
 											<div class="qianggou"><span class="qianggou2">
@@ -209,10 +216,10 @@
 
 							<foreach name="recomend_goods" item="v">
 
-								<li><a href="{:U('Goods/goodsInfo',array('id'=>$v[goods_id]))}"><img src="{$v.goods_id|goods_thum_images=240,240}"></a>
+								<li><a target="_blank" href="{:U('Goods/goodsInfo',array('id'=>$v[goods_id]))}"><img src="{$v.goods_id|goods_thum_images=240,240}"></a>
 									<span class="mian_goodO5M">¥<b>{$v.shop_price}</b></span>
-									<a href="{:U('Goods/goodsInfo',array('id'=>$v[goods_id]))}" class="mian_goodO5T">{$v.goods_name|getSubstr=0,30}</a>
-									<a href="{:U('Goods/goodsInfo',array('id'=>$v[goods_id]))}" class="qianggoua">
+									<a target="_blank" href="{:U('Goods/goodsInfo',array('id'=>$v[goods_id]))}" class="mian_goodO5T">{$v.goods_name|getSubstr=0,30}</a>
+									<a target="_blank" href="{:U('Goods/goodsInfo',array('id'=>$v[goods_id]))}" class="qianggoua">
 
 										<if condition="$v[prom_type] gt 0">
 											<div class="qianggou"><span class="qianggou2">
@@ -270,9 +277,9 @@
 								<div class="mian_goodO6R3">
 							<p>友情链接</p>
 							<ul>
-								<li><a href="#">木丸子品牌旗舰店</a></li>
-								<li><a href="#">木丸子品牌专营店</a></li>
-								<li><a href="#">丽水产业带</a></li>
+								<li><a target="_blank" href="#">木丸子品牌旗舰店</a></li>
+								<li><a  target="_blank" href="#">木丸子品牌专营店</a></li>
+								<li><a target="_blank" href="#">丽水产业带</a></li>
 								<div class="cl"></div>
 							</ul>
 						</div>

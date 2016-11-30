@@ -155,6 +155,7 @@ function getMenuList() {
 					array('name' => '店铺信息', 'act'=>'store_info', 'op'=>'Store'),
 					array('name' => '店铺分类', 'act'=>'goods_class', 'op'=>'Store'),
 					array('name' => '店铺关注', 'act'=>'store_collect', 'op'=>'Store'),
+					array('name' => '绑定独立域名', 'act'=>'store_domain', 'op'=>'Store'),
 			)),
 			'consult' => array('name' => '售后服务', 'icon'=>'fa-flag', 'child' => array(
 					array('name' => '咨询管理', 'act'=>'ask_list', 'op'=>'Comment'),

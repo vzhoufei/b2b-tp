@@ -43,7 +43,7 @@ class StoreController extends BaseController{
 
 
 	/**
-	 * 修改配置文件
+	 * 修改配置文件 周飞
 	 */
 	 public function changeTemplate()
    {
@@ -66,10 +66,76 @@ class StoreController extends BaseController{
    }
 
 
+   /**
+    * 绑定独立域名 周飞
+    */
+   public function store_domain()
+   {
+   	if(IS_POST){
+            $store = M('store');
+            $data['domain'] = I('post.domain');
+            $domain = $store->where(array('store_id'=>session('store_id')))->field('domain')->find();
+            if($domain['domain']){
+                echo "<script>alert('您已经绑定了独立域名，如要更换，请联系客服！');window.history.go(-1);</script>";exit;
+            }
+            $res = $store->where(array('store_id'=>session('store_id')))->save($data);
 
 
+            // $host2 = substr($data['domain'],4);
+
+            if($res){
+	            	if(PHP_OS == 'Linux'){
+
+	                	$filename = '/usr/local/apache2/etc/extra/httpd-vhosts.conf';
+	            	}elseif(PHP_OS == 'WINNT'){
+
+	                	echo "<script>alert('系统不支持！');window.history.go(-1);</script>";exit;
+	            	}
+                // 写入的字符
+                $word = "
+<VirtualHost *:80>
+ServerName {$data['domain']}
+DocumentRoot /usr/local/apache2/htdocs/cdcms-websites/
+<Directory  '/usr/local/apache2/htdocs/cdcms-websites/'>
+  Options +Indexes +FollowSymLinks +MultiViews
+  AllowOverride All
+  Require local
+</Directory>
+</VirtualHost>
+                ";
+
+                $fh = fopen($filename, "a");
+                $fwrite = fwrite($fh, $word); 
+                fclose($fh);
+            }
 
 
+            if($fwrite){
+                  system("/usr/local/apache2/bin/apachectl -k graceful",$ress);//平滑重启apache
+                 
+                  if($ress == 0){
+                    echo "<script>alert('绑定成功');</script>";
+                    $this->redirect('index/index');exit;
+                  }else{
+                    if($res){
+                    $data2['domain'] = null;
+                    $user->where('id = '.session('homeuser.id'))->save($data2);
+                    }
+                    echo "<script>alert('绑定失败！请联系客服！');window.history.go(-1);</script>";exit;
+                  }
+            }else{
+                if($res){
+                    $data2['domain'] = null;
+                    $user->where('id = '.session('homeuser.id'))->save($data2);
+                }
+                echo "<script>alert('绑定失败！请重试！');window.history.go(-1);</script>";exit;
+            }
+
+        }else{
+
+            $this->display();
+        }
+   }
 
 
 

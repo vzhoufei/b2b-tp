@@ -30,7 +30,6 @@ class StoreController extends Controller
         	if($store_info['store_state'] == 0){
         		$this->error('该店铺不存在或者已关闭', U('Index/index'));
         	}
-
             // zhoufei
             C('VIEW_PATH','./Merchants_tpl/pc/');//模板路径
             C('DEFAULT_THEME',M('store')->where(array('store_id' => $store_id))->getField('tpl'));//模板名称
