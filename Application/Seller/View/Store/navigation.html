@@ -77,6 +77,19 @@
                                    
                                 </tr>
                                 <tr>
+
+                                    <td>banner图片：</td>
+                                    <td>
+
+                                        <img style="width:500px;" src="{$info.sn_pic}" id="sn_pic" alt="">
+                                         <input type="hidden" name="sn_pic" value="{$info.sn_pic}">
+
+                                        <input type="button" class="form-control" style="width:100px;" name="" value="上传banner" onClick="GetUploadify(1,'sn_pic','seller','callback2')" >  建议图片宽为1920px
+                                    </td>
+                                   
+                                </tr>
+                                <tr>
+
                                     <td>内容：</td>
                                     <td class="col-xs-10">
                              			<textarea class="span12 ckeditor" id="post_content" name="sn_content" title="">
