@@ -235,7 +235,14 @@ class StoreController extends BaseController{
 		}
 	
 		$this->assign('list',$list);
-		$count = $Model->where('1=1')->count();
+
+		/**
+		*	@author 金龙
+		*	2016/10/30
+		*/
+		$count = $Model->where("sn_store_id=".STORE_ID)->count();
+
+		//$count = $Model->where('1=1')->count();
 		$Page = new \Think\Page($count,10);
 		$show = $Page->show();
 		$this->assign('page',$show);
@@ -257,7 +264,15 @@ class StoreController extends BaseController{
 		// dump($data);
 
 		if($data['act'] == 'del'){
-			$r = M('store_navigation')->where('sn_id='.$data['sn_id'])->delete();
+		/**
+		*	@author 金龙
+		*	2016/10/30
+		*/
+			//$r = M('store_navigation')->where('sn_id='.$data['sn_id'])->delete();
+
+			$r = M('store_navigation')->where("sn_store_id = ".STORE_ID.' and sn_id='.$data['sn_id'])->delete();
+			M('store_art')->where("store = ".STORE_ID.' and sn_id = '.$data['sn_id'])->delete();
+
 			if($r) exit(json_encode(1));
 		}
 		if(empty($data['sn_id'])){

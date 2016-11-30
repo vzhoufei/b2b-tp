@@ -127,6 +127,10 @@ function getMenuList() {
                     array('name' => '品牌申请', 'act'=>'brandList', 'op'=>'Goods'),                            
 					//array('name' => '图片空间', 'act'=>'store_album', 'op'=>'album_cate'),
 			)),
+			'news' => array('name' => '文章管理', 'icon'=>'fa-file', 'child' => array(
+					array('name' => '文章发布', 'act'=>'addNews', 'op'=>'News'), ///index.php/Seller/goods/addEditGoods.html'
+					array('name' => '文章查看', 'act'=>'NewsList', 'op'=>'News')
+			)),
 			'order' => array('name' => '订单物流', 'icon'=>'fa-money', 'child' => array(
 					array('name' => '订单列表', 'act'=>'index', 'op'=>'Order'),
 					array('name' => '发货', 'act'=>'delivery_list', 'op'=>'Order'),                            
@@ -146,7 +150,6 @@ function getMenuList() {
 			'store' => array('name' => '店铺管理', 'icon'=>'fa-cog', 'child' => array(
 					array('name' => '店铺设置', 'act'=>'store_setting', 'op'=>'Store'),
 					array('name' => '店铺装修', 'act'=>'store_decoration', 'op'=>'Store'),
-					array('name' => '选择模板', 'act'=>'store_tpl', 'op'=>'Store'),
 					array('name' => '店铺导航', 'act'=>'navigation_list', 'op'=>'Store'),
 					array('name' => '经营类目', 'act'=>'bind_class_list', 'op'=>'Store'),
 					array('name' => '店铺信息', 'act'=>'store_info', 'op'=>'Store'),
