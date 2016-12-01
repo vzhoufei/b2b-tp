@@ -41,7 +41,15 @@
 						<ul class='news'>
 							<foreach name='news' item='v'>
 							<li>
-								<a href="{:U('Store/Newscontent',array('store_id'=>$store[store_id],'sn'=>$sn_id,'text'=>$v[id]))}">
+								<a href="
+
+									<if condition='($nav_where)'>
+							{:U('Article/article',array('text'=>$v[id]))}
+							<else/>
+							{:U('Store/Newscontent',array('store_id'=>$store[store_id],'text'=>$v[id]))}
+							</if>
+
+								">
 								<div class='n-title'>
 									《{$v.title|mb_substr=0,20,'utf-8'}》
 								</div>
@@ -52,6 +60,7 @@
 								<div class='n-time'>{$v.timer|date='Y-m-d',###}</div>
 								</a>
 							</li>
+
 							</foreach>
 							<li class='pg'>{$page}</li>
 						</ul>
