@@ -40,7 +40,18 @@
 						<p>新闻</p>
 						<ul class='news'>
 							<foreach name='news' item='v'>
-							<li><div class='n-title'><a href="{:U('Store/Newscontent',array('store_id'=>$store[store_id],'sn'=>$sn_id,'text'=>$v[id]))}">{$v.title}</a><if condition="$v[rep] neq null"><a class='rep' href="{$v.rep}">文章来源</a></if></div><div class='n-author'>作者：{$v.author}</div><div class='n-time'>{$v.timer|date='Y-m-d',###}</div></li>
+							<li>
+								<a href="{:U('Store/Newscontent',array('store_id'=>$store[store_id],'sn'=>$sn_id,'text'=>$v[id]))}">
+								<div class='n-title'>
+									《{$v.title|mb_substr=0,20,'utf-8'}》
+								</div>
+								<div class='n-title'>
+									{$v.shorttitle|mb_substr=0,20,'utf-8'}...
+								</div>
+								<div class='n-author'>作者：{$v.author}</div>
+								<div class='n-time'>{$v.timer|date='Y-m-d',###}</div>
+								</a>
+							</li>
 							</foreach>
 							<li class='pg'>{$page}</li>
 						</ul>
@@ -48,7 +59,7 @@
 					<style>
 						.news{display: table;width: 100%;}
 						.news li{line-height: 40px;height: 40px;width: 100% !important;margin:-1px 0px 0px 0px !important;}
-						.news li .n-title{width:30%;float: left;text-align: left;margin-left: 2%;}
+						.news li .n-title{float: left;text-align: left;margin-left: 2%;}
 						.news li .n-title .rep{margin-left: 20%;float: right;}
 						.news li .n-author{width:15%;float: left;text-align: left;margin-left: 20px;}
 						.news li .n-time{width:13%;float: right;}

@@ -337,6 +337,11 @@ class StoreController extends Controller
         //新品
        
 
+        $banner = M('store')->where(array('store_id' => $this->store['store_id']))->getField('store_banner');
+        $this->assign('banner', $banner);
+
+
+
         $this->assign('hot_goods', $hot_goods);
         $this->assign('collect_goods', $collect_goods);
 
@@ -359,6 +364,9 @@ class StoreController extends Controller
         $next = M('store_art')->where('store = '.$storeid.' and sn_id in (0,'. $sn_id.') and id > '.$text)->order('id ASC')->limit(1)->getfield('id');
         $pre = M('store_art')->where('store = '.$storeid.' and  sn_id in (0,'. $sn_id.') and id < '.$text)->order('id DESC')->limit(1)->getfield('id');
 
+
+         $banner = M('store')->where(array('store_id' => $this->store['store_id']))->getField('store_banner');
+        $this->assign('banner', $banner);
 
         $this->assign('pre',$pre);
         $this->assign('next',$next);
