@@ -15,7 +15,7 @@ class NewsController extends BaseController {
 
 		$list= M('store_art')->where('sn_id = '.$id.' and store = '.STORE_ID)->page($_GET['p'].',10')->select();
 
-		$nav = M('store_navigation')->where("sn_store_id=".STORE_ID)->getfield('sn_id,sn_title');
+		$nav = M('store_navigation')->where(" sn_is_list = 1 and sn_store_id=".STORE_ID)->getfield('sn_id,sn_title');
 
 		foreach ($list as $key => $val) {
 			$list[$key]['is_show'] = $val['is_show']>0 ? '显示' : '隐藏';
@@ -36,18 +36,20 @@ class NewsController extends BaseController {
 
 	public function addNews()
 	{
-		$nav = M('store_navigation')->where("sn_store_id=".STORE_ID)->select();
+		$nav = M('store_navigation')->where("sn_is_list = 1 and sn_store_id=".STORE_ID)->select();
 		
+		$this->initEditor();//2016/12/01
 		$this->assign('nav',$nav);
 		$this->assign('all',0);
 		$this->display();
 	}
 	public function uddNews()
 	{
-		$nav = M('store_navigation')->where("sn_store_id=".STORE_ID)->select();
+		$nav = M('store_navigation')->where("sn_is_list = 1 and sn_store_id=".STORE_ID)->select();
 
 		$info = M('store_art')->where('id = '.$_GET['id'].' and store = '.STORE_ID)->select();
 		
+		$this->initEditor();//2016/12/01
 		$this->assign('info',$info[0]);
 		$this->assign('nav',$nav);
 		$this->display();
@@ -70,5 +72,20 @@ class NewsController extends BaseController {
 		}else{
 			$this->error("操作失败",U('News/NewsList'));
 		}
+	}
+	/**
+	*	2016/12/1
+	*	富文本框参数
+	*/
+	private function initEditor()
+	{
+		$this->assign("URL_upload", U('Admin/Ueditor/imageUp',array('savepath'=>'decoration')));
+		$this->assign("URL_fileUp", U('Admin/Ueditor/fileUp',array('savepath'=>'decoration')));
+		$this->assign("URL_scrawlUp", U('Admin/Ueditor/scrawlUp',array('savepath'=>'decoration')));
+		$this->assign("URL_getRemoteImage", U('Admin/Ueditor/getRemoteImage',array('savepath'=>'decoration')));
+		$this->assign("URL_imageManager", U('Admin/Ueditor/imageManager',array('savepath'=>'decoration')));
+		$this->assign("URL_imageUp", U('Admin/Ueditor/imageUp',array('savepath'=>'decoration')));
+		$this->assign("URL_getMovie", U('Admin/Ueditor/getMovie',array('savepath'=>'decoration')));
+		$this->assign("URL_Home", "");
 	}
 }

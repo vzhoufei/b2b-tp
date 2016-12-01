@@ -40,7 +40,7 @@
 						<tbody>
 						  <foreach name="list" item="vo" key="k" >
 						  	<tr role="row" align="center">
-		                     <td>{$vo.title}</td>
+		                     <td>{$vo.title|mb_substr=0,15,'utf-8'}</td>
 		                     <td>{$vo.is_show}</td>
 		                     <td>{$vo.sn_id}</td>
 		                     <td>{$vo.timer|date='Y-m-d',###}</td>

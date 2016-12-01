@@ -66,14 +66,17 @@
           </li>
 
         <foreach name="navigation" item="vv" key="kk">
-          <li> 
+          <li <?php if($vv['sn_id'] == $_GET['sn_id']){echo 'class="top_nav_barM"';}?> >
           <if condition="empty($vv[sn_url])">
-          <a href="{:U('Store/store_news',array('store_id'=>$store[store_id],'sn_id'=>$vv[sn_id]))}">
+          <a <?php if($vv['sn_new_open']){echo 'target="_blank"';}?> href="<if condition='$vv[sn_is_list] eq 1'>{:U('Store/NewsList',array('store_id'=>$store[store_id],'sn'=>$vv[sn_id]))}<else/>{:U('Store/store_news',array('store_id'=>$store[store_id],'sn_id'=>$vv[sn_id]))}</if>">
           <else/>
           <a href="{$vv.sn_url}">
           </if>
-          {$vv.sn_title}</a><span>|</span> </li>
+          {$vv.sn_title}</a>
+          </li>
         </foreach>
+
+
         <foreach name="link_cat" item="vz">
           <li><a href="{:U('Store/goods_list',array('store_id'=>$store[store_id],'cat_id'=>$vz[cat_id]))}">{$vz.cat_name}</a><span>|</span> </li>
         </foreach>

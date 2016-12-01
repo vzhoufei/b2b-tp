@@ -59,7 +59,13 @@
                          				<input type="radio" class="" name="is_show" value="1" <if condition="$info[is_show] eq 1"> checked="checked"</if>>是
                       					<input type="radio" class="" name="is_show" value="0" <if condition="$info[is_show] eq 0"> checked="checked"</if>>否
                                     </td>
-                                </tr> 
+                                </tr>
+                                <tr>
+                                    <td>文章简介：</td>
+                                    <td>
+                                        <textarea class="form-control" name='shorttitle' rows="3">{$info.shorttitle}</textarea>
+                                    </td>
+                                </tr>
                                 <tr>
                                     <td>文章来源：</td>
                                     <td>
