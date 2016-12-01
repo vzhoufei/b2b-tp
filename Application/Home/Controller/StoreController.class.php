@@ -35,6 +35,7 @@ class StoreController extends Controller
             C('DEFAULT_THEME',M('store')->where(array('store_id' => $store_id))->getField('tpl'));//模板名称
             define('STYLE',substr(C('VIEW_PATH').C('DEFAULT_THEME'),1));
             $this->assign('db',C('DB_PREFIX'));//表前缀
+            C('DOMAIN','http://'.$_SERVER['HTTP_HOST']);
 
             // zhoufei
 
@@ -61,7 +62,6 @@ class StoreController extends Controller
 
             // zhoufei
 
-
         $store_id = $this->store['store_id'];
         //店铺内部分类
         $store_goods_class_list = M('store_goods_class')->where(array('store_id' => $store_id,'is_show'=>'1'))->select();//zhoufei 增加了 ,'is_show'=>'1'
@@ -79,7 +79,7 @@ class StoreController extends Controller
         }
 
 
-        $link_cat = M('store_goods_class')->where(array('store_id' => $store_id, 'is_nav_show'))->select();//分类在导航显示
+        $link_cat = M('store_goods_class')->where(array('store_id' => $store_id, 'is_nav_show'))->select();
         if ($link_cat) {
             $cat_id = get_arr_column($link_cat, 'cat_id');
             $cat_id = implode(',', $cat_id);
@@ -319,7 +319,7 @@ class StoreController extends Controller
     *   @author 金龙
     *   新闻列表页
     */
-    public function NewsList(){
+    public function newsList(){
 
         $storeid = $this->store['store_id'];
 
@@ -355,7 +355,7 @@ class StoreController extends Controller
     *   @author 金龙
     *   文章详情页
     */
-    public function Newscontent(){
+    public function newscontent(){
         $storeid = $this->store['store_id'];
         $sn_id = (empty($_GET['sn']))?0:(int)$_GET['sn'];
         $text = (empty($_GET['text']))?0:(int)$_GET['text'];

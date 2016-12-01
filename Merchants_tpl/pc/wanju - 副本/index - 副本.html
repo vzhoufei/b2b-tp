@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>less编写的网站模板</title>
+	<script type="text/javascript" src="{:STYLE}/js/jquery.min.js"></script>
+	<script type="text/javascript" src="{:STYLE}/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="{:STYLE}/js/jquery-1.7.1.min.js"></script>
+
+	<script type="text/javascript" src="{:STYLE}/js/jquery.touchSlider.js"></script>
+	<script type="text/javascript" src="{:STYLE}/js/index.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="{:STYLE}/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="{:STYLE}/css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="{:STYLE}/css/public.css">
+	<link rel="stylesheet" type="text/css" href="{:STYLE}/css/index.css.css">
+	<link rel="stylesheet" type="text/css" href="{:STYLE}/css/last.css">
+	
+</head>
+<body>
+	<!-- 右侧边栏开始 -->
+	<div class="sidebar">
+		<div class="sidebarA">
+			<div class="sidebarAa">
+				<img src="{:STYLE}/images/1881149_2071302863.png"><a href="#">我</a></div>
+			<ul>
+				<li><img src="{:STYLE}/images/2172383_1513159559.png" class="sidebarAb"><a href="#">权益</a></li>
+				<li><img src="{:STYLE}/images/2174403_1513159559.png" class="sidebarAb"><a href="#">上新</a></li>
+				<li><img src="{:STYLE}/images/2182371_1513159559.png" class="sidebarAb"><a href="#">足迹</a></li>
+				<li><img src="{:STYLE}/images/2175353_1513159559.png" class="sidebarAb"><a href="#">市场</a></li>
+			</ul>
+		</div>
+		<div class="sidebarB">
+			<a href="#top">
+				<ul>				
+					<li><img src="{:STYLE}/images/2192303_1513159559.png" class="sidebarBb"></li>				
+				</ul>
+			</a>			
+		</div>
+
+		<!-- <div class="sidebarC">
+				<img src="{:STYLE}/images/2183353_1513159559.png">
+		</div> -->
+
+	</div>
+	
+<!-- 头部开始 -->
+	<header class="header">
+	<!-- 顶部导航条开始 -->
+		<section class="headerM">
+			<div class="headerML fl">
+				<span>欢迎来到</span><a href="#" class="a">云迪网站首页</a>
+				 <if condition="$user.user_id gt 0">
+				 <span>已有账号：</span><a href="{:U('User/index')}" style="color:#FF5400;">{$user.nickname}</a>
+				 <else/>
+				<span>已有账号：</span><a href="{:U('Home/user/login')}" class="a">登陆</a><a href="{:U('User/register')}" class="a">立即注册</a>
+				</if>
+				</div>
+			<div class="headerMR fr">
+				<ul>
+					<li><a href="#" >云狄首页</a><span>|</span></li>
+					<li class="headerMRshow"><a href="#" >我的商铺</a><i>&gt;</i><span>|</span>
+						<div class="myShop">
+							<dl><dt><a href="{:U('seller/Admin/login')}">买家中心</a></dt>
+								<!-- <dd><a href="#">已买到货品</a></dd>
+								<dd><a href="#">优惠券</a></dd>
+								<dd><a href="#">发布询价单</a></dd>
+								<dd><a href="#">店铺动态</a></dd> -->
+								</dl>
+						</div></li>
+					<li class="headerMRshow"><a href="#">收藏夹</a><i>&gt;</i><span>|</span>
+						<div class="favorites">
+							<dl><dd><a href="#">收藏的货品</a></dd>
+								<dd><a href="#">收藏的供应商</a></dd>
+								<dd><a href="#">收藏的服务</a></dd>
+								<dd><a href="#">交易过的供应商</a></dd>
+								</dl>
+						</div></li>
+					<li class="headerMRshow"><a href="#" >诚信通服务</a><i>&gt;</i><span>|</span>
+						<div class="goodService">
+							<dl><dd><a href="#">免费联系我们</a></dd>
+								<dd><a href="#">特权体验馆</a></dd>
+								<dd><a href="#">新会员申请</a></dd>
+								<dd><a href="#">老会员续费</a></dd>
+								<dd><a href="#">优惠活动</a></dd>
+								</dl>
+						</div></li>
+					<li class="headerMRshow"><a href="#" >实力商家</a><i>&gt;</i><span>|</span>
+						<div class="merchants">
+							<dl><dd><a href="#">实力品牌</a></dd>
+								<dd><a href="#">实力工厂</a></dd>
+								<dd><a href="#">商家入驻</a></dd>
+								</dl>
+						</div></li>
+					<li class="headerMRshow"><a href="#" >我是供应商</a><i>&gt;</i><span>|</span>
+						<div class="supplier">
+							<dl><dd><a href="#">诚学堂</a></dd>
+								<dd><a href="#">交易技巧</a></dd>
+								<dd><a href="#">成功经验</a></dd>
+								<dd><a href="#">热门活动</a></dd>
+								<dd><a href="#">千牛工作台</a></dd>
+								<dd><a href="#">网销宝平台</a></dd>
+								</dl>
+						</div></li>
+					<li class="headerMRshow"><a href="#" >客服中心</a><i>&gt;</i><span>|</span>
+						<div class="Customer">
+							<dl><dd><a href="#">诚学堂</a></dd>
+								<dd><a href="#">交易技巧</a></dd>
+								<dd><a href="#">成功经验</a></dd>
+								<dd><a href="#">热门活动</a></dd>
+								<dd><a href="#">千牛工作台</a></dd>
+								<dd><a href="#">网销宝平台</a></dd>
+								</dl>
+						</div></li>
+					<li class="headerMRshow"><a href="#" >网站导航</a><i>&gt;</i>
+						<div class="navigation">
+							<dl><dt><a href="#">行业市场</a></dt>
+									<dd><a href="#">服装内衣</a></dd>
+									<dd><a href="#">鞋包配饰</a></dd>
+									<dd><a href="#">运动户外</a></dd>
+									<dd><a href="#">童装母婴</a></dd>
+									<dd><a href="#">日用百货</a></dd>
+									<dd><a href="#">汽车用品</a></dd>
+									<dd><a href="#">电工电气</a></dd>
+									<dd><a href="#">家装建材</a></dd>
+									<dd><a href="#">数码家电</a></dd>
+									</dl>
+								<dl><dt><a href="#">特色市场</a></dt>
+									<dd><a href="#">产业带</a></dd>
+									<dd><a href="#">进口货源</a></dd>
+									<dd><a href="#">伙拼</a></dd>
+									<dd><a href="#">新品快订</a></dd>
+									<dd><a href="#">代理加盟</a></dd>
+									<dd><a href="#">零售通</a></dd>
+									<dd><a href="#">免费拿样</a></dd>
+									<dd><a href="#">淘货源</a></dd>
+									<dd><a href="#">淘工厂</a></dd>
+									</dl>
+							<dl><dt><a href="#">采购平台</a></dt>
+									<dd><a href="#">大企业采购</a></dd>
+								</dl>
+							<dl><dt><a href="#">常用工具</a></dt>
+								<dd><a href="#">阿里旺旺</a></dd>
+								<dd><a href="#">手机阿里</a></dd>
+								<dd><a href="#">阿里贷款</a></dd>
+								<dd><a href="#">阿里物流</a></dd>
+								<dd><a href="#">商机助理</a></dd>
+								<dd><a href="#">找货神器</a></dd>
+								<dd><a href="#">网销宝平台</a></dd>
+								</dl>
+							<dl><dt><a href="#">安全交易</a></dt>
+								<dd><a href="#">买家保障</a></dd>
+								<dd><a href="#">商家认证</a></dd>
+								<dd><a href="#">支付宝</a></dd>
+								<dd><a href="#">阿里网规</a></dd>
+								<dd><a href="#">投诉举报</a></dd>
+								</dl>
+						</div></li>
+					<div class="cl"></div>
+				</ul>
+				</div>
+				<div class="cl"></div>
+		</section>
+		<!-- 头部下的导航 -->
+		<nav class="hnav">
+			<article class="hnavone">
+				<div class='hnavoneL'>
+				<a href="#"><img src="{:STYLE}/images/logo.png"></a>
+				</div>
+				<div class="hnavoneM">
+					<div class="hnavoneMo">
+						<div class="hnavoneM1"><a href="#">云迪官方旗舰店</a></div>
+						<div class="hnavoneM2"><a href="#">品牌：云迪</a></div>
+					</div>
+						<div class="hnavoneM3">
+							<a href="#">货描5%<img src="{:STYLE}/images/shang.png"></a>
+							<a href="#">响应1%<img src="{:STYLE}/images/shang.png"></a>
+							<a href="#">发货5%<img src="{:STYLE}/images/shang.png"></a>
+							<a href="#">回头率60%<img src="{:STYLE}/images/shang.png"></a>
+						</div>
+				</div>
+				<div class="hnavoneR">
+						<div class="hnavoneRo">
+							<input type="text" name="seach" placeholder="请输入产品关键字" class="seach">
+							<button>搜索旺铺</button>
+							<div class="hnavoneRo1">
+								<ul>
+									<li><a href="#">服装</a></li>
+									<li><a href="#">包包</a></li>
+									<li><a href="#">家具</a></li>
+									<li><a href="#">家电</a></li>
+								</ul>
+				
+							</div>
+
+						</div>
+						<div class="hnavoneRt">
+							<a href="#">搜全站</a>
+						</div>
+				</div>
+			</article>
+		</nav>
+		<div class="Myinformation"></div>
+	</header>
+	<main class="main">
+		<section class="top_nav">
+			<div class="top_nav_bar">
+				<ul>
+					<li class="top_nav_barM"><a href="#" style="color:#ff5400;">首页</a></li>
+					<li><a href="#">供应产品 ▼</a>
+							<div class="SupplyProducts">
+								<ul>
+									<li><a href="#">查看所有分类 >></a></li>
+									<li><a href="#">热销新品</a></li>
+									<li><a href="#">积木</a></li>
+									<li><a href="#">多米诺</a></li>
+									<li><a href="#">拼拼乐画板</a></li>
+									<li><a href="#">串珠绕珠</a></li>
+									<li><a href="#">益智拼图</a></li>
+									<li><a href="#">翻版计算架</a></li>
+								</ul>
+							</div>
+					</li>
+					<li><a href="#">热销新品</a></li>
+					<li><a href="#">公司企业</a></li>
+					<li><a href="#">公司档案</a></li>
+					<li><a href="#">联系方式</a></li>
+					<li><a href="#">会员专区</a></li>
+					<li><a href="#">样品展厅</a></li>
+				<div class="cl"></div>
+				</ul>
+			</div>			
+		</section>
+
+		<!-- 轮播图部分 -->
+		<section class="main_ban">
+			<div class="main_visual">
+				<div class="flicking_con">
+					<a href="#">1</a>
+					<a href="#">2</a>
+					<a href="#">3</a>
+					<a href="#">4</a>
+				</div>
+				<div class="main_image">
+					<ul>
+						<li><span ><img src="{:STYLE}/images/img_main_3.jpg"></span></li>
+						<li><span ><img src="{:STYLE}/images/img_main_4.jpg"></span></li>
+						<li><span ><img src="{:STYLE}/images/img_main_2.jpg"></span></li>
+						<li><span ><img src="{:STYLE}/images/img_main_5.jpg"></span></li>
+					</ul>
+					<a href="javascript:;" id="btn_prev"></a>
+					<a href="javascript:;" id="btn_next"></a>
+				</div>
+			</div>
+	</section>
+	<!-- 产品专区 -->
+	<section class="main_goods">
+		<!-- 产品部分开始 -->
+		<div class="main_goodsO">
+			<div class="mian_goodO1">
+					<ul>
+						<li><a href="#"><img src="{:STYLE}/images/2569502296_783871151.jpg"></a></li>
+						<li><a href="#"><img src="{:STYLE}/images/2566759631_783871151.jpg"></a></li>
+						<li><a href="#"><img src="{:STYLE}/images/2569499318_783871151.jpg"></a></li>
+						<li><a href="#"><img src="{:STYLE}/images/2571435845_783871151.jpg"></a></li>
+						<div class="cl"></div>
+					</ul>
+				<p><a href="#"><img src="{:STYLE}/images/2569508780_783871151.jpg"></a></p>
+			</div>
+			<div class="mian_goodO2">
+				<ul>
+						<li><a href="#"><img src="{:STYLE}/images/2566783093_783871151.jpg"></a></li>
+						<li><a href="#"><img src="{:STYLE}/images/2569520321_783871151.jpg"></a></li>
+						<li><a href="#"><img src="{:STYLE}/images/2571456040_783871151.jpg"></a></li>
+						<li><a href="#"><img src="{:STYLE}/images/2566777409_783871151.jpg"></a></li>
+						<div class="cl"></div>
+					</ul>
+				<p><a href="#"><img src="{:STYLE}/images/2566795069_783871151.jpg"></a></p>				
+			</div>
+			<div class="mian_goodO3">
+					<ul>
+							<li><a href="#"><img src="{:STYLE}/images/2569532658_783871151.jpg"></a></li>
+							<li><a href="#"><img src="{:STYLE}/images/2571465477_783871151.jpg"></a></li>
+							<li><a href="#"><img src="{:STYLE}/images/2569541186_783871151.jpg"></a></li>
+							<li><a href="#"><img src="{:STYLE}/images/2571468413_783871151.jpg"></a></li>
+							<div class="cl"></div>
+						</ul>
+					<p><a href="#"><img src="{:STYLE}/images/2571504023_783871151.jpg"></a></p>				
+				</div>
+			<div class="mian_goodO3b">
+					<ul>
+							<li><a href="#"><img src="{:STYLE}/images/2569562936_783871151.jpg"></a></li>
+							<li><a href="#"><img src="{:STYLE}/images/2569583333_783871151.jpg"></a></li>
+							<li><a href="#"><img src="{:STYLE}/images/2569565898_783871151.jpg"></a></li>
+							<li><a href="#"><img src="{:STYLE}/images/2571504496_783871151.jpg"></a></li>
+							<li><a href="#"><img src="{:STYLE}/images/2566813670_783871151.jpg"></a></li>
+							<li><a href="#"><img src="{:STYLE}/images/2569574578_783871151.jpg"></a></li>
+							<li><a href="#"><img src="{:STYLE}/images/2571498740_783871151.jpg"></a></li>
+							<li><a href="#"><img src="{:STYLE}/images/2569571750_783871151.jpg"></a></li>
+							<li><a href="#"><img src="{:STYLE}/images/2571504701_783871151.jpg"></a></li>
+							<li><a href="#"><img src="{:STYLE}/images/2566825040_783871151.jpg"></a></li>
+							<li><a href="#"><img src="{:STYLE}/images/2569577635_783871151.jpg"></a></li>
+							<li><a href="#"><img src="{:STYLE}/images/2566819128_783871151.jpg"></a></li>
+							<div class="cl"></div>
+						</ul>										
+				</div>
+				<div class="mian_goodO4">
+					<p>限时促销</p>
+					<ul>
+							<li>
+								<a href="#"><img src="{:STYLE}/images/2293515964_783871151.220x220.jpg"></a>
+								<a href="#" class="mian_goodO4T">儿童玩具木制农场乐园磁性拼拼乐双面拼图画板益智玩具厂家直销</a>
+								<span class="mian_goodO4M">¥<b>13.78</b></span>
+								<span class="mian_goodO4N">¥14.50</span></li>
+							<li><a href="#"><img src="{:STYLE}/images/2762662359_783871151.220x220.jpg"></a>
+								<a href="#" class="mian_goodO4T">木丸子木制拼图拼版动物拼拼乐双面木质画板儿童益智玩具厂家直销</a>
+								<span class="mian_goodO4M">¥<b>13.63</b></span>
+								<span class="mian_goodO4N">¥14.50</span></li>
+							<li><a href="#"><img src="{:STYLE}/images/2907413648_783871151.220x220.jpg"></a>
+								<a href="#" class="mian_goodO4T">木丸子儿童木制积木62粒城市交通积木 木制儿童益智玩具积木批发	</a>
+								<span class="mian_goodO4M">¥<b>24.00</b></span>
+								<span class="mian_goodO4N">¥25.00</span></li>
+							<li><a href="#"><img src="{:STYLE}/images/3537454911_783871151.220x220.jpg"></a>
+								<a href="#" class="mian_goodO4T">木丸子益智玩具多米诺骨牌双面印刷汉字木制儿童玩具木制积木特价</a>
+								<span class="mian_goodO4M">¥<b>16.62</b></span>
+								<span class="mian_goodO4N">¥17.50</span></li>
+							<div class="cl"></div>
+						</ul>				
+				</div>
+				<div class="mian_goodO5">
+					<p>精品推荐</p>
+					<ul>
+							<li><a href="#"><img src="{:STYLE}/images/2895614828_783871151.230x230.jpg"></a>
+								<span class="mian_goodO5M">¥<b>1.70</b></span>
+								<a href="#" class="mian_goodO5T">儿童玩具木制农场乐园磁性拼拼乐双面拼图画板益智玩具厂家直销</a>
+								<span class="mian_goodO5N">成交5082笔</span></li>
+							<li><a href="#"><img src="{:STYLE}/images/3537454911_783871151.230x230.jpg"></a>
+								<span class="mian_goodO5M">¥<b>16.63</b></span>
+								<a href="#" class="mian_goodO5T">木丸子益智玩具多米诺骨牌双面印刷汉字木制儿童玩具木制积木特价</a>
+								<span class="mian_goodO5N">成交1828笔</span></li>
+							<li><a href="#"><img src="{:STYLE}/images/3537532886_783871151.230x230.jpg"></a>
+								<span class="mian_goodO5M">¥<b>17.50</b></span>
+								<a href="#" class="mian_goodO5T">木丸子儿童玩具木制积木数学动物汉字学习多米诺骨牌益智玩具</a>
+								<span class="mian_goodO5N">成交1142笔</span></li>
+							<li><a href="#"><img src="{:STYLE}/images/2762662359_783871151.230x230.jpg"></a>
+								<span class="mian_goodO5M">¥<b>13.63</b></span>
+								<a href="#" class="mian_goodO5T">木丸子木制拼图拼版动物拼拼乐双面木质画板儿童益智玩具厂家直销</a>
+								<span class="mian_goodO5N">成交1707笔</span></li>
+							<li><a href="#"><img src="{:STYLE}/images/2987065464_783871151.230x230.jpg"></a>
+								<span class="mian_goodO5M">¥<b>11.00</b></span>
+								<a href="#" class="mian_goodO5T">木丸子木制拼图大号磁性中国世界地图立体拼图拼板儿童益智玩具</a>
+								<span class="mian_goodO5N">成交1142笔</span></li>
+							<li><a href="#"><img src="{:STYLE}/images/2895307124_783871151.230x230.jpg"></a>
+								<span class="mian_goodO5M">¥<b>9.50</b></span>
+								<a href="#" class="mian_goodO5T">木丸子木制积木玩具四柱形状配对套柱积木儿童益智玩具厂家直销</a>
+								<span class="mian_goodO5N">成交1050笔</span></li>
+							<li><a href="#"><img src="{:STYLE}/images/2281025586_783871151.230x230.jpg"></a>
+								<span class="mian_goodO5M">¥<b>8.50</b></span>
+								<a href="#" class="mian_goodO5T">婴儿童音乐琴宝宝玩具益智巧琴 厂家直销</a>
+								<span class="mian_goodO5N">成交1023笔</span></li>
+							<li><a href="#"><img src="{:STYLE}/images/2898947506_783871151.230x230.jpg"></a>
+								<span class="mian_goodO5M">¥<b>24.00</b></span>
+								<a href="#" class="mian_goodO5T">木丸子儿童木制积木62粒城市交通积木 木制儿童益智玩具积木批发</a>
+								<span class="mian_goodO5N">成交1002笔</span></li>
+							<div class="cl"></div>
+						</ul>				
+				</div>
+				<!-- 产品左右显示部分 -->
+				<div class="mian_goodO6">
+					<!-- 产品左边部分 -->
+					<aside class="mian_goodO6L">
+						<div class='mian_good6L1'>
+							<p>产品分类</p>
+							<ul>
+								<li><a href="#">热销新品</a></li>
+								<li><a href="#">积木</a></li>
+								<li><a href="#">多米诺</a></li>
+								<li><a href="#">拼拼乐画板</a></li>
+								<li><a href="#">串珠绕珠</a></li>
+								<li><a href="#">益智拼图</a></li>
+								<li><a href="#">翻版计算架</a></li>
+								<li><a href="#">音乐玩具</a></li>
+								<li><a href="#">迷宫走珠</a></li>
+								<li><a href="#">桌面亲子游戏叠..</a></li>
+								<li><a href="#">拆装组合</a></li>
+								<li><a href="#">3D立体拼图</a></li>
+								<li><a href="#">其他益智玩具</a></li>	
+							</ul>
+						</div>
+						
+						<div class='mian_good6L2'>
+							<p>产品分类</p>
+							<ul>
+								<li><artile><span class="mian_good6L2_numa">1</span>成交<span class="mian_good6L2_numb">5038</span>笔</artile>
+								<article class="mian_good6L2img">
+									<img src="{:STYLE}/images/2895614828_783871151.summ.jpg">
+									<a href="#">木丸子卡通拼图拼版玩具 木制..</a>
+									<span>￥ <font style="color:#f00;">1.70</font></span>
+								</article>
+								</li>
+								<li><artile><span class="mian_good6L2_numa">2</span>成交<span class="mian_good6L2_numb">2829</span>笔</artile>
+								<article class="mian_good6L2img">
+									<img src="{:STYLE}/images/3537454911_783871151.summ.jpg">
+									<a href="#">木丸子益智玩具多米诺骨牌双面..</a>
+									<span>￥ <font style="color:#f00;">1.70</font></span>
+								</article>
+								</li>
+								<li><artile><span class="mian_good6L2_numa">3</span>成交<span class="mian_good6L2_numb">1828</span>笔</artile>
+								<article class="mian_good6L2img">
+									<img src="{:STYLE}/images/3537532886_783871151.summ.jpg">
+									<a href="#">木丸子儿童玩具木制积木数学动..</a>
+									<span>￥ <font style="color:#f00;">1.70</font></span>
+								</article>
+								</li>
+								<li><artile><span class="mian_good6L2_numa">4</span>成交<span class="mian_good6L2_numb">1707</span>笔</artile>
+								<article class="mian_good6L2img">
+									<img src="{:STYLE}/images/2762662359_783871151.summ.jpg">
+									<a href="#">木丸子木制拼图拼版动物拼拼乐..</a>
+									<span>￥ <font style="color:#f00;">1.70</font></span>
+								</article>
+								</li>									
+							</ul>
+						</div>
+
+						<div class='mian_good6L3'>
+							<p>热销精品推荐</p>
+							<ul>
+								<li><a href="#"><img src="{:STYLE}/images/2917225154_783871151.search.jpg"></a>
+									<span class="mian_goodO5M">¥<b>24.00</b></span>
+									<a href="#" class="mian_goodO5T">木丸子木制积木儿童创意玩具100粒数字字母学习...</a>
+									<span  class="mian_goodO6R1M"><img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"></span>
+									<span class="mian_goodO6R1N">成交1002笔</span></li>
+								<li><a href="#"><img src="{:STYLE}/images/2917225154_783871151.search.jpg"></a>
+									<span class="mian_goodO5M">¥<b>24.00</b></span>
+									<a href="#" class="mian_goodO5T">木丸子木制积木儿童创意玩具100粒数字字母学习...</a>
+									<span  class="mian_goodO6R1M"><img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"></span>
+									<span class="mian_goodO6R1N">成交1002笔</span></li>
+								<li><a href="#"><img src="{:STYLE}/images/2917225154_783871151.search.jpg"></a>
+									<span class="mian_goodO5M">¥<b>24.00</b></span>
+									<a href="#" class="mian_goodO5T">木丸子木制积木儿童创意玩具100粒数字字母学习...</a>
+									<span  class="mian_goodO6R1M"><img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"></span>
+									<span class="mian_goodO6R1N">成交1002笔</span></li>
+								<li><a href="#"><img src="{:STYLE}/images/2917225154_783871151.search.jpg"></a>
+									<span class="mian_goodO5M">¥<b>24.00</b></span>
+									<a href="#" class="mian_goodO5T">木丸子木制积木儿童创意玩具100粒数字字母学习...</a>
+									<span  class="mian_goodO6R1M"><img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"></span>
+									<span class="mian_goodO6R1N">成交1002笔</span></li>
+								<li><a href="#"><img src="{:STYLE}/images/2917225154_783871151.search.jpg"></a>
+									<span class="mian_goodO5M">¥<b>24.00</b></span>
+									<a href="#" class="mian_goodO5T">木丸子木制积木儿童创意玩具100粒数字字母学习...</a>
+									<span  class="mian_goodO6R1M"><img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"></span>
+									<span class="mian_goodO6R1N">成交1002笔</span></li>
+								<li><a href="#"><img src="{:STYLE}/images/2917225154_783871151.search.jpg"></a>
+									<span class="mian_goodO5M">¥<b>24.00</b></span>
+									<a href="#" class="mian_goodO5T">木丸子木制积木儿童创意玩具100粒数字字母学习...</a>
+									<span  class="mian_goodO6R1M"><img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"></span>
+									<span class="mian_goodO6R1N">成交1002笔</span></li>
+								<li><a href="#"><img src="{:STYLE}/images/2917225154_783871151.search.jpg"></a>
+									<span class="mian_goodO5M">¥<b>24.00</b></span>
+									<a href="#" class="mian_goodO5T">木丸子木制积木儿童创意玩具100粒数字字母学习...</a>
+									<span  class="mian_goodO6R1M"><img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"></span>
+									<span class="mian_goodO6R1N">成交1002笔</span></li>
+								<li><a href="#"><img src="{:STYLE}/images/2917225154_783871151.search.jpg"></a>
+									<span class="mian_goodO5M">¥<b>24.00</b></span>
+									<a href="#" class="mian_goodO5T">木丸子木制积木儿童创意玩具100粒数字字母学习...</a>
+									<span  class="mian_goodO6R1M"><img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"></span>
+									<span class="mian_goodO6R1N">成交1002笔</span></li>
+								<div class="cl"></div>
+							</ul>							
+						</div>
+						<div class='mian_good6L4'>
+							<p>在线接待</p>
+							<dl class="worktime">
+								<dt>工作时间:</dt>
+								<dd>周一至周日   8:30-23:30</dd>
+							</dl>
+							<dl>
+								<dt>在线接待:</dt>
+								<dd>金牌客服 <a href="#"><img src="{:STYLE}/images/online.gif"></a></dd>
+							</dl>														
+						</div>
+
+						<div class='mian_good6L5'>
+							<p>联系方式</p>
+							<article><a href="#">阙伟平</a>先生（运营部门 经理）</article>
+							<article><a href="#" class="alitalk"></a></article>
+							<dl><dd>电      话：86 578 5138588</dd></dl>
+							<dl><dd>移动电话： 13967043300</dd></dl>
+						</div>
+
+						<div class='mian_good6L6'>
+							<p>公司介绍</p>
+							<article>  云和县木丸子玩具有限公司是益智玩具、积木、拼板拼图、多米诺骨牌、串珠绕珠等产品专业生产加工的公司，拥有完整、科学的质量管理体系。云和县木丸子玩具有限公司的诚信、实力和产品质量获得业界的认可。欢迎各界朋友莅临参观、指导和业务洽谈。</article>
+							
+						</div>
+						
+
+						<div class="cl"></div>
+					</aside>
+					<!-- 产品右边部分 -->
+					<article class="mian_goodO6R">
+						<div class="mian_goodO6R1">
+							<p>积木精品</p>
+							<ul>
+								<li><a href="#"><img src="{:STYLE}/images/2917225154_783871151.search.jpg"></a>					
+									<span class="mian_goodO5M">¥<b>24.00</b></span>
+									<a href="#" class="mian_goodO5T">木丸子木制积木儿童创意玩具100粒数字字母学习...</a>
+									<a href="#" class="qianggoua"><div class="qianggou"><span class="qianggou2">立即抢购</span></div></a>
+									<span  class="mian_goodO6R1M"><img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"></span>
+									<span class="mian_goodO6R1N">成交1002笔</span></li>
+								<li><a href="#"><img src="{:STYLE}/images/2917225154_783871151.search.jpg"></a>
+									<span class="mian_goodO5M">¥<b>24.00</b></span>
+									<a href="#" class="mian_goodO5T">木丸子木制积木儿童创意玩具100粒数字字母学习...</a>
+									<span  class="mian_goodO6R1M"><img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"></span>
+									<span class="mian_goodO6R1N">成交1002笔</span></li>
+								<li><a href="#"><img src="{:STYLE}/images/2917225154_783871151.search.jpg"></a>
+									<span class="mian_goodO5M">¥<b>24.00</b></span>
+									<a href="#" class="mian_goodO5T">木丸子木制积木儿童创意玩具100粒数字字母学习...</a>
+									<span  class="mian_goodO6R1M"><img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"></span>
+									<span class="mian_goodO6R1N">成交1002笔</span></li>
+								<li><a href="#"><img src="{:STYLE}/images/2917225154_783871151.search.jpg"></a>
+									<span class="mian_goodO5M">¥<b>24.00</b></span>
+									<a href="#" class="mian_goodO5T">木丸子木制积木儿童创意玩具100粒数字字母学习...</a>
+									<span  class="mian_goodO6R1M"><img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"></span>
+									<span class="mian_goodO6R1N">成交1002笔</span></li>
+								<li><a href="#"><img src="{:STYLE}/images/2917225154_783871151.search.jpg"></a>
+									<span class="mian_goodO5M">¥<b>24.00</b></span>
+									<a href="#" class="mian_goodO5T">木丸子木制积木儿童创意玩具100粒数字字母学习...</a>
+									<span  class="mian_goodO6R1M"><img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"></span>
+									<span class="mian_goodO6R1N">成交1002笔</span></li>
+								<li><a href="#"><img src="{:STYLE}/images/2917225154_783871151.search.jpg"></a>
+									<span class="mian_goodO5M">¥<b>24.00</b></span>
+									<a href="#" class="mian_goodO5T">木丸子木制积木儿童创意玩具100粒数字字母学习...</a>
+									<span  class="mian_goodO6R1M"><img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"></span>
+									<span class="mian_goodO6R1N">成交1002笔</span></li>
+								<li><a href="#"><img src="{:STYLE}/images/2917225154_783871151.search.jpg"></a>
+									<span class="mian_goodO5M">¥<b>24.00</b></span>
+									<a href="#" class="mian_goodO5T">木丸子木制积木儿童创意玩具100粒数字字母学习...</a>
+									<span  class="mian_goodO6R1M"><img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"></span>
+									<span class="mian_goodO6R1N">成交1002笔</span></li>
+								<li><a href="#"><img src="{:STYLE}/images/2917225154_783871151.search.jpg"></a>
+									<span class="mian_goodO5M">¥<b>24.00</b></span>
+									<a href="#" class="mian_goodO5T">木丸子木制积木儿童创意玩具100粒数字字母学习...</a>
+									<span  class="mian_goodO6R1M"><img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"></span>
+									<span class="mian_goodO6R1N">成交1002笔</span></li>
+								<div class="cl"></div>
+							</ul>
+						</div>
+
+						<div class="mian_goodO6R2">
+							<p>销量排行</p>
+							<ul>
+								<li><a href="#"><img src="{:STYLE}/images/2917225154_783871151.search.jpg"></a>
+									<span class="mian_goodO5M">¥<b>24.00</b></span>
+									<a href="#" class="mian_goodO5T">木丸子木制积木儿童创意玩具100粒数字字母学习...</a>
+									<span  class="mian_goodO6R1M"><img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"></span>
+									<span class="mian_goodO6R1N">成交1002笔</span></li>
+								<li><a href="#"><img src="{:STYLE}/images/2917225154_783871151.search.jpg"></a>
+									<span class="mian_goodO5M">¥<b>24.00</b></span>
+									<a href="#" class="mian_goodO5T">木丸子木制积木儿童创意玩具100粒数字字母学习...</a>
+									<a href="www.baidu.com" class="qianggoua"><div class="qianggou"><span class="qianggou2">强烈推荐</span></div></a>
+									<span  class="mian_goodO6R1M"><img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"></span>
+									<span class="mian_goodO6R1N">成交1002笔</span></li>
+								<li><a href="#"><img src="{:STYLE}/images/2917225154_783871151.search.jpg"></a>
+									<span class="mian_goodO5M">¥<b>24.00</b></span>
+									<a href="#" class="mian_goodO5T">木丸子木制积木儿童创意玩具100粒数字字母学习...</a>
+									<span  class="mian_goodO6R1M"><img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"></span>
+									<span class="mian_goodO6R1N">成交1002笔</span></li>
+								<li><a href="#"><img src="{:STYLE}/images/2917225154_783871151.search.jpg"></a>
+									<span class="mian_goodO5M">¥<b>24.00</b></span>
+									<a href="#" class="mian_goodO5T">木丸子木制积木儿童创意玩具100粒数字字母学习...</a>
+									<span  class="mian_goodO6R1M"><img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"></span>
+									<span class="mian_goodO6R1N">成交1002笔</span></li>
+								<li><a href="#"><img src="{:STYLE}/images/2917225154_783871151.search.jpg"></a>
+									<span class="mian_goodO5M">¥<b>24.00</b></span>
+									<a href="#" class="mian_goodO5T">木丸子木制积木儿童创意玩具100粒数字字母学习...</a>
+									<span  class="mian_goodO6R1M"><img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"></span>
+									<span class="mian_goodO6R1N">成交1002笔</span></li>
+								<li><a href="#"><img src="{:STYLE}/images/2917225154_783871151.search.jpg"></a>
+									<span class="mian_goodO5M">¥<b>24.00</b></span>
+									<a href="#" class="mian_goodO5T">木丸子木制积木儿童创意玩具100粒数字字母学习...</a>
+									<span  class="mian_goodO6R1M"><img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"></span>
+									<span class="mian_goodO6R1N">成交1002笔</span></li>
+								<li><a href="#"><img src="{:STYLE}/images/2917225154_783871151.search.jpg"></a>
+									<span class="mian_goodO5M">¥<b>24.00</b></span>
+									<a href="#" class="mian_goodO5T">木丸子木制积木儿童创意玩具100粒数字字母学习...</a>
+									<span  class="mian_goodO6R1M"><img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"></span>
+									<span class="mian_goodO6R1N">成交1002笔</span></li>
+								<li><a href="#"><img src="{:STYLE}/images/2917225154_783871151.search.jpg"></a>
+									<span class="mian_goodO5M">¥<b>24.00</b></span>
+									<a href="#" class="mian_goodO5T">木丸子木制积木儿童创意玩具100粒数字字母学习...</a>
+									<span  class="mian_goodO6R1M"><img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"></span>
+									<span class="mian_goodO6R1N">成交1002笔</span></li>
+								<div class="cl"></div>
+							</ul>
+						</div>
+						
+						<div class="mian_goodO6R21">
+							<p>积木精品</p>
+							<ul>
+								<li><a href="#"><img src="{:STYLE}/images/2917225154_783871151.search.jpg"></a>
+									<span class="mian_goodO5M">¥<b>24.00</b></span>
+									<a href="#" class="mian_goodO5T">木丸子木制积木儿童创意玩具100粒数字字母学习...</a>
+									<span  class="mian_goodO6R1M"><img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"></span>
+									<span class="mian_goodO6R1N">成交1002笔</span></li>
+								<li><a href="#"><img src="{:STYLE}/images/2917225154_783871151.search.jpg"></a>
+									<span class="mian_goodO5M">¥<b>24.00</b></span>
+									<a href="#" class="mian_goodO5T">木丸子木制积木儿童创意玩具100粒数字字母学习...</a>
+									<span  class="mian_goodO6R1M"><img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"></span>
+									<span class="mian_goodO6R1N">成交1002笔</span></li>
+								<li><a href="#"><img src="{:STYLE}/images/2917225154_783871151.search.jpg"></a>
+									<span class="mian_goodO5M">¥<b>24.00</b></span>
+									<a href="#" class="mian_goodO5T">木丸子木制积木儿童创意玩具100粒数字字母学习...</a>
+									<span  class="mian_goodO6R1M"><img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"></span>
+									<span class="mian_goodO6R1N">成交1002笔</span></li>
+								<li><a href="#"><img src="{:STYLE}/images/2917225154_783871151.search.jpg"></a>
+									<span class="mian_goodO5M">¥<b>24.00</b></span>
+									<a href="#" class="mian_goodO5T">木丸子木制积木儿童创意玩具100粒数字字母学习...</a>
+									<span  class="mian_goodO6R1M"><img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"></span>
+									<span class="mian_goodO6R1N">成交1002笔</span></li>
+								<li><a href="#"><img src="{:STYLE}/images/2917225154_783871151.search.jpg"></a>
+									<span class="mian_goodO5M">¥<b>24.00</b></span>
+									<a href="#" class="mian_goodO5T">木丸子木制积木儿童创意玩具100粒数字字母学习...</a>
+									<span  class="mian_goodO6R1M"><img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"></span>
+									<span class="mian_goodO6R1N">成交1002笔</span></li>
+								<li><a href="#"><img src="{:STYLE}/images/2917225154_783871151.search.jpg"></a>
+									<span class="mian_goodO5M">¥<b>24.00</b></span>
+									<a href="#" class="mian_goodO5T">木丸子木制积木儿童创意玩具100粒数字字母学习...</a>
+									<span  class="mian_goodO6R1M"><img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"></span>
+									<span class="mian_goodO6R1N">成交1002笔</span></li>
+								<li><a href="#"><img src="{:STYLE}/images/2917225154_783871151.search.jpg"></a>
+									<span class="mian_goodO5M">¥<b>24.00</b></span>
+									<a href="#" class="mian_goodO5T">木丸子木制积木儿童创意玩具100粒数字字母学习...</a>
+									<span  class="mian_goodO6R1M"><img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"></span>
+									<span class="mian_goodO6R1N">成交1002笔</span></li>
+								<li><a href="#"><img src="{:STYLE}/images/2917225154_783871151.search.jpg"></a>
+									<span class="mian_goodO5M">¥<b>24.00</b></span>
+									<a href="#" class="mian_goodO5T">木丸子木制积木儿童创意玩具100粒数字字母学习...</a>
+									<span  class="mian_goodO6R1M"><img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"></span>
+									<span class="mian_goodO6R1N">成交1002笔</span></li>
+								<div class="cl"></div>
+							</ul>
+						</div>
+
+						<div class="mian_goodO6R22">
+							<p>多米诺精品</p>
+							<ul>
+								<li><a href="#"><img src="{:STYLE}/images/2917225154_783871151.search.jpg"></a>
+									<span class="mian_goodO5M">¥<b>24.00</b></span>
+									<a href="#" class="mian_goodO5T">木丸子木制积木儿童创意玩具100粒数字字母学习...</a>
+									<span  class="mian_goodO6R1M"><img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"></span>
+									<span class="mian_goodO6R1N">成交1002笔</span></li>
+								<li><a href="#"><img src="{:STYLE}/images/2917225154_783871151.search.jpg"></a>
+									<span class="mian_goodO5M">¥<b>24.00</b></span>
+									<a href="#" class="mian_goodO5T">木丸子木制积木儿童创意玩具100粒数字字母学习...</a>
+									<span  class="mian_goodO6R1M"><img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"></span>
+									<span class="mian_goodO6R1N">成交1002笔</span></li>
+								<li><a href="#"><img src="{:STYLE}/images/2917225154_783871151.search.jpg"></a>
+									<span class="mian_goodO5M">¥<b>24.00</b></span>
+									<a href="#" class="mian_goodO5T">木丸子木制积木儿童创意玩具100粒数字字母学习...</a>
+									<span  class="mian_goodO6R1M"><img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"></span>
+									<span class="mian_goodO6R1N">成交1002笔</span></li>
+								<li><a href="#"><img src="{:STYLE}/images/2917225154_783871151.search.jpg"></a>
+									<span class="mian_goodO5M">¥<b>24.00</b></span>
+									<a href="#" class="mian_goodO5T">木丸子木制积木儿童创意玩具100粒数字字母学习...</a>
+									<span  class="mian_goodO6R1M"><img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"></span>
+									<span class="mian_goodO6R1N">成交1002笔</span></li>
+								<li><a href="#"><img src="{:STYLE}/images/2917225154_783871151.search.jpg"></a>
+									<span class="mian_goodO5M">¥<b>24.00</b></span>
+									<a href="#" class="mian_goodO5T">木丸子木制积木儿童创意玩具100粒数字字母学习...</a>
+									<span  class="mian_goodO6R1M"><img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"></span>
+									<span class="mian_goodO6R1N">成交1002笔</span></li>
+								<li><a href="#"><img src="{:STYLE}/images/2917225154_783871151.search.jpg"></a>
+									<span class="mian_goodO5M">¥<b>24.00</b></span>
+									<a href="#" class="mian_goodO5T">木丸子木制积木儿童创意玩具100粒数字字母学习...</a>
+									<span  class="mian_goodO6R1M"><img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"></span>
+									<span class="mian_goodO6R1N">成交1002笔</span></li>
+								<li><a href="#"><img src="{:STYLE}/images/2917225154_783871151.search.jpg"></a>
+									<span class="mian_goodO5M">¥<b>24.00</b></span>
+									<a href="#" class="mian_goodO5T">木丸子木制积木儿童创意玩具100粒数字字母学习...</a>
+									<span  class="mian_goodO6R1M"><img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"></span>
+									<span class="mian_goodO6R1N">成交1002笔</span></li>
+								<li><a href="#"><img src="{:STYLE}/images/2917225154_783871151.search.jpg"></a>
+									<span class="mian_goodO5M">¥<b>24.00</b></span>
+									<a href="#" class="mian_goodO5T">木丸子木制积木儿童创意玩具100粒数字字母学习...</a>
+									<span  class="mian_goodO6R1M"><img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"></span>
+									<span class="mian_goodO6R1N">成交1002笔</span></li>
+								<div class="cl"></div>
+							</ul>
+						</div>
+
+						<div class="mian_goodO6R23">
+							<p>拼图系列精品</p>
+							<ul>
+								<li><a href="#"><img src="{:STYLE}/images/2917225154_783871151.search.jpg"></a>
+									<span class="mian_goodO5M">¥<b>24.00</b></span>
+									<a href="#" class="mian_goodO5T">木丸子木制积木儿童创意玩具100粒数字字母学习...</a>
+									<span  class="mian_goodO6R1M"><img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"></span>
+									<span class="mian_goodO6R1N">成交1002笔</span></li>
+								<li><a href="#"><img src="{:STYLE}/images/2917225154_783871151.search.jpg"></a>
+									<span class="mian_goodO5M">¥<b>24.00</b></span>
+									<a href="#" class="mian_goodO5T">木丸子木制积木儿童创意玩具100粒数字字母学习...</a>
+									<span  class="mian_goodO6R1M"><img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"></span>
+									<span class="mian_goodO6R1N">成交1002笔</span></li>
+								<li><a href="#"><img src="{:STYLE}/images/2917225154_783871151.search.jpg"></a>
+									<span class="mian_goodO5M">¥<b>24.00</b></span>
+									<a href="#" class="mian_goodO5T">木丸子木制积木儿童创意玩具100粒数字字母学习...</a>
+									<span  class="mian_goodO6R1M"><img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"></span>
+									<span class="mian_goodO6R1N">成交1002笔</span></li>
+								<li><a href="#"><img src="{:STYLE}/images/2917225154_783871151.search.jpg"></a>
+									<span class="mian_goodO5M">¥<b>24.00</b></span>
+									<a href="#" class="mian_goodO5T">木丸子木制积木儿童创意玩具100粒数字字母学习...</a>
+									<span  class="mian_goodO6R1M"><img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"></span>
+									<span class="mian_goodO6R1N">成交1002笔</span></li>
+								<li><a href="#"><img src="{:STYLE}/images/2917225154_783871151.search.jpg"></a>
+									<span class="mian_goodO5M">¥<b>24.00</b></span>
+									<a href="#" class="mian_goodO5T">木丸子木制积木儿童创意玩具100粒数字字母学习...</a>
+									<span  class="mian_goodO6R1M"><img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"></span>
+									<span class="mian_goodO6R1N">成交1002笔</span></li>
+								<li><a href="#"><img src="{:STYLE}/images/2917225154_783871151.search.jpg"></a>
+									<span class="mian_goodO5M">¥<b>24.00</b></span>
+									<a href="#" class="mian_goodO5T">木丸子木制积木儿童创意玩具100粒数字字母学习...</a>
+									<span  class="mian_goodO6R1M"><img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"></span>
+									<span class="mian_goodO6R1N">成交1002笔</span></li>
+								<li><a href="#"><img src="{:STYLE}/images/2917225154_783871151.search.jpg"></a>
+									<span class="mian_goodO5M">¥<b>24.00</b></span>
+									<a href="#" class="mian_goodO5T">木丸子木制积木儿童创意玩具100粒数字字母学习...</a>
+									<span  class="mian_goodO6R1M"><img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"></span>
+									<span class="mian_goodO6R1N">成交1002笔</span></li>
+								<li><a href="#"><img src="{:STYLE}/images/2917225154_783871151.search.jpg"></a>
+									<span class="mian_goodO5M">¥<b>24.00</b></span>
+									<a href="#" class="mian_goodO5T">木丸子木制积木儿童创意玩具100粒数字字母学习...</a>
+									<span  class="mian_goodO6R1M"><img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"></span>
+									<span class="mian_goodO6R1N">成交1002笔</span></li>
+								<div class="cl"></div>
+							</ul>
+						</div>
+						
+						<div class="mian_goodO6R24">
+							<p>益智玩具</p>
+							<ul>
+								<li><a href="#"><img src="{:STYLE}/images/2917225154_783871151.search.jpg"></a>
+									<span class="mian_goodO5M">¥<b>24.00</b></span>
+									<a href="#" class="mian_goodO5T">木丸子木制积木儿童创意玩具100粒数字字母学习...</a>
+									<span  class="mian_goodO6R1M"><img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"></span>
+									</li>
+								<li><a href="#"><img src="{:STYLE}/images/2917225154_783871151.search.jpg"></a>
+									<span class="mian_goodO5M">¥<b>24.00</b></span>
+									<a href="#" class="mian_goodO5T">木丸子木制积木儿童创意玩具100粒数字字母学习...</a>
+									<span  class="mian_goodO6R1M"><img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"></span>
+									</li>
+								<li><a href="#"><img src="{:STYLE}/images/2917225154_783871151.search.jpg"></a>
+									<span class="mian_goodO5M">¥<b>24.00</b></span>
+									<a href="#" class="mian_goodO5T">木丸子木制积木儿童创意玩具100粒数字字母学习...</a>
+									<span  class="mian_goodO6R1M"><img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"></span>
+									</li>
+								<li><a href="#"><img src="{:STYLE}/images/2917225154_783871151.search.jpg"></a>
+									<span class="mian_goodO5M">¥<b>24.00</b></span>
+									<a href="#" class="mian_goodO5T">木丸子木制积木儿童创意玩具100粒数字字母学习...</a>
+									<span  class="mian_goodO6R1M"><img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"></span>
+									</li>
+								<li><a href="#"><img src="{:STYLE}/images/2917225154_783871151.search.jpg"></a>
+									<span class="mian_goodO5M">¥<b>24.00</b></span>
+									<a href="#" class="mian_goodO5T">木丸子木制积木儿童创意玩具100粒数字字母学习...</a>
+									<span  class="mian_goodO6R1M"><img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"></span>
+									</li>
+								<li><a href="#"><img src="{:STYLE}/images/2917225154_783871151.search.jpg"></a>
+									<span class="mian_goodO5M">¥<b>24.00</b></span>
+									<a href="#" class="mian_goodO5T">木丸子木制积木儿童创意玩具100粒数字字母学习...</a>
+									<span  class="mian_goodO6R1M"><img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"></span>
+									</li>
+								<li><a href="#"><img src="{:STYLE}/images/2917225154_783871151.search.jpg"></a>
+									<span class="mian_goodO5M">¥<b>24.00</b></span>
+									<a href="#" class="mian_goodO5T">木丸子木制积木儿童创意玩具100粒数字字母学习...</a>
+									<span  class="mian_goodO6R1M"><img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"></span>
+									</li>
+								<li><a href="#"><img src="{:STYLE}/images/2917225154_783871151.search.jpg"></a>
+									<span class="mian_goodO5M">¥<b>24.00</b></span>
+									<a href="#" class="mian_goodO5T">木丸子木制积木儿童创意玩具100粒数字字母学习...</a>
+									<span  class="mian_goodO6R1M"><img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"></span>
+									</li>
+								<div class="cl"></div>
+							</ul>
+						</div>
+						
+						<div class="mian_goodO6R3">
+							<p>友情链接</p>
+							<ul>
+								<li><a href="#">木丸子品牌旗舰店</a></li>
+								<li><a href="#">木丸子品牌专营店</a></li>
+								<li><a href="#">丽水产业带</a></li>
+								<div class="cl"></div>
+							</ul>
+						</div>
+
+						<div class="mian_goodO6R4">
+							<p>公司动态</p>
+							<span>暂无公司动态</span>
+						</div>
+
+						<div class="cl"></div>
+					</article>
+
+				<div class="cl"></div>
+				</div>
+
+		</div>
+
+	</section>
+
+	</main>
+
+	<footer class="footer">
+		<div class="footer1">
+				<p>浙江木丸子玩具有限公司 地址： 中国 浙江 丽水 云和县凤凰山街道新华街288号 技术支持：<a href="#">旺铺管理入口</a> | <a href="#">免责声明 </a>| <a href="#">客服中心</a></p>		
+		</div>
+		<div class="footer2">
+			<p><a href="#">阿里巴巴集团 </a>| <a href="#">阿里巴巴国际站 </a>| <a href="#">1688 </a>| <a href="#">全球速卖通 </a>| <a href="#">淘宝网 </a>| <a href="#">天猫 </a>| <a href="#">聚划算 </a>| <a href="#">一淘 </a>| <a href="#">阿里旅行·去阿 </a>| <a href="#">阿里妈妈 </a>| <a href="#">虾米 </a>| <a href="#">阿里云计算 </a>| <a href="#">阿里通信 </a>| <a href="#">万网 </a>| <a href="#">支付宝 </a>| <a href="#">来往 </a>| <a href="#">钉钉</a></p>
+		</div>
+		<div class="footer3">
+			<p>@2010-2015 1688.com 版权所有 <a href="#">著作权与商标声明 </a>| <a href="#">法律声明 </a>|<a href="#"> 服务条款 </a>|<a href="#"> 隐私声明 </a>|<a href="#"> 关于阿里巴巴 </a>|<a href="#"> 联系我们 </a>|<a href="#"> 网站导航</a></p>
+		</div>
+		<div class="footer4">
+			<p><a href="#"><img src="{:STYLE}/images/2493799_691191268.gif"></a></p>
+		</div>
+
+
+	</footer>
+	
+
+	
+</body>
+</html>
