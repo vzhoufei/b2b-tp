@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{$store.store_name}</title>
+	 <meta name="keywords" content="{$store.seo_keywords}" />
+    <meta name="description" content="{$store.seo_description}"/>
+<include file="./header"/>
+	<!-- 轮播图部分 -->
+	<section class="main_ban">
+		<div class="main_visual">
+			<div class="flicking_con">
+				<foreach name="store[store_slide]" item="vimg" key="k">
+				<notempty name="vimg"><a href="#">{$k}</a></notempty>
+				</foreach>
+			</div>
+			<div class="main_image">
+				<ul>
+					<foreach name="store[store_slide]" item="vimg" key="k">
+					<notempty name="vimg">
+						<li><span><a href="{$store[store_slide_url][ $k ]}" target="_blank"><img src="{$vimg}"></a></span></li>
+					</notempty>
+					</foreach>
+				</ul>
+				<a href="javascript:;" id="btn_prev"></a>
+				<a href="javascript:;" id="btn_next"></a>
+			</div>
+		</div>
+	</section>
+	<!-- 产品专区 -->
+	<section class="main_goods">
+		<!-- 产品部分开始 -->
+		<div class="main_goodsO">
+			<div class="mian_goodO6">
+				<div>标题</div>
+				<hr>
+				<div>作者： 发布日期： 类型：</div>
+				<div>
+				{$news.content|htmlspecialchars_decode}
+				</div>
+			</div>
+		</div>
+	</section>
+						
+<include file="./footer"/>
+				

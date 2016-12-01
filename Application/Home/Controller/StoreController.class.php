@@ -314,4 +314,48 @@ class StoreController extends Controller
         $this->assign('goods_list',$goods);
         $this->display('/goods_list');
     }
+
+    /**
+    *   @author 金龙
+    *   新闻列表页
+    */
+    public function NewsList(){
+
+        $storeid = $this->store['store_id'];
+
+        $sn_id = (empty($_GET['sn']))?0:(int)$_GET['sn'];
+
+        $news = M('store_art')->where('store = '.$storeid.' and sn_id in (0,'.$sn_id.')')->page($_GET['p'].',15')->select();
+        $count = M('store_art')->where('store = '.$storeid.' and sn_id in (0,'.$sn_id.')')->count();
+        $page = new \Think\Page($count,15);
+
+
+
+        $hot_goods = M('goods')->field('goods_content', true)->where(array('store_id' => $storeid))->order('sales_sum desc')->limit(10)->select();
+        //收藏商品排行
+        $collect_goods = M('goods')->field('goods_content', true)->where(array('store_id' => $storeid))->order('collect_sum desc')->limit(10)->select();
+        //新品
+       
+
+        $this->assign('hot_goods', $hot_goods);
+        $this->assign('collect_goods', $collect_goods);
+
+
+        $this->assign('navigation', $this->navigation);
+        $this->assign('page',$page->show());
+        $this->assign('news',$news);
+        $this->display('/Newslist');
+    }
+    /**
+    *   @author 金龙
+    *   文章详情页
+    */
+    public function Newscontent(){
+        $storeid = $this->store['store_id'];
+        $text = (empty($_GET['text']))?0:(int)$_GET['text'];
+        $news = M('store_art')->where('store = '.$storeid.' and id = '.$text)->find();
+        
+        $this->assign('news',$news);
+        $this->display('/News');
+    }
 }
