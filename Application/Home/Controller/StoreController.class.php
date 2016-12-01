@@ -61,6 +61,7 @@ class StoreController extends Controller
 
             // zhoufei
 
+
         $store_id = $this->store['store_id'];
         //店铺内部分类
         $store_goods_class_list = M('store_goods_class')->where(array('store_id' => $store_id,'is_show'=>'1'))->select();//zhoufei 增加了 ,'is_show'=>'1'
@@ -78,7 +79,7 @@ class StoreController extends Controller
         }
 
 
-        $link_cat = M('store_goods_class')->where(array('store_id' => $store_id, 'is_nav_show'))->select();
+        $link_cat = M('store_goods_class')->where(array('store_id' => $store_id, 'is_nav_show'))->select();//分类在导航显示
         if ($link_cat) {
             $cat_id = get_arr_column($link_cat, 'cat_id');
             $cat_id = implode(',', $cat_id);

@@ -23,6 +23,7 @@ class StoreController extends BaseController{
 	 */
 	public function store_tpl()
 	{
+		
 		$tpls = M('store')->where('store_id = '.session('store_id'))->getField('tpl');
 		$tpl = I('t','pc');
 		$arr = scandir("./Merchants_tpl/$tpl/");
