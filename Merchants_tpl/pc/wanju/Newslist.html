@@ -40,7 +40,7 @@
 						<p>新闻</p>
 						<ul class='news'>
 							<foreach name='news' item='v'>
-							<li><div class='n-title'><a href="{:U('Store/Newscontent',array('store_id'=>$store[store_id],'text'=>$v[id]))}">{$v.title}</a><if condition="$v[rep] neq null"><a class='rep' href="{$v.rep}">文章来源</a></if></div><div class='n-author'>作者：{$v.author}</div><div class='n-time'>{$v.timer|date='Y-m-d',###}</div></li>
+							<li><div class='n-title'><a href="{:U('Store/Newscontent',array('store_id'=>$store[store_id],'sn'=>$sn_id,'text'=>$v[id]))}">{$v.title}</a><if condition="$v[rep] neq null"><a class='rep' href="{$v.rep}">文章来源</a></if></div><div class='n-author'>作者：{$v.author}</div><div class='n-time'>{$v.timer|date='Y-m-d',###}</div></li>
 							</foreach>
 							<li class='pg'>{$page}</li>
 						</ul>

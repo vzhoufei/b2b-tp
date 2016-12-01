@@ -340,7 +340,7 @@ class StoreController extends Controller
         $this->assign('hot_goods', $hot_goods);
         $this->assign('collect_goods', $collect_goods);
 
-
+        $this->assign('sn_id',$sn_id);
         $this->assign('navigation', $this->navigation);
         $this->assign('page',$page->show());
         $this->assign('news',$news);
@@ -352,9 +352,18 @@ class StoreController extends Controller
     */
     public function Newscontent(){
         $storeid = $this->store['store_id'];
+        $sn_id = (empty($_GET['sn']))?0:(int)$_GET['sn'];
         $text = (empty($_GET['text']))?0:(int)$_GET['text'];
         $news = M('store_art')->where('store = '.$storeid.' and id = '.$text)->find();
-        
+
+        $next = M('store_art')->where('store = '.$storeid.' and sn_id in (0,'. $sn_id.') and id > '.$text)->order('id ASC')->limit(1)->getfield('id');
+        $pre = M('store_art')->where('store = '.$storeid.' and  sn_id in (0,'. $sn_id.') and id < '.$text)->order('id DESC')->limit(1)->getfield('id');
+
+
+        $this->assign('pre',$pre);
+        $this->assign('next',$next);
+        $this->assign('sn_id',$sn_id);
+        $this->assign('navigation', $this->navigation);
         $this->assign('news',$news);
         $this->display('/News');
     }
