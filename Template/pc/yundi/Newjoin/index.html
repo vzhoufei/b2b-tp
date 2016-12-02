@@ -5,7 +5,7 @@
 <title>商家入驻</title>
 </head>
 <body>
-<include file="Public/min-header" />
+<include file="Public/header" />
 <style type="text/css">
 .gome-layout-area {width: 990px;margin: 0 auto;overflow: hidden;margin-bottom:30px;}
 .gome-part {width: 990px;overflow: hidden;margin-top: 50px;}
@@ -155,24 +155,24 @@
           		<img src="__STATIC__/images/20141222115236.jpg" width="990" height="225">
           </div>
       </div>
-      <div class="gome-part" id="merchants-tab">
+      <!-- <div class="gome-part" id="merchants-tab">
         <div class="settled-merchants-title clearfix">
             <span>热招品牌</span>
             <ul class="merchants-list" id="merchants-list">
                 <tpshop sql="select * from `__PREFIX__brand` where status = 0 group by cat_name " key="k" item='v'>
                         <li class="<if condition='$k eq 0'>active</if>">{$v[cat_name]}</li>
-                        <!--<li class="active">汽车用品</li>-->
+                        <li class="active">汽车用品</li>
                 </tpshop>
             </ul>
         </div>
-		  	<tpshop sql="select * from `__PREFIX__brand` group by cat_name" key="k" item="v">
+      		  	<tpshop sql="select * from `__PREFIX__brand` group by cat_name" key="k" item="v">
                     <div class="merchants-tab-con" style="display: <if condition='$k eq 0'>block <else/>none</if>;">
-						<tpshop sql="select * from `__PREFIX__brand` where cat_name = '$v[cat_name]'" key="k2" item='v2'>
+      						<tpshop sql="select * from `__PREFIX__brand` where cat_name = '$v[cat_name]'" key="k2" item='v2'>
                         <img src="{$v2[logo]}" width="164" height="58" alt="{$v2[name]}">
-						</tpshop>
+      						</tpshop>
                     </div>
-			  </tpshop>
-            </div>
+      			  </tpshop>
+            </div> -->
     </div>
 <include file="Public/footer" /> 
 
