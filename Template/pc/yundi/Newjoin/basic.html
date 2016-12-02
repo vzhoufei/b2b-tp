@@ -526,7 +526,7 @@ function get_sub_cat(obj,element){
     }
     $.ajax({
         type : "GET",
-        url  : "{:U('Home/Api/get_category')}",
+        url  : "{:U('/Api/get_category')}",
         data : {'parent_id':parent_id},
         error: function(request) {
             alert("服务器繁忙, 请联系管理员!");return;
@@ -545,7 +545,7 @@ function select_sub_cat(obj,element){
     }
     $.ajax({
         type : "GET",
-        url  : "{:U('Home/Api/get_cates')}",
+        url  : "{:U('/Api/get_cates')}",
         data : {'parent_id':parent_id},
         error: function(request) {
             alert("服务器繁忙, 请联系管理员!");return;

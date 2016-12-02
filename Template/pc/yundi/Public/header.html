@@ -9,14 +9,14 @@
     <!-- <div class="left">Hi，你好  kky</div> -->
     <nav class="nav">
       <ul> 
-         <li><a href="{:U('Home/user/reg')}" class='nologin' >注册</a><a href="{:U('Home/user/index')}" class="islogin userinfo" title="" target="_self"></a>
+         <li><a href="{:U('/user/reg')}" class='nologin' >注册</a><a href="{:U('/user/index')}" class="islogin userinfo" title="" target="_self"></a>
          </li>
          <span>|</span>
-          <li><a href="{:U('Home/user/login')}" class='nologin' >登录</a><a href="{:U('Home/user/logout')}" class='islogin' style="margin:0 10px;" title="退出" target="_self">退出</a></li>
+          <li><a href="{:U('/user/login')}" class='nologin' >登录</a><a href="{:U('/user/logout')}" class='islogin' style="margin:0 10px;" title="退出" target="_self">退出</a></li>
 
         <span>|</span>
-        <li><img src="__PUBLIC__/pc/images/index1.jpg" width="15" height="30"  alt=""/>&nbsp;&nbsp;<a href="{:U('Home/Cart/cart')}" target="_blank">购物车</a></li><span>|</span>
-        <li><a href="{:U('/Home/User/order_list')}" target="_blank">我的订单</a></li>
+        <li><img src="__PUBLIC__/pc/images/index1.jpg" width="15" height="30"  alt=""/>&nbsp;&nbsp;<a href="{:U('/Cart/cart')}" target="_blank">购物车</a></li><span>|</span>
+        <li><a href="{:U('/User/order_list')}" target="_blank">我的订单</a></li>
       </ul>
     </nav>
   </header><!--顶部结束-->
@@ -49,7 +49,7 @@
         
       <div class="tabCon">
         <div class="cur">
-           <form name="sourch_form" id="sourch_form" method="post" action="{:U("/Home/Goods/search")}">
+           <form name="sourch_form" id="sourch_form" method="post" action="{:U("/Goods/search")}">
             <input type="text" data-role="input-search" autocomplete="off" class="ssk" name="q" id="q" value="<?php echo I('q'); ?>" placeholder="搜索关键字"/>
              <a data-role="btn" href="javascript:void(0);" class="but" onclick="if($.trim($('#q').val()) != '') $('#sourch_form').submit();"></a>
             </form>
@@ -66,14 +66,14 @@
             <li class="yi"><a href="#" >所有分类</a>
                <ul class="dyj">
                 <tpshop sql="select * from `__PREFIX__goods_category` where is_show = 1 and `level` = 1  limit 15" key="k" item='v'>
-                  <li class="one"><a href="{:U('Home/Goods/goodsList',array('id'=>$v[id]))}" >{$v.name}</a>
+                  <li class="one"><a href="{:U('/Goods/goodsList',array('id'=>$v[id]))}" >{$v.name}</a>
                       <section>
                         <foreach name='goods_category_tree[$v[id]]["tmenu"]' item='l'>
                          <dl>
-                           <dt><a href="{:U('Home/Goods/goodsList',array('id'=>$l[id]))}" >{$l.name}</a></dt>
+                           <dt><a href="{:U('/Goods/goodsList',array('id'=>$l[id]))}" >{$l.name}</a></dt>
                            <dd>
                             <foreach name ='l.sub_menu' item = 's'>
-                             <a href="{:U('Home/Goods/goodsList',array('id'=>$s[id]))}" >{$s.name}</a>
+                             <a href="{:U('/Goods/goodsList',array('id'=>$s[id]))}" >{$s.name}</a>
                              </foreach>   
                            </dd>
                          </dl>

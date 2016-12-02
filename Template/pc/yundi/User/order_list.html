@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="__STATIC__/css/favorite.css">
 
 <div class="wrap">
-  <div class="bread_crumbs"> <a href="{:U('Home/User/index')}" class="crumbs_font">我的TPshop</a>&gt;<span class="color">我的订单</span></div>
+  <div class="bread_crumbs"> <a href="{:U('/User/index')}" class="crumbs_font">我的云狄Shop</a>&gt;<span class="color">我的订单</span></div>
   <!--菜单--> 
   <include file="User/menu" /> 
   <!--菜单-->     
@@ -23,11 +23,11 @@
     <div class="main my_order">
       <div class="ui_tab">
         <ul class="ui_tab_nav clearfix">
-          <li class="<if condition="$_GET[type] eq ''">active</if>"><a class="target_no" href="{:U('Home/User/order_list')}">全部订单</a><span class="v_line"></span></li>
-          <li class="<if condition="$_GET[type] eq 'WAITPAY'">active</if>"><a class="target_no" href="{:U('Home/User/order_list',array('type'=>'WAITPAY'))}">待付款</a><span class="v_line"></span></li>
-          <li class="<if condition="$_GET[type] eq 'WAITSEND'">active</if>"><a class="target_no" href="{:U('Home/User/order_list',array('type'=>'WAITSEND'))}">待发货</a><span class="v_line"></span></li>
-          <li class="<if condition="$_GET[type] eq 'WAITRECEIVE'">active</if>"><a class="target_no" href="{:U('Home/User/order_list',array('type'=>'WAITRECEIVE'))}">待收货</a><span class="v_line"></span></li>
-          <li class="<if condition="$_GET[type] eq 'WAITCCOMMENT'">active</if>"><a class="target_no" href="{:U('Home/User/comment',array('status'=>'0'))}">待评价</a></li>
+          <li class="<if condition="$_GET[type] eq ''">active</if>"><a class="target_no" href="{:U('/User/order_list')}">全部订单</a><span class="v_line"></span></li>
+          <li class="<if condition="$_GET[type] eq 'WAITPAY'">active</if>"><a class="target_no" href="{:U('/User/order_list',array('type'=>'WAITPAY'))}">待付款</a><span class="v_line"></span></li>
+          <li class="<if condition="$_GET[type] eq 'WAITSEND'">active</if>"><a class="target_no" href="{:U('/User/order_list',array('type'=>'WAITSEND'))}">待发货</a><span class="v_line"></span></li>
+          <li class="<if condition="$_GET[type] eq 'WAITRECEIVE'">active</if>"><a class="target_no" href="{:U('/User/order_list',array('type'=>'WAITRECEIVE'))}">待收货</a><span class="v_line"></span></li>
+          <li class="<if condition="$_GET[type] eq 'WAITCCOMMENT'">active</if>"><a class="target_no" href="{:U('/User/comment',array('status'=>'0'))}">待评价</a></li>
         </ul>
         <div class="nav_line" 
         style="left:<if condition="$_GET[type] eq ''">0px;</if>
@@ -38,7 +38,7 @@
         width: 120px;"></div>
         <div style="border-top: 0;" class="ui_tab_content">
           <div style="display: block;" class="ui_panel">
-            <form action="{:U('/Home/User/order_list')}" method="post" id="search_order" name="search_order">
+            <form action="{:U('/User/order_list')}" method="post" id="search_order" name="search_order">
               <div class="query_area">
                 <div class="order_select clearfix">
                   <div class="order_select_l">
@@ -75,10 +75,10 @@
                     	<span class="num">应付金额：<em class="rmb">￥</em>{$list['order_amount']}</span>
 						<if condition="$list.cancel_btn eq 1"><a class="cancel J_cancel" onClick="cancel_order({$list.order_id})" >取消订单</a></if>
 						<if condition="$list.pay_btn eq 1">
-                           <a class="btn_pay" href="{:U('/Home/Cart/cart4',array('order_id'=>$list[order_id]))}" target="_blank">立即支付</a>
+                           <a class="btn_pay" href="{:U('/Cart/cart4',array('order_id'=>$list[order_id]))}" target="_blank">立即支付</a>
                         </if>                            
 						<if condition="$list.receive_btn eq 1">
-                       		 <a class="btn_pay" onclick=" if(confirm('你确定收到货了吗?')) location.href='{:U('Home/User/order_confirm',array('id'=>$list['order_id']))}'" target="_blank">收货确认</a>
+                       		 <a class="btn_pay" onclick=" if(confirm('你确定收到货了吗?')) location.href='{:U('/User/order_confirm',array('id'=>$list['order_id']))}'" target="_blank">收货确认</a>
                         </if>                                      
                     </div>
                    </td>
@@ -87,23 +87,23 @@
                     <tr class="list_cont ">
                       <td class="td_01">                  
                         <div class="list_main clearfix"> 
-                            <a class="J_hover" href="{:U('Home/Goods/goodsInfo',array('id'=>$good['goods_id']))}" target="_blank"><img alt="{$good.goods_name}" src="{$good.goods_id|goods_thum_images=80,80}"></a> 
+                            <a class="J_hover" href="{:U('/Goods/goodsInfo',array('id'=>$good['goods_id']))}" target="_blank"><img alt="{$good.goods_name}" src="{$good.goods_id|goods_thum_images=80,80}"></a> 
                             {$good.goods_name}
                         </div>
                       </td>     
                       <if condition="$k eq 1">             
                           <td class="td_02"  rowspan="<?php echo count($list[goods_list]);?>">
                             <p>{$list['order_status_desc']}</p>
-                            <p><a href="{:U('Home/User/order_detail',array('id'=>$list['order_id']))}" class="target_no">订单详情</a></p>
+                            <p><a href="{:U('/User/order_detail',array('id'=>$list['order_id']))}" class="target_no">订单详情</a></p>
                           </td>
                        </if>
                       <td class="td_03">                      
                         <if condition="($list[comment_btn] eq 1) and ($good[is_comment] eq 0)">
-	                        <p><a class="btn-02" href="{:U('Home/User/comment')}">评价</a></p>                            
+	                        <p><a class="btn-02" href="{:U('/User/comment')}">评价</a></p>                            
                         </if>
-                        <p><a class="btn-02" href="{:U('Home/Goods/goodsInfo',array('id'=>$good['goods_id']))}">再次购买</a></p>
+                        <p><a class="btn-02" href="{:U('/Goods/goodsInfo',array('id'=>$good['goods_id']))}">再次购买</a></p>
                         <if condition="($list[return_btn] eq 1) and ($good[is_send] eq 1)">
-                            <p class="p-link"><a style="color:#999;" href="{:U('Home/User/return_goods',array('order_id'=>$list['order_id'],'order_sn'=>$list['order_sn'],'goods_id'=>$good['goods_id'],'spec_key'=>$good['spec_key']))}">申请退款</a></p>    
+                            <p class="p-link"><a style="color:#999;" href="{:U('/User/return_goods',array('order_id'=>$list['order_id'],'order_sn'=>$list['order_sn'],'goods_id'=>$good['goods_id'],'spec_key'=>$good['spec_key']))}">申请退款</a></p>    
                         </if>                                                                      
                        </td>
                     </tr>                

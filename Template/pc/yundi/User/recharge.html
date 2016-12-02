@@ -17,7 +17,7 @@
 <script src="__PUBLIC__/js/layer/layer.js"></script><!-- 弹窗js 参考文档 http://layer.layui.com/-->  
 <!-- 头部-e -->
 <div class="wrap">
-  <div class="bread_crumbs"> <a href="{:U('Home/User/index')}" class="crumbs_font">我的TPshop</a>&gt;<span class="color">我的钱包</span></div>
+  <div class="bread_crumbs"> <a href="{:U('/User/index')}" class="crumbs_font">我的云狄Shop</a>&gt;<span class="color">我的钱包</span></div>
   <!--菜单--> 
   <include file="User/menu" /> 
   <!--菜单-->     
@@ -41,7 +41,7 @@
                                 <div class="topup">
                                     <span class="tuchong"><a  onclick="mywalletstopup()">充值</a></span>
                                     <span>|</span>
-                                    <span><a href="{:U('Home/User/withdrawals')}">提现</a></span>
+                                    <span><a href="{:U('/User/withdrawals')}">提现</a></span>
                                 </div>
                             </li>
                             <li>
@@ -61,8 +61,8 @@
                 <div class="userdown">
                     <div class="userdown-top">
                         <ul>
-                            <a href="{:U('Home/User/recharge')}"><li <if condition="$_GET['type'] eq ''">class="alllist"</if>>充值记录</li></a>
-                            <a href="{:U('Home/User/recharge',array('type'=>1))}"><li <if condition="$_GET['type'] eq 1">class="alllist"</if>>消费记录</li></a>
+                            <a href="{:U('/User/recharge')}"><li <if condition="$_GET['type'] eq ''">class="alllist"</if>>充值记录</li></a>
+                            <a href="{:U('/User/recharge',array('type'=>1))}"><li <if condition="$_GET['type'] eq 1">class="alllist"</if>>消费记录</li></a>
                         </ul>
                     </div>
                     <hr style="height: 1px; background: #dedede; border: none; margin-top: -2px;" />

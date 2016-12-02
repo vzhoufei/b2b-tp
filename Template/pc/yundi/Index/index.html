@@ -23,16 +23,16 @@
     <nav class="nav">
       <ul> 
         <li>
-          <a href="{:U('Home/user/reg')}" class='nologin' >注册</a>
-          <a href="{:U('Home/user/index')}" class="islogin userinfo" title="" target="_self"></a>
+          <a href="{:U('/user/reg')}" class='nologin' >注册</a>
+          <a href="{:U('/user/index')}" class="islogin userinfo" title="" target="_self"></a>
         </li>
         <span>|</span>
         <li>
-          <a href="{:U('Home/user/login')}" class='nologin' >登录</a>
-          <a href="{:U('Home/user/logout')}" class='islogin' style="margin:0 10px;" title="退出" target="_self">退出</a>
+          <a href="{:U('/user/login')}" class='nologin' >登录</a>
+          <a href="{:U('/user/logout')}" class='islogin' style="margin:0 10px;" title="退出" target="_self">退出</a>
         </li>
-        <li><img src="__PUBLIC__/pc/images/index1.jpg" width="15" height="30"  alt=""/>&nbsp;&nbsp;<a href="{:U('Home/Cart/cart')}" target="_blank">购物车</a></li><span>|</span>
-        <li><a href="{:U('/Home/User/order_list')}" target="_blank">我的订单</a></li>
+        <li><img src="__PUBLIC__/pc/images/index1.jpg" width="15" height="30"  alt=""/>&nbsp;&nbsp;<a href="{:U('/Cart/cart')}" target="_blank">购物车</a></li><span>|</span>
+        <li><a href="{:U('/User/order_list')}" target="_blank">我的订单</a></li>
         <!-- 暂时注释
         <li><a href="#" target="_blank">投诉举报</a></li><span>|</span>
         <li><a href="#" target="_blank">客服中心</a></li><span>|</span>
@@ -69,7 +69,7 @@
     
   <div class="tabCon">
 	<div class="cur">
-       <form name="sourch_form" id="sourch_form" method="post" action="{:U("/Home/Goods/search")}">
+       <form name="sourch_form" id="sourch_form" method="post" action="{:U("/Goods/search")}">
          <input  class="ssk" type="text" data-role="input-search" autocomplete="off" name="q" id="q" value="<?php echo I('q'); ?>" placeholder="搜索关键字" />
          <input type="submit" value="" class="but" onclick="if($.trim($('#q').val()) != '') $('#sourch_form').submit();" />
         </form>
@@ -94,12 +94,12 @@
       <foreach name="cateList" item="vg" key='k'>
           <if condition='($k+2)%5 eq 0'>
             <dd>
-            <a href="{:U('Home/Goods/goodsInfo',array('id'=>$vg[goods_id]))}" target="_blank"><img src="{$cateList[$k]['goods_id']|goods_thum_images=136,146}" /></a>
+            <a href="{:U('/Goods/goodsInfo',array('id'=>$vg[goods_id]))}" target="_blank"><img src="{$cateList[$k]['goods_id']|goods_thum_images=136,146}" /></a>
             <p></p>
-            <a href="{:U('Home/Goods/goodsInfo',array('id'=>$vg[goods_id]))}" target="_blank"><img src="{$cateList[$k+1]['goods_id']|goods_thum_images=136,146}" /></a>
+            <a href="{:U('/Goods/goodsInfo',array('id'=>$vg[goods_id]))}" target="_blank"><img src="{$cateList[$k+1]['goods_id']|goods_thum_images=136,146}" /></a>
             </dd>
           <elseif condition='($k neq 4)and($k neq 9)'/>
-            <dd><a href="{:U('Home/Goods/goodsInfo',array('id'=>$vg[goods_id]))}" target="_blank"><img src="{$vg.goods_id|goods_thum_images=186,310}" /></a></dd>
+            <dd><a href="{:U('/Goods/goodsInfo',array('id'=>$vg[goods_id]))}" target="_blank"><img src="{$vg.goods_id|goods_thum_images=186,310}" /></a></dd>
           </if>
       </foreach>
     </dl>
@@ -108,9 +108,9 @@
        <ul>
         <foreach name='article' item='a'>
          <li>
-            <a href="{:U('Home/Article/detail',array('id'=>$a[article_id ]))}" target="_blank"><img src="{$a.thumb}" width="360" height="228"  alt=""/></a>
-            <a href="{:U('Home/Article/detail',array('id'=>$a[article_id ]))}" target="_blank" class="a1">{$a.title}3</a><br />
-            <a href="{:U('Home/Article/detail',array('id'=>$a[article_id ]))}" target="_blank" class="a2">{$a.description|substr=0,40}</a> <br />
+            <a href="{:U('/Article/detail',array('id'=>$a[article_id ]))}" target="_blank"><img src="{$a.thumb}" width="360" height="228"  alt=""/></a>
+            <a href="{:U('/Article/detail',array('id'=>$a[article_id ]))}" target="_blank" class="a1">{$a.title}3</a><br />
+            <a href="{:U('/Article/detail',array('id'=>$a[article_id ]))}" target="_blank" class="a2">{$a.description|substr=0,40}</a> <br />
             <time>{$a.publish_time|date="y/m/d",###}</time>
          </li>
        </foreach>

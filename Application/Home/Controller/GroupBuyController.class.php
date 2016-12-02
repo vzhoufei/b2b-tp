@@ -30,7 +30,7 @@ class GroupBuyController extends BaseController {
         $group_buy_info = M('GroupBuy')->where("goods_id = $goods_id and ".time()." >= start_time and ".time()." <= end_time ")->find(); // 找出这个商品
         if(empty($group_buy_info)) 
         {
-            $this->success("此商品没有团购活动",U('Home/Goods/goodsInfo',array('id'=>$goods_id)));
+            $this->success("此商品没有团购活动",U('/Goods/goodsInfo',array('id'=>$goods_id)));
             exit;
         }
                     

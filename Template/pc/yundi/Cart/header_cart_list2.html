@@ -21,7 +21,7 @@
                 <foreach name="cartList" item="v"  key="k">
                   <div class="one_active js_camp_list">
                     <ul class="ul_product   js_cart_pro_list" cart_id="798325">
-                      <li><a class="pdetail" href="{:U('Home/Goods/goodsInfo',array('id'=>$v[goods_id]))}"><img src="{$v.goods_id|goods_thum_images=60,60}">
+                      <li><a class="pdetail" href="{:U('/Goods/goodsInfo',array('id'=>$v[goods_id]))}"><img src="{$v.goods_id|goods_thum_images=60,60}">
 	                        <p>
 	                          <span class="name">{$v[goods_name]}</span>
 	                          <span class="price"><em class="symbol">¥</em>{$v[goods_price]}</span> X {$v[goods_num]}
@@ -44,7 +44,7 @@
                   </span>
                 </p>
               </div>
-              <p class="cart_bot"><a class="cart_buy" href="{:U('Home/Cart/cart')}">去购物车结算</a></p>
+              <p class="cart_bot"><a class="cart_buy" href="{:U('/Cart/cart')}">去购物车结算</a></p>
             </div>
           </div>
         </div>

@@ -11,7 +11,7 @@
 <include file="User/header" />
 
 <div class="wrap">
-  <div class="bread_crumbs" style="margin-top: 52px"> <a href="{:U('Home/User/index')}" class="crumbs_font">我的TPshop</a>&gt;<span class="color">优惠券</span></div>
+  <div class="bread_crumbs" style="margin-top: 52px"> <a href="{:U('/User/index')}" class="crumbs_font">我的云狄Shop</a>&gt;<span class="color">优惠券</span></div>
   <!--菜单-->
   <include file="User/menu" />
   <div class="flow">
@@ -20,18 +20,18 @@
     </div>
     <div class="ui_tab">
       <ul class="ui_tab_nav">
-        <li class="<if condition="$_GET['type'] eq null">active</if>"><a class="target_no" href="{:U('Home/User/goods_collect')}">商品收藏</a></li>
-        <li class="<if condition="$_GET['type'] neq null">active</if>"><a class="target_no" href="{:U('Home/User/goods_collect',array('type'=>2))}">店铺收藏</a></li>
+        <li class="<if condition="$_GET['type'] eq null">active</if>"><a class="target_no" href="{:U('/User/goods_collect')}">商品收藏</a></li>
+        <li class="<if condition="$_GET['type'] neq null">active</if>"><a class="target_no" href="{:U('/User/goods_collect',array('type'=>2))}">店铺收藏</a></li>
       </ul>
     </div>
     <div class="cate_attr clearfix">
       <div class="nav-tag">
         <h5 class="filter-label-ab">分类</h5>
         <div class="cate_attr_con">
-          <div class="filter-all-ab"> <a class="selected" target="_self" href="{:U('Home/User/goods_collect',array('type'=>2))}"><span>全部</span></a> </div>
+          <div class="filter-all-ab"> <a class="selected" target="_self" href="{:U('/User/goods_collect',array('type'=>2))}"><span>全部</span></a> </div>
           <div class="district-tab">
             <volist name="store_class" id="sc">
-            <a target="_self" href="{:U('Home/User/goods_collect',array('type'=>2,'sc_id'=>$sc['sc_id']))}"><span>{$sc['sc_name']}</span></a>
+            <a target="_self" href="{:U('/User/goods_collect',array('type'=>2,'sc_id'=>$sc['sc_id']))}"><span>{$sc['sc_name']}</span></a>
             </volist>
           </div>
         </div>
@@ -40,15 +40,15 @@
     <div class="flow-wrap">
       <volist name="store_collect_list" id="scl">
       <div class="flow-item first">
-        <a href="{:U('Home/Store/index',array('store_id'=>$scl['store_id']))}" class="flow-datu" title="L&amp;L">
+        <a href="{:U('/Store/index',array('store_id'=>$scl['store_id']))}" class="flow-datu" title="L&amp;L">
           <img title="L&amp;L" width="150" height="150" alt="" src="{$scl['store_logo']}">
         </a>
         <div class="flow-content">
-          <h4 class="flow-title"> <a href="{:U('Home/Store/index',array('store_id'=>$scl['store_id']))}" title="{$scl['store_name']}"><span>{$scl['store_name']}</span></a>
+          <h4 class="flow-title"> <a href="{:U('/Store/index',array('store_id'=>$scl['store_id']))}" title="{$scl['store_name']}"><span>{$scl['store_name']}</span></a>
             <span class="guanzhu" onclick="cancelCollect({$scl['log_id']});">取消</span>
           </h4>
           <p class="flow-logo">
-            <a href="{:U('Home/Store/index',array('store_id'=>$scl['store_id']))}" style="float:none; display:inline-block;">
+            <a href="{:U('/Store/index',array('store_id'=>$scl['store_id']))}" style="float:none; display:inline-block;">
               <img id="j_logo_5" alt="" width="90" height="45" src="{$scl['store_avatar']}">
             </a>
           </p>
@@ -61,7 +61,7 @@
             </a>
           </p>
           <p class="flow-desc"> <span>所在地：</span>{$scl['province_name']},{$scl['city_name']},{$scl['district_name']} </p>
-          <p class="flow-desc"> <a href="{:U('Home/Store/index',array('store_id'=>$scl['store_id']))}" title="进入店铺，查看所有的商品">共<strong>{$scl['goods_array']['goods_count']}</strong>件宝贝&gt;&gt;</a> </p>
+          <p class="flow-desc"> <a href="{:U('/Store/index',array('store_id'=>$scl['store_id']))}" title="进入店铺，查看所有的商品">共<strong>{$scl['goods_array']['goods_count']}</strong>件宝贝&gt;&gt;</a> </p>
         </div>
         <div class="flow-score">
           <h3>店铺动态评分</h3>
@@ -76,11 +76,11 @@
                 <ul>
                   <volist name="scl['goods_array']['goods_list']" id="goods">
                     <li>
-                      <a href="{:U('Home/Goods/goodsInfo',array('id'=>$goods['goods_id']))}"
+                      <a href="{:U('/Goods/goodsInfo',array('id'=>$goods['goods_id']))}"
                          title="{$goods['goods_name']}" target="_blank" class="img">
                         <img src="{$goods['goods_id']|goods_thum_images=112,112}"> <span>￥{$goods['shop_price']}</span>
                       </a>
-                      <a href="{:U('Home/Goods/goodsInfo',array('id'=>$goods['goods_id']))}" title="{$goods['goods_name']}" target="_blank" class="name">{$goods['goods_name']}</a>
+                      <a href="{:U('/Goods/goodsInfo',array('id'=>$goods['goods_id']))}" title="{$goods['goods_name']}" target="_blank" class="name">{$goods['goods_name']}</a>
                     </li>
                   </volist>
                 </ul>

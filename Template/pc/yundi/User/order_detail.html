@@ -120,7 +120,7 @@ ul.catagories li:hover .catagory-detail {
 
 <div class="wrap"> 
   <!-- bread crumbs star --> 
-  <div class="bread_crumbs"> <a class="target_no" href="{:U('Home/User/index')}"  class="crumbs_font">我的TPshop</a>&gt;<a href="{:U('/Home/User/order_list')}" class="crumbs_font target_no">我的订单</a></div>
+  <div class="bread_crumbs"> <a class="target_no" href="{:U('/User/index')}"  class="crumbs_font">我的云狄Shop</a>&gt;<a href="{:U('/User/order_list')}" class="crumbs_font target_no">我的订单</a></div>
   <!-- bread crumbs end -->  
   <!-- order details star -->
   <div class="main order_details">
@@ -243,8 +243,8 @@ ul.catagories li:hover .catagory-detail {
           </li>
           <li class="opeating" id="opeating_1" style="display:block;">          
             <if condition="$order_info.cancel_btn eq 1"><button class="btn_pay" onClick="cancel_order({$order_info.order_id})">取消订单</button></if>
-            <if condition="$order_info.pay_btn eq 1"><button class="btn_pay"  onclick="location.href='{:U('/Home/Cart/cart4',array('order_id'=>$order_info[order_id]))}'">立即支付</button></if>                
-            <if condition="$order_info.receive_btn eq 1"><button class="btn_pay"  onClick=" if(confirm('你确定收到货了吗?')) location.href='{:U('Home/User/order_confirm',array('id'=>$order_info['order_id']))}'">收货确认</button></if>    
+            <if condition="$order_info.pay_btn eq 1"><button class="btn_pay"  onclick="location.href='{:U('/Cart/cart4',array('order_id'=>$order_info[order_id]))}'">立即支付</button></if>                
+            <if condition="$order_info.receive_btn eq 1"><button class="btn_pay"  onClick=" if(confirm('你确定收到货了吗?')) location.href='{:U('/User/order_confirm',array('id'=>$order_info['order_id']))}'">收货确认</button></if>    
           </li>
         </ul>
         <div class="ui_tab_content">
@@ -350,11 +350,11 @@ ul.catagories li:hover .catagory-detail {
                   <ol class="clearfix">
                     <li class="col_w40">
                       <div class="item_container clearfix">
-                          <a href="{:U('Home/Goods/goodsInfo',array('id'=>$good['goods_id']))}" class="item_img">
+                          <a href="{:U('/Goods/goodsInfo',array('id'=>$good['goods_id']))}" class="item_img">
 	                          <img src="{$good.goods_id|goods_thum_images=78,78}"/>
                           </a>
                         <div class="item_meta">  
-                          <a href="{:U('Home/Goods/goodsInfo',array('id'=>$good['goods_id']))}" class="order_name">{$good.goods_name}</a> </div>
+                          <a href="{:U('/Goods/goodsInfo',array('id'=>$good['goods_id']))}" class="order_name">{$good.goods_name}</a> </div>
                       </div>
                     </li>
                     <li class="col_w15">{$good.spec_key_name}</li>
@@ -362,10 +362,10 @@ ul.catagories li:hover .catagory-detail {
                     <li class="col_w15 num">￥{$good['member_goods_price'] * $good['goods_num']}</li>
                     <li class="cont_05 col_w15 num">                        
                         <if condition="($order_info[return_btn] eq 1) and ($good[is_send] eq 1)">    
-                            <p class="p-link"><a style="color:#999;" href="{:U('Home/User/return_goods',array('order_id'=>$order_info['order_id'],'order_sn'=>$order_info['order_sn'],'goods_id'=>$good['goods_id'],'spec_key'=>$good['spec_key']))}">申请退款</a></p>    
+                            <p class="p-link"><a style="color:#999;" href="{:U('/User/return_goods',array('order_id'=>$order_info['order_id'],'order_sn'=>$order_info['order_sn'],'goods_id'=>$good['goods_id'],'spec_key'=>$good['spec_key']))}">申请退款</a></p>    
                         </if>
                         <if condition="($order_info.comment_btn eq 1) and ($good['is_comment'] eq 0)">
-                            <p class="p-link"><a href="{:U('Home/User/comment')}"><span>评价</span></a></p>
+                            <p class="p-link"><a href="{:U('/User/comment')}"><span>评价</span></a></p>
                         </if>                    
                     </li>
                   </ol>

@@ -126,7 +126,7 @@
           </a>  
           </foreach>
           <div style="margin:9px 40px 9px 0;float:left;">
-            <form action="<?php echo urldecode(U("/Home/Goods/search",$filter_param,''));?>" method="post" id="price_form">
+            <form action="<?php echo urldecode(U("/Goods/search",$filter_param,''));?>" method="post" id="price_form">
                     <input name="q" value="{$q}" type="hidden" />
                     <input type="text" class="u-pri-start" onpaste="this.value=this.value.replace(/[^\d]/g,'')" onkeyup="this.value=this.value.replace(/[^\d]/g,'')" name="start_price" id="start_price" />
                     -
@@ -147,7 +147,7 @@
         <ul>
           <foreach name="goods_list" item="v" key="k">
           <li>
-            <figure><a href="{:U('/Home/Goods/goodsInfo',array('id'=>$v[goods_id]))}" target="_blank"><img src="{$v.goods_id|goods_thum_images=220,220}" /></a></figure>
+            <figure><a href="{:U('/Goods/goodsInfo',array('id'=>$v[goods_id]))}" target="_blank"><img src="{$v.goods_id|goods_thum_images=220,220}" /></a></figure>
             <div class="one">
               	<p>￥{$v[shop_price]}元</p>
             </div>
@@ -181,7 +181,7 @@
       <div class="cl"></div>	
       <ul class="two">
         <tpshop sql="select * from `__PREFIX__goods` where  is_recommend = 1 limit 5" item="v" key="k">
-        <li><a href="{:U('/Home/Goods/goodsInfo',array('id'=>$v[goods_id]))}" target="_blank"><img src="{$v.goods_id|goods_thum_images=238,218}" alt="{$v[goods_name]}"/></a></li>
+        <li><a href="{:U('/Goods/goodsInfo',array('id'=>$v[goods_id]))}" target="_blank"><img src="{$v.goods_id|goods_thum_images=238,218}" alt="{$v[goods_name]}"/></a></li>
         </tpshop> 
       </ul>
    
@@ -189,8 +189,8 @@
      <div class="thr">
       <foreach name='goods_about' item='g' key='i'>
        <dl <if condition='(($i+1)%3) eq 0'>style='margin:0'</if> >
-         <dd><a href="{:U('/Home/Goods/goodsInfo',array('id'=>$g[goods_id]))}" target="_blank"><img src="{$g.goods_id|goods_thum_images=66,66}" alt=""/></a></dd>
-         <dt><a href="{:U('/Home/Goods/goodsInfo',array('id'=>$g[goods_id]))}" target="_blank">{$g[goods_name]}</a></dt>
+         <dd><a href="{:U('/Goods/goodsInfo',array('id'=>$g[goods_id]))}" target="_blank"><img src="{$g.goods_id|goods_thum_images=66,66}" alt=""/></a></dd>
+         <dt><a href="{:U('/Goods/goodsInfo',array('id'=>$g[goods_id]))}" target="_blank">{$g[goods_name]}</a></dt>
        </dl>
       </foreach>
      </div>
@@ -198,7 +198,7 @@
      <div class="four">
        <ul>
         <foreach name="tpshop_config.hot_keywords" item="wd" key="k">
-        <li><a href="{:U('Home/Goods/search',array('q'=>$wd))}" <if condition="$wd eq I('q')">class="ht"</if>>{$wd}</a></li>
+        <li><a href="{:U('/Goods/search',array('q'=>$wd))}" <if condition="$wd eq I('q')">class="ht"</if>>{$wd}</a></li>
           </foreach>
        </ul>
      </div>

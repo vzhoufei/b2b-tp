@@ -40,7 +40,7 @@ class UserController extends BaseController {
         			'forget_pwd','check_captcha','check_username','send_validate_code',
         	);
         	if(!in_array(ACTION_NAME,$nologin)){
-        		header("location:".U('Home/User/login'));
+        		header("location:".U('/User/login'));
         		exit;
         	}
         }
@@ -102,18 +102,18 @@ class UserController extends BaseController {
      */
     public function login(){
         if($this->user_id > 0){
-        	header("Location: ".U('Home/User/index'));
+        	header("Location: ".U('/User/index'));
         }           
-        $referurl = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : U("Home/User/index");
+        $referurl = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : U("/User/index");
         $this->assign('referurl',$referurl);
         $this->display();
     }
 
     public function pop_login(){
     	if($this->user_id > 0){
-    		header("Location: ".U('Home/User/index'));
+    		header("Location: ".U('/User/index'));
     	}
-        $referurl = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : U("Home/User/index");
+        $referurl = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : U("/User/index");
         $this->assign('referurl',$referurl);
     	$this->display();
     }
@@ -152,7 +152,7 @@ class UserController extends BaseController {
      *  注册
      */
     public function reg(){
-    	if($this->user_id > 0) header("Location: ".U('Home/User/index'));
+    	if($this->user_id > 0) header("Location: ".U('/User/index'));
         if(IS_POST){
             $logic = new UsersLogic();
             //验证码检验
@@ -191,7 +191,7 @@ class UserController extends BaseController {
             $cartLogic = new \Home\Logic\CartLogic();
             $cartLogic->login_cart_handle($this->session_id,$data['result']['user_id']);  //用户登录后 需要对购物车 一些操作
             
-            $this->success($data['msg'],U('Home/User/index'));
+            $this->success($data['msg'],U('/User/index'));
             exit;
         }
         $this->assign('regis_sms_enable',tpCache('sms.regis_sms_enable')); // 注册启用短信：
@@ -687,7 +687,7 @@ class UserController extends BaseController {
                 session('validate_code',null);
                 if(!$userLogic->update_email_mobile($email,$this->user_id))
                     $this->error('邮箱已存在');
-                $this->success('绑定成功',U('Home/User/index'));
+                $this->success('绑定成功',U('/User/index'));
                 exit;
             }
             $this->error('邮箱验证码不匹配');
@@ -730,7 +730,7 @@ class UserController extends BaseController {
                     $this->error('验证码已失效');
                 if(!$userLogic->update_email_mobile($mobile,$this->user_id,2))
                     $this->error('手机已存在');
-                $this->success('绑定成功',U('Home/User/index'));
+                $this->success('绑定成功',U('/User/index'));
                 exit;
             }
             $this->error('手机验证码不匹配');
@@ -819,7 +819,7 @@ class UserController extends BaseController {
         $data = $logic->get_info($this->user_id);
         $user = $data['result'];
         if($user['mobile'] == ''&& $user['email'] == '')
-            $this->error('请先绑定手机或邮箱',U('Home/User/info'));
+            $this->error('请先绑定手机或邮箱',U('/User/info'));
         if(IS_POST){
             $userLogic = new UsersLogic();
             $data = $userLogic->password($this->user_id,I('post.old_password'),I('post.new_password'),I('post.confirm_password')); // 获取用户信息
@@ -838,7 +838,7 @@ class UserController extends BaseController {
     
     public function forget_pwd(){
     	if($this->user_id > 0){
-    		header("Location: ".U('Home/User/Index'));
+    		header("Location: ".U('/User/Index'));
     	}
     	if(IS_POST){
     		$logic = new UsersLogic();
@@ -872,7 +872,7 @@ class UserController extends BaseController {
     			$data = $logic->password($user['user_id'],'',$new_password,$confirm_password,false); // 获取用户信息
     		if($data['status'] != 1)
     			$this->error($data['msg'] ? $data['msg'] :  '操作失败');
-    		$this->success($data['msg'],U('Home/User/login'));
+    		$this->success($data['msg'],U('/User/login'));
     		exit;
     	}
         $this->display();
@@ -880,28 +880,28 @@ class UserController extends BaseController {
     
     public function set_pwd(){
     	if($this->user_id > 0){
-    		header("Location: ".U('Home/User/Index'));
+    		header("Location: ".U('/User/Index'));
     	}
     	$check = session('validate_code');
     	if(empty($check)){
-    		header("Location:".U('Home/User/forget_pwd'));
+    		header("Location:".U('/User/forget_pwd'));
     	}elseif($check['is_check']==0){
-    		$this->error('验证码还未验证通过',U('Home/User/forget_pwd'));
+    		$this->error('验证码还未验证通过',U('/User/forget_pwd'));
     	}    	
     	if(IS_POST){
     		$password = I('post.password');
     		$password2 = I('post.password2');
     		if($password2 != $password){
-    			$this->error('两次密码不一致',U('Home/User/forget_pwd'));
+    			$this->error('两次密码不一致',U('/User/forget_pwd'));
     		}  		
     		if($check['is_check']==1){
     			//$user = get_user_info($check['sender'],1);
                         $user = M('users')->where("mobile = '{$check['sender']}' or email = '{$check['sender']}'")->find();
     			M('users')->where("user_id=".$user['user_id'])->save(array('password'=>encrypt($password)));
     			session('validate_code',null);
-    			header("Location:".U('Home/User/finished'));
+    			header("Location:".U('/User/finished'));
     		}else{
-    			$this->error('验证码还未验证通过',U('Home/User/forget_pwd'));
+    			$this->error('验证码还未验证通过',U('/User/forget_pwd'));
     		}
     	}
     	$this->display();
@@ -909,7 +909,7 @@ class UserController extends BaseController {
     
     public function finished(){
     	if($this->user_id > 0){
-    		header("Location: ".U('Home/User/Index'));
+    		header("Location: ".U('/User/Index'));
     	}
     	$this->display();
     }   
@@ -936,7 +936,7 @@ class UserController extends BaseController {
     
     public function identity(){
     	if($this->user_id > 0){
-    		header("Location: ".U('Home/User/Index'));
+    		header("Location: ".U('/User/Index'));
     	}
     	$username = I('post.username');
     	$userinfo = array();
@@ -1029,7 +1029,7 @@ class UserController extends BaseController {
         $return_goods = M('return_goods')->where("order_id = $order_id and goods_id = $goods_id  and spec_key = '$spec_key'")->find();            
         if(!empty($return_goods))
         {
-            $this->success('已经提交过退货申请!',U('Home/User/return_goods_info',array('id'=>$return_goods['id'])));
+            $this->success('已经提交过退货申请!',U('/User/return_goods_info',array('id'=>$return_goods['id'])));
             exit;
         }       
         if(IS_POST)
@@ -1045,7 +1045,7 @@ class UserController extends BaseController {
             $data['spec_key'] = I('spec_key'); // 商品规格
             $data['store_id'] = M('order')->where("order_id = $order_id")->getField('store_id'); // 店铺id
             M('return_goods')->add($data);            
-            $this->success('申请成功,客服第一时间会帮你处理',U('Home/User/order_list'));
+            $this->success('申请成功,客服第一时间会帮你处理',U('/User/order_list'));
             exit;
         }
                
@@ -1154,7 +1154,7 @@ class UserController extends BaseController {
    			$data['ctime'] = time();
     		$order_id = M('recharge')->add($data);
     		if($order_id){
-    			$url = U('Home/Payment/getPay',array('pay_radio'=>$_REQUEST['pay_radio'],'order_id'=>$order_id));
+    			$url = U('/Payment/getPay',array('pay_radio'=>$_REQUEST['pay_radio'],'order_id'=>$order_id));
     			redirect($url);
     		}else{
     			$this->error('提交失败,参数有误!');

@@ -33,7 +33,7 @@
 <!-- 头部-e -->
 <div class="wrap"> 
   <!-- bread crumbs star -->
-  <div class="bread_crumbs"> <a href="{:U('Home/User/index')}" class="crumbs_font target_no">我的TPshop</a> </div>
+  <div class="bread_crumbs"> <a href="{:U('/User/index')}" class="crumbs_font target_no">我的云狄Shop</a> </div>
   <!-- bread crumbs end --> 
   
   <!--菜单--> 
@@ -100,13 +100,13 @@
             <ul class="genre clearfix">
               <li>
                 <span class="gray"><i class="icon_phone"></i>手机</span>
-                <a class="blue target_no" href="{:U('/Home/User/mobile_validate',array('type'=>'mobile','step'=>1))}">
+                <a class="blue target_no" href="{:U('/User/mobile_validate',array('type'=>'mobile','step'=>1))}">
                     <if condition="$user['mobile_validated'] eq 0">未绑定<else/>更换绑定</if>
                 </a>
               </li>
               <li>
                 <span class="gray"><i class="icon_email"></i>邮箱</span>
-                <a class="red target_no" href="{:U('/Home/User/email_validate',array('type'=>'email','step'=>1))}">
+                <a class="red target_no" href="{:U('/User/email_validate',array('type'=>'email','step'=>1))}">
 	                <if condition="$user['email_validated'] eq 0">未绑定<else/>更换绑定</if>
                 </a>
               </li>
@@ -121,15 +121,15 @@
           <div class="cell_title clearfix">
             <h2>我的订单</h2>
             <p class="type">
-              <a class="target_no" href="{:U('Home/User/order_list',array('type'=>'WAITPAY'))}"  title="待付款">待付款</a>
+              <a class="target_no" href="{:U('/User/order_list',array('type'=>'WAITPAY'))}"  title="待付款">待付款</a>
               <span class="v_line"></span>
-              <a class="target_no" href="{:U('Home/User/order_list',array('type'=>'WAITSEND'))}" title="待发货">待发货</a>
+              <a class="target_no" href="{:U('/User/order_list',array('type'=>'WAITSEND'))}" title="待发货">待发货</a>
               <span class="v_line"></span>
-              <a class="target_no" href="{:U('Home/User/order_list',array('type'=>'WAITRECEIVE'))}" title="待收货">待收货</a>
+              <a class="target_no" href="{:U('/User/order_list',array('type'=>'WAITRECEIVE'))}" title="待收货">待收货</a>
               <span class="v_line"></span>
-              <a class="target_no" href="{:U('Home/User/order_list',array('type'=>'WAITCCOMMENT'))}" title="待评价">待评价</a>
+              <a class="target_no" href="{:U('/User/order_list',array('type'=>'WAITCCOMMENT'))}" title="待评价">待评价</a>
             </p>                        
-              <a href="{:U('Home/User/order_list')}" class="order_viewAll">查看全部订单</a> 
+              <a href="{:U('/User/order_list')}" class="order_viewAll">查看全部订单</a> 
           </div>
           <div class="order_list J_order_list">
           
@@ -148,8 +148,8 @@
                     </div>
                     <div class="f_right order_tip">
                       <span class="num">金额：<em class="rmb">￥</em>{$v['order_amount']}</span>                      
-                      		<if condition="$v.pay_btn eq 1"><a href='{:U('/Home/Cart/cart4',array('order_id'=>$v[order_id]))}' class="btn_pay">立即付款</a></if>
-                      		<if condition="$v.receive_btn eq 1"><a onclick="if(confirm('你确定收到货了吗?')) location.href='{:U('Home/User/order_confirm',array('id'=>$v['order_id']))}'"  class="btn_pay">收货确认</a></if>                      
+                      		<if condition="$v.pay_btn eq 1"><a href='{:U('/Cart/cart4',array('order_id'=>$v[order_id]))}' class="btn_pay">立即付款</a></if>
+                      		<if condition="$v.receive_btn eq 1"><a onclick="if(confirm('你确定收到货了吗?')) location.href='{:U('/User/order_confirm',array('id'=>$v['order_id']))}'"  class="btn_pay">收货确认</a></if>                      
                      </div>
                   </td>
                 </tr>
@@ -157,17 +157,17 @@
                 <tr class='list_cont '>
                   <td class="td_01">
                     <div class="list_main clearfix">
-                    	<a href="{:U('Home/Goods/goodsInfo',array('id'=>$v2[goods_id]))}" class="J_hover"> <img src="{$v2.goods_id|goods_thum_images=80,80}"></a>
+                    	<a href="{:U('/Goods/goodsInfo',array('id'=>$v2[goods_id]))}" class="J_hover"> <img src="{$v2.goods_id|goods_thum_images=80,80}"></a>
                         {$v2.goods_name}
                     </div>
                   </td>
                   <td class="td_02">
-                    <p><a class="target_no" href="{:U('Home/User/order_detail',array('id'=>$v[order_id]))}">订单详情</a></p>
+                    <p><a class="target_no" href="{:U('/User/order_detail',array('id'=>$v[order_id]))}">订单详情</a></p>
                   </td>
                   <td class="td_03">
-                    <p><a href='{:U('Home/Goods/goodsInfo',array('id'=>$v2[goods_id]))}' class="btn-02">再次购买</a></p>
+                    <p><a href='{:U('/Goods/goodsInfo',array('id'=>$v2[goods_id]))}' class="btn-02">再次购买</a></p>
                     <if condition="($v[comment_btn] eq 1) and ($v2[is_comment] eq 0)">
-	                    <p><a href='{:U('Home/User/comment')}' class="btn-02">评价</a></p>                        
+	                    <p><a href='{:U('/User/comment')}' class="btn-02">评价</a></p>                        
                     </if>                    
                   </td>
                 </tr>
@@ -198,14 +198,14 @@
                 <ul class="clearfix">
                     <foreach name="collect_result" item="v">
                           <li>                         
-                              <a target="_blank" class="items_tit" href="{:U('Home/Goods/goodsInfo',array('id'=>$v[goods_id]))}">
+                              <a target="_blank" class="items_tit" href="{:U('/Goods/goodsInfo',array('id'=>$v[goods_id]))}">
                               	 <img width="100" height="100" src="{$v.goods_id|goods_thum_images=100,100}">
                               </a>
                           </li>
                      </foreach>  
                 </ul>
               </div>
-              <div class="view_all_order" id="favMore"><a class="target_no" href="{:U('Home/User/goods_collect')}">查看更多收藏</a></div>
+              <div class="view_all_order" id="favMore"><a class="target_no" href="{:U('/User/goods_collect')}">查看更多收藏</a></div>
               <!--有收藏 end-->
               <else />
               <!--没有收藏-->
@@ -225,13 +225,13 @@
               <div id="favShow" class="slide_box J_slide_box">
                 <ul class="clearfix">
                  <foreach name="collect_result" item="v">
-                      <a target="_blank" class="items_tit" href="{:U('Home/User/coupon')}">
+                      <a target="_blank" class="items_tit" href="{:U('/User/coupon')}">
                          <img width="100" height="100" src="__STATIC__/images/youhuiquan.jpg">
                       </a>
                   </foreach>
                 </ul>
               </div>
-              <div class="view_all_order" id="cardMore"><a class="target_no" href="{:U('Home/User/coupon')}">查看更多优惠券</a></div>
+              <div class="view_all_order" id="cardMore"><a class="target_no" href="{:U('/User/coupon')}">查看更多优惠券</a></div>
               <!--有优惠券-->
               <else />
               <!--没有优惠券-->
@@ -259,7 +259,7 @@
                     <ul class="clearfix">
 			         <tpshop sql="select * from __PREFIX__goods order by goods_id desc limit 4"  item="v" key="k" >
                       <li class="heig_tz">
-                          <a class="items_tit items_tz" href="{:U('Home/Goods/goodsInfo',array('id'=>$v[goods_id]))}">
+                          <a class="items_tit items_tz" href="{:U('/Goods/goodsInfo',array('id'=>$v[goods_id]))}">
                                 <img width="150" height="150" src="{$v.goods_id|goods_thum_images=160,160}">
                                 <span class="items_tit">{$v[goods_name]}</span>
                                 <span class="num"><em class="rmb">￥</em>{$v[shop_price]}</span>                             
@@ -295,7 +295,7 @@
                     <li>
                        <img width="100" height="100" alt="{$v[goods_name]}" src="{$v.goods_id|goods_thum_images=100,100}">
                        <div class="mask">
-	                       <a class="items_tit" href="{:U('Home/Goods/goodsInfo',array('id'=>$v[goods_id]))}">
+	                       <a class="items_tit" href="{:U('/Goods/goodsInfo',array('id'=>$v[goods_id]))}">
                                 <span class="goods_name">{$v[goods_name]}</span>
                                 <span class="num"><em class="rmb">￥</em>{$v[member_goods_price]}</span>
                             </a>
@@ -303,7 +303,7 @@
                     </li>
                </foreach>
               </ul>
-              <div class="view_all_order" id="cartMore"><a href="{:U('Home/Cart/cart')}" title="查看更多">查看更多</a></div>
+              <div class="view_all_order" id="cartMore"><a href="{:U('/Cart/cart')}" title="查看更多">查看更多</a></div>
               <!--购物车有商品 end-->
               <else />
               <!--购物车没商品-->

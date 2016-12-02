@@ -220,7 +220,7 @@ class CartController extends MobileBaseController {
         {                       
             $sum_order_amount = M('order')->where("master_order_sn = '$master_order_sn'")->sum('order_amount');
             if($sum_order_amount == 0){                
-                $order_order_list = U("Home/User/order_list");
+                $order_order_list = U("/User/order_list");
                 header("Location: $order_order_list");
             }           
         }

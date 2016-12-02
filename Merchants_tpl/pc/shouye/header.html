@@ -13,7 +13,7 @@
 <section class="warp">
       <header class="head">
       <if condition="$user.user_id gt 0">
-          <div class="left">Hi，你好  <a href="{:U('Home/User/index')}" style="color:#fff;">{$user.nickname}</a></div>
+          <div class="left">Hi，你好  <a href="{:U('/User/index')}" style="color:#fff;">{$user.nickname}</a></div>
       </if>
           <nav class="fir">
               <ul>
@@ -21,8 +21,8 @@
                    <li><a href="{:U('User/register')}" target="_blank">注册</a></li>
                    <li><a href="{:U('User/login')}" target="_blank">登录</a></li><span>|</span>
                 </if>
-                  <li><img src="{:STYLE}/images/index1.jpg" width="15" height="30"  alt=""/>&nbsp;&nbsp;<a href="{:U('Home/User/order_list')}" target="_blank">我的订单</a></li><span>|</span>
-                  <li><a href="{:U('Home/Cart/cart')}" target="_blank">购物车</a></li><span>|</span>
+                  <li><img src="{:STYLE}/images/index1.jpg" width="15" height="30"  alt=""/>&nbsp;&nbsp;<a href="{:U('/User/order_list')}" target="_blank">我的订单</a></li><span>|</span>
+                  <li><a href="{:U('/Cart/cart')}" target="_blank">购物车</a></li><span>|</span>
                   <li><a href="#" target="_blank">投诉举报</a></li><span>|</span>
                   <li><a href="#" target="_blank">客服中心</a></li><span>|</span>
                   <li><a href="#" target="_blank">帮助</a></li>

@@ -694,11 +694,11 @@ class UserController extends MobileBaseController
                     session('email_step1', null);
                     if (!$userLogic->update_email_mobile($email, $this->user_id))
                         $this->error('邮箱已存在');
-                    $this->success('绑定成功', U('Home/User/index'));
+                    $this->success('绑定成功', U('/User/index'));
                 } else {
                     session('email_code', null);
                     session('email_step1', 1);
-                    redirect(U('Home/User/email_validate', array('step' => 2)));
+                    redirect(U('/User/email_validate', array('step' => 2)));
                 }
                 exit;
             }
@@ -737,11 +737,11 @@ class UserController extends MobileBaseController
                     session('mobile_step1', null);
                     if (!$userLogic->update_email_mobile($mobile, $this->user_id, 2))
                         $this->error('手机已存在');
-                    $this->success('绑定成功', U('Home/User/index'));
+                    $this->success('绑定成功', U('/User/index'));
                 } else {
                     session('mobile_code', null);
                     session('email_step1', 1);
-                    redirect(U('Home/User/mobile_validate', array('step' => 2)));
+                    redirect(U('/User/mobile_validate', array('step' => 2)));
                 }
                 exit;
             }

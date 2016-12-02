@@ -20,7 +20,7 @@
                     <div class="c-item fixed  js_cart_pro_list" cart_id="99583">
                         <a class="del js_delete" onclick="header_cart_del({$v.id});" href="javascript:void(0);"></a>
                         <p class="i fl mr5">
-                            <a href="{:U('Home/Goods/goodsInfo',array('id'=>$v[goods_id]))}" alt="" title="">
+                            <a href="{:U('/Goods/goodsInfo',array('id'=>$v[goods_id]))}" alt="" title="">
                                 <img src="{$v.goods_id|goods_thum_images=60,60}" height="50" width="50" alt="" title="">
                             </a>
                         </p>
@@ -56,7 +56,7 @@
             </p>
         </div>
         <div class="c-btn">
-            <a href="{:U('Home/Cart/cart')}" alt="" title="">去购物车结算 &gt;&gt;</a>
+            <a href="{:U('/Cart/cart')}" alt="" title="">去购物车结算 &gt;&gt;</a>
         </div>
     </div>
 </div>

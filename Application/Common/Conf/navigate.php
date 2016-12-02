@@ -1,7 +1,7 @@
 <?php
 // 面包屑导航配置
     return array(        
-           	'home/user'=>array(
+           	'/user'=>array(
                 'name' =>'用户中心',
                 'action'=>array(
                      'index'=>'我的商城',

@@ -12,7 +12,7 @@
 <div class="u-diaolog-login-content">
   <form action="#" name="" class="J-login" method="post">
     <input type="hidden" value="" id="refer">
-    <div class="u-reg mb13"><a class="f12" href="{:U('Home/User/reg')}" target="_blank">免费注册</a></div>
+    <div class="u-reg mb13"><a class="f12" href="{:U('/User/reg')}" target="_blank">免费注册</a></div>
     <div class="u-message-error mb10 pl30 f12 u-msg-wrap" id="u-mb-msg" ><i></i>
     	<span class="J-errorMsg">公共场所不建议自动登录，以防帐号丢失</span>
     </div>
@@ -29,7 +29,7 @@
       	<label><input type="hidden" name="referurl" id="referurl" value="{$referurl}">
       	<input onclick="showMsg();" type="checkbox" class="ainput" name="chkRememberMe" />自动登录</label>
       </p>
-      <a class="f12" href="{:U('Home/User/forget_pwd')}" target="_blank">忘记密码了？</a>
+      <a class="f12" href="{:U('/User/forget_pwd')}" target="_blank">忘记密码了？</a>
     </div>
     <div class="u-input u-authcode mt10" id="logincaptcha">
         <div class="u-vcode">

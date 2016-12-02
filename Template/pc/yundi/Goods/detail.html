@@ -49,7 +49,7 @@
 <div class="breadcrumb"> <strong><a href="/">首页</a></strong>
   <span>
   	<foreach name="navigate_goods" key="k" item="v"> 
-  		&nbsp;<i>></i>&nbsp;<a href="{:U('/Home/Goods/goodsList',array('id'=>$k))}">{$v}</a>
+  		&nbsp;<i>></i>&nbsp;<a href="{:U('/Goods/goodsList',array('id'=>$k))}">{$v}</a>
    </foreach>
   </span>&nbsp;<i>></i>&nbsp;<em>{$goods.goods_name}...</em> 
 </div>
@@ -601,7 +601,7 @@
           </ul>
         </div>
         <div class="fn-mc-rt">
-          <a href="{:U('Home/User/comment')}"><button class="btn">发表评价</button></a>
+          <a href="{:U('/User/comment')}"><button class="btn">发表评价</button></a>
           <p class="double_points">
             <span>发表评价可让购买者放心购买哦~ <br> 加精置顶还可获得人气<br></span>
           </p>
@@ -639,7 +639,7 @@
 	<dt class="red">商家直送的商品退货流程（七天无理由退货）：</dt>
 		<dd>
 		  <ol>
-		    <li>自买家签收商品隔日起七日内可自助提交退货申请，请直接至「<a class="sevice_url" target="_blank" href="{:U('Home/User/order_list')}">我的订单</a>」→「<a class="sevice_url" target="_blank" href="{:U('Home/User/return_goods_list')}">退订</a>」提交退货申请。</li>
+		    <li>自买家签收商品隔日起七日内可自助提交退货申请，请直接至「<a class="sevice_url" target="_blank" href="{:U('/User/order_list')}">我的订单</a>」→「<a class="sevice_url" target="_blank" href="{:U('/User/return_goods_list')}">退订</a>」提交退货申请。</li>
 		    <li>顾客依照「退订」中的退货寄件地址自行安排第三方物流或快递寄回商品，并且支付运费。</li>
 		    <li>商品退回检測无误后，TPshop网将提交退款申请, 通过线上支付的订单办理退货, 实际款项会依照各银行作业时间返还至您原支付方式。</li>
 		    <li>若退回商品有缺件、影响二次销售状况时，不符合退货条件, 退款作业将暂时停止，TPshop网客服人员会与您联系说明，并由商家将商品返还给您 （如对于结果有异议,可联系<a class="sevice_url" target="_blank" href="">TPshop客服咨询</a>或<a class="sevice_url" target="_blank" href="">重新发起申请退货</a>并补充相关凭证）。</li>
@@ -648,7 +648,7 @@
 		<dt class="red">商家直送的商品退货流程（有理由退货）：</dt>
 		<dd>
 		  <ol>
-		    <li>由于商品缺件、寄错商品、产品瑕疵等原因而发起的退货，请直接至「<a class="sevice_url" target="_blank" href="{:U('Home/User/order_list')}">我的订单</a>」→「<a class="sevice_url" target="_blank" href="">退订</a>」提交退货申请。</li>
+		    <li>由于商品缺件、寄错商品、产品瑕疵等原因而发起的退货，请直接至「<a class="sevice_url" target="_blank" href="{:U('/User/order_list')}">我的订单</a>」→「<a class="sevice_url" target="_blank" href="">退订</a>」提交退货申请。</li>
 		    <li>顾客依照「<a class="sevice_url red">退订</a>」中的退货寄件地址自行安排第三方物流或快递寄回商品，并且垫付运费。</li>
 		    <li>商品退回检測无误后，TPshop网将提交退款申请, 通过线上支付的订单办理退货, 实际款项会依照各银行作业时间返还至您原支付方式。同时TPshop网会补贴10元抵用券到您的TPshop网帐户以作为退货运费补偿。</li>
 		    <li>若退回商品有缺件、影响二次销售状况时，不符合退货条件, 退款作业将暂时停止，TPshop网客服人员会与您联系说明，并由商家将商品返还给您 （如对于结果有异议,可连系<a class="sevice_url" target="_blank" href="">TPshop客服咨询</a>或<a class="sevice_url" target="_blank" href="">重新发起申请退货</a>并补充相关凭证）。</li>
@@ -709,9 +709,9 @@
       <ul id="look_see">
        <foreach name="look_see" item="look">
        <li>
-	     	 <a href="{:U('Home/Goods/goodsInfo',array('id'=>$look[goods_id]))}" class="look-img" target="_blank"> <img src="{$look.goods_id|goods_thum_images=200,200}" alt=""></a>
+	     	 <a href="{:U('/Goods/goodsInfo',array('id'=>$look[goods_id]))}" class="look-img" target="_blank"> <img src="{$look.goods_id|goods_thum_images=200,200}" alt=""></a>
 	         <h4 class="look-title">
-	         	<a href="{:U('Home/Goods/goodsInfo',array('id'=>$look[goods_id]))}">{$look.goods_name|getSubstr=0,30}</a>
+	         	<a href="{:U('/Goods/goodsInfo',array('id'=>$look[goods_id]))}">{$look.goods_name|getSubstr=0,30}</a>
 	         </h4>
 	         <p class="look-price">
 	         	<del><q class="fn-rmb">¥</q><strong class="fn-rmb-num">{$look.market_price}</strong></del>
@@ -914,7 +914,7 @@ $('#collectLink').click(function(){
 			type:'post',
 			dataType:'json',
 			data:{goods_id:$('input[name="goods_id"]').val()},
-			url:"{:U('Home/Goods/collect_goods')}", 
+			url:"{:U('/Goods/collect_goods')}", 
 			success:function(res){
 				if(res.status == 1){
 					layer.msg('成功添加至收藏夹', {icon: 1});
@@ -935,7 +935,7 @@ $('#favoriteStore').click(function () {
       type: 'post',
       dataType: 'json',
       data: {store_id: $(this).attr('data-id')},
-      url: "{:U('Home/Store/collect_store')}",
+      url: "{:U('/Store/collect_store')}",
       success: function (res) {
         if (res.status == 1) {
           layer.msg('成功添加至收藏夹', {icon: 1});
@@ -966,7 +966,7 @@ function pop_login(){
         shadeClose: true,
         shade: 0.5,
         area: ['490px', '460px'],
-        content: "{:U('Home/User/pop_login')}", 
+        content: "{:U('/User/pop_login')}", 
     });
 }
 </script>

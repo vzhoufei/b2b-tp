@@ -118,7 +118,7 @@ class CartController extends BaseController {
     {   
 
         if($this->user_id == 0)
-            $this->error('请先登陆',U('Home/User/login'));
+            $this->error('请先登陆',U('/User/login'));
         
         if($this->cartLogic->cart_count($this->user_id,1) == 0 ) 
             $this->error ('你的购物车没有选中商品','Cart/cart');
@@ -262,7 +262,7 @@ class CartController extends BaseController {
         {                       
             $sum_order_amount = M('order')->where("master_order_sn = '$master_order_sn'")->sum('order_amount');
             if($sum_order_amount == 0){                
-                $order_order_list = U("Home/User/order_list");
+                $order_order_list = U("/User/order_list");
                 header("Location: $order_order_list");
             }            
         }
@@ -271,7 +271,7 @@ class CartController extends BaseController {
             $order = M('Order')->where("order_id = $order_id")->find();
             // 如果已经支付过的订单直接到订单详情页面. 不再进入支付页面
             if($order['pay_status'] == 1){
-                $order_detail_url = U("Home/User/order_detail",array('id'=>$order_id));
+                $order_detail_url = U("/User/order_detail",array('id'=>$order_id));
                 header("Location: $order_detail_url");
             }
         }

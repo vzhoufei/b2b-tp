@@ -25,7 +25,7 @@
                       <span>添加成功</span>
                       <div class="add-cart-btn fn-clear"> 
                           <a href="javascript:;" onclick="javascript:parent.layer.closeAll('iframe');" class="ui-button ui-button-f80 fl go-shopping">继续购物</a> 
-                          <a href="{:U('Home/Cart/index')}" target="_parent" class="ui-button ui-button-122 fl">去购物车结算</a>
+                          <a href="{:U('/Cart/index')}" target="_parent" class="ui-button ui-button-122 fl">去购物车结算</a>
                       </div>
                     </div>
                   </div>
@@ -34,8 +34,8 @@
                     <ul class="fn-clear buy-list">
                     <tpshop sql="select * from `__PREFIX__goods` where  is_recommend = 1 limit 4" item="v" key="k">
                       <li>
-                        <a href="{:U('/Home/Goods/goodsInfo',array('id'=>$v[goods_id]))}" class="watch-img" target="_parent"><img src="{$v.goods_id|goods_thum_images=200,200}" /></a>
-                        <h4><a href="{:U('/Home/Goods/goodsInfo',array('id'=>$v[goods_id]))}" target="_parent">{$v[goods_name]}</a></h4>
+                        <a href="{:U('/Goods/goodsInfo',array('id'=>$v[goods_id]))}" class="watch-img" target="_parent"><img src="{$v.goods_id|goods_thum_images=200,200}" /></a>
+                        <h4><a href="{:U('/Goods/goodsInfo',array('id'=>$v[goods_id]))}" target="_parent">{$v[goods_name]}</a></h4>
                         <p><q class="fn-rmb">¥</q><strong class="fn-rmb-num">{$v[shop_price]}</strong></p>
                       </li>
                      </tpshop>  

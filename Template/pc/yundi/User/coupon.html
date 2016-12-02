@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="__STATIC__/css/favorite.css">
 
 <div class="wrap">
-  <div class="bread_crumbs"> <a href="{:U('Home/User/index')}" class="crumbs_font">我的TPshop</a>&gt;<span class="color">优惠券</span></div>
+  <div class="bread_crumbs"> <a href="{:U('/User/index')}" class="crumbs_font">我的云狄Shop</a>&gt;<span class="color">优惠券</span></div>
   <!--菜单--> 
   <include file="User/menu" /> 
   <!--菜单-->     
@@ -33,9 +33,9 @@
     <!-- themes end -->
     <div class="ui_tab">
       <ul class="ui_tab_nav">
-        <li class="<if condition="$_GET['type'] eq null">active</if>"><a class="target_no" href="{:U('Home/User/coupon')}">未使用</a></li>
-        <li class="<if condition="$_GET['type'] eq 1">active</if>"><a class="target_no" href="{:U('Home/User/coupon',array('type'=>1))}">已使用</a></li>
-        <li class="last <if condition="$_GET['type'] eq 2">active</if>"><a href="{:U('Home/User/coupon',array('type'=>2))}" class="target_no" >已过期</a></li>        
+        <li class="<if condition="$_GET['type'] eq null">active</if>"><a class="target_no" href="{:U('/User/coupon')}">未使用</a></li>
+        <li class="<if condition="$_GET['type'] eq 1">active</if>"><a class="target_no" href="{:U('/User/coupon',array('type'=>1))}">已使用</a></li>
+        <li class="last <if condition="$_GET['type'] eq 2">active</if>"><a href="{:U('/User/coupon',array('type'=>2))}" class="target_no" >已过期</a></li>        
       </ul>
       <div class="ui_tab_content">
         <div style="display: block;" class="ui_panel"></div>

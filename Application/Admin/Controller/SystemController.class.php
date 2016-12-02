@@ -82,7 +82,7 @@ class SystemController extends BaseController{
             foreach ($cat_list AS $key => $value)
             {
                     $strpad_count = $value['level']*4;
-                    $select_val = U("/Home/Goods/goodsList",array('id'=>$key));
+                    $select_val = U("/Goods/goodsList",array('id'=>$key));
                     $select_option[$select_val] = str_pad('',$strpad_count,"-",STR_PAD_LEFT).$value['name'];                                        
             }           
            $system_nav = array(

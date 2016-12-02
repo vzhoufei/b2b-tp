@@ -9,7 +9,6 @@
 	<!-- 轮播图部分 -->
 		<section class="main_ban">
 			<div class="main_visual">
-
 				<div class="flicking_con">
  				<foreach name="store[store_slide]" item="vimg" key="k">
 				<notempty name="vimg">
@@ -158,124 +157,7 @@
 
 					<!-- 产品右边部分 -->
 					<div class="mian_goodO6R">
-						<div class="mian_goodO6R1">
-							<p>新品</p>
-							<ul>
-
-								<foreach name="new_goods" item="v">
-
-								<li><a target="_blank" href="{:U('Goods/goodsInfo',array('id'=>$v[goods_id]))}"><img src="{$v.goods_id|goods_thum_images=240,240}"></a>					
-									<span class="mian_goodO5M">¥<b>{$v.shop_price}</b></span>
-									<a target="_blank" href="{:U('Goods/goodsInfo',array('id'=>$v[goods_id]))}" class="mian_goodO5T">{$v.goods_name|getSubstr=0,30}</a>
-									<a target="_blank" href="{:U('Goods/goodsInfo',array('id'=>$v[goods_id]))}" class="qianggoua">
-
-										<if condition="$v[prom_type] gt 0">
-											<div class="qianggou"><span class="qianggou2">
-							                    <if condition="$v[prom_type] eq 1">抢购商品</if>
-							                    <if condition="$v[prom_type] eq 2">团购商品</if>
-							                    <if condition="$v[prom_type] eq 3">限时折扣</if>
-											</span></div>
-							            </if>
-									</a>
-									<span  class="mian_goodO6R1M"><!-- <img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"> --></span>
-									<span class="mian_goodO6R1N">成交{$v.sales_sum}笔</span></li>
-								</foreach>
-								
-								<div class="cl"></div>
-							</ul>
-						</div>
-
-						<div class="mian_goodO6R2">
-							<p>热销</p>
-							<ul>
-							<foreach name="hot_goods" item="v">
-									
-								<li><a target="_blank" href="{:U('Goods/goodsInfo',array('id'=>$v[goods_id]))}"><img src="{$v.goods_id|goods_thum_images=240,240}"></a>
-									<span class="mian_goodO5M">¥<b>{$v.shop_price}</b></span>
-									<a target="_blank" href="{:U('Goods/goodsInfo',array('id'=>$v[goods_id]))}" class="mian_goodO5T">{$v.goods_name|getSubstr=0,30}</a>
-									<a  target="_blank" href="{:U('Goods/goodsInfo',array('id'=>$v[goods_id]))}" class="qianggoua">
-
-										<if condition="$v[prom_type] gt 0">
-											<div class="qianggou"><span class="qianggou2">
-							                    <if condition="$v[prom_type] eq 1">抢购商品</if>
-							                    <if condition="$v[prom_type] eq 2">团购商品</if>
-							                    <if condition="$v[prom_type] eq 3">限时折扣</if>
-											</span></div>
-							            </if>
-									</a>
-									<span  class="mian_goodO6R1M"><!-- <img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"> --></span>
-									<span class="mian_goodO6R1N">成交{$v.sales_sum}笔</span></li>
-							</foreach>
-								
-								<div class="cl"></div>
-							</ul>
-						</div>
-
-						<div class="mian_goodO6R21">
-							<p>推荐</p>
-							<ul>
-
-							<foreach name="recomend_goods" item="v">
-
-								<li><a target="_blank" href="{:U('Goods/goodsInfo',array('id'=>$v[goods_id]))}"><img src="{$v.goods_id|goods_thum_images=240,240}"></a>
-									<span class="mian_goodO5M">¥<b>{$v.shop_price}</b></span>
-									<a target="_blank" href="{:U('Goods/goodsInfo',array('id'=>$v[goods_id]))}" class="mian_goodO5T">{$v.goods_name|getSubstr=0,30}</a>
-									<a target="_blank" href="{:U('Goods/goodsInfo',array('id'=>$v[goods_id]))}" class="qianggoua">
-
-										<if condition="$v[prom_type] gt 0">
-											<div class="qianggou"><span class="qianggou2">
-							                    <if condition="$v[prom_type] eq 1">抢购商品</if>
-							                    <if condition="$v[prom_type] eq 2">团购商品</if>
-							                    <if condition="$v[prom_type] eq 3">限时折扣</if>
-											</span></div>
-							            </if>
-									</a>
-									<span  class="mian_goodO6R1M"><!-- <img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"> --></span>
-									<span class="mian_goodO6R1N">成交{$v.sales_sum}笔</span></li>
-							</foreach>
-								<div class="cl"></div>
-							</ul>
-						</div>
-
-
-<!-- 
-						<div class="mian_goodO6R22">
-							<p>多米诺精品</p>
-							<ul>
-								<li><a href="#"><img src="{:STYLE}/images/2917225154_783871151.search.jpg"></a>
-									<span class="mian_goodO5M">¥<b>24.00</b></span>
-									<a href="#" class="mian_goodO5T">木丸子木制积木儿童创意玩具100粒数字字母学习...</a>
-									<span  class="mian_goodO6R1M"><img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"></span>
-									<span class="mian_goodO6R1N">成交1002笔</span></li>
-								<div class="cl"></div>
-							</ul>
-						</div> -->
-
-						<!-- <div class="mian_goodO6R23">
-							<p>拼图系列精品</p>
-							<ul>
-								<li><a href="#"><img src="{:STYLE}/images/2917225154_783871151.search.jpg"></a>
-									<span class="mian_goodO5M">¥<b>24.00</b></span>
-									<a href="#" class="mian_goodO5T">木丸子木制积木儿童创意玩具100粒数字字母学习...</a>
-									<span  class="mian_goodO6R1M"><img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"></span>
-									<span class="mian_goodO6R1N">成交1002笔</span></li>
-								<div class="cl"></div>
-							</ul>
-						</div> -->
-						<!-- 
-						<div class="mian_goodO6R24">
-							<p>益智玩具</p>
-							<ul>
-								<li><a href="#"><img src="{:STYLE}/images/2917225154_783871151.search.jpg"></a>
-									<span class="mian_goodO5M">¥<b>24.00</b></span>
-									<a href="#" class="mian_goodO5T">木丸子木制积木儿童创意玩具100粒数字字母学习...</a>
-									<span  class="mian_goodO6R1M"><img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"></span>
-									</li>
-								
-								<div class="cl"></div>
-							</ul>
-						</div> -->
-								<div class="mian_goodO6R3">
+						<div class="mian_goodO6R3">
 							<p>友情链接</p>
 							<ul>
 								<li><a target="_blank" href="#">木丸子品牌旗舰店</a></li>
@@ -303,4 +185,3 @@
 	</main>
 						
 <include file="./footer"/>
-				

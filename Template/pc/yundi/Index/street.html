@@ -16,10 +16,10 @@
       <div class="nav-tag">
         <h5 class="filter-label-ab">分类</h5>
         <div class="cate_attr_con">
-          <div class="filter-all-ab"> <a class="selected" target="_self" href="{:U('Home/Index/street')}"><span>全部</span></a> </div>
+          <div class="filter-all-ab"> <a class="selected" target="_self" href="{:U('/Index/street')}"><span>全部</span></a> </div>
           <div class="district-tab">
             <volist name="store_class" id="sc">
-              <a target="_self" href="{:U('Home/Index/street',array('sc_id'=>$sc['sc_id']))}"><span>{$sc['sc_name']}</span></a>
+              <a target="_self" href="{:U('/Index/street',array('sc_id'=>$sc['sc_id']))}"><span>{$sc['sc_name']}</span></a>
             </volist>
           </div>
         </div>
@@ -28,15 +28,15 @@
     <div class="flow-wrap">
       <volist name="store_list" id="scl">
         <div class="flow-item first">
-          <a href="{:U('Home/Store/index',array('store_id'=>$scl['store_id']))}" class="flow-datu" title="L&amp;L">
+          <a href="{:U('/Store/index',array('store_id'=>$scl['store_id']))}" class="flow-datu" title="L&amp;L">
             <img title="L&amp;L" width="150" height="150" alt="" src="{$scl['store_logo']}">
           </a>
           <div class="flow-content">
-            <h4 class="flow-title"> <a href="{:U('Home/Store/index',array('store_id'=>$scl['store_id']))}" title="{$scl['store_name']}"><span>{$scl['store_name']}</span></a>
+            <h4 class="flow-title"> <a href="{:U('/Store/index',array('store_id'=>$scl['store_id']))}" title="{$scl['store_name']}"><span>{$scl['store_name']}</span></a>
               <span class="guanzhu" id="favoriteStore" data-id={$scl['store_id']}>关注</span>
             </h4>
             <p class="flow-logo">
-              <a href="{:U('Home/Store/index',array('store_id'=>$scl['store_id']))}" style="float:none; display:inline-block;">
+              <a href="{:U('/Store/index',array('store_id'=>$scl['store_id']))}" style="float:none; display:inline-block;">
                 <img id="j_logo_5" alt="" width="90" height="45" src="{$scl['store_banner']|default='__STATIC__/images/57c7ed6bcc96f.jpg'}">
               </a>
             </p>
@@ -49,7 +49,7 @@
               </a>
             </p>
             <p class="flow-desc"> <span>所在地：</span>{$scl['province_name']},{$scl['city_name']},{$scl['district_name']} </p>
-            <p class="flow-desc"> <a href="{:U('Home/Store/index',array('store_id'=>$scl['store_id']))}" title="进入店铺，查看所有的商品">共<strong>{$scl['goods_array']['goods_count']}</strong>件宝贝&gt;&gt;</a> </p>
+            <p class="flow-desc"> <a href="{:U('/Store/index',array('store_id'=>$scl['store_id']))}" title="进入店铺，查看所有的商品">共<strong>{$scl['goods_array']['goods_count']}</strong>件宝贝&gt;&gt;</a> </p>
           </div>
           <div class="flow-score">
             <h3>店铺动态评分</h3>
@@ -64,11 +64,11 @@
                   <ul>
                     <volist name="scl['goods_array']['goods_list']" id="goods">
                       <li>
-                        <a href="{:U('Home/Goods/goodsInfo',array('id'=>$goods['goods_id']))}"
+                        <a href="{:U('/Goods/goodsInfo',array('id'=>$goods['goods_id']))}"
                            title="{$goods['goods_name']}" target="_blank" class="img">
                           <img src="{$goods['goods_id']|goods_thum_images=112,112}"> <span>￥{$goods['shop_price']}</span>
                         </a>
-                        <a href="{:U('Home/Goods/goodsInfo',array('id'=>$goods['goods_id']))}" title="{$goods['goods_name']}" target="_blank" class="name">{$goods['goods_name']}</a>
+                        <a href="{:U('/Goods/goodsInfo',array('id'=>$goods['goods_id']))}" title="{$goods['goods_name']}" target="_blank" class="name">{$goods['goods_name']}</a>
                       </li>
                     </volist>
                   </ul>
@@ -101,7 +101,7 @@
         type: 'post',
         dataType: 'json',
         data: {store_id: $(this).attr('data-id')},
-        url: "{:U('Home/Store/collect_store')}",
+        url: "{:U('/Store/collect_store')}",
         success: function (res) {
           if (res.status == 1) {
             layer.msg('成功添加至收藏夹', {icon: 1});
@@ -120,7 +120,7 @@
       shadeClose: true,
       shade: 0.5,
       area: ['490px', '460px'],
-      content: "{:U('Home/User/pop_login')}",
+      content: "{:U('/User/pop_login')}",
     });
   }
 </script>

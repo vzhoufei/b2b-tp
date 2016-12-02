@@ -32,7 +32,7 @@
                 </td>
                 <td class="text-center">{$list.nickname}</td>
                 <td class="text-left">{$list.content}</td>
-                <td class="text-left"><a target="_blank" href="{:U('Home/Goods/goodsInfo',array('id'=>$list[goods_id]))}">{$goods_list[$list[goods_id]]}</a></td>               
+                <td class="text-left"><a target="_blank" href="{:U('/Goods/goodsInfo',array('id'=>$list[goods_id]))}">{$goods_list[$list[goods_id]]}</a></td>               
                 <td class="text-center">{$list.add_time|date='Y-m-d H:i',###}</td>
                 <td class="text-center">{$list.ip_address}</td>
 

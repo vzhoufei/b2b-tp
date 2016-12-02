@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="__STATIC__/css/return.sprite.css">
 
 <div class="wrap">
-  <div class="bread_crumbs"> <a href="{:U('Home/User/index')}" class="crumbs_font">我的TPshop</a>&gt;<span class="color">退换货</span></div>
+  <div class="bread_crumbs"> <a href="{:U('/User/index')}" class="crumbs_font">我的云狄Shop</a>&gt;<span class="color">退换货</span></div>
   <!--菜单--> 
   <include file="User/menu" /> 
   <!--菜单-->     
@@ -51,8 +51,8 @@
             <volist name="list" id="item">
             <div class="return_goods clearfix" style=" background-color:inherit">
                   <ul class="l_ulj">
-                    <li> <span class="title_first"><a target="_blank" href="{:U('Home/User/order_detail',array('id'=>$item['order_id']))}">{$item.order_sn}</a></span></li>
-                    <li> <span class="title_second"><a href="{:U('Home/Goods/goodsInfo',array('id'=>$item[goods_id]))}" target="_blank">{$goodsList[$item[goods_id]]|getSubstr=0,25}</a></span> </li>
+                    <li> <span class="title_first"><a target="_blank" href="{:U('/User/order_detail',array('id'=>$item['order_id']))}">{$item.order_sn}</a></span></li>
+                    <li> <span class="title_second"><a href="{:U('/Goods/goodsInfo',array('id'=>$item[goods_id]))}" target="_blank">{$goodsList[$item[goods_id]]|getSubstr=0,25}</a></span> </li>
                     <li> <span class="title_thired">{$item.addtime|date="Y-m-d",###}</span> </li>
                     <li>
                       <span class="wi169">
@@ -61,7 +61,7 @@
                         <if condition="$item['status'] eq 2">已完成</if>                    
                       </span>
                     </li>
-                    <li> <span class="wi63"><a href="{:U('Home/User/return_goods_info',array('id'=>$item[id]))}">查看</a></span> </li>
+                    <li> <span class="wi63"><a href="{:U('/User/return_goods_info',array('id'=>$item[id]))}">查看</a></span> </li>
                   </ul>
             </div>
             </volist>          
