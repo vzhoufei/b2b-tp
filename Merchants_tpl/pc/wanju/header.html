@@ -45,7 +45,7 @@
 				 <if condition="$user.user_id gt 0">
 				 <span></span><a href="{:C('DOMAIN')}{:U('User/index')}" style="color:#FF5400;">{$user.nickname}</a> <a href="{:C('DOMAIN')}{:U('user/logout')}">安全退出</a>
 				 <else/>
-				<span>已有账号：</span><a href="{:C('DOMAIN')}{:U('user/login')}" class="a">登陆</a><a href="{:C('DOMAIN')}/Home/user/register.html" class="a">立即注册</a>
+				<span>已有账号：</span><a href="{:C('DOMAIN')}{:U('user/login')}" class="a">登陆</a><a href="{:C('DOMAIN')}{:U('user/register')}" class="a">立即注册</a>
 				</if>
 				</div>
 			<div class="headerMR fr">
@@ -141,7 +141,7 @@
 						<div class="hnavoneRo">
  							<form method="get" action="{:C('DOMAIN')}{:U('Goods/search')}">
  							<input type="hidden" value="search" id="search_act" name="act">
-   							<input type="text" name="q" class="ssk" placeholder="请输入产品关键字" class="seach" />
+   							<input type="text" name="q" class="ssk" value="{$Think.get.keywords}" placeholder="{$Think.get.keywords|default='请输入产品关键字'}" class="seach" />
 
 							<button type="button" class="submitS" onclick="submits();">搜本旺铺</button>
 							<div class="hnavoneRo1">
