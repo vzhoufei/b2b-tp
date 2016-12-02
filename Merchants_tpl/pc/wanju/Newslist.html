@@ -44,7 +44,7 @@
 								<a href="
 
 									<if condition='($nav_where)'>
-							{:U('Article/article',array('text'=>$v[id]))}
+							{:U('Store/article',array('text'=>$v[id]))}
 							<else/>
 							{:U('Store/Newscontent',array('store_id'=>$store[store_id],'text'=>$v[id]))}
 							</if>

@@ -37,6 +37,15 @@ define('PLUGIN_PATH','plugins/');
 // define ( "GZIP_ENABLE", function_exists ( 'ob_gzhandler' ) );
 // ob_start ( GZIP_ENABLE ? 'ob_gzhandler' : null );
 
+//隐藏Home
+$arr    =    explode('/',$_SERVER['PHP_SELF']);
+ if(count($arr) > 2 && $arr[2]!=='Admin' && $arr[2]!=='admin' && $arr[2]!=='mobile' && $arr[2]!=='Mobile' && $arr[2]!=='Seller' && $arr[2]!=='seller'){
+    
+    define('BIND_MODULE','Home');
+ }
+
+
+
 define('UPLOAD_PATH','Public/upload/'); // 编辑器图片上传路径
 define('TPSHOP_CACHE_TIME',1); // TPshop 缓存时间  31104000
 define('SITE_URL','http://'.$_SERVER['HTTP_HOST']); // 网站域名
