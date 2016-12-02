@@ -14,7 +14,7 @@
 <script src="__PUBLIC__/js/layer/layer.js"></script><!-- 弹窗js 参考文档 http://layer.layui.com/-->
 
 <div class="wrap">
-  <div class="bread_crumbs"> <a href="{:U('Home/User/index')}" class="crumbs_font">我的TPshop</a>&gt;<span class="color">地址管理</span></div>
+  <div class="bread_crumbs"> <a href="{:U('/User/index')}" class="crumbs_font">我的云狄Shop</a>&gt;<span class="color">地址管理</span></div>
   <!--菜单--> 
   <include file="User/menu" /> 
   <!--菜单-->     
@@ -53,10 +53,10 @@
             <li class="td-03">
               <p><span data-add="usercell">{$list.mobile}</span></p>              
             </li>
-            <li class="td-04"><a href="{:U('Home/User/set_default',array('id'=>$list['address_id']))}"  data-act="set" >设为默认收货地址</a></li>
+            <li class="td-04"><a href="{:U('/User/set_default',array('id'=>$list['address_id']))}"  data-act="set" >设为默认收货地址</a></li>
             <li class="td-05">
             	<a href="javascript:address_edit({$list['address_id']})" data-act="edit" class="target_no" target="">修改</a> 
-            	<a href="{:U('Home/User/del_address',array('id'=>$list['address_id']))}" class="J_delete target_no" data-act="del" target="">删除</a> 
+            	<a href="{:U('/User/del_address',array('id'=>$list['address_id']))}" class="J_delete target_no" data-act="del" target="">删除</a> 
             </li>
           </ul>
         </volist>  

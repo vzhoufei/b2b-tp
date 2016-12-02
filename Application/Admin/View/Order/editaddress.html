@@ -8,10 +8,10 @@
         <div class="panel panel-default">
             <div class="panel-heading row">
                 <div class="pull-right">
-                    <a href="{:U('Home/Order/order_print',array('id'=>$order['order_id']))}" target="_blank" data-toggle="tooltip" title="" class="btn btn-info" data-original-title="打印订单">
+                    <a href="{:U('/Order/order_print',array('id'=>$order['order_id']))}" target="_blank" data-toggle="tooltip" title="" class="btn btn-info" data-original-title="打印订单">
                         <i class="fa fa-truck"></i>
                     </a>
-                    <a href="{:U('Home/Order/edit',array('id'=>$order['order_id']))}" data-toggle="tooltip" title="" class="btn btn-primary" data-original-title="编辑订单"><i class="fa fa-pencil"></i></a>
+                    <a href="{:U('/Order/edit',array('id'=>$order['order_id']))}" data-toggle="tooltip" title="" class="btn btn-primary" data-original-title="编辑订单"><i class="fa fa-pencil"></i></a>
                     <a href="javascript:history.go(-1)" data-toggle="tooltip" title="" class="btn btn-default" data-original-title="返回"><i class="fa fa-reply"></i></a>
                 </div>
             </div>

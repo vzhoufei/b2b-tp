@@ -45,7 +45,7 @@
                 <div id="ajax_return"> </div>
               </form>
               <div class="sc-acti-list ma-to-20 ma-bo-135"> <a class="gwc-jxgw" href="javascript:history.go(-1);">继续购物</a> 
-              		<a class="gwc-qjs" href="javascript:void(0)" data-url="{:U('Home/Cart/cart2')}">去结算</a> 
+              		<a class="gwc-qjs" href="javascript:void(0)" data-url="{:U('/Cart/cart2')}">去结算</a> 
               </div>
             </div>
           </div>
@@ -67,8 +67,8 @@
               <ul ng-repeat="list in itemList" ng-show="index == $index" class="ng-scope">
 			   <tpshop sql="select * from `__PREFIX__goods` where  is_recommend = 1 limit 10" item="v" key="k">
                 <li ng-repeat="item in list" class="ng-scope">
-                  <a href="{:U('/Home/Goods/goodsInfo',array('id'=>$v[goods_id]))}"><img ng-src="{$v.goods_id|goods_thum_images=80,80}" alt="{$v[goods_name]}" src="{$v.goods_id|goods_thum_images=80,80}"></a>
-                  <p><a class="ng-binding" href="{:U('/Home/Goods/goodsInfo',array('id'=>$v[goods_id]))}">{$v[goods_name]}</a></p>
+                  <a href="{:U('/Goods/goodsInfo',array('id'=>$v[goods_id]))}"><img ng-src="{$v.goods_id|goods_thum_images=80,80}" alt="{$v[goods_name]}" src="{$v.goods_id|goods_thum_images=80,80}"></a>
+                  <p><a class="ng-binding" href="{:U('/Goods/goodsInfo',array('id'=>$v[goods_id]))}">{$v[goods_name]}</a></p>
                   <div class="div-01">
                   	<em>¥</em>
                     <span  class="ng-binding">{$v[shop_price]}</span>
@@ -104,7 +104,7 @@ function ajax_cart_list(){
 	
 	$.ajax({
 		type : "POST",
-		url:"{:U('Home/Cart/ajaxCartList')}",//+tab,
+		url:"{:U('/Cart/ajaxCartList')}",//+tab,
 		data : $('#cart_form').serialize(),// 你的formid
 		success: function(data){
 			$("#ajax_return").empty().append(data);
@@ -149,7 +149,7 @@ function ajax_del_cart(ids)
 {
 	$.ajax({
 		type : "POST",
-		url:"{:U('Home/Cart/ajaxDelCart')}",//+tab,
+		url:"{:U('/Cart/ajaxDelCart')}",//+tab,
 		data:{ids:ids}, // 
 	    dataType:'json',		
 		success: function(data){
@@ -192,7 +192,7 @@ $('.gwc-qjs').click(function(){
 	        shadeClose: true,
 	        shade: 0.5,
 	        area: ['490px', '460px'],
-	        content: "{:U('Home/User/pop_login')}", 
+	        content: "{:U('/User/pop_login')}", 
 	    });
 	}else{
 		window.location.href = $(this).attr('data-url');

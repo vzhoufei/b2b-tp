@@ -53,7 +53,7 @@
 							 <td>{$vo.rebate}</td>
 							 <td>{$state[$vo[status]]}</td>
 							 <td>
-		                      <a target="_blank" href="{:U('Home/Activity/group',array('id'=>$vo['goods_id']))}" data-toggle="tooltip" title="" class="btn btn-info" data-original-title="查看详情"><i class="fa fa-eye"></i></a>
+		                      <a target="_blank" href="{:U('/Activity/group',array('id'=>$vo['goods_id']))}" data-toggle="tooltip" title="" class="btn btn-info" data-original-title="查看详情"><i class="fa fa-eye"></i></a>
 		                      <a class="btn btn-primary" href="{:U('Promotion/group_buy',array('act'=>'edit','id'=>$vo['id']))}"><i class="fa fa-pencil"></i></a>
 		                      <a class="btn btn-danger" href="javascript:void(0)" data-url="{:U('Promotion/groupbuyHandle')}" data-id="{$vo.id}" onclick="delfun(this)"><i class="fa fa-trash-o"></i></a>
 							</td>

@@ -59,7 +59,7 @@
                     <div class="o-info"> <span class="mr20">订单号：{$order_info.order_sn}</a></span> <span>{$order_info.add_time|date="Y-m-d  H:i:s",###}</span> </div>
                 </div>
             </div>
-            <form action="{:U('Home/User/conmment_add')}" method="post">
+            <form action="{:U('/User/conmment_add')}" method="post">
                 <input type="hidden" id="order_id" name="order_id" value="{$order_info.order_id}">
                 <div class="mycomment-form">
                 <!-- page -->
@@ -116,8 +116,8 @@
                     <div class="f-item f-goods product-741538" voucherstatus="0" catefi="670" catese="677" cateth="680">
                         <div class="fi-info">
                             <div class="comment-goods">
-                                <div class="p-img"><a href="{:U('Home/Goods/goodsInfo',array('id'=>$goods_list['goods_id']))}" target="_blank"><img src="{$goods_list.original_img}" alt=""></a></div>
-                                <div class="p-name"><a href="{:U('Home/Goods/goodsInfo',array('id'=>$goods_list['goods_id']))}" target="_blank">{$goods_list.goods_name}</a></div>
+                                <div class="p-img"><a href="{:U('/Goods/goodsInfo',array('id'=>$goods_list['goods_id']))}" target="_blank"><img src="{$goods_list.original_img}" alt=""></a></div>
+                                <div class="p-name"><a href="{:U('/Goods/goodsInfo',array('id'=>$goods_list['goods_id']))}" target="_blank">{$goods_list.goods_name}</a></div>
                                 <div class="p-price"><strong>￥{$goods_list.goods_price}</strong></div>
                                 <div class="p-attr">{$goods_list.spec_key_name}</div>
                             </div>
@@ -195,7 +195,7 @@
                     <div class="tip-inner">
                         <i class="tip-icon"></i>
                         <h3 class="tip-title">该订单已全部评价~</h3>
-                        <div class="tip-hint"><a clstag="pageclick|keycount|pingjiachenggong_201605192|1" href="{:U('Home/User/comment',array('status'=>0))}" class="ftc3 ml10">返回待评价列表 &gt;</a></div>
+                        <div class="tip-hint"><a clstag="pageclick|keycount|pingjiachenggong_201605192|1" href="{:U('/User/comment',array('status'=>0))}" class="ftc3 ml10">返回待评价列表 &gt;</a></div>
                     </div>
                 </div>
             </div>

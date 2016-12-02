@@ -17,10 +17,10 @@ function send_sms($mobile,$content,$type=''){
 function navigate_user()
 {    
     $navigate = include APP_PATH.'Common/Conf/navigate.php';    
-    $location = strtolower('Home/'.CONTROLLER_NAME);
+    $location = strtolower('/'.CONTROLLER_NAME);
     $arr = array(
         '首页'=>'/',
-        $navigate[$location]['name']=>U('/Home/'.CONTROLLER_NAME),
+        $navigate[$location]['name']=>U('/'.CONTROLLER_NAME),
         $navigate[$location]['action'][ACTION_NAME]=>'javascript:void();',
     );
     return $arr;

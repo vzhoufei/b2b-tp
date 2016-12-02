@@ -113,7 +113,7 @@ class StoreController extends BaseController{
 	
 	public function theme(){
 		$template = include APP_PATH.'Common/Conf/style_inc.php';
-		$theme = include APP_PATH.'Home/Conf/html.php';
+		$theme = include APP_PATH.'/Conf/html.php';
 		$this->assign('static_path',$theme['TMPL_PARSE_STRING']['__STATIC__']);
 		$this->assign('template',$template);
 		$store = M('store')->where("store_id=".STORE_ID)->find();

@@ -169,7 +169,7 @@ class GoodsController extends BaseController {
         
         // 分类菜单显示
         $goodsCate = M('GoodsCategory')->where("id = $id")->find();// 当前分类
-        //($goodsCate['level'] == 1) && header('Location:'.U('Home/Channel/index',array('cat_id'=>$id))); //一级分类跳转至大分类馆        
+        //($goodsCate['level'] == 1) && header('Location:'.U('/Channel/index',array('cat_id'=>$id))); //一级分类跳转至大分类馆        
         $cateArr = $goodsLogic->get_goods_cate($goodsCate); 
          
         // 帅选 品牌 规格 属性 价格
@@ -353,7 +353,7 @@ class GoodsController extends BaseController {
         //    foreach($cateArr as $k => $v)            
         //    {
         //        $tmp['id'] = $v['id'];
-        //        $cateArr[$k]['href'] = U("/Home/Goods/search",$tmp);                            
+        //        $cateArr[$k]['href'] = U("/Goods/search",$tmp);                            
         //    }                
         //}                        
         // 过滤帅选的结果集里面找商品        
@@ -379,6 +379,27 @@ class GoodsController extends BaseController {
             //if($filter_goods_id2)
             //$goods_images = M('goods_images')->where("goods_id in (".  implode(',', $filter_goods_id2).")")->select();       
         }    
+
+          /* 读取客服字段的
+        foreach ($goods_list as $key => $value) {
+            $goods_list[$key]['store_presales']    = unserialize($goods_list[$key]['store_presales']);//售前
+
+            $presales = array();
+            foreach ($goods_list[$key]['store_presales'] as $k => $v) {
+                if(count($presales)==2){break;};
+                if($v['type']=='qq'){
+                    if(empty($presales['qq'])){$presales['qq']=array('name'=>$v['name'],'account'=>$v['account']);}else{continue;};
+                }
+                if($v['type']=='ww'){
+                    if(empty($presales['ww'])){$presales['ww']=array('name'=>$v['name'],'account'=>$v['account']);}else{continue;};
+                }
+            }
+            $goods_list[$key]['store_presales'] = $presales;
+
+            //$goods_list[$key]['store_aftersales']  = unserialize($goods_list[$key]['store_aftersales']); //售后
+        }
+
+        */
                 
         $this->assign('goods_list',$goods_list);  
 
@@ -484,7 +505,7 @@ class GoodsController extends BaseController {
         $goodsConsult = M('goodsConsult');        
         if (!$goodsConsult->autoCheckToken($_POST))
         {            
-                $this->error('你已经提交过了!', U('/Home/Goods/goodsInfo',array('id'=>$goods_id))); 
+                $this->error('你已经提交过了!', U('/Goods/goodsInfo',array('id'=>$goods_id))); 
                 exit;
         }
         
@@ -496,7 +517,7 @@ class GoodsController extends BaseController {
             'add_time'=>time(),
         );        
         $goodsConsult->add($data);        
-        $this->success('咨询已提交!', U('/Home/Goods/goodsInfo',array('id'=>$goods_id))); 
+        $this->success('咨询已提交!', U('/Goods/goodsInfo',array('id'=>$goods_id))); 
     }
     
     /**

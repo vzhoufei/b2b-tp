@@ -31,7 +31,7 @@
                 </if>
 
                    <li><img src="{:STYLE}/images/index1.jpg" width="15" height="30"  alt=""/>&nbsp;&nbsp;<a href="{:U('User/order_list')}" target="_blank">我的订单</a></li><span>|</span>
-                   <li><a href="{:U('Home/Cart/cart')}" target="_blank">购物车</a></li><span>|</span>
+                   <li><a href="{:U('/Cart/cart')}" target="_blank">购物车</a></li><span>|</span>
                    <li><a href="#" target="_blank">投诉举报</a></li><span>|</span>
                    <li><a href="#" target="_blank">客服中心</a></li><span>|</span>
                    <li><a href="#" target="_blank">帮助</a></li>
@@ -137,7 +137,7 @@ function submits()
 {
  var keywords = $('input[name=q]').val();
  if(!keywords){alert('请输入关键字');return;}
- window.location.href="{:U('Home/Store/search')}?store_id={$store[store_id]}&keywords="+keywords;
+ window.location.href="{:U('/Store/search')}?store_id={$store[store_id]}&keywords="+keywords;
 }
 
 

@@ -43,7 +43,7 @@
 		                     <td>{$vo.ctime}</td>
 		                     <td>{$vo.topic_image}</td>
 		                     <td>
-		                      <a target="_blank" href="{:U('Home/Topic/detail',array('topic_id'=>$vo['topic_id']))}" data-toggle="tooltip" title="" class="btn btn-info" data-original-title="查看详情"><i class="fa fa-eye"></i></a>
+		                      <a target="_blank" href="{:U('/Topic/detail',array('topic_id'=>$vo['topic_id']))}" data-toggle="tooltip" title="" class="btn btn-info" data-original-title="查看详情"><i class="fa fa-eye"></i></a>
 		                      <a class="btn btn-primary" href="{:U('Topic/topic',array('act'=>'edit','topic_id'=>$vo['topic_id']))}"><i class="fa fa-pencil"></i></a>
 		                      <a class="btn btn-danger" href="javascript:void(0)" data-url="{:U('Topic/topicHandle')}" data-id="{$vo.topic_id}" onclick="delfun(this)"><i class="fa fa-trash-o"></i></a>
 							</td>

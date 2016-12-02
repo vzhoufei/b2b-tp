@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="__STATIC__/css/favorite.css">
 
 <div class="wrap">
-  <div class="bread_crumbs"> <a href="{:U('Home/User/index')}" class="crumbs_font">我的TPshop</a>&gt;<span class="color">我的评价</span></div>
+  <div class="bread_crumbs"> <a href="{:U('/User/index')}" class="crumbs_font">我的云狄Shop</a>&gt;<span class="color">我的评价</span></div>
   <!--菜单--> 
   <include file="User/menu" /> 
   <!--菜单-->     
@@ -31,9 +31,9 @@
       <!-- themes end -->
       <div class="ui_tab">
         <ul class="ui_tab_nav">
-            <li class="<if condition="$_GET['status'] neq '0' and $_GET['status'] neq '1'">active</if>"><a href="{:U('/Home/User/comment')}" class="target_no">全部</a></li>
-          <li class="<if condition="$_GET['status'] eq '0'">active</if>"><a href="{:U('/Home/User/comment',array('status'=>0))}" class="target_no">待评论</a></li>
-          <li class="last <if condition="$_GET['status'] eq '1'">active</if>"><a href="{:U('/Home/User/comment',array('status'=>1))}" class="target_no">已评论</a></li>
+            <li class="<if condition="$_GET['status'] neq '0' and $_GET['status'] neq '1'">active</if>"><a href="{:U('/User/comment')}" class="target_no">全部</a></li>
+          <li class="<if condition="$_GET['status'] eq '0'">active</if>"><a href="{:U('/User/comment',array('status'=>0))}" class="target_no">待评论</a></li>
+          <li class="last <if condition="$_GET['status'] eq '1'">active</if>"><a href="{:U('/User/comment',array('status'=>1))}" class="target_no">已评论</a></li>
         </ul>
         <div class="ui_tab_content">
           <div style="display:block;" id="noComment" class="ui_panel">             
@@ -53,20 +53,20 @@
                       <tr class="list_cont ">
                         <td class="td_01">
                           <div class="list_main clearfix"> 
-                          	<a target="_blank"  class="J_hover" href="{:U('Home/Goods/goodsInfo',array('id'=>$list['goods_id']))}"> 
+                          	<a target="_blank"  class="J_hover" href="{:U('/Goods/goodsInfo',array('id'=>$list['goods_id']))}"> 
                             	<img alt="{$list.goods_name}" src="{$list.goods_id|goods_thum_images=80,80}">
                             </a>
-                            <a href="{:U('Home/Goods/goodsInfo',array('id'=>$list['goods_id']))}" class="J_hover jj_hov" target="_blank">{$list.goods_name}</a>  
+                            <a href="{:U('/Goods/goodsInfo',array('id'=>$list['goods_id']))}" class="J_hover jj_hov" target="_blank">{$list.goods_name}</a>  
                           </div>
                         </td>
                         <td class="td_02"><p><if condition="$list['is_comment'] eq 1">已评价<else/>未评价</if></p></td>
                         <td class="td_03">
                             <if condition="$list['is_comment'] eq 0">
                                 <!--<p><a  class="btn-02" onClick="comment({$list.order_id},{$list.goods_id})">立即评价1</a></p>-->
-                                <p><a href="{:U('Home/User/comment_list',array('order_id'=>$list['order_id'],'store_id'=>$list['store_id']))}" class="btn-02" target="_blank">立即评价</a></p>
+                                <p><a href="{:U('/User/comment_list',array('order_id'=>$list['order_id'],'store_id'=>$list['store_id']))}" class="btn-02" target="_blank">立即评价</a></p>
                             </if>
                             <if condition="$list['is_comment'] eq 1">
-                                <p><a  class="btn-02" href="{:U('Home/Goods/goodsInfo',array('id'=>$list['goods_id']))}">查看评价</a></p>
+                                <p><a  class="btn-02" href="{:U('/Goods/goodsInfo',array('id'=>$list['goods_id']))}">查看评价</a></p>
                             </if>
                         </td>
                       </tr>
@@ -76,7 +76,7 @@
                 <if condition="$list['is_comment'] eq 0">
                     <!--添加评论区域-->
                     <div class="eval-pj pa-to-20 ov-hi" id="div_{$list.order_id}_{$list.goods_id}" style="display:none">
-                        <form action="{:U('Home/User/add_comment')}" data-test="formtest" method="post">
+                        <form action="{:U('/User/add_comment')}" data-test="formtest" method="post">
                             <input type="hidden" name="order_id" value="{$list.order_id}">
                             <input type="hidden" name="goods_id" value="{$list.goods_id}">
                             <div class="fwypj"><p>评价与晒图</p></div>
@@ -281,7 +281,7 @@
         var data = $(form).serialize();
         $.ajax({
             type : "POST",
-            url:"{:U('Home/User/add_comment')}",
+            url:"{:U('/User/add_comment')}",
             data :data,// 你的formid 搜索表单 序列化提交
             dataType: 'json',
             success: function(data){

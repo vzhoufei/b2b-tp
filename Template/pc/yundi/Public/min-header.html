@@ -17,11 +17,11 @@
   <div class="container">
     <ul class="fl">
       <li class="fl J_login_status dn nologin">
-      	<a class="menu-item fl J_do_login J_chgurl" href="{:U('Home/user/login')}">
-        <span>Hi，请登录</span> </a><a class="menu-item fl ht" href="{:U('Home/user/reg')}">免费注册</a>
+      	<a class="menu-item fl J_do_login J_chgurl" href="{:U('/user/login')}">
+        <span>Hi，请登录</span> </a><a class="menu-item fl ht" href="{:U('/user/reg')}">免费注册</a>
       </li>
-      <li class="fl J_login_status dn islogin"><a href="{:U('Home/user/index')}" class="userinfo" title="" target="_self"></a>
-      	<a href="{:U('Home/user/logout')}" style="margin:0 10px;" title="退出" target="_self">退出</a></li>
+      <li class="fl J_login_status dn islogin"><a href="{:U('/user/index')}" class="userinfo" title="" target="_self"></a>
+      	<a href="{:U('/user/logout')}" style="margin:0 10px;" title="退出" target="_self">退出</a></li>
       <li class="fl sep"></li>
       <!-- 
       <li class="fl select-city dropdown">
@@ -31,20 +31,20 @@
       </li>-->
     </ul>
     <ul class="fr bar-right">
-      <li class="fl dropdown my-feiniu"><a class="menu-item" target="_blank" href="{:U('Home/Newjoin/index')}">
+      <li class="fl dropdown my-feiniu"><a class="menu-item" target="_blank" href="{:U('/Newjoin/index')}">
         <span>商家入驻</span><i class="dd"></i></a>
         <ul class="sub-panel">
           <li><a class="J_chgurl" target="_blank" href="{:U('/seller/Admin/login')}">商家登录</a></li>
         </ul>
       </li>
-      <li class="fl dropdown my-feiniu"><a class="menu-item" target="_blank" href="{:U('Home/user/index')}">
+      <li class="fl dropdown my-feiniu"><a class="menu-item" target="_blank" href="{:U('/user/index')}">
         <span>我的商城</span><i class="dd"></i></a>
         <ul class="sub-panel">
-          <li><a class="J_chgurl" target="_blank" href="{:U('/Home/User/order_list')}">我的订单</a></li>
-          <li><a class="J_chgurl" target="_blank" href="{:U('/Home/User/account')}">我的积分</a></li>
-          <li><a class="J_chgurl" target="_blank" href="{:U('/Home/User/coupon')}">我的优惠券</a></li>
-          <li><a class="J_chgurl" target="_blank" href="{:U('/Home/User/goods_collect')}">我的收藏夹</a></li>
-          <li><a class="J_chgurl" target="_blank" href="{:U('/Home/User/comment')}">我的评论</a></li>
+          <li><a class="J_chgurl" target="_blank" href="{:U('/User/order_list')}">我的订单</a></li>
+          <li><a class="J_chgurl" target="_blank" href="{:U('/User/account')}">我的积分</a></li>
+          <li><a class="J_chgurl" target="_blank" href="{:U('/User/coupon')}">我的优惠券</a></li>
+          <li><a class="J_chgurl" target="_blank" href="{:U('/User/goods_collect')}">我的收藏夹</a></li>
+          <li><a class="J_chgurl" target="_blank" href="{:U('/User/comment')}">我的评论</a></li>
         </ul>
       </li>
       <li class="fl sep"></li>       
@@ -61,7 +61,7 @@
         </div>
       </li>
       <li class="fl sep"></li>
-      <li class="fl"><a class="menu-item" href="{:U('Home/Article/detail',array('article_id'=>17))}" target="_blank">
+      <li class="fl"><a class="menu-item" href="{:U('/Article/detail',array('article_id'=>17))}" target="_blank">
         <span>帮助中心</span></a></li>
       <li class="fl sep"></li>
       <li class="fl about-us"><a class="txt fl" style="line-height:unset;" href="">关注我们：</a></li>
@@ -80,15 +80,15 @@
   <div class="t-main"><a href="" class="bg-floor"></a>
     <div class="tb-tabs">
       <div class="tb-tabs-up">
-      	<a href="{:U('Home/Cart/cart')}" class="i-cart" data-role="ico-cart"><i></i>
+      	<a href="{:U('/Cart/cart')}" class="i-cart" data-role="ico-cart"><i></i>
         <span class="text">购物车</span><span id ="miniCartRightQty" class="num">0</span></a>
-        <a href="{:U('/Home/User/order_list')}" target="_blank" class="i-ico i-ico-order" data-role="ico-btn">
+        <a href="{:U('/User/order_list')}" target="_blank" class="i-ico i-ico-order" data-role="ico-btn">
         <span>我的订单</span><i class="demo-icon">&#xe807;</i></a>
-        <a href="{:U('/Home/User/coupon')}" target="_blank" class="i-ico i-ico-coupon" data-role="ico-btn">
+        <a href="{:U('/User/coupon')}" target="_blank" class="i-ico i-ico-coupon" data-role="ico-btn">
         <span>我的优惠券</span><i class="demo-icon">&#xe80f;</i></a>
-        <a href="{:U('/Home/User/goods_collect')}" target="_blank" class="i-ico i-ico-fav" data-role="ico-btn">
+        <a href="{:U('/User/goods_collect')}" target="_blank" class="i-ico i-ico-fav" data-role="ico-btn">
         <span>我的收藏</span><i class="demo-icon">&#xe808;</i></a>
-        <a href="{:U('/Home/User/comment')}" target="_blank" class="i-ico i-ico-foot" data-role="ico-btn">
+        <a href="{:U('/User/comment')}" target="_blank" class="i-ico i-ico-foot" data-role="ico-btn">
         <span>我的评论</span><i class="demo-icon">&#xe805;</i></a>
       </div>
       <div class="tb-tabs-down">
@@ -126,14 +126,14 @@
     	</a>-->
     </div>
     <div fnp="m-top-search-form" class="m-top-search-form fl">
-       <form name="sourch_form" id="sourch_form" method="post" action="{:U("/Home/Goods/search")}">
+       <form name="sourch_form" id="sourch_form" method="post" action="{:U("/Goods/search")}">
         <div data-role="form-inner" class="s-form"><i class="s-ico"></i>
           <input type="text" data-role="input-search" autocomplete="off" class="fl s-input" name="q" id="q" value="<?php echo I('q'); ?>" placeholder="搜索关键字"/>
           <a data-role="btn" href="javascript:void(0);" class="s-btn fl" onclick="if($.trim($('#q').val()) != '') $('#sourch_form').submit();">搜索</a>
         </div>
         <div class="s-hotword">           
         	<foreach name="tpshop_config.hot_keywords" item="wd" key="k">
-        		<a href="{:U('Home/Goods/search',array('q'=>$wd))}" <if condition="$wd eq I('q')">class="ht"</if>>{$wd}</a>
+        		<a href="{:U('/Goods/search',array('q'=>$wd))}" <if condition="$wd eq I('q')">class="ht"</if>>{$wd}</a>
         	</foreach>
         </div>
         <ul data-role="tip-list" class="s-tip-list">
@@ -185,7 +185,7 @@
               <tpshop sql="select * from `__PREFIX__goods_category` where is_show = 1 and `level` = 1  limit 15" key="k" item='v'>
 	              <li data-role="nav-item" class="nav-item" index="{$v.id}">
 	                <span class="nav-menu-item"><i class="iconfont icon"></i>
-	                <span class="title"><a href="{:U('Home/Goods/goodsList',array('id'=>$v[id]))}" target="_blank">{$v.name}</a></span>
+	                <span class="title"><a href="{:U('/Goods/goodsList',array('id'=>$v[id]))}" target="_blank">{$v.name}</a></span>
 	                </span>
 	              </li>
               </tpshop>
@@ -197,11 +197,11 @@
 		        	<if condition="$k2%3 eq 0">
 		                <div class="fn-clear column-item">
 		                  <div class="tlt">
-		                    <span class="name"><a href="{:U('Home/Goods/goodsList',array('id'=>$v2[id]))}" target="_blank">{$v2.name}</a></span>
+		                    <span class="name"><a href="{:U('/Goods/goodsList',array('id'=>$v2[id]))}" target="_blank">{$v2.name}</a></span>
 		                  </div>
 		                  <div class="words">
 		                  	<foreach name="v2.sub_menu" item="v3">
-		                  		<a href="{:U('Home/Goods/goodsList',array('id'=>$v3[id]))}" <if condition="$v3[is_hot] eq 1">class="lh"</if> target="_blank">{$v3.name}</a>
+		                  		<a href="{:U('/Goods/goodsList',array('id'=>$v3[id]))}" <if condition="$v3[is_hot] eq 1">class="lh"</if> target="_blank">{$v3.name}</a>
 		                  	</foreach>
 		                  </div>
 		                </div>
@@ -214,11 +214,11 @@
 		        	<if condition="$k2%3 eq 1">
 		                <div class="fn-clear column-item">
 		                  <div class="tlt">
-		                    <span class="name"><a href="{:U('Home/Goods/goodsList',array('id'=>$v2[id]))}" target="_blank">{$v2.name}</a></span>
+		                    <span class="name"><a href="{:U('/Goods/goodsList',array('id'=>$v2[id]))}" target="_blank">{$v2.name}</a></span>
 		                  </div>
 		                 <div class="words">
 		                  	<foreach name="v2.sub_menu" item="v3">
-		                  		<a href="{:U('Home/Goods/goodsList',array('id'=>$v3[id]))}" <if condition="$v3[is_hot] eq 1">class="lh"</if> target="_blank">{$v3.name}</a>
+		                  		<a href="{:U('/Goods/goodsList',array('id'=>$v3[id]))}" <if condition="$v3[is_hot] eq 1">class="lh"</if> target="_blank">{$v3.name}</a>
 		                  	</foreach>
 		                  </div>
 		                </div>
@@ -230,11 +230,11 @@
 		        	<if condition="$k2%3 eq 2">
 		                <div class="fn-clear column-item">
 		                  <div class="tlt">
-		                    <span class="name"><a href="{:U('Home/Goods/goodsList',array('id'=>$v2[id]))}" target="_blank">{$v2.name}</a></span>
+		                    <span class="name"><a href="{:U('/Goods/goodsList',array('id'=>$v2[id]))}" target="_blank">{$v2.name}</a></span>
 		                  </div>
 		                  <div class="words">
 		                  	<foreach name="v2.sub_menu" item="v3">
-		                  		<a href="{:U('Home/Goods/goodsList',array('id'=>$v3[id]))}" <if condition="$v3[is_hot] eq 1">class="lh"</if> target="_blank">{$v3.name}</a>
+		                  		<a href="{:U('/Goods/goodsList',array('id'=>$v3[id]))}" <if condition="$v3[is_hot] eq 1">class="lh"</if> target="_blank">{$v3.name}</a>
 		                  	</foreach>
 		                  </div>
 		                </div>

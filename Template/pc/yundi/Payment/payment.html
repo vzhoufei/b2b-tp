@@ -35,7 +35,7 @@
             	<div class="fail-fasu">
                 	支付完成
                     <br>
-                    <a href="{:U('Home/Cart/cart4',array('order_id'=>$order_id,'master_order_sn'=>$master_order_sn))}">支付成功</a>
+                    <a href="{:U('/Cart/cart4',array('order_id'=>$order_id,'master_order_sn'=>$master_order_sn))}">支付成功</a>
                 </div>
                 <div class="fail-I-success" style="float:left">
                 	<!--<img src="__STATIC__/images/qrcode_vmall_app01.png" width="110" height="110"/>-->
@@ -44,11 +44,11 @@
             	<div class="success-fasu">
                 	支付遇到问题
                     <br>
-                    <a href="{:U('Home/Cart/cart4',array('order_id'=>$order_id,'master_order_sn'=>$master_order_sn))}">支付失败</a>
+                    <a href="{:U('/Cart/cart4',array('order_id'=>$order_id,'master_order_sn'=>$master_order_sn))}">支付失败</a>
                 </div>
             </div>
             <div class="re-qtzfgg">
-            	<a href="{:U('Home/Cart/cart4',array('order_id'=>$order_id,'master_order_sn'=>$master_order_sn))}">返回选择其他支付方式</a>
+            	<a href="{:U('/Cart/cart4',array('order_id'=>$order_id,'master_order_sn'=>$master_order_sn))}">返回选择其他支付方式</a>
             </div>
         </div>
     </div>

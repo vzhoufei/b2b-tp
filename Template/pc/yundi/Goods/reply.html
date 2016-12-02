@@ -116,21 +116,21 @@
                 <div class="clearfix m">
                     <div class="pagin fr">
                         <if condition="$page_current neq 1">
-                            <a class="next" target="_self" href="{:U('Home/Goods/reply',array('comment_id'=>$comment_info['comment_id'],'page'=>$page_current-1))}">上一页<b></b></a>
+                            <a class="next" target="_self" href="{:U('/Goods/reply',array('comment_id'=>$comment_info['comment_id'],'page'=>$page_current-1))}">上一页<b></b></a>
                         </if>
                         <php>
                             if($page_sum>1){
                                 for($i=1;$i<=$page_sum;$i++){
                                     if($page_current==$i){
-                                        echo "<a class='current'target='_self' href='".U('Home/Goods/reply',array('comment_id'=>$comment_info['comment_id'],'page'=>$i))."'>".$i."</a>";
+                                        echo "<a class='current'target='_self' href='".U('/Goods/reply',array('comment_id'=>$comment_info['comment_id'],'page'=>$i))."'>".$i."</a>";
                                     }else{
-                                        echo "<a target='_self' href='".U('Home/Goods/reply',array('comment_id'=>$comment_info['comment_id'],'page'=>$i))."'>".$i."</a>";
+                                        echo "<a target='_self' href='".U('/Goods/reply',array('comment_id'=>$comment_info['comment_id'],'page'=>$i))."'>".$i."</a>";
                                     }
                                 }
                             }
                         </php>
                             <if condition="$page_current lt $page_sum">
-                            <a class="next" target="_self" href="{:U('Home/Goods/reply',array('comment_id'=>$comment_info['comment_id'],'page'=>$page_current+1))}">下一页<b></b></a>
+                            <a class="next" target="_self" href="{:U('/Goods/reply',array('comment_id'=>$comment_info['comment_id'],'page'=>$page_current+1))}">下一页<b></b></a>
                             </if>
                     </div>
                 </div>
@@ -252,7 +252,7 @@
             type: 'post',
             dataType: 'json',
             data: {comment_id: comment_id,content:content,to_name:to_name,reply_id:reply_id,goods_id:'{$goods_info.goods_id}'},
-            url: "{:U('Home/User/reply_add')}",
+            url: "{:U('/User/reply_add')}",
             success: function (res) {
                 if (res.success) {
                     // layer.msg('回复已提交', {icon: 1});

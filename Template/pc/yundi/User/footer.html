@@ -4,7 +4,7 @@
         <dl> 
           <dt>{$v[cat_name]}</dt>
           <tpshop sql="select * from `__PREFIX__article` where cat_id = $v[cat_id]  and is_open=1" key="k2" item='v2'>
-              <dd><a href="{:U('Home/Article/detail',array('article_id'=>$v2[article_id]))}">{$v2[title]}</a></dd>
+              <dd><a href="{:U('/Article/detail',array('article_id'=>$v2[article_id]))}">{$v2[title]}</a></dd>
             </tpshop>
         </dl>
       </tpshop>

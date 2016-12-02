@@ -10,7 +10,7 @@
 	    	<dl class="foot-item foot-list">
               <dt class="">{$v[cat_name]}</dt>
               <tpshop sql="select * from `__PREFIX__article` where cat_id = $v[cat_id]" key="k2" item='v2'>
-            	<dd><a target="_blank" href="{:U('Home/Article/detail',array('article_id'=>$v2[article_id]))}">{$v2[title]}</a></dd>
+            	<dd><a target="_blank" href="{:U('/Article/detail',array('article_id'=>$v2[article_id]))}">{$v2[title]}</a></dd>
               </tpshop>
 	        </dl>
 	    </tpshop>  

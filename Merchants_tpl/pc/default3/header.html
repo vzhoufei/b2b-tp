@@ -429,7 +429,7 @@ $(function() {
 					type:'post',
 					dataType:'json',
 					data:{store_id:store_id},
-					url:"{:U('Home/Store/collect_store')}", 
+					url:"{:U('/Store/collect_store')}", 
 					success:function(res){
 						if(res.status == 1){
 							layer.msg('成功添加至收藏夹', {icon: 1});
@@ -449,7 +449,7 @@ $(function() {
 		        shadeClose: true,
 		        shade: 0.5,
 		        area: ['490px', '460px'],
-		        content: "{:U('Home/User/pop_login')}", 
+		        content: "{:U('/User/pop_login')}", 
 		    });
 		}
 		</script> 

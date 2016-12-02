@@ -112,13 +112,13 @@ ul.catagories li:hover .catagory-detail {
         <i class="icon-location icon-down"></i> </li>
     </ul>
     <ul class="topbar-right" id="topbar-right">
-      <li id="wellcome_wording"><a href="{:U('Home/user/index')}">{$user['nickname']}</a></li>
+      <li id="wellcome_wording"><a href="{:U('/user/index')}">{$user['nickname']}</a></li>
       <li id="link_signin" style="display: none;"></li>
       <if condition="$user_id gt 0">
-      <li id="link_signup"><a href="{:U('Home/user/logout')}" class="signup target_no">[退出]</a></li>
+      <li id="link_signup"><a href="{:U('/user/logout')}" class="signup target_no">[退出]</a></li>
       </if>
-      <li><a href="{:U('Home/user/index')}">我的TPshop</a></li>
-      <li><a href="{:U('Home/Article/detail',array('article_id'=>17))}" target="_blank">帮助中心</a></li>
+      <li><a href="{:U('/user/index')}">我的云狄Shop</a></li>
+      <li><a href="{:U('/Article/detail',array('article_id'=>17))}" target="_blank">帮助中心</a></li>
     </ul>
   </div>
 </div>
@@ -136,7 +136,7 @@ ul.catagories li:hover .catagory-detail {
 <!--搜索框-->
     <div id="hd-search">
       <div class="search-form">
-		<form name="sourch_form" id="sourch_form" method="post" action="{:U("/Home/Goods/search")}">
+		<form name="sourch_form" id="sourch_form" method="post" action="{:U("/Goods/search")}">
 		  <input type="text" data-role="input-search" autocomplete="off" class="search-keyword"  name="q" id="q" value="{$Think.post.search_key}" placeholder="搜索关键字"/>
           <button class="btn-search" type="submit"onclick="if($.trim($('#q').val()) != '') $('#sourch_form').submit();">搜索</button>
         </form>
@@ -144,7 +144,7 @@ ul.catagories li:hover .catagory-detail {
       <div class="hd-hot-keywords">
         <ul id="hotsearch">
         	<foreach name="tpshop_config.hot_keywords" item="wd" key="k">
-        		<li><a href="{:U('Home/Goods/search',array('q'=>$wd))}" <if condition="$k eq 0">class="ht"</if>>{$wd}</a></li>
+        		<li><a href="{:U('/Goods/search',array('q'=>$wd))}" <if condition="$k eq 0">class="ht"</if>>{$wd}</a></li>
         	</foreach>          
         </ul>
       </div>
@@ -203,7 +203,7 @@ ul.catagories li:hover .catagory-detail {
                               </span>
                             </p>
                           </div>
-                          <p class="cart_bot"><a class="cart_buy" href="{:U('Home/Cart/cart')}">去购物车结算</a></p>
+                          <p class="cart_bot"><a class="cart_buy" href="{:U('/Cart/cart')}">去购物车结算</a></p>
                         </div>
                       </div>
                     </div>
@@ -224,16 +224,16 @@ ul.catagories li:hover .catagory-detail {
         <foreach name="goods_category_tree" key="k" item='v'>
           <li cate_id="C24640">
             <span class="icon-drink"></span>
-            <h3 class="catagory"><a href="{:U('Home/Goods/goodsList',array('id'=>$v[id]))}">{$v[name]}</a></h3>
+            <h3 class="catagory"><a href="{:U('/Goods/goodsList',array('id'=>$v[id]))}">{$v[name]}</a></h3>
             <div class="catagory-detail clearfix cate_loading">
               <div class="sub-item J_cate_item hide">
                 <div class="col fl">
                   <foreach name="v[tmenu]" key="k2"  item="v2">
                     <if condition="($k2 % 3) eq 0">
                       <dl class="fixed">
-                        <dt> <a href="{:U('Home/Goods/goodsList',array('id'=>$v2[id]))}">{$v2[name]}</a> </dt>
+                        <dt> <a href="{:U('/Goods/goodsList',array('id'=>$v2[id]))}">{$v2[name]}</a> </dt>
                         <dd>
-                          <foreach name="v2[sub_menu]" item="v3" key="k3" > <a href="{:U('Home/Goods/goodsList',array('id'=>$v3[id]))}">{$v3[name]}</a> </foreach>
+                          <foreach name="v2[sub_menu]" item="v3" key="k3" > <a href="{:U('/Goods/goodsList',array('id'=>$v3[id]))}">{$v3[name]}</a> </foreach>
                         </dd>
                       </dl>
                     </if>
@@ -243,9 +243,9 @@ ul.catagories li:hover .catagory-detail {
                   <foreach name="v[tmenu]" key="k2"  item="v2">
                     <if condition="($k2 % 3) eq 1">
                       <dl class="fixed">
-                        <dt> <a href="{:U('Home/Goods/goodsList',array('id'=>$v2[id]))}">{$v2[name]}</a> </dt>
+                        <dt> <a href="{:U('/Goods/goodsList',array('id'=>$v2[id]))}">{$v2[name]}</a> </dt>
                         <dd>
-                          <foreach name="v2[sub_menu]" item="v3" key="k3" > <a href="{:U('Home/Goods/goodsList',array('id'=>$v3[id]))}">{$v3[name]}</a> </foreach>
+                          <foreach name="v2[sub_menu]" item="v3" key="k3" > <a href="{:U('/Goods/goodsList',array('id'=>$v3[id]))}">{$v3[name]}</a> </foreach>
                         </dd>
                       </dl>
                     </if>
@@ -255,9 +255,9 @@ ul.catagories li:hover .catagory-detail {
                   <foreach name="v[tmenu]" key="k2"  item="v2">
                     <if condition="($k2 % 3) eq 2">
                       <dl class="fixed">
-                        <dt> <a href="{:U('Home/Goods/goodsList',array('id'=>$v2[id]))}">{$v2[name]}</a> </dt>
+                        <dt> <a href="{:U('/Goods/goodsList',array('id'=>$v2[id]))}">{$v2[name]}</a> </dt>
                         <dd>
-                          <foreach name="v2[sub_menu]" item="v3" key="k3" > <a href="{:U('Home/Goods/goodsList',array('id'=>$v3[id]))}">{$v3[name]}</a> </foreach>
+                          <foreach name="v2[sub_menu]" item="v3" key="k3" > <a href="{:U('/Goods/goodsList',array('id'=>$v3[id]))}">{$v3[name]}</a> </foreach>
                         </dd>
                       </dl>
                     </if>
@@ -273,7 +273,7 @@ ul.catagories li:hover .catagory-detail {
                   </volist> 
                   </ul>
                   <!--分类商品图片-->
-                      <a class="ad mt15" href="{:U('Home/Goods/goodsList',array('id'=>$v[id]))}"> 
+                      <a class="ad mt15" href="{:U('/Goods/goodsList',array('id'=>$v[id]))}"> 
 	                      <img src="{$v[image]}" height="150" width="210"> 
                       </a> 
                   <!--分类商品图片 end-->                     
@@ -338,7 +338,7 @@ function header_cart_del(ids)
 {
 	$.ajax({
 		type : "POST",
-		url:"{:U('Home/Cart/ajaxDelCart')}",//+tab,
+		url:"{:U('/Cart/ajaxDelCart')}",//+tab,
 		data:{ids:ids}, // 
 	    dataType:'json',		
 		success: function(data){

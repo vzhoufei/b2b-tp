@@ -87,7 +87,7 @@
 		                                        <td class="tr-pro">
 		                                            <ul class="pro-area-2">
 		                                                <li>
-		                                                  <a title="{$v2.goods_name}" target="_blank" href="{:U('Home/Goods/goodsInfo',array('id'=>$v2[goods_id]))}" seed="item-name">{$v2.goods_name}</a>
+		                                                  <a title="{$v2.goods_name}" target="_blank" href="{:U('/Goods/goodsInfo',array('id'=>$v2[goods_id]))}" seed="item-name">{$v2.goods_name}</a>
                                                            {$v2.spec_key_name} 
 		                                                </li> 
 		                                             </ul>
@@ -314,7 +314,7 @@ $(document).ready(function(){
 function add_edit_address(id)
 {
 	if(id > 0) 
-		var url = "/index.php?m=Home&c=User&a=edit_address&scene=1&call_back=call_back_fun&id="+id; // 修改地址  '{:U('Home/User/add_address',array('scene'=>'1','call_back'=>'call_back_fun','id'=>id))}' //iframe的url /index.php/Home/User/add_address
+		var url = "/index.php?m=Home&c=User&a=edit_address&scene=1&call_back=call_back_fun&id="+id; // 修改地址  '{:U('/User/add_address',array('scene'=>'1','call_back'=>'call_back_fun','id'=>id))}' //iframe的url /index.php/Home/User/add_address
 	else
 		var url = "/index.php?m=Home&c=User&a=add_address&scene=1&call_back=call_back_fun";	// 新增地址
 	layer.open({
@@ -351,7 +351,7 @@ function del_address(id)
 */
 function ajax_address(){
 	$.ajax({
-		url:"{:U('Home/Cart/ajaxAddress')}",//+tab,
+		url:"{:U('/Cart/ajaxAddress')}",//+tab,
 		success: function(data){
 			$("#ajax_address").html('');
 			$("#ajax_address").append(data);
@@ -376,7 +376,7 @@ function ajax_order_price()
 
 	$.ajax({
 		type : "POST",
-		url:"{:U('Home/Cart/cart3')}",//+tab,
+		url:"{:U('/Cart/cart3')}",//+tab,
 		data : $('#cart2_form').serialize()+"&act=order_price",// 你的formid
         dataType: "json",
 		success: function(data){
@@ -389,7 +389,7 @@ function ajax_order_price()
 				});	
 				// 登录超时
 				if(data.status == -100) 
-					location.href ="{:U('Home/User/login')}";
+					location.href ="{:U('/User/login')}";
 								
 				return false;
 			}
@@ -433,7 +433,7 @@ function submit_order()
 		
 	$.ajax({
 		type : "POST",
-		url:"{:U('Home/Cart/cart3')}",//+tab,
+		url:"{:U('/Cart/cart3')}",//+tab,
 		data : $('#cart2_form').serialize()+"&act=submit_order",// 你的formid
         dataType: "json",
 		success: function(data){
@@ -448,7 +448,7 @@ function submit_order()
 				});				
 				// 登录超时
 				if(data.status == -100) 
-					location.href ="{:U('Home/User/login')}";
+					location.href ="{:U('/User/login')}";
 				
 				ajax_return_status = 1; // 上一次ajax 已经返回, 可以进行下一次 ajax请
 				

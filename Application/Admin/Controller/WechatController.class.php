@@ -71,7 +71,7 @@ class WechatController extends BaseController {
             exit($this->error("修改失败"));
         }
         $apiurl = 'http://'.$_SERVER['HTTP_HOST'].'/index.php?m=Home&c=Weixin&a=index';
-        //$apiurl = 'http://'.$_SERVER['HTTP_HOST'].U('Home/Weixin/index',array('token'=>$wechat['token']));
+        //$apiurl = 'http://'.$_SERVER['HTTP_HOST'].U('/Weixin/index',array('token'=>$wechat['token']));
         
         $this->assign('wechat',$wechat);
         $this->assign('apiurl',$apiurl);
