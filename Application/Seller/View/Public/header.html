@@ -76,7 +76,8 @@
               <ul class="dropdown-menu">
                 <li class="user-footer">
                   <div class="pull-left">
-                  	<a href="{:U('/Store/index',array('store_id'=>STORE_ID))}" data-url="" target="_blank" class="btn btn-default btn-flat">店铺首页</a>
+
+                  	<a href="{:SITE_URL}{:U('/Store/index',array('store_id'=>STORE_ID))}" data-url="" target="_blank" class="btn btn-default btn-flat">店铺首页</a>
                    	<a href="{:U('Admin/admin_info',array('seller_id'=>$seller['seller_id']))}" target="rightContent" class="btn btn-default btn-flat">修改密码</a>
                    	<a href="{:U('Admin/logout')}" class="btn btn-default btn-flat">安全退出</a>
                   </div>

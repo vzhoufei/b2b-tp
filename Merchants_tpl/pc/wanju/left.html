@@ -3,9 +3,9 @@
 							<p>产品分类</p>
 							<ul>
 						 		<foreach name="main_cat" item="v">  <!-- 商品分类 -->
-									<li><a target="_blank" href="{:U('Store/goods_list',array('store_id'=>$store[store_id],'cat_id'=>$v[cat_id]))}">{$v.cat_name}</a></li>
+									<li><a target="_blank" href="{:C('DOMAIN')}{:U('Store/goods_list',array('store_id'=>$store[store_id],'cat_id'=>$v[cat_id]))}">{$v.cat_name}</a></li>
 									<foreach name="sub_cat[ $v['cat_id'] ]" item="vs">  <!-- 二级分类 -->
-													<li><a target="_blank" href="{:U('Store/goods_list',array('store_id'=>$store[store_id],'cat_id'=>$vs[cat_id]))}">{$vs.cat_name}</a></li>
+													<li><a target="_blank" href="{:C('DOMAIN')}{:U('Store/goods_list',array('store_id'=>$store[store_id],'cat_id'=>$vs[cat_id]))}">{$vs.cat_name}</a></li>
 											</foreach>
 								</foreach>	
 							</ul>
@@ -20,7 +20,7 @@
 								<li><div><span class="mian_good6L2_numa">{$k+1}</span>成交<span class="mian_good6L2_numb">{$vo.sales_sum}</span>笔</div>
 								<div class="mian_good6L2img">
 									<img src="{$vo.goods_id|goods_thum_images=240,240}">
-									<a target="_blank" href="{:U('Goods/goodsInfo',array('id'=>$vo[goods_id]))}">{$vo.goods_name|getSubstr=0,25}</a>
+									<a target="_blank" href="{:C('DOMAIN')}{:U('Goods/goodsInfo',array('id'=>$vo[goods_id]))}">{$vo.goods_name|getSubstr=0,25}</a>
 									<span>￥ <font style="color:#f00;">{$vo.shop_price}</font></span>
 								</div>
 								</li>
@@ -32,9 +32,9 @@
 							<p>收藏排行榜</p>
 							<ul>
 								<foreach name="collect_goods" item="vo">
-								<li><a target="_blank" href="{:U('Goods/goodsInfo',array('id'=>$vo[goods_id]))}"><img src="{$vo.goods_id|goods_thum_images=160,160}" style="width:160px;" /></a>
+								<li><a target="_blank" href="{:C('DOMAIN')}{:U('Goods/goodsInfo',array('id'=>$vo[goods_id]))}"><img src="{$vo.goods_id|goods_thum_images=160,160}" style="width:160px;" /></a>
 									<span class="mian_goodO5M">¥<b>{$vo.shop_price}</b></span>
-									<a target="_blank" href="{:U('Goods/goodsInfo',array('id'=>$vo[goods_id]))}" class="mian_goodO5T">{$vo.goods_name|getSubstr=0,25}</a>
+									<a target="_blank" href="{:C('DOMAIN')}{:U('Goods/goodsInfo',array('id'=>$vo[goods_id]))}" class="mian_goodO5T">{$vo.goods_name|getSubstr=0,25}</a>
 									<span  class="mian_goodO6R1M"></span>
 									<span class="mian_goodO6R1N">收藏({$vo.collect_sum})</span></li>
 								</foreach>

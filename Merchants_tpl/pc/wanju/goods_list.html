@@ -45,10 +45,10 @@
 
          						<foreach name="goods_list" item="vo">
 							
-								<li><a target="_blank" href="{:U('Goods/goodsInfo',array('id'=>$vo[goods_id]))}"><img src="{$vo.goods_id|goods_thum_images=240,240}" class="img" /></a>					
+								<li><a target="_blank" href="{:C('DOMAIN')}{:U('Goods/goodsInfo',array('id'=>$vo[goods_id]))}"><img src="{$vo.goods_id|goods_thum_images=240,240}" class="img" /></a>					
 									<span class="mian_goodO5M">¥<b>{$vo.shop_price}</b></span>
-									<a target="_blank" href="{:U('Goods/goodsInfo',array('id'=>$vo[goods_id]))}" class="mian_goodO5T">{$vo.goods_name|getSubstr=0,20}</a>
-									<a target="_blank" href="{:U('Goods/goodsInfo',array('id'=>$vo[goods_id]))}" class="qianggoua">
+									<a target="_blank" href="{:C('DOMAIN')}{:U('Goods/goodsInfo',array('id'=>$vo[goods_id]))}" class="mian_goodO5T">{$vo.goods_name|getSubstr=0,20}</a>
+									<a target="_blank" href="{:C('DOMAIN')}{:U('Goods/goodsInfo',array('id'=>$vo[goods_id]))}" class="qianggoua">
 
 										<if condition="$vo[prom_type] gt 0">
 									<div class="qianggou"><span class="qianggou2">
@@ -62,7 +62,7 @@
 									</a>
 									<span  class="mian_goodO6R1M"><!-- <img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"> --></span>
 									<span class="mian_goodO6R1N">成交{$vo.sales_sum}笔</span>	
-										<div class="jiagou"><a href="{:U('Goods/goodsInfo',array('id'=>$vo[goods_id]))}">加入进货单</a></div>							
+										<div class="jiagou"><a href="{:C('DOMAIN')}{:U('Goods/goodsInfo',array('id'=>$vo[goods_id]))}">加入进货单</a></div>							
 									</li>
 								</foreach>
 
