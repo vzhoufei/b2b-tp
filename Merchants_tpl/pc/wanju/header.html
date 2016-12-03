@@ -220,7 +220,7 @@
 			        	<if condition="empty($vv[sn_url])">
 			        	<a href=" 
 			        	<if condition='($vv[sn_is_list] == 1 and $nav_where)'>
-			        	{:U('Store/article_list',array('sn'=>$vv[sn_id]))}
+			        	{:U('Store/newsList',array('sn'=>$vv[sn_id]))}
 			        	<elseif condition='$vv[sn_is_list] == 1 and !$nav_where' />
 			        	{:U('Store/newsList',array('store_id'=>$store[store_id],'sn'=>$vv[sn_id]))}
 			        	<elseif condition='$nav_where' />

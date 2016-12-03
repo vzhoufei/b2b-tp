@@ -358,6 +358,7 @@ class StoreController extends Controller
     public function newscontent(){
         $storeid = $this->store['store_id'];
         $sn_id = (empty($_GET['sn']))?0:(int)$_GET['sn'];
+        // echo $sn_id;exit;
         $text = (empty($_GET['text']))?0:(int)$_GET['text'];
         $news = M('store_art')->where('store = '.$storeid.' and id = '.$text)->find();
 

@@ -41,8 +41,22 @@
 			</div>
 
 				<div class='page'>
-					<div class='pre'><if condition='$pre eq null'>没有上一篇<else/><a href="{:U('Store/Newscontent',array('store_id'=>$store[store_id],'sn'=>$sn_id,'text'=>$pre))}">上一篇</a></if></div>
-					<div class='next'><if condition='$next eq null'>没有下一篇<else/><a href="{:U('Store/Newscontent',array('store_id'=>$store[store_id],'sn'=>$sn_id,'text'=>$next))}">下一篇</a></if></div>
+					<div class='pre'><if condition='$pre eq null'>没有上一篇<else/>
+					<a href="
+					<if condition='$nav_where'>
+					{:U('Store/newscontent',array('text'=>$pre))}
+					<else/>
+					{:U('Store/newscontent',array('store_id'=>$store[store_id],'sn'=>$sn_id,'text'=>$pre))}
+					</if>
+					">上一篇</a></if></div>
+					<div class='next'><if condition='$next eq null'>没有下一篇<else/>
+					<a href="
+					<if condition='$nav_where'>
+					{:U('Store/newscontent',array('text'=>$next))}
+					<else/>
+					{:U('Store/newscontent',array('store_id'=>$store[store_id],'sn'=>$sn_id,'text'=>$next))}
+					</if>
+					">下一篇</a></if></div>
 				</div>
 			<style>
 				.info{
