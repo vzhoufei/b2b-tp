@@ -239,7 +239,13 @@
               <dd> 由 <font>{$store.store_name}</font> 
               <span style="color:#aaa;">发货并提供售后服务。</span>
               <span style="color:#aaa;">             
-              	<a href="tencent://message/?uin={$store.store_qq}&Site=TPshop商城&Menu=yes"> <img src="__PUBLIC__/images/qq.gif" />  </a> 
+                <if condition='$store.[store_qq] neq null'>
+                <a href="tencent://message/?uin={$store.store_qq}&Site=云狄B2B&Menu=yes" target="_blank"><img src="__PUBLIC__/pc/images/product5.jpg" width="27" height="25"  alt=""/></a></if>
+                <if condition='$store.[store_aliwangwang] neq null'>
+                <a href="tencent://message/?uin={$store.store_aliwangwang}&Site=云狄B2B&Menu=yes" target="_blank"><img src="__PUBLIC__/pc/images/ww.png" width="27" height="25"  alt=""/></a></if><!-- 
+                
+                
+                                <a href="tencent://message/?uin={$store.store_qq}&Site=TPshop商城&Menu=yes"> <img src="__PUBLIC__/images/qq.gif" />  </a>  -->
               </span>
               </dd>
             </dl>

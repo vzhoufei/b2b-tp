@@ -10,20 +10,7 @@
 <script type="text/javascript" src="__PUBLIC__/js/jquery.datetimepicker.js"></script>
 </head>
 <body>
-<include file="Public/sign-header" /> 
-<div class="gome-wrap bg">
-	<div style="position: relative;top: -40px;left: 190px;">
-    	<a href="/" target="_blank" class="item fl"><img height="60" width="160" src="{$tpshop_config['shop_info_store_logo']}"></a>
-    </div>
-	<div class="gome-layout-area">
-        <ul class="gome-nav">
-            <li><a href="{:U('Newjoin/index')}" target="_blank">招商首页</a></li>
-        	<tpshop sql="select * from `__PREFIX__article_cat` where parent_id=2" key="k" item='v'>
-            	<li><a href="{:U('Newjoin/question',array('cat_id'=>$v[cat_id]))}" target="_blank">{$v.cat_name}</a></li>
-            </tpshop>
-        </ul>
-    </div>
-</div>
+<include file="Public/header" /> 
 
 <div class="gome-layout-area pb50">
     	<ul class="steps clearfix">
@@ -189,7 +176,7 @@
         </div>
     </div>
 <input type="hidden" id="mobileRegex" value="^(13[0-9]{9})|(14[57][0-9]{8})|(15[012356789][0-9]{8})|(170[0-9]{8})|(18[0-9]{9})$"/>
-<include file="Public/min-footer" /> 
+<include file="Public/footer" /> 
 <script>
 function get_province(){
     var url = '/index.php?m=Home&c=Api&a=getRegion&level=1&parent_id=0';

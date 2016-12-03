@@ -31,6 +31,11 @@ class GoodsController extends BaseController {
         $goodsLogic = new GoodsLogic();
         $goods_id = I("get.id");
         $goods = M('Goods')->where(array('goods_id'=>$goods_id))->find();
+
+
+
+
+
         if(empty($goods) || ($goods['is_on_sale'] == 0)){
         	$this->error('该商品已经下架',U('Index/index'));
         }

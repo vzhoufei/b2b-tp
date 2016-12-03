@@ -151,14 +151,19 @@
             <div class="one">
               	<p>￥{$v[shop_price]}元</p>
             </div>
-            <h1><a href="#" target="_blank">{$v[goods_name]|mb_substr=0,30,'utf-8'}...</a></h1>
+            <h1 style='min-height:36px;'><a href="{:U('/Goods/goodsInfo',array('id'=>$v[goods_id]))}" target="_blank">{$v[goods_name]|mb_substr=0,25,'utf-8'}...</a></h1>
             <div class="two">
               <h2>已成交{$v[sales_sum]}笔</h2>
               <!-- <span><img src="__PUBLIC__/pc/images/product3.jpg" width="33" height="17"  alt=""/><img src="__PUBLIC__/pc/images/product4.jpg" width="17" height="17"  alt=""/>1年</span> -->
             </div>
             <div class="thr">
                <span>{$v[store_name]}</span>
-               <figure><!-- <img src="__PUBLIC__/pc/images/product6.jpg" width="16" height="16"  alt=""/><img src="__PUBLIC__/pc/images/product7.jpg" width="16" height="16"  alt=""/><img src="__PUBLIC__/pc/images/product8.jpg" width="16" height="16"  alt=""/> --><a href="tencent://message/?uin={$v.store_qq}&Site=云狄B2B&Menu=yes" target="_blank"><img src="__PUBLIC__/pc/images/product5.jpg" width="27" height="25"  alt=""/></a></figure>
+               <figure>
+                <if condition='$v[store_qq] neq null'>
+                <a href="tencent://message/?uin={$v.store_qq}&Site=云狄B2B&Menu=yes" target="_blank"><img src="__PUBLIC__/pc/images/product5.jpg" width="27" height="25"  alt=""/></a></if>
+                <if condition='$v[store_aliwangwang] neq null'>
+                <a href="tencent://message/?uin={$v.store_aliwangwang}&Site=云狄B2B&Menu=yes" target="_blank"><img src="__PUBLIC__/pc/images/ww.png" width="27" height="25"  alt=""/></a></if>
+               </figure>
             </div>
           </li>
           </foreach>

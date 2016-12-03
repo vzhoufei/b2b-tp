@@ -349,7 +349,7 @@ class StoreController extends Controller
         $this->assign('navigation', $this->navigation);
         $this->assign('page',$page->show());
         $this->assign('news',$news);
-        $this->display('/Newslist');
+        $this->display('/newslist');
     }
     /**
     *   @author 金龙
@@ -373,6 +373,6 @@ class StoreController extends Controller
         $this->assign('sn_id',$sn_id);
         $this->assign('navigation', $this->navigation);
         $this->assign('news',$news);
-        $this->display('/News');
+        $this->display('/news');
     }
 }
