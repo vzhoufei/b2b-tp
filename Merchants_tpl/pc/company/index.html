@@ -12,7 +12,11 @@
 <link rel="stylesheet" type="text/css" href="{:STYLE}/css/index.css">
 <script type="text/javascript" src="{:STYLE}/Scripts/jquery.js"></script> 
 <script type="text/javascript" src="{:STYLE}/Scripts/index.js"></script>
-
+<style type="text/css">
+  .max *{
+  max-width: 100%;
+  }
+</style>
   </head>
 <body>
 
@@ -26,7 +30,7 @@
         <ul>
           <foreach name="store[store_slide]" item="vimg" key="k">
               <notempty name="vimg">
-                <li style="background:url({$vimg}) 50% 0px no-repeat;"><a href="{$store[store_slide_url][ $k ]}"  ></a></li>
+                <li><a href="{$store[store_slide_url][ $k ]}"><img src="{$vimg}" width='100%' height='100%'></a></li>
               </notempty>
             </foreach>
         </ul>
@@ -47,7 +51,7 @@
   	</script>
   </div>
   <!-- 模块1 -->
-  <div class="center">
+  <div class="center max">
      <tpshop sql="select * from yd_store_mod where store_id = $sn_store_id limit 1" item="mod">{$mod.one|htmlspecialchars_decode}</tpshop>
   </div>
   <!-- 模块1结束 -->
@@ -65,7 +69,9 @@
                   	<ul>
                       <foreach name="recomend_goods" item="v">
                       <li>
+                        <a href='{:C('DOMAIN')}{:U('Goods/goodsInfo',array('id'=>$v[goods_id]))}'>
                   			<img width="445" height="308"  src="{$v.goods_id|goods_thum_images=445,308}" />
+                        </a>
                   		</li>
                    	</ul>
                     </foreach>
@@ -82,7 +88,7 @@
       <div id="goodsShow">
         <ul>
           <foreach name="hot_goods" item="v">
-          <li><img src="{$v.goods_id|goods_thum_images=240,240}" ></li>
+          <li><a href='{:C('DOMAIN')}{:U('Goods/goodsInfo',array('id'=>$v[goods_id]))}'><img src="{$v.goods_id|goods_thum_images=240,240}" ></a></li>
           </foreach>
         </ul>
     </div>
@@ -92,7 +98,7 @@
    </div>
 
 
-  <div class="center">
+  <div class="center max">
     <tpshop sql="select * from yd_store_mod where store_id = $sn_store_id limit 1" item="mod2">{$mod2.two|htmlspecialchars_decode}</tpshop>
   </div>
 
