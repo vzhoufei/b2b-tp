@@ -14,30 +14,10 @@
     <script type="text/javascript" src="{:STYLE}/js/js.js"></script>
     <link href="{:STYLE}/css/main2.css" type="text/css" rel="stylesheet">
    <link href="{:STYLE}/css/style2.css" type="text/css" rel="stylesheet">
-<style>.xs{background:#21ACD4}</style>
+<style>.xs{background:#21ACD4;}</style>
 </head>
 <body>
    <div class="warp">
-       <header class="head">
-        <if condition="$user.user_id gt 0">
-           <div class="left"><a href="{:U('User/index')}">您好！ {$user.nickname}</a></div>
-        </if>
-           <nav class="nav">
-               <ul>
-               <li><a href="/">云狄首页</a></li>
-                <if condition="$user.user_id eq 0">
-                   <li><a href="{:U('User/register')}" target="_blank">注册</a></li>
-                   <li><a href="{:U('User/login')}" target="_blank">登录</a></li><span>|</span>
-                </if>
-
-                   <li><img src="{:STYLE}/images/index1.jpg" width="15" height="30"  alt=""/>&nbsp;&nbsp;<a href="{:U('User/order_list')}" target="_blank">我的订单</a></li><span>|</span>
-                   <li><a href="{:U('/Cart/cart')}" target="_blank">购物车</a></li><span>|</span>
-                   <li><a href="#" target="_blank">投诉举报</a></li><span>|</span>
-                   <li><a href="#" target="_blank">客服中心</a></li><span>|</span>
-                   <li><a href="#" target="_blank">帮助</a></li>
-               </ul>
-           </nav>
-       </header><!--顶部结束-->
        <div class="prol">
            <figure>
              <if condition="$store[store_logo] neq ''">
@@ -46,14 +26,6 @@
       <img src="__STATIC__/images/default_store_logo.gif" alt="{$store.store_name}" title="{$store.store_name}" height="70" />
       </if>
            </figure>
-           <article class="login">
-               <ul>
-                   <li>+<a href="#" target="_blank">收藏</a></li>
-                   <li><a href="#" target="_blank"><img src="{:STYLE}/images/qq.jpg">私聊</a></li>
-               </ul>
-
-
-           </article>
            <section class="search1">
                <div id="tab">
                    <div class="tabList">

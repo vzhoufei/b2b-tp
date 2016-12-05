@@ -502,5 +502,31 @@ DocumentRoot /usr/local/apache2/htdocs/cdcms-websites/
             }            
             $this->assign('config',$store_distribut);
             $this->display();
-	}            
+	}
+	public function store_mod(){
+
+		if(M('store_mod')->where('store_id = '.STORE_ID)->count()==0){
+			M('store_mod')->add(array('store_id'=>STORE_ID));
+		}
+
+		$text = M('store_mod')->where('store_id = '.STORE_ID)->select();
+
+		$this->initEditor();
+		$this->assign('one',$text[0]['one']);
+		$this->assign('two',$text[0]['two']);
+		$this->display();
+	}
+	public function modHandle(){
+			/*$data['store'] = STORE_ID;
+			$r = M('store_art')->add($data);
+		}else{*/
+			$data = I('post.');
+			$r = M('store_mod')->where('store_id = '.STORE_ID)->save($data);
+		/*}*/
+		if($r){
+			$this->success("操作成功",U('store/store_mod'));
+		}else{
+			$this->error("操作失败",U('store/store_mod'));
+		}
+	}    
 }
