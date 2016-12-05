@@ -99,8 +99,8 @@
   <div class="center max">{$text[1]|htmlspecialchars_decode}</div>
 
   <div class="center">
-    <div class="hua11 fl">
-      <tpshop sql="select * from yd_store_navigation where sn_store_id = $sn_store_id and sn_is_list = 1 limit 3" item="v">
+     <tpshop sql="select * from yd_store_navigation where sn_store_id = $sn_store_id and sn_is_list = 1 limit 3" item="v">
+      <div class="hua11 fl">
        <div class="hua1 ">
         <h2><img src="{:STYLE}/Picture/index8-02_07.jpg"/><span>{$v.sn_title}<a href="{:U('Store/newsList',array('store_id'=>$sn_store_id,'sn'=>$v[sn_id]))}">MORE+</a></span></h2>
        </div>
