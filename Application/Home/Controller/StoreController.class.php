@@ -151,6 +151,8 @@ class StoreController extends Controller
         //     $cat_goods = M('goods')->field('goods_content', true)->where($map)->order('goods_id desc')->select();
         // }
         // $this->assign('link_cat',$link_cat);//zhoufei
+
+        $this->assign('sn_store_id', $store_id );
         $this->assign('navigation', $this->navigation);
         $this->assign('hot_goods', $hot_goods);
         $this->assign('collect_goods', $collect_goods);
