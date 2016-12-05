@@ -152,6 +152,9 @@ class StoreController extends Controller
         // }
         // $this->assign('link_cat',$link_cat);//zhoufei
 
+        $text = M('store_mod')->where('store_id = '.$store_id)->select();
+        $this->assign('text',unserialize($text[0]['content']));
+
         $this->assign('sn_store_id', $store_id );
         $this->assign('navigation', $this->navigation);
         $this->assign('hot_goods', $hot_goods);
@@ -159,6 +162,8 @@ class StoreController extends Controller
         $this->assign('new_goods', $new_goods);
         $this->assign('recomend_goods', $recomend_goods);
         $this->assign('goods_images', $goods_images); //相册图片
+
+
         $this->display('/index');
     }
     

@@ -1,60 +1,5 @@
 $(function(){
 
-	//产品图切换
-	var goodsShow = document.getElementById('goodsShow');
-	var goodsUl = goodsShow.getElementsByTagName('ul')[0];
-	var goodsList=goodsUl.getElementsByTagName('li');
-	var speed = -1;
-	var tim = null;
-
-	//复制自身节点
-	goodsUl.innerHTML +=goodsUl.innerHTML;
-	goodsUl.style.width = goodsList.length*goodsList[0].offsetWidth+'px';
-
-	tim = setInterval(begin,20);
-
-	function begin(){
-			//判断重置位置
-			if(goodsUl.offsetLeft<-goodsUl.offsetWidth/2){
-				goodsUl.style.left=0;
-			}else if(goodsUl.offsetLeft>0){
-				goodsUl.style.left= - goodsUl.offsetWidth/2+'px';
-			}
-			goodsUl.style.left = goodsUl.offsetLeft+speed+'px';
-	}
-
-	var back = document.getElementsByClassName('back')[0];
-	var gogo = document.getElementsByClassName('gogo')[0];
-
-		back.onclick =function(){
-			speed = -1;
-		}
-		gogo.onclick = function(){
-			speed = 1;
-		}
-
-	back.onmouseover = function(){
-		clearInterval(tim);
-	}
-	back.onmouseout = function(){
-		tim = setInterval(begin,20);
-	}
-
-	gogo.onmouseover = function(){
-		clearInterval(tim);
-	}
-	gogo.onmouseout = function(){
-		tim = setInterval(begin,20);
-	}
-
-
-	goodsShow.onmouseover = function(){
-		clearInterval(tim);
-	}
-	goodsShow.onmouseout = function(){
-		tim = setInterval(begin,20);
-	}
-
 	//监听导航部分下拉
 	$('.headerMR >ul li').bind('mouseover',function(){
 		$('.headerMR >ul li').children('div').hide();
@@ -174,6 +119,63 @@ $(function(){
 		}, 5000);
 	});
 	
+
+	if(document.getElementById('goodsShow')){
+		//产品图切换
+	var goodsShow = document.getElementById('goodsShow');
+	var goodsUl = goodsShow.getElementsByTagName('ul')[0];
+	var goodsList=goodsUl.getElementsByTagName('li');
+	var speed = -1;
+	var tim = null;
+
+	//复制自身节点
+	goodsUl.innerHTML +=goodsUl.innerHTML;
+	goodsUl.style.width = goodsList.length*goodsList[0].offsetWidth+'px';
+
+	tim = setInterval(begin,20);
+
+	function begin(){
+			//判断重置位置
+			if(goodsUl.offsetLeft<-goodsUl.offsetWidth/2){
+				goodsUl.style.left=0;
+			}else if(goodsUl.offsetLeft>0){
+				goodsUl.style.left= - goodsUl.offsetWidth/2+'px';
+			}
+			goodsUl.style.left = goodsUl.offsetLeft+speed+'px';
+	}
+
+	var back = document.getElementsByClassName('back')[0];
+	var gogo = document.getElementsByClassName('gogo')[0];
+
+		back.onclick =function(){
+			speed = -1;
+		}
+		gogo.onclick = function(){
+			speed = 1;
+		}
+
+	back.onmouseover = function(){
+		clearInterval(tim);
+	}
+	back.onmouseout = function(){
+		tim = setInterval(begin,20);
+	}
+
+	gogo.onmouseover = function(){
+		clearInterval(tim);
+	}
+	gogo.onmouseout = function(){
+		tim = setInterval(begin,20);
+	}
+
+
+	goodsShow.onmouseover = function(){
+		clearInterval(tim);
+	}
+	goodsShow.onmouseout = function(){
+		tim = setInterval(begin,20);
+	}
+	}
 });
 
 

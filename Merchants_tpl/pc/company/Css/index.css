@@ -199,9 +199,9 @@ div.flicking_con a.on { background-position: 0 -21px;}
 .mian_good6L6 p { font-size: 20px;}
 .mian_goodO5 ul li { float: left; width: 283px; border: 1px solid #ccc; margin-left: 2px; margin-bottom: 5px; height: 314px; text-align: center;}
 .mian_goodO5 p { margin-top: 10px; margin-bottom: 10px; font-size: 18px; padding-left: 20px; font-weight: 800;}
-.mian_goodO5T { display: inline-block; margin-left: 5px; color: #369;}
+.mian_goodO5T { display: inline-block; /* margin-left: 5px; */ color: #369;}
 .mian_goodO5T:hover { color: #369; text-decoration: underline;}
-.mian_goodO5M { font-size: 16px; color: #ff7300; display: inline-block; float: left; margin-left: 10px;}
+.mian_goodO5M { font-size: 16px; color: #ff7300; display: inline-block; float: left; margin:0 5px;}
 .mian_goodO5M b { font-size: 20px;}
 .mian_goodO5N { display: inline-block; margin-right: 10px; font-size: 14px; margin-left: 10px;}
 .mian_goodO5S { float: left; text-align: left;}
@@ -268,8 +268,9 @@ a:link { color: #666666;}
 .mian_goodO6ROneC input { width: 70px; height: 20px;}
 .mian_goodlist { min-height: 200px; width: 100%; margin-left: 5px; background: #fff;}
 .mian_goodlist p { padding: 10px; font-size: 18px; margin: 0;}
-.mian_goodlist ul li { height: 280px; border: 1px solid #eee; width: 233px; text-align: center; margin-bottom: 10px; margin-left: 5px; float: left; position: relative;}
-.mian_goodlist ul li img { margin-top: 5px;}
+.mian_goodlist ul li { /* height: 280px; */ border: 1px solid #eee; width: 233px; text-align: center; margin-bottom: 10px; margin-left: 4px; float: left; position: relative;padding-bottom:10px;}
+.mian_goodlist ul li a{ padding: 0px;display: block;width: 100%;}
+.mian_goodlist ul li img { margin-top: 5px;width: 100%;}
 .jiagou { width: 128px; hieght: 30px;}
 .jiagou a { display: inline-block; width: 80px; margin-top: 5px; background: #fff; border: 1px solid #ccc; margin-left: 40px; height: 25px; border-radius: 5px; line-height: 25px;}
 .jiagou a:hover { background: #06c; color: #fff;}
