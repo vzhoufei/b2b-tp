@@ -26,29 +26,53 @@
                 </div>
                 <div class="panel-body ">
                     <!--表单数据-->
+
+                    <if condition='$template_config[mod] eq 0'>当前模板不支持自定义模块<else />
                     <form method="post" id="handleposition" action="{:U('store/modHandle')}">                    
                         <!--通用信息-->
                     <div class="tab-content col-md-12">                 	  
                         <div class="tab-pane active" id="tab_tongyong">                           
                             <table class="table table-bordered">
                                 <tbody>
+                                <script type="text/javascript">
+                                    //具体参数配置在  editor_config.js 中
+                                var options = {
+                                    zIndex: 999,
+                                    initialFrameWidth: "100%", //初化宽度
+                                    initialFrameHeight: 350, //初化高度
+                                    focus: false, //初始化时，是否让编辑器获得焦点true或false
+                                    maximumWords: 99999, removeFormatAttributes: 'class,style,lang,width,height,align,hspace,valign',//允许的最大字符数 'fullscreen',
+                                    pasteplain: true, autoHeightEnabled: true,
+                                    autotypeset: {
+                                        mergeEmptyline: true,        //合并空行
+                                        removeClass: true,           //去掉冗余的class
+                                        removeEmptyline: false,      //去掉空行
+                                        textAlign: "left",           //段落的排版方式，可以是 left,right,center,justify 去掉这个属性表示不执行排版
+                                        imageBlockLine: 'center',    //图片的浮动方式，独占一行剧中,左右浮动，默认: center,left,right,none 去掉这个属性表示不执行排版
+                                        pasteFilter: false,          //根据规则过滤没事粘贴进来的内容
+                                        clearFontSize: false,        //去掉所有的内嵌字号，使用编辑器默认的字号
+                                        clearFontFamily: false,      //去掉所有的内嵌字体，使用编辑器默认的字体
+                                        removeEmptyNode: false,      //去掉空节点
+                                        removeTagNames: {"font": 1},
+                                        indent: false,               //行首缩进
+                                        indentValue: '0em'           //行首缩进的大小
+                                    }
+                                };
+                                </script>
+                                <for start="0" end="$template_config[mod]">
                                 <tr>
-                                    <td>模块2：</td>
+                                    <td>模块{$i}：</td>
                                     <td class="col-xs-10">
-                             			<textarea class="span12 ckeditor" id="post_content1" name="one" title="">
-							            {$one}
-							        </textarea>
+                                        <textarea class="span12 ckeditor" id="post_content{$i}" name="text{$i}">
+                                        {$text[$i]}
+                                        </textarea>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>模块1：</td>
-                                    <td class="col-xs-10">
-                             			<textarea class="span12 ckeditor" id="post_content2" name="two" title="">
-							            {$two}
-							        </textarea>
-                                    </td>
-                                </tr>                                   
-                                </tbody> 
+                                <script type="text/javascript">
+                                var editor{$i} = new UE.ui.Editor(options);
+                                editor{$i}.render("post_content{$i}");
+                                </script>
+                                </for>
                                 <tfoot>
                                 	<tr>
                                 		<td></td>
@@ -59,6 +83,7 @@
                         </div>                           
                     </div>              
 			    	</form><!--表单数据-->
+                    </if>
                 </div>
             </div>
         </div>
@@ -68,41 +93,6 @@
 function adsubmit(){
 	$('#handleposition').submit();
 }
-
-var editor;
-var editort;
-$(function () {
-    //具体参数配置在  editor_config.js 中
-    var options = {
-        zIndex: 999,
-        initialFrameWidth: "100%", //初化宽度
-        initialFrameHeight: 350, //初化高度
-        focus: false, //初始化时，是否让编辑器获得焦点true或false
-        maximumWords: 99999, removeFormatAttributes: 'class,style,lang,width,height,align,hspace,valign',//允许的最大字符数 'fullscreen',
-        pasteplain: true, autoHeightEnabled: true,
-        autotypeset: {
-            mergeEmptyline: true,        //合并空行
-            removeClass: true,           //去掉冗余的class
-            removeEmptyline: false,      //去掉空行
-            textAlign: "left",           //段落的排版方式，可以是 left,right,center,justify 去掉这个属性表示不执行排版
-            imageBlockLine: 'center',    //图片的浮动方式，独占一行剧中,左右浮动，默认: center,left,right,none 去掉这个属性表示不执行排版
-            pasteFilter: false,          //根据规则过滤没事粘贴进来的内容
-            clearFontSize: false,        //去掉所有的内嵌字号，使用编辑器默认的字号
-            clearFontFamily: false,      //去掉所有的内嵌字体，使用编辑器默认的字体
-            removeEmptyNode: false,      //去掉空节点
-            removeTagNames: {"font": 1},
-            indent: false,               //行首缩进
-            indentValue: '0em'           //行首缩进的大小
-        }
-    };
-    editor = new UE.ui.Editor(options);
-    editort = new UE.ui.Editor(options);
-
-    editor.render("post_content1");
-    editort.render("post_content2");
-
-});
-
 </script>
 </body>
 </html>

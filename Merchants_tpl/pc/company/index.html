@@ -51,9 +51,7 @@
   	</script>
   </div>
   <!-- 模块1 -->
-  <div class="center max">
-     <tpshop sql="select * from yd_store_mod where store_id = $sn_store_id limit 1" item="mod">{$mod.one|htmlspecialchars_decode}</tpshop>
-  </div>
+  <div class="center max">{$text[0]|htmlspecialchars_decode}</div>
   <!-- 模块1结束 -->
   <div class="mo4">
     <div class="center">     
@@ -98,9 +96,7 @@
    </div>
 
 
-  <div class="center max">
-    <tpshop sql="select * from yd_store_mod where store_id = $sn_store_id limit 1" item="mod2">{$mod2.two|htmlspecialchars_decode}</tpshop>
-  </div>
+  <div class="center max">{$text[1]|htmlspecialchars_decode}</div>
 
   <div class="center">
     <div class="hua11 fl">

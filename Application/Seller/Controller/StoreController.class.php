@@ -511,18 +511,31 @@ DocumentRoot /usr/local/apache2/htdocs/cdcms-websites/
 
 		$text = M('store_mod')->where('store_id = '.STORE_ID)->select();
 
+		$tpls = M('store')->where('store_id = '.session('store_id'))->getField('tpl');
+		$template_config = include "./Merchants_tpl/pc/$tpls/config.php";
+
+
+        $this->assign('template_config',$template_config);
+
+
+
 		$this->initEditor();
-		$this->assign('one',$text[0]['one']);
-		$this->assign('two',$text[0]['two']);
+		$this->assign('text',unserialize($text[0]['content']));
 		$this->display();
 	}
 	public function modHandle(){
-			/*$data['store'] = STORE_ID;
-			$r = M('store_art')->add($data);
-		}else{*/
-			$data = I('post.');
-			$r = M('store_mod')->where('store_id = '.STORE_ID)->save($data);
-		/*}*/
+		$data = I('post.');
+		$DataArray = array();
+		foreach ($data as $key => $value) {
+			if($key=='__hash__') continue;
+			$DataArray[]=$value;
+		}
+		$data = array(
+			'content' => serialize($DataArray)
+			);
+
+		$r = M('store_mod')->where('store_id = '.STORE_ID)->save($data);
+
 		if($r){
 			$this->success("操作成功",U('store/store_mod'));
 		}else{

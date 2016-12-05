@@ -268,8 +268,9 @@ a:link { color: #666666;}
 .mian_goodO6ROneC input { width: 70px; height: 20px;}
 .mian_goodlist { min-height: 200px; width: 100%; margin-left: 5px; background: #fff;}
 .mian_goodlist p { padding: 10px; font-size: 18px; margin: 0;}
-.mian_goodlist ul li { height: 280px; border: 1px solid #eee; width: 233px; text-align: center; margin-bottom: 10px; margin-left: 5px; float: left; position: relative;}
-.mian_goodlist ul li img { margin-top: 5px;}
+.mian_goodlist ul li { /* height: 280px; */ border: 1px solid #eee; width: 233px; text-align: center; margin-bottom: 10px; margin-left: 5px; float: left; position: relative;}
+.mian_goodlist ul li a{ padding: 0px;display: block;width: 100%;}
+.mian_goodlist ul li img { margin-top: 5px;width: 100%;}
 .jiagou { width: 128px; hieght: 30px;}
 .jiagou a { display: inline-block; width: 80px; margin-top: 5px; background: #fff; border: 1px solid #ccc; margin-left: 40px; height: 25px; border-radius: 5px; line-height: 25px;}
 .jiagou a:hover { background: #06c; color: #fff;}
