@@ -61,10 +61,30 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>文章简介：</td>
+                                    <td>关键词：</td>
                                     <td>
-                                        <textarea class="form-control" name='shorttitle' rows="3">{$info.shorttitle}</textarea>
+                                        <textarea class="form-control" name='keyword' rows="2">{$info.keyword}</textarea>
                                     </td>
+                                </tr>
+                                <tr>
+                                    <td>文章描述：</td>
+                                    <td>
+                                        <textarea class="form-control" name='description' rows="3">{$info.description}</textarea>
+                                    </td>
+                                </tr>
+                                 <tr>
+                                    <td>缩略图：</td>
+                                    <td>
+                                     <img height="80" id="newsimg" src="{$info.newsimg}" nc_type="store_label">
+                                      <input type="hidden" name="newsimg" value="{$info[newsimg]}">
+                                        <input type="button" class="button" onClick="GetUploadify(1,'newsimg','seller','callback1')"  value="上传  缩略图"/>
+                                    </td>
+                                    <script type="text/javascript">
+                                    function callback1(img_str){
+                                        $('input[name="newsimg"]').val(img_str);
+                                        $('#newsimg').attr('src',img_str);
+                                    }
+                                    </script>
                                 </tr>
                                 <tr>
                                     <td>文章来源：</td>
