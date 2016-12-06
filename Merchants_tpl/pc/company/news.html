@@ -2,9 +2,9 @@
 <html >
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title></title>
-<meta name="keywords" content="佛山市欧森特门窗有限公司"/>
-<meta name="description" content="佛山市欧森特门窗有限公司"/>
+<title>{$news.title}</title>
+<meta name="keywords" content="{$news.keyword}"/>
+<meta name="description" content="{$news.description}"/>
 <link rel="shortcut icon" href="favicon.ico"/>
 <link type="text/css" rel="stylesheet" href="{:STYLE}/Css/style.css">
 <link rel="stylesheet" type="text/css" href="{:STYLE}/Css/slick.css"/>
@@ -32,7 +32,7 @@
               <notempty name="vimg">
                 <li><a href="{$store[store_slide_url][ $k ]}"><img src="{$vimg}" width='100%' height='100%'></a></li>
               </notempty>
-            </foreach>
+          </foreach>
         </ul>
       </div>
       <div class="hd">
@@ -55,7 +55,7 @@
     <!-- 产品部分开始 -->
     <div class="main_goodsO" style='padding-bottom:40px;'>
       <div class="mian_goodO6">
-        <div style='text-align:center;font-size:30px;'><h1>{$news.title}333</h1></div>
+        <div style='text-align:center;font-size:30px;'><h1>{$news.title}</h1></div>
         <hr style='margin:0px;'>
         <div class = 'info'>类型：<if condition ='$news[rep] eq null'>原创文章<else/><a href='$news[rep]'>转载</a></if></div><div class = 'info'>时间：{$news.timer|date='Y-m-d',###}</div><div class = 'info'>作者：{$news.author}</div>
         <div style ='margin-top:50px'>

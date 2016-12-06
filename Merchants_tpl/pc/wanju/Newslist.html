@@ -3,8 +3,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>{$store.store_name}</title>
-	 <meta name="keywords" content="{$store.seo_keywords}" />
-    <meta name="description" content="{$store.seo_description}"/>
+	 <meta name="keywords" content="{$v.keyword}" />
+    <meta name="description" content="{$v.description}"/>
 <include file="./header"/>
 	<!-- 轮播图部分 -->
 	<section class="main_ban">
@@ -54,7 +54,7 @@
 									《{$v.title|mb_substr=0,20,'utf-8'}》
 								</div>
 								<div class='n-title'>
-									{$v.shorttitle|mb_substr=0,20,'utf-8'}...
+									{$v.description|mb_substr=0,20,'utf-8'}...
 								</div>
 								<div class='n-author'>作者：{$v.author}</div>
 								<div class='n-time'>{$v.timer|date='Y-m-d',###}</div>
