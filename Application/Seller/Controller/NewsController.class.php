@@ -13,7 +13,12 @@ class NewsController extends BaseController {
 
 		$_GET['p'] = (empty($_GET['p']))?0:$_GET['p'];
 
-		$list= M('store_art')->where('sn_id = '.$id.' and store = '.STORE_ID)->page($_GET['p'].',10')->select();
+		$where = 'sn_id = '.$id.' and store = '.STORE_ID;
+
+		if($id==0)$where = 'store = '.STORE_ID;
+
+
+		$list= M('store_art')->where($where)->page($_GET['p'].',10')->select();
 
 		$nav = M('store_navigation')->where(" sn_is_list = 1 and sn_store_id=".STORE_ID)->getfield('sn_id,sn_title');
 
@@ -22,7 +27,7 @@ class NewsController extends BaseController {
 			$list[$key]['sn_id'] = (empty($nav[$val['sn_id']]))?'所有':$nav[$val['sn_id']];
 		}
 
-		$count = M('store_art')->where('sn_id = '.$id.' and store = '.STORE_ID)->count();
+		$count = M('store_art')->where($where)->count();
 
 		$Page = new \Think\Page($count,10);
 		$show = $Page->show();

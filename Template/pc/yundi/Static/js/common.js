@@ -1,6 +1,6 @@
 $(document).ready(function(){
-  /*图片懒加载*/
-  $("img").lazyload({
+  /*原模板首页广告图片懒加载*/
+  /*$("img").lazyload({
   	 effect:"fadeIn",
   	 threshold:200,
   	 failurelimit:20    
@@ -9,7 +9,7 @@ $(document).ready(function(){
   //顶部广告关闭
   $(".icon-close").click(function(){
 	  $(this).parent().remove();
-  });
+  });*/
 
 });
 

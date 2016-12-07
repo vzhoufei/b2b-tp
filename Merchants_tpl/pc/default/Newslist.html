@@ -5,182 +5,40 @@
 	<title>{$store.store_name}</title>
 	 <meta name="keywords" content="{$store.seo_keywords}" />
     <meta name="description" content="{$store.seo_description}"/>
-<include file="./header"/>
+	<include file="./header"/>
 	<!-- 轮播图部分 -->
-		<section class="main_ban">
-			<div class="main_visual">
-				<div class="flicking_con">
- 				<foreach name="store[store_slide]" item="vimg" key="k">
-				<notempty name="vimg">
-					<a href="#">{$k}</a>
-				</notempty>
-				</foreach>
-				</div>
-				<div class="main_image">
-					<ul>
- 						<foreach name="store[store_slide]" item="vimg" key="k">
-							<notempty name="vimg">
-								<li><span><a href="{$store[store_slide_url][ $k ]}" target="_blank"><img src="{$vimg}"></a></span></li>
-							</notempty>
-						</foreach>
-					</ul>
-					<a href="javascript:;" id="btn_prev"></a>
-					<a href="javascript:;" id="btn_next"></a>
-				</div>
-			</div>
-	</section>
-	<!-- 产品专区 -->
-	<section class="main_goods">
-		<!-- 产品部分开始 -->
-		<div class="main_goodsO">
-			<!-- <div class="mian_goodO1">
-					<ul>
-						<li><a href="#"><img src="{:STYLE}/images/2569502296_783871151.jpg"></a></li>
-						<li><a href="#"><img src="{:STYLE}/images/2566759631_783871151.jpg"></a></li>
-						<li><a href="#"><img src="{:STYLE}/images/2569499318_783871151.jpg"></a></li>
-						<li><a href="#"><img src="{:STYLE}/images/2571435845_783871151.jpg"></a></li>
-						<div class="cl"></div>
-					</ul>
-				<p><a href="#"><img src="{:STYLE}/images/2569508780_783871151.jpg"></a></p>
-			</div>
-			<div class="mian_goodO2">
-				<ul>
-						<li><a href="#"><img src="{:STYLE}/images/2566783093_783871151.jpg"></a></li>
-						<li><a href="#"><img src="{:STYLE}/images/2569520321_783871151.jpg"></a></li>
-						<li><a href="#"><img src="{:STYLE}/images/2571456040_783871151.jpg"></a></li>
-						<li><a href="#"><img src="{:STYLE}/images/2566777409_783871151.jpg"></a></li>
-						<div class="cl"></div>
-					</ul>
-				<p><a href="#"><img src="{:STYLE}/images/2566795069_783871151.jpg"></a></p>				
-			</div>
-			<div class="mian_goodO3">
-					<ul>
-							<li><a href="#"><img src="{:STYLE}/images/2569532658_783871151.jpg"></a></li>
-							<li><a href="#"><img src="{:STYLE}/images/2571465477_783871151.jpg"></a></li>
-							<li><a href="#"><img src="{:STYLE}/images/2569541186_783871151.jpg"></a></li>
-							<li><a href="#"><img src="{:STYLE}/images/2571468413_783871151.jpg"></a></li>
-							<div class="cl"></div>
-						</ul>
-					<p><a href="#"><img src="{:STYLE}/images/2571504023_783871151.jpg"></a></p>				
-				</div>
-			<div class="mian_goodO3b">
-					<ul>
-							<li><a href="#"><img src="{:STYLE}/images/2569562936_783871151.jpg"></a></li>
-							<li><a href="#"><img src="{:STYLE}/images/2569583333_783871151.jpg"></a></li>
-							<li><a href="#"><img src="{:STYLE}/images/2569565898_783871151.jpg"></a></li>
-							<li><a href="#"><img src="{:STYLE}/images/2571504496_783871151.jpg"></a></li>
-							<li><a href="#"><img src="{:STYLE}/images/2566813670_783871151.jpg"></a></li>
-							<li><a href="#"><img src="{:STYLE}/images/2569574578_783871151.jpg"></a></li>
-							<li><a href="#"><img src="{:STYLE}/images/2571498740_783871151.jpg"></a></li>
-							<li><a href="#"><img src="{:STYLE}/images/2569571750_783871151.jpg"></a></li>
-							<li><a href="#"><img src="{:STYLE}/images/2571504701_783871151.jpg"></a></li>
-							<li><a href="#"><img src="{:STYLE}/images/2566825040_783871151.jpg"></a></li>
-							<li><a href="#"><img src="{:STYLE}/images/2569577635_783871151.jpg"></a></li>
-							<li><a href="#"><img src="{:STYLE}/images/2566819128_783871151.jpg"></a></li>
-							<div class="cl"></div>
-						</ul>										
-				</div> -->
-				<!-- <div class="mian_goodO4">
-					<p>限时促销</p>
-					<ul>
-							<li>
-								<a href="#"><img src="{:STYLE}/images/2293515964_783871151.220x220.jpg"></a>
-								<a href="#" class="mian_goodO4T">儿童玩具木制农场乐园磁性拼拼乐双面拼图画板益智玩具厂家直销</a>
-								<span class="mian_goodO4M">¥<b>13.78</b></span>
-								<span class="mian_goodO4N">¥14.50</span></li>
-							<li><a href="#"><img src="{:STYLE}/images/2762662359_783871151.220x220.jpg"></a>
-								<a href="#" class="mian_goodO4T">木丸子木制拼图拼版动物拼拼乐双面木质画板儿童益智玩具厂家直销</a>
-								<span class="mian_goodO4M">¥<b>13.63</b></span>
-								<span class="mian_goodO4N">¥14.50</span></li>
-							<li><a href="#"><img src="{:STYLE}/images/2907413648_783871151.220x220.jpg"></a>
-								<a href="#" class="mian_goodO4T">木丸子儿童木制积木62粒城市交通积木 木制儿童益智玩具积木批发	</a>
-								<span class="mian_goodO4M">¥<b>24.00</b></span>
-								<span class="mian_goodO4N">¥25.00</span></li>
-							<li><a href="#"><img src="{:STYLE}/images/3537454911_783871151.220x220.jpg"></a>
-								<a href="#" class="mian_goodO4T">木丸子益智玩具多米诺骨牌双面印刷汉字木制儿童玩具木制积木特价</a>
-								<span class="mian_goodO4M">¥<b>16.62</b></span>
-								<span class="mian_goodO4N">¥17.50</span></li>
-							<div class="cl"></div>
-						</ul>				
-				</div> -->
-				<!-- <div class="mian_goodO5">
-					<p>精品推荐</p>
-					<ul>
-							<li><a href="#"><img src="{:STYLE}/images/2895614828_783871151.230x230.jpg"></a>
-								<div class="mian_goodO5S">
-									<span class="mian_goodO5M">¥<b>1.70</b></span>
-									<a href="#" class="mian_goodO5T">儿童玩具木制农场乐园磁性拼拼乐双面拼图画板益智玩具厂家直销</a>
-									<span class="mian_goodO5N">成交5082笔</span></div></li>
-							<li><a href="#"><img src="{:STYLE}/images/3537454911_783871151.230x230.jpg"></a>
-								<div class="mian_goodO5S">
-									<span class="mian_goodO5M">¥<b>16.63</b></span>
-									<a href="#" class="mian_goodO5T">木丸子益智玩具多米诺骨牌双面印刷汉字木制儿童玩具木制积木特价</a>
-									<span class="mian_goodO5N">成交1828笔</span></div></li>
-							<li><a href="#"><img src="{:STYLE}/images/3537532886_783871151.230x230.jpg"></a>
-								<div class="mian_goodO5S">
-									<span class="mian_goodO5M">¥<b>17.50</b></span>
-									<a href="#" class="mian_goodO5T">木丸子儿童玩具木制积木数学动物汉字学习多米诺骨牌益智玩具</a>
-									<span class="mian_goodO5N">成交1142笔</span></div></li>
-							<li><a href="#"><img src="{:STYLE}/images/2762662359_783871151.230x230.jpg"></a>
-								<span class="mian_goodO5M">¥<b>13.63</b></span>
-								<a href="#" class="mian_goodO5T">木丸子木制拼图拼版动物拼拼乐双面木质画板儿童益智玩具厂家直销</a>
-								<span class="mian_goodO5N">成交1707笔</span></li>
-							<li><a href="#"><img src="{:STYLE}/images/2987065464_783871151.230x230.jpg"></a>
-								<div class="mian_goodO5S">
-									<span class="mian_goodO5M">¥<b>11.00</b></span>
-									<a href="#" class="mian_goodO5T">木丸子木制拼图大号磁性中国世界地图立体拼图拼板儿童益智玩具</a>
-									<span class="mian_goodO5N">成交1142笔</span></div></li>
-							<li><a href="#"><img src="{:STYLE}/images/2895307124_783871151.230x230.jpg"></a>
-								<div class="mian_goodO5S">
-									<span class="mian_goodO5M">¥<b>9.50</b></span>
-									<a href="#" class="mian_goodO5T">木丸子木制积木玩具四柱形状配对套柱积木儿童益智玩具厂家直销</a>
-									<span class="mian_goodO5N">成交1050笔</span></div></li>
-							<li><a href="#"><img src="{:STYLE}/images/2281025586_783871151.230x230.jpg"></a>
-								<div class="mian_goodO5S">
-									<span class="mian_goodO5M">¥<b>8.50</b></span>
-									<a href="#" class="mian_goodO5T">婴儿童音乐琴宝宝玩具益智巧琴 厂家直销</a>
-									<span class="mian_goodO5N">成交1023笔</span></div></li>
-							<li><a href="#"><img src="{:STYLE}/images/2898947506_783871151.230x230.jpg"></a>
-								<div class="mian_goodO5S">
-									<span class="mian_goodO5M">¥<b>24.00</b></span>
-									<a href="#" class="mian_goodO5T">木丸子儿童木制积木62粒城市交通积木 木制儿童益智玩具积木批发</a>
-									<span class="mian_goodO5N">成交1002笔</span></div></li>
-							<div class="cl"></div>
-						</ul>				
-				</div> -->
-				<!-- 产品左右显示部分 -->
-				<div class="mian_goodO6">
-					<!-- 产品左边部分 -->
-					
-					<include file="./left"/>
-
-
-					<!-- 产品右边部分 -->
-					<div class="mian_goodO6R">
-						<div class="mian_goodO6R3">
-							<p>友情链接</p>
-							<ul>
-								<li><a target="_blank" href="#">木丸子品牌旗舰店</a></li>
-								<li><a  target="_blank" href="#">木丸子品牌专营店</a></li>
-								<li><a target="_blank" href="#">丽水产业带</a></li>
-								<div class="cl"></div>
-							</ul>
-						</div>
-
-						<div class="mian_goodO6R4">
-							<p>公司动态</p>
-							<span>暂无公司动态</span>
-						</div>
-
-						<div class="cl"></div>
-					</div>
-
-				<div class="cl"></div>
-				</div>
-
+	<img src="{$banner}" style="width:100%;" />
+  	<div class="wrapper" ><div class='title'><h1>新闻<h1></div><ul class='news'>
+ 	<foreach name='news' item='v'>
+	<li>
+		<a href="{:U('Store/Newscontent',array('store_id'=>$store[store_id],'sn'=>$sn_id,'text'=>$v[id]))}">
+		<div class='n-title'>
+			《{$v.title|mb_substr=0,20,'utf-8'}》
 		</div>
-
-	</section>
+		<div class='n-title'>
+			{$v.description|mb_substr=0,20,'utf-8'}...
+		</div>
+		<div class='n-author'>作者：{$v.author}</div>
+		<div class='n-time'>{$v.timer|date='Y-m-d',###}</div>
+		</a>
+	</li>
+	</foreach>
+  	<li class='pg'>{$page}</li></ul>
+ 	</div>
+	<style>
+		.wrapper{margin: 0 auto;width: 80%;}
+		.wrapper .title{margin-top: 20px;border-left: 4px solid #000;height: 40px;line-height: 40px;padding-left: 20px;}
+		.wrapper .news{margin-top: 30px;width: 100%;}
+		.wrapper .news li{width: 100%;line-height: 40px;height: 40px;border-bottom: #008BB9 dotted 1px;margin-bottom: -1px;}
+		.wrapper .news li .n-title{float: left;margin-left: 20px;}
+		.wrapper .news li .n-author{width: 30%;float: left;margin-left: 20px;}
+		.wrapper .news li .n-time{margin-right: 10px;float: right;}
+		.news .pg {height: 50px !important;}
+		.news .pg .paginate_button{border: none;min-width: 40px;width:auto;margin-right: 10px;float:left;}
+		.news .pg .active,.news .pg .active a{background-color: #099;color:#fff;}
+		.news .pg .pagination{margin: 0px auto;height:33px;margin-top: 5px;float: right;text-align: center;}
+	</style>
+	
 
 	</main>
 						

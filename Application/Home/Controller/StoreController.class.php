@@ -331,6 +331,7 @@ class StoreController extends Controller
         $storeid = $this->store['store_id'];
 
         $sn_id = (empty($_GET['sn']))?0:(int)$_GET['sn'];
+        $_GET['p']= (empty($_GET['p']))?0:$_GET['p'];
 
         $news = M('store_art')->where('store = '.$storeid.' and sn_id in (0,'.$sn_id.')')->page($_GET['p'].',15')->select();
         $count = M('store_art')->where('store = '.$storeid.' and sn_id in (0,'.$sn_id.')')->count();
