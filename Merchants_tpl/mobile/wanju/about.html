@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>公司动态</title> 
+<!-- For-Mobile-Apps-and-Meta-Tags -->
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //For-Mobile-Apps-and-Meta-Tags -->
+<!-- Custom Theme files -->
+<link href="css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
+<link href="css/style.css" type="text/css" rel="stylesheet" media="all">  
+<!-- //Custom Theme files -->
+<!-- js -->
+<script src="js/jquery-2.2.3.min.js"></script> 
+<!-- //js -->
+<!-- pop-up-box -->
+<script src="js/jquery.magnific-popup.js" type="text/javascript"></script>
+<script>
+	$(document).ready(function() {
+		$('.popup-top-anim').magnificPopup({
+			type: 'inline',
+			fixedContentPos: false,
+			fixedBgPos: true,
+			overflowY: 'auto',
+			closeBtnInside: true,
+			preloader: false,
+			midClick: true,
+			removalDelay: 300,
+			mainClass: 'my-mfp-zoom-in'
+		});																							
+	}); 
+</script>
+<!--//pop-up-box -->
+<!-- web-fonts -->  
+<link href='http://fonts.useso.com/css?family=Abel' rel='stylesheet' type='text/css'>
+<link href='http://fonts.useso.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+<!-- //web-fonts -->
+</head>
+<body class="bg">
+	<div class="agile-main"> 
+		<div class="menu-wrap" id="style-1"> 
+			<nav class="top-nav">
+				<ul class="icon-list">
+					<li class="menu-title">某某网站</li>
+					<li><a class="active" href="index.html"><i class="glyphicon glyphicon-home"></i> 首页 </a></li>
+					<li><a href="list.html"><i class="glyphicon glyphicon-info-sign"></i> 产品列表 </a></li>
+					<li><a href="about.html"><i class="glyphicon glyphicon-briefcase"></i> 公司动态 </a></li>
+					<li><a href="aboutlist.html"><i class="glyphicon glyphicon-eye-open"></i> 动态详情 </a></li>
+					<li><a href="#"><i class="glyphicon glyphicon-picture"></i> 关于我们</a></li>
+					<!-- <li><a href="#" class="menu"><i class="glyphicon glyphicon-duplicate"></i> pages<span class="glyphicon glyphicon-menu-down"></span></a>
+						<ul class="nav-sub">
+							<li><a href="#small-dialog" class="sign-in popup-top-anim"><i class="glyphicon glyphicon-user"></i> login</a></li>                                             
+							<li><a href="#small-dialog1" class="sign-in popup-top-anim"><i class="glyphicon glyphicon-edit"></i> Sign Up</a></li>																								
+							<li><a href="codes.html"><i class="glyphicon glyphicon-list-alt"></i> Short Codes</a></li> 
+						</ul>
+						<div class="clearfix"> </div>
+						<script>
+							$( "li a.menu" ).click(function() {
+							$( "ul.nav-sub" ).slideToggle( 100, function() {
+							// Animation complete.
+							});
+							});
+						</script> 
+					</li> -->
+					<!-- <li><a href="contact.html"><i class="glyphicon glyphicon-envelope"></i> Contact </a></li> -->
+				</ul>
+			</nav>
+			<button class="close-button" id="close-button">C</button>
+		</div> 
+		<div class="content-wrap">
+			<div class="header"> 
+				<div class="menu-icon">   
+					<button class="menu-button" id="open-button">O</button>
+				</div>
+				<div class="logo">
+					<h2><a href="main.html">云狄网络公司</a></h2>
+				</div>
+				<div class="login">
+					<a href="#small-dialog" class="sign-in popup-top-anim"><span class="glyphicon glyphicon-user"></span></a> 
+					<!-- modal -->
+					<div id="small-dialog" class="mfp-hide">
+						<div class="login-modal"> 	
+							<div class="booking-info">
+								<h3><a href="main.html">请登录</a></h3>
+							</div>
+							<div class="login-form">
+								<form action="#" method="post">
+									<div class="styled-input">
+										<input type="text" name="Username" required=""/>
+										<label>用户名：</label>
+										<span></span>
+									</div>
+									<div class="styled-input">
+										<input type="password" name="Password" required=""> 
+										<label>密码：</label>
+										<span></span>
+									</div> 
+									<div class="wthree-text"> 
+										<ul> 
+											<li>
+												<input type="checkbox" id="brand" value="">
+												<label for="brand"><span></span> 记住密码 ?</label>  
+											</li>
+											<li> <a href="#">忘记密码?</a> </li>
+										</ul>
+										<div class="clear"> </div>
+									</div> 
+									<input type="submit" value="立即登陆">		
+								</form>
+								<p>不是会员?<a href="#small-dialog1" class="sign-in popup-top-anim">立即注册</a></p>
+							</div> 
+						</div>
+					</div>
+					<!-- //modal --> 
+					<!-- modal-two -->
+					<div id="small-dialog1" class="mfp-hide">
+						<div class="login-modal">  
+							<div class="booking-info">
+								<h3><a href="#">立即注册</a></h3>
+							</div>
+							<div class="login-form signup-form">
+								<form action="#" method="post">
+									<div class="styled-input">
+										<input type="text" name="Username" required=""/>
+										<label>用户名：</label>
+										<span></span>
+									</div>
+									<div class="styled-input">
+										<input type="text" name="email" required=""/>
+										<label>邮箱：</label>
+										<span></span>
+									</div>
+									<div class="styled-input">
+										<input type="password" name="Password" required=""> 
+										<label>密码：</label>
+										<span></span>
+									</div>  
+									<div class="wthree-text"> 
+										<input type="checkbox" id="brand1" value="">
+										<label for="brand1"><span></span>我同意遵守该网站协议！</label> 
+									</div>
+									<input type="submit" value="提交">		
+								</form> 
+							</div> 
+						</div>
+					</div>
+					<!-- //modal-two --> 
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+			<div class="content">
+				<!-- banner -->
+				<div class="banner about-banner"> 
+					<div class="banner-img">  
+						<h3>关于我们</h3>   
+					</div> 
+				</div>
+				<!-- //banner -->
+				<div class="about"> 
+					<h3 class="w3ls-title">关于我们</h3> 
+					<p class="w3-text">某某公司成立于2016年12月12日</p>
+				</div>
+				<!-- services -->
+				<div class="services"> 
+					<div class="title">
+						<h3 class="w3ls-title">公司动态</h3> 
+					</div>
+					<div class="services-w3ls-row">
+						<div class="services-grid">
+							<span class="glyphicon glyphicon-list-alt  effect-1" aria-hidden="true"></span>
+							<h5><a href="#">宁夏一获政府奖励企业被解散之痛</a></h5>
+							<p>银川中级法院的一纸判决，让一家获得政府多项奖...</p>
+						</div>
+						<div class="services-grid">
+							<span class="glyphicon glyphicon-list-alt effect-1" aria-hidden="true"></span>
+							<h5><a href="#">福州易达传销案调查</a></h5>
+							<p>　对有合法手续、有资质、有产品的福州易达公司...</p>
+						</div>
+						<div class=" services-grid">
+							<span class="glyphicon glyphicon-tree-deciduous effect-1" aria-hidden="true"></span>
+							<h5><a href="#">安琪食品玩“失踪”</a></h5>
+							<p>有关深圳安琪食品有限公司（以下简称：安琪食品，安...</p>
+						</div>
+						<div class="services-grid">
+							<span class="glyphicon glyphicon-globe effect-1" aria-hidden="true"></span>
+							<h5><a href="#">长江基建提议以54亿</a></h5>
+							<p>中国证券网讯 据外媒5日报道，澳大利亚管道运营商...</p>
+						</div>  
+						<div class="clearfix"> </div>
+					</div>   
+				</div>
+				<!-- //services -->
+				<div class="about"> 
+					<h3 class="w3ls-title">最新新闻</h3> 
+					<ul>
+						<li><span class="glyphicon glyphicon-menu-right"></span><a href="#">深港通下港股通标的快速上涨 中国新金融涨逾15%</a> </li>
+						<li><span class="glyphicon glyphicon-menu-right"></span><a href="#">责任融入战略 伊利企业社会责任建设获双料大奖</a></li>
+						<li><span class="glyphicon glyphicon-menu-right"></span><a href="#"> 伊利获全球最权威供应管理学会大奖</a></li>
+						<li><span class="glyphicon glyphicon-menu-right"></span> <a href="#">刘士余怒斥野蛮人 险资举牌概念大跌 </a></li>
+						<li><span class="glyphicon glyphicon-menu-right"></span><a href="#">举牌概念股全线重挫 中炬高新开盘逼近跌停 </a></li>
+						<li><span class="glyphicon glyphicon-menu-right"></span> <a href="#">海南椰岛董事长染指嘉应制药 将进一步增持 </a></li>
+					</ul>
+				</div>
+				<!-- brands -->
+				<div class="w3agile brands"> 
+					<h3 class="w3ls-title">友情链接</h3> 
+					<div class="brands-info">
+						<div class="brand-grids">
+							<a href="#"><img src="images/b1.jpg" alt=""/></a>
+						</div>
+						<div class="brand-grids">
+							<a href="#"><img src="images/b2.jpg" alt=""/></a>
+						</div>
+						<div class="brand-grids">
+							<a href="#"><img src="images/b3.jpg" alt=""/></a>
+						</div>
+						<div class="brand-grids">
+							<a href="#"><img src="images/b4.jpg" alt=""/></a>
+						</div>
+						<div class="brand-grids">
+							<a href="#"><img src="images/b5.jpg" alt=""/></a>
+						</div>
+						<div class="brand-grids">
+							<a href="#"><img src="images/b6.jpg" alt=""/></a>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+				</div>
+				<!-- //brands -->
+				<!-- footer -->
+				<div class="w3agile footer"> 
+					<div class="social-icons">
+						<ul>
+							<li><a href="#"> </a></li>
+							<li><a href="#" class="fb"> </a></li>
+							<li><a href="#" class="gp"> </a></li>
+							<li><a href="#" class="drb"> </a></li>
+						</ul>
+						<div class="clearfix"> </div>
+					</div>
+					<div class="footer-nav">
+						<ul>  
+							<li><a href="main.html">首页</a></li>
+							<li><a href="about.html"> 关于我们 </a> </li>
+							<li><a href="property.html"> 公司介绍 </a></li>
+							<li><a href="gallery.html"> 公司动态</a></li>
+							<li><a href="contact.html"> 联系我们 </a></li>
+						</ul> 
+						<div class="clearfix"> </div>
+					</div> 
+					<div class="footer-text">
+						<p>Copyright &copy; 2016.Company name All rights reserved.</p>
+					</div>
+				</div> 
+			</div>
+		</div>
+	</div> 
+	<!-- menu-js -->
+	<script src="js/classie.js"></script>
+	<script src="js/main.js"></script>
+	<!-- //menu-js -->
+	<!-- nicescroll-js -->
+	<script src="js/jquery.nicescroll.min.js"></script> 
+	<script>
+		$(document).ready(function() {
+	  
+			var nice = $("html").niceScroll();  // The document page (body)
+		
+			$("#div1").html($("#div1").html()+' '+nice.version);
+		
+			$("#boxscroll").niceScroll({cursorborder:"",cursorcolor:"#00F",boxzoom:true}); // First scrollable DIV
+		});
+	</script>
+	<!-- //nicescroll-js -->
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/bootstrap.js"></script>
+</body>
+</html>
