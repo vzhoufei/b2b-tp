@@ -32,17 +32,21 @@ window.onload = function() {
 
     //详情切换
     var clickA = document.getElementById('clickAAA');
-    clickA.onclick =function(){
-       var curOne = document.getElementById('curOne');
-         curOne.style.display="block";
+    if(clickA){
+        clickA.onclick =function(){
+           var curOne = document.getElementById('curOne');
+             curOne.style.display="block";
 
-       var curTwo =  document.getElementById('curTwo');
-        curTwo.style.display="none";      
-        clickB.className = "curTwo";
-        clickA.className = "cur";
+           var curTwo =  document.getElementById('curTwo');
+            curTwo.style.display="none";      
+            clickB.className = "curTwo";
+            clickA.className = "cur";
 
+        }
     }
+
      var clickB = document.getElementById('clickBBB');
+     if(clickB){
     clickB.onclick =function(){
        var curTwo = document.getElementById('curTwo');
          curTwo.style.display="block";
@@ -51,6 +55,7 @@ window.onload = function() {
          clickA.className = "curTwo";
          clickB.className = "cur"; 
     }
+     }
 
 
 

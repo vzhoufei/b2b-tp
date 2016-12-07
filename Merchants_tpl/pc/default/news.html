@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{$store.store_name}</title>
+	 <meta name="keywords" content="{$store.seo_keywords}" />
+    <meta name="description" content="{$store.seo_description}"/>
+	<include file="./header"/>
+	<!-- 轮播图部分 -->
+	
+	<img src="{$banner}" style="width:100%;" />
+ <section class="main_goods">
+		<!-- 产品部分开始 -->
+		<div class="main_goodsO" style='padding-bottom:40px;'>
+			<div class="mian_goodO6">
+				<div style='text-align:center;font-size:20px;height:50px;'><h1 style='line-height:50px;;height:50px'>{$news.title}</h1></div>
+				<hr style='margin:0px;'>
+				<div class = 'info'>类型：<if condition ='$news[rep] eq null'>原创文章<else/><a href='$news[rep]'>转载</a></if></div><div class = 'info'>时间：{$news.timer|date='Y-m-d',###}</div><div class = 'info'>作者：{$news.author}</div>
+				<div style ='margin-top:50px'>
+				{$news.content|htmlspecialchars_decode}
+				</div>
+			</div>
+
+				<div class='page'>
+					<div class='pre'><if condition='$pre eq null'>没有上一篇<else/>
+					<a href="
+					<if condition='$nav_where'>
+					{:U('Store/newscontent',array('text'=>$pre))}
+					<else/>
+					{:U('Store/newscontent',array('store_id'=>$store[store_id],'sn'=>$sn_id,'text'=>$pre))}
+					</if>
+					">上一篇</a></if></div>
+					<div class='next'><if condition='$next eq null'>没有下一篇<else/>
+					<a href="
+					<if condition='$nav_where'>
+					{:U('Store/newscontent',array('text'=>$next))}
+					<else/>
+					{:U('Store/newscontent',array('store_id'=>$store[store_id],'sn'=>$sn_id,'text'=>$next))}
+					</if>
+					">下一篇</a></if></div>
+				</div>
+			<style>
+				.info{
+					height: 20px;
+					width: 33.3%;
+					float: left;
+					text-align: center;
+				}
+				.page{
+					height: 30px;
+					position: relative;
+					bottom:-30px;
+				}
+				.page .pre{
+					float: left;
+					text-align: center;
+					width: 50%;
+				}
+				.page .next{
+					border-left:1px solid #099;
+					margin-left: -1px;
+					float: left;
+					text-align: center;
+					width: 50%;
+				}
+			</style>
+		</div>
+	</section>
+
+	</main>
+						
+<include file="./footer"/>
