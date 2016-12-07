@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{$newslist.sn_title}</title>
+	 <meta name="keywords" content="{$newslist.sn_keyword}" />
+    <meta name="description" content="{$newslist.sn_description}"/>
+<include file="./header"/> 
+
+<div style="width:100%;margin-top: 10px;">
+
+	<foreach name="news" item="v">
+	<div style="margin-top:10px;">
+		<a href="{:U('newscontent',array('store_id'=>$storeid,'sn'=>$v['sn_id'],'text'=>$v['id']))}" title="{$v.title}"><img src="{$v.newsimg}" alt="" style="width:30%;float:left;">
+		<h1 style="width:70%;float:left;font-size:13px;padding-right:1em;color:#000;">{$v.title}</h1>
+		<p style="text-indent: 2em;margin-right:1em;margin-top:5px;">{$v.description}</p></a>
+		<div style="width:70%;float:right;margin-top:5px;">作者：{$v.author} | 文章来源：{$v.rep} | 发布时间：{$v.timer|date="Y-m-d",###}</div>
+	</div>
+	<br style="clear:both;" />
+	</foreach>
+
+</div>
+
+
+<br style="clear:both;" />
+<style>.next{min-width:80px;} .pagination .disabled a:hover{cursor:auto;}</style>
+			{$page}
+
+<include file="./footer" />

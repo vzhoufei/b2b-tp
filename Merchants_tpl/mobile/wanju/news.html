@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{$news.title}</title>
+	 <meta name="keywords" content="{$news.keyword}" />
+    <meta name="description" content="{$news.description}"/>
+<include file="./header"/> 
+<style> div img{width:99%;}</style>
+<div style="width:100%;">
+
+		 <h1 style="font-size:15px;margin-top:10px;padding-right:1em;padding-left:1em;" title="{$news.title}">{$news.title}</h1>
+		 <div style="margin-top:5px;padding-right:1em;padding-left:1em;">作者：{$news.author} | 文章来源：{$news.rep} | 发布时间：{$news.timer|date="Y-m-d",###}</div>
+
+		 <div style="margin-top:5px;padding-right:1em;padding-left:1em;">
+			{$news.content|htmlspecialchars_decode}
+		 </div>
+
+		 <div style="width:100%;text-align:center;margin-top:15px;">
+		 <div style="width:50%;float:left;">上一篇:<a href="{:U('newscontent',array('store_id'=>$storeid,'sn'=>$pre['sn_id'],'text'=>$pre['id']))}" title="{$pre['title']}">{$pre['title']|default='没有了'}</a></div>
+		 <div style="width:50%;float:left;">下一篇:<a href="{:U('newscontent',array('store_id'=>$storeid,'sn'=>$next['sn_id'],'text'=>$next['id']))}" title="{$next['title']}">{$next['title']|default='没有了'}</a></div>
+		 
+		 </div>
+
+</div>
+<br style="clear:both;" />
+
+<include file="./footer" />

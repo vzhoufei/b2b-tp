@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{$store.store_name}</title> 
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="{$store.seo_keywords}" />
+<meta name="description" content="{$store.seo_description}"/>
+<include file="./header"/>
+			<div class="content">
+				<!-- banner -->
+				<div class="banner">
+					<div id="kb" class="carousel kb_elastic animate_text kb_wrapper" data-ride="carousel" data-interval="6000" data-pause="hover">
+						<!-- Wrapper-for-Slides -->
+						<div class="carousel-inner" role="listbox"> 
+							<!-- First-Slide -->
+
+							<foreach name="store['mb_slide']" item="v" key="k">
+							<div class="item <if condition='$k eq 0'>active</if>">
+								<div class="banner-img banner-img{$k+1}" style="background-image:url({$v});"> 
+									<div class="carousel-caption kb_caption">
+										<!-- <h3 data-animation="animated flipInX">{$v}</h3>   -->
+									</div>
+								</div>
+							</div> 
+							</foreach>
+							
+							
+						</div> 
+						<!-- Left-Button -->
+						<a class="left carousel-control kb_control_left" href="#kb" role="button" data-slide="prev">
+							<span class="glyphicon  back" aria-hidden="true"></span>
+							<span class="sr-only">上一张</span>
+						</a> 
+						<!-- Right-Button -->
+						<a class="right carousel-control kb_control_right" href="#kb" role="button" data-slide="next">
+							<span class="glyphicon  next" aria-hidden="true"></span>
+							<span class="sr-only">下一张</span>
+						</a> 
+					</div>
+					<script src="{:STYLE}/js/custom.js"></script>
+				</div>
+					
+				<!-- //banner -->
+				<!-- welcome -->
+				<div class="welcome"> 
+					<form action="{:U('search',array('store_id'=>$store['store_id']))}" method="get">
+						<input type="text" style="width:90%" placeholder="请输入关键字" name="keywords" />
+						<input type="submit" value="搜索" >
+					</form>
+				</div> 
+				<!-- //welcome -->
+				<!-- properties -->
+				<div class="w3agile properties">
+					<div class="properties-top">
+						<h3 class="w3ls-title">热门商品</h3>
+					</div> 
+					<foreach name="hot_goods" item="v">
+					<div class="properties-bottom">
+						<div class="properties-img">
+							<img src="{$v.original_img}" alt="">
+							</div>
+						<div class="w3ls-text">
+							<h5 style="height: 30px;"><a href="{:C('DOMAIN')}{:U('Goods/goodsInfo',array('id'=>$v[goods_id]))}">{:mb_substr($v['goods_name'],0,26,'utf-8')}</a></h5>
+							<h6>￥{$v.shop_price}</h6>
+							<p><b>已卖出</b>{$v.click_count}件</p>
+							<p><a href="{:C('DOMAIN')}{:U('Goods/goodsInfo',array('id'=>$v[goods_id]))}" class="lijigoumai">立即购买</a></p>
+						</div>
+					</div> 
+					</foreach>
+					<div class="clearfix"> </div>
+				</div> 
+
+				<div class="w3agile properties">
+					<div class="properties-top">
+						<h3 class="w3ls-title">新品</h3>
+					</div> 
+					<foreach name="new_goods" item="v">
+					<div class="properties-bottom">
+						<div class="properties-img">
+							<img src="{$v.original_img}" alt="">
+							</div>
+						<div class="w3ls-text">
+							<h5 style="height: 30px;"><a href="{:C('DOMAIN')}{:U('Goods/goodsInfo',array('id'=>$v[goods_id]))}">{:mb_substr($v['goods_name'],0,26,'utf-8')}</a></h5>
+							<h6>￥{$v.shop_price}</h6>
+							<p><b>已卖出</b>{$v.click_count}件</p>
+							<p><a href="{:C('DOMAIN')}{:U('Goods/goodsInfo',array('id'=>$v[goods_id]))}" class="lijigoumai">立即购买</a></p>
+						</div>
+					</div> 
+					</foreach>
+					<div class="clearfix"> </div>
+				</div> 
+
+				<div class="w3agile properties">
+					<div class="properties-top">
+						<h3 class="w3ls-title">推荐</h3>
+					</div> 
+					<foreach name="recomend_goods" item="v">
+					<div class="properties-bottom">
+						<div class="properties-img">
+							<img src="{$v.original_img}" alt="">
+							</div>
+						<div class="w3ls-text">
+							<h5 style="height: 30px;"><a href="{:C('DOMAIN')}{:U('Goods/goodsInfo',array('id'=>$v[goods_id]))}">{:mb_substr($v['goods_name'],0,26,'utf-8')}</a></h5>
+							<h6>￥{$v.shop_price}</h6>
+							<p><b>已卖出</b>{$v.click_count}件</p>
+							<p><a href="{:C('DOMAIN')}{:U('Goods/goodsInfo',array('id'=>$v[goods_id]))}" class="lijigoumai">立即购买</a></p>
+						</div>
+					</div> 
+					</foreach>
+					<div class="clearfix"> </div>
+				</div> 
+				<!-- //properties -->
+				<!-- brands -->
+				
+				<!-- //brands -->
+				<!-- footer -->
+				<include file="./footer" />
+</body>
+</html>

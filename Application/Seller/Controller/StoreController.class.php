@@ -38,8 +38,10 @@ class StoreController extends BaseController{
 		$this->assign('tpl',$tpl);        
         $this->assign('default_theme',$tpls);
         $this->assign('template_config',$template_config);
+        // dump($template_config);exit;
         $this->display();
 	}
+
 
 
 
@@ -49,6 +51,8 @@ class StoreController extends BaseController{
 	 public function changeTemplate()
    {
    		$key['tpl'] = I('key');
+   		$key['mtpl'] = I('mtpl');
+   		$key['mtpl'] = I('mtpl');
    		$t = I('t','pc');
 
    		$tpl = ($t == 'pc')?'Home':'Mobile';

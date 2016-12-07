@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{$cat_name}</title> 
+<!-- For-Mobile-Apps-and-Meta-Tags -->
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="{$store.seo_keywords}" />
+<meta name="description" content="{$store.seo_description}"/>
+<include file="./header"/>
+			<div class="content">
+			<!-- properties -->
+				<div class="w3agile properties">
+					<div class="properties-top">
+					<foreach name="link_arr" item="v">
+						<a href="{$v.url}" class="w3ls-title" style="margin-left: 10px;">{$v.name}</a>
+						</foreach>
+					</div> 
+
+					<foreach name="goods_list" item="vo">
+					<div class="properties-bottom">
+						<div class="properties-img">
+							<img src="{$vo.original_img}" alt="">
+					</div>
+						<div class="w3ls-text">
+							<h5><a href="{:C('DOMAIN')}{:U('Goods/goodsInfo',array('id'=>$vo[goods_id]))}">{:mb_substr($vo['goods_name'],0,26,'utf-8')}</a></h5>
+							<h6>￥{$v.shop_price}</h6>
+							<p><b>已卖出</b>{$v.click_count}件</p>
+							<p><a href="{:C('DOMAIN')}{:U('Goods/goodsInfo',array('id'=>$vo[goods_id]))}" class="lijigoumai">立即购买</a></p>
+						</div>
+					</div> 
+					</foreach>
+					<div class="clearfix"> </div>
+				</div> 
+				<style>.next{min-width:80px;} .pagination .disabled a:hover{cursor:auto;}</style>
+			{$page_show}
+				<include file="./footer"/>
+
+</body>
+</html>
