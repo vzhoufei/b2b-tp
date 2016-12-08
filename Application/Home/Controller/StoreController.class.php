@@ -162,11 +162,14 @@ class StoreController extends Controller
         $this->assign('new_goods', $new_goods);
         $this->assign('recomend_goods', $recomend_goods);
         $this->assign('goods_images', $goods_images); //相册图片
+        
 
 
         $this->display('/index');
     }
     
+
+
 
     /**
      * 收藏店铺
@@ -383,5 +386,36 @@ class StoreController extends Controller
         $this->assign('navigation', $this->navigation);
         $this->assign('news',$news);
         $this->display('/news');
+    }
+
+    /**
+    *   @author 金龙
+    *   fun_sun GetShop AJAX拉取产品信息
+    *
+    *   @param $type 产品分类
+    *   @param $size 显示数量
+    */
+    public function GetShop(){
+
+        $cat_id = (empty($_POST['type']))?0:(int)$_POST['type'];//cat_id
+        $size = (empty($_POST['size']))?1:(int)$_POST['size'];
+
+
+
+        $store_id = (int)$_GET['store_id'];
+
+        $map = array('store_id' => $store_id, 'is_on_sale' => 1);
+
+        if ($cat_id > 0) {
+            $map['_string'] = "store_cat_id1=$cat_id OR store_cat_id2=$cat_id";
+        }
+
+        
+        $goodlist = M('goods')->where($map)->field('goods_id,shop_price,market_price,goods_name,original_img')->limit(0,$size)->select();
+        foreach ($goodlist as $key => $value) {
+            $goodlist[$key]['goods_name'] = mb_substr($value['goods_name'],0,20,'utf-8');
+        }
+
+        $this->ajaxReturn($goodlist);
     }
 }
