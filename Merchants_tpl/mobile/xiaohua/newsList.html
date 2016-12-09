@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{$newslist.sn_title}</title>
+     <meta name="keywords" content="{$newslist.sn_keyword}" />
+    <meta name="description" content="{$newslist.sn_description}"/>
+<include file="./header" />
+           <section class="news">
+                     <div>
+                     	 <h2>
+                 	  		<em></em>{$newslist.sn_title}
+                 	  	</h2>
+                     </div>
+                 	<ul style="margin-top: 12px;">
+
+    <foreach name="news" item="v">
+
+                         <li >
+                 		<a href="{:U('newscontent',array('store_id'=>$storeid,'sn'=>$v['sn_id'],'text'=>$v['id']))}" title="{$v.title}" style="color:#000;">
+                 			<div>
+                 				<img src="{$v.newsimg}" style="width:100%" />
+                 			</div>
+                 			<div>
+                 				<div class="news_tle">
+                 					<h2 style="margin-top:0px;margin-bottom:0px;height:12px;">{:mb_substr($v['title'],0,16,'utf-8')}</h2>
+                 				</div>
+                 				<div class="news_text">
+                 					 {:mb_substr($v['description'],0,50,'utf-8')}...
+                 				</div>
+                               
+                 			</div>
+                 		</a>
+                        <div style="width:70%;float:right;margin-top:5px;">作者：{$v.author} | 文章来源：{$v.rep} | 发布时间：{$v.timer|date="Y-m-d",###}</div>
+                 		</li>
+    </foreach>
+                 	</ul>
+                 </section>
+<br style="clear:both;" />
+                <section class="page_c" style="width:100%;height:30px;line-height:30px;text-align: center;">
+                <div style="width:30%;float:left;height:30px;line-height:30px;text-align: center;">
+                <a <?php if($_GET['p'] <= 1){echo 'style="display:none;"';};?> href="{:U('newsList',array('store_id'=>$store[store_id],'sn'=>$_GET[sn],'p'=>$current-1))}">上一页</a></div>
+                <div style="width:40%;float:left;height:30px;line-height:30px;text-align:center;">{$current}/{$num}</div>
+                <div style="width:30%;float:right;height:30px;line-height:30px;text-align:center;">
+                <a <?php if($_GET['p'] >= $num){echo 'style="display:none;"';};?> href="{:U('newsList',array('store_id'=>$store[store_id],'sn'=>$_GET[sn],'p'=>$current+1))}">下一页</a></div>
+            
+        </section>
+<br style="clear:both;" />
+
+                  <section class="Gotop">
+                </section>
+
+<include file="./footer" />
+</body>
+</html>

@@ -1,0 +1,69 @@
+header{
+	height: 50px;
+	position:relative;
+	overflow:hidden;
+	width: 100%;
+}
+.nav{
+	position: absolute;
+    top: 10px;
+    left: 10px;
+    width:38px;
+    height:38px;
+}
+.nav img{
+	width: 100%;
+	height: 100%;
+}
+.logo{
+    padding: 0 25%;
+	width:50%;
+    height:50px; 
+}
+.logo img{
+	width: 100%;
+	height: 100%;
+}
+.nav_l{
+	    height: 736px;
+	    width: 100%;
+	    top: 0;
+	    left: 0;
+	    position: fixed;
+	    transition:all 0.1s;
+
+    -moz-transition:all 0.1s; /* Firefox 4 */
+
+    -webkit-transition:all 0.1s; /* Safari and Chrome */
+ 
+    -o-transition:all 0.1s; /* Opera */
+}
+.nav_l .navMenu{
+	width: 50%;
+    height: 100%;
+    background-color: #000;
+    float: left;
+}
+.nav_l .navMeun .navTitle {
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    text-align: left;
+    color: #ffffff;
+    font-size: 1.8em;
+    position: relative;
+    background-color: #000;
+}
+.nav_l .navMeun .navTitle span {
+    padding-left: 25px;
+}
+.nav_l .navMeun .nav_sorll {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+}
+.nav_l .navMeun ul {
+    width: 100%;
+    padding-bottom: 110%;
+    background-color: #111;
+}

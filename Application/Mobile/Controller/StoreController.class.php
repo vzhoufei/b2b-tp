@@ -23,26 +23,36 @@ class StoreController extends Controller {
 	public $navigation = null;
 	
 	public function _initialize() {
+        
 		$store_id = I('store_id');
 		if(empty($store_id)){
 			$this->error('参数错误,店铺系列号不能为空',U('Index/index'));
 		}
 		$store = M('store')->where(array('store_id'=>$store_id))->find();
-		// dump($store);exit;
 		if($store){
 			if($store['store_state'] == 0){
 				$this->error('该店铺不存在或者已关闭', U('Index/index'));
 			}
 			$store['mb_slide'] = explode(',', $store['mb_slide']);
-			$store['mb_slide_url'] = explode(',', $store['mb_slide_url']);
+            $store['mb_slide_url'] = explode(',', $store['mb_slide_url']);
 			$this->store = $store;
 			$this->assign('store',$store);
 			$this->navigation = M('store_navigation')->field('sn_content', true)->where(array('sn_store_id' => $store_id, 'sn_is_show' => 1))->select();//店铺导航
-			// dump($this->navigation);exit;
 			//店铺内部分类
-        	$goods_class = M('store_goods_class')->where(array('store_id' => $store_id,'is_nav_show'=>'1','is_show'=>'1'))->select();
+        	$goods_class = M('store_goods_class')->where(array('store_id' => $store_id,'is_show'=>'1'))->select(); //'is_nav_show'=>'1',
+            foreach($goods_class as $v){
+                if($v['is_nav_show'] == 1){$goods_class_nav[]  = $v;}
+                if($v['parent_id'] == 0){
+                    $goods_class1[] = $v;
+                }else{
+                    $goods_class2[$v['parent_id']][] = $v;
+                }
+            }
 			 $this->assign('navigation',$this->navigation);
-			 $this->assign('goods_class',$goods_class);
+             $this->assign('goods_class',$goods_class);//全部分类
+             $this->assign('goods_class1',$goods_class1);//一级分类
+             $this->assign('goods_class2',$goods_class2);//二级分类
+			 $this->assign('goods_class_nav',$goods_class_nav);//分类在导航显示
 			 $this->assign('storeid',$this->store['store_id']);
 		}else{
 			$this->error('该店铺不存在或者已关闭',U('Index/index'));
@@ -58,7 +68,6 @@ class StoreController extends Controller {
             $tplconfig = include('./Merchants_tpl/pc/'.M('store')->where(array('store_id' => $store_id))->getField('tpl').'/config.php');
             C('DEFAULT_THEME',$tplconfig['mtpl']);//模板名称
 
-
             define('STYLE',substr(C('VIEW_PATH').C('DEFAULT_THEME'),1));
             C('DOMAIN','http://'.$_SERVER['HTTP_HOST']);
             // zhoufei
@@ -68,7 +77,6 @@ class StoreController extends Controller {
 	{
 		//热门商品排行
 		$hot_goods = M('goods')->field('goods_content',true)->where(array('store_id'=>$this->store['store_id']))->order('sales_sum desc')->limit(9)->select();
-		// dump($hot_goods);exit;
 		//新品
 		$new_goods = M('goods')->field('goods_content',true)->where(array('store_id'=>$this->store['store_id'],'is_new'=>1))->order('goods_id desc')->limit(9)->select();
 		//推荐商品
@@ -77,6 +85,10 @@ class StoreController extends Controller {
 		$total_goods = M('goods')->where(array('store_id'=>$this->store['store_id'],'is_on_sale'=>1))->count();
 
 
+        //新闻
+        $store_navigation = M('store_navigation')->where(array('sn_store_id'=>$this->store['store_id'],'sn_is_list'=>1,'sn_is_show'=>1))->getField('sn_id',true);
+        $news = M('store_art')->where('sn_id in('.implode(',',$store_navigation).')')->order('id desc')->limit(10)->select();
+        $this->assign('news',$news);
 		$this->assign('hot_goods',$hot_goods);
 		$this->assign('new_goods',$new_goods);
 		$this->assign('recomend_goods',$recomend_goods);
@@ -102,7 +114,10 @@ class StoreController extends Controller {
         }
         $filter_goods_id = M('goods')->where($map)->cache(true)->getField("goods_id", true);
         $count = count($filter_goods_id);
-        $Page = new \Think\Page($count, 20);
+        $num = ceil($count / 12);
+        $this->assign('num',$num);//页码
+        $this->assign('current',$_GET['p']?$_GET['p']:1);//当前页
+        $Page = new \Think\Page($count, 12);
         if ($count > 0) {
             $goods_list = M('goods')->where("goods_id in (" . implode(',', $filter_goods_id) . ")")->order("$key $sort")->limit($Page->firstRow . ',' . $Page->listRows)->select();
             $filter_goods_id2 = get_arr_column($goods_list, 'goods_id');
@@ -179,11 +194,16 @@ class StoreController extends Controller {
 
         $storeid = $this->store['store_id'];
         $sn_id = (empty($_GET['sn']))?0:(int)$_GET['sn'];
-        $_GET['p'] = isset($_GET['p'])?$_GET['p']:0;
+        $_GET['p'] = isset($_GET['p'])?$_GET['p']:1;
         if(is_numeric($sn_id)){
-	        $news = M('store_art')->where('store = '.$storeid.' and sn_id in (0,'.$sn_id.')')->page($_GET['p'].',15')->select();
+	        $news = M('store_art')->where('store = '.$storeid.' and sn_id in (0,'.$sn_id.')')->page($_GET['p'].',12')->select();
 	        $count = M('store_art')->where('store = '.$storeid.' and sn_id in (0,'.$sn_id.')')->count();
-	        $page = new \Think\Page($count,15);
+
+            $num = ceil($count / 12);
+            $this->assign('num',$num);//页码
+            $this->assign('current',$_GET['p']?$_GET['p']:1);//当前页
+
+	        $page = new \Think\Page($count,12);
 	        $this->assign('sn_id',$sn_id);
 	        $this->assign('page',$page->show());
 	        $newslist = M('store_navigation')->where(array('store_id'=>$storeid,'sn_id'=>$sn_id))->find();
