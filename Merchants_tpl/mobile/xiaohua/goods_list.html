@@ -21,9 +21,9 @@
             </ul>
         </section>
         <section class="page_c">
-                <div><a <?php if($_GET['p'] <= 1){echo 'style="display:none;"';};?> href="{:U('goods_list',array('store_id'=>$store[store_id],'cat_id'=>$_GET[cat_id],'p'=>$current-1))}">上一页</a></div>
+                <div><a <?php if($_GET['p'] <= 1){echo 'style="display:none;"';};?> href="{$prev}">上一页</a></div>
                 <div>{$current}/{$num}</div>
-                <div><a <?php if($_GET['p'] >= $num){echo 'style="display:none;"';};?> href="{:U('goods_list',array('store_id'=>$store[store_id],'cat_id'=>$_GET[cat_id],'p'=>$current+1))}">下一页</a></div>
+                <div><a <?php if($_GET['p'] >= $num || $num == 1){echo 'style="display:none;"';};?> href="{$next}">下一页</a></div>
             
         </section>
           <section class="Gotop">

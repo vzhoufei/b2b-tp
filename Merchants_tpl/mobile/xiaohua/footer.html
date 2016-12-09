@@ -1,19 +1,13 @@
                <section class="footer">
-                	
-						<ul>
-							<li><a href="">产品中心</a></li>
-							<li><a href="">联系我们</a></li>
-							<li><a href="">关于我们</a></li>
-						</ul>
-						<div><span class="footer_f">©2016 网站样板-手机数码 版权所有
-本站使用 云狄建站 搭建 </span></div>
+     
+						<div><span class="footer_f">{$store['copyright']}</span></div>
                 </section>
                   <section class="pub_nav">
-                      <a href="">
+                      <a href="http://wpa.qq.com/msgrd?v=3&amp;uin={$store['store_qq']}&amp;site=qq&amp;menu=yes">
                        <img src="{:STYLE}/images/qq.png" alt="">
                        <span>QQ</span>   
                       </a>
-                      <a href="tel:13539993040">
+                      <a href="tel:{$store['store_phone']}">
                       <img src="{:STYLE}/images/tell.png" alt="">
                       <span>电话</span>
                       </a>
@@ -21,6 +15,7 @@
                   </section>
 
             </div><!-- list1 -->
+
         <!-- 导航 -->
 	    <div class="circle" id="circle"></div>
 			<div class="menu" id="menu">

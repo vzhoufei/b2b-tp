@@ -48,6 +48,7 @@ class StoreController extends Controller {
                     $goods_class2[$v['parent_id']][] = $v;
                 }
             }
+
 			 $this->assign('navigation',$this->navigation);
              $this->assign('goods_class',$goods_class);//全部分类
              $this->assign('goods_class1',$goods_class1);//一级分类
@@ -106,7 +107,7 @@ class StoreController extends Controller {
         $keyword = urldecode(trim(I('keyword','')));
         $map = array('store_id' => $store_id, 'is_on_sale' => 1);
         $keyword && $map['goods_name']  = array('like','%'.$keyword.'%');
-
+        $this->page('?');//上一页 下一页 按钮
         $cat_name = "全部商品";
         if ($cat_id > 0) {
             $map['_string'] = "store_cat_id1=$cat_id OR store_cat_id2=$cat_id";
@@ -170,10 +171,6 @@ class StoreController extends Controller {
 		$this->display('/store_goods_class');
 	}
 
-
-
-
-
 	public function store_news()
 	{
 		$sn_id = I('sn_id');
@@ -187,13 +184,11 @@ class StoreController extends Controller {
 		
 	}
 
-
-
-
     public function newsList(){
 
         $storeid = $this->store['store_id'];
         $sn_id = (empty($_GET['sn']))?0:(int)$_GET['sn'];
+        $this->page('?');//上一页 下一页 按钮
         $_GET['p'] = isset($_GET['p'])?$_GET['p']:1;
         if(is_numeric($sn_id)){
 	        $news = M('store_art')->where('store = '.$storeid.' and sn_id in (0,'.$sn_id.')')->page($_GET['p'].',12')->select();
@@ -207,6 +202,7 @@ class StoreController extends Controller {
 	        $this->assign('sn_id',$sn_id);
 	        $this->assign('page',$page->show());
 	        $newslist = M('store_navigation')->where(array('store_id'=>$storeid,'sn_id'=>$sn_id))->find();
+
 	        $this->assign('news',$news);
 	        $this->assign('newslist',$newslist);
 	        $this->display('/newslist');
@@ -246,10 +242,11 @@ class StoreController extends Controller {
 
 
 
+    // 店内搜索
     public function search()
     {
-        $keywords = I('keywords');
-        $cat_id = I('get.store_id');
+        $keywords = I('get.keywords');
+        $cat_id = $_GET['store_id'];
         if(!$keywords || !$cat_id){$this->redirect('Index/index'); }
         $map['store_id'] = array('eq',$cat_id);
         $where['goods_name'] = array('like','%'.$keywords.'%');
@@ -258,9 +255,35 @@ class StoreController extends Controller {
         $where['_logic'] = 'or';
         $map['_complex'] = $where;
         $m = M('goods');
-        $goods = $m->where($map)->select();
+        $count = $m->where($map)->count();
+        $num = ceil($count / 2);
+        $page = new \Think\Page($count,2);
+        $goods = $m->where($map)->limit($page->firstRow.','.$page->listRows)->select();
+         foreach($goods as &$v){
+            $v['original_img'] = str_replace('/Public', C('DOMAIN').'/Public', $v['original_img']);
+        }
+        $this->page('&');//上一页 下一页 按钮
+        $this->assign('num',$num);//页码
+        $this->assign('current',$_GET['p']?$_GET['p']:1);//当前页
         $this->assign('goods_list',$goods);
+        $this->assign('page',$page->show);// 赋值分页输出
         $this->display('/goods_list');
+
+    }
+
+
+    /**
+     * 上一页 下一页 按钮
+     *$symbol  符号
+     */
+    public function page($symbol)
+    {
+        $prev = str_replace('p='.$_GET['p'], 'p='.($_GET['p']-1), $_SERVER['REQUEST_URI']);
+        $request_uri = isset($_GET['p'])?$_SERVER['REQUEST_URI']:$_SERVER['REQUEST_URI'].$symbol.'p=2';
+        $_GET['p'] = $_GET['p']?$_GET['p']:1;
+        $next = str_replace('p='.$_GET['p'], 'p='.($_GET['p']+1), $request_uri);
+        $this->assign('prev',$prev);//上一页
+        $this->assign('next',$next);//下一页
     }
 
 

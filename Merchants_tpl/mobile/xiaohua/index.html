@@ -23,8 +23,8 @@
         	<!--  搜索 -->
 				  <section class="index_search" id="fake-search"> 
 				  	    <div class="index_search_mid">
-				  	    	<span><img src="{:STYLE}/images/icosousuo.png" alt=""></span>
-				  	    	<input type="text" id="search_text" class="search_text" value="请输入您所搜索的商品"/>
+				  	    	<span><img src="{:STYLE}/images/icosousuo.png" alt="" onclick="search()"></span>
+				  	    	<input type="text" id="search_text" class="search_text" name="q" placeholder="请输入您所搜索的商品"/>
 				  	    </div>
 				  </section>
                 <!-- content -->
@@ -36,8 +36,6 @@
                  	  	</h2>
 		              </div>
                  	 <ul>
-
-
                      <foreach name="new_goods" item="v">
                  	 	<li>
                  	 		<a href="{:C('DOMAIN')}{:U('Goods/goodsInfo',array('id'=>$v[goods_id]))}">
@@ -86,17 +84,21 @@
 
                  	</ul>
                  </section>
-                 
-                
-                
                 <section class="Gotop">
-                	
- 
                 </section>
-
- 
 <include file="./footer" />
 
+<script>
 
+// 本店搜索 js
+function search()
+{
+ var keywords = $('input[name=q]').val();
+ if(!keywords){alert('请输入关键字');return;}
+ window.location.href="{:U('search')}?store_id={$store[store_id]}&keywords="+keywords;
+}
+
+
+</script>
 </body>
 </html> 

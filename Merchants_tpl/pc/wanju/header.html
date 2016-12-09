@@ -161,11 +161,7 @@
 		<section class="top_nav">
 			<div class="top_nav_bar">
 				<ul>
-           			<li><a href="
-
-					<if condition='$nav_where'>{:U('Index/index')}<else/>{:U('Store/index',array('store_id'=>$store[store_id]))}</if>
-
-           			"  style="color:#ff5400;">首页</a> </li>
+           			<li><a href="{:U('Store/index',array('store_id'=>$store[store_id]))}"  style="color:#ff5400;">首页</a> </li>
 					<li
 
 					<?php 
@@ -181,29 +177,14 @@
 					?>
 					
 
-					><a href="
-					<if condition='$nav_where'>{:U('Goods/goods_list')}<else/>{:U('Store/goods_list',array('store_id'=>$store[store_id]))}</if>
-					">供应产品 ▼</a>
+					><a href="{:U('Store/goods_list',array('store_id'=>$store[store_id]))}">供应产品 ▼</a>
 							<div class="SupplyProducts">
 								<ul>
 									 <foreach name="main_cat" item="v">  <!-- 商品分类 -->
-									<li onmouseover="xs({$v['cat_id']});"><a target="_blank" href="
-									<if condition='$nav_where'>
-
-									{:U('Goods/goods_list',array('cat_id'=>$v[cat_id]))}
-									<else/>
-									{:U('Store/goods_list',array('store_id'=>$store[store_id],'cat_id'=>$v[cat_id]))}
-									</if>
+									<li onmouseover="xs({$v['cat_id']});"><a target="_blank" href="{:U('Store/goods_list',array('store_id'=>$store[store_id],'cat_id'=>$v[cat_id]))}
 									" >{$v.cat_name}</a></li>
-									
 									<foreach name="sub_cat[ $v['cat_id'] ]" item="vs">  <!-- 二级分类 --> 
-									<span style="display: none;" class="xs{$v['cat_id']} xs"><span><a target="_blank"  style="color:#008BB9;" href="
-										<if condition='$nav_where'>
-									{:U('Goods/goods_list',array('cat_id'=>$vs[cat_id]))}
-									<else/>
-									{:U('Store/goods_list',array('store_id'=>$store[store_id],'cat_id'=>$vs[cat_id]))}
-									</if>
-									">{$vs.cat_name}</a></span><br/></span>
+									<span style="display: none;" class="xs{$v['cat_id']} xs"><span><a target="_blank"  style="color:#008BB9;" href="{:U('Store/goods_list',array('store_id'=>$store[store_id],'cat_id'=>$vs[cat_id]))}">{$vs.cat_name}</a></span><br/></span>
 									</foreach>
 									</foreach>
 								</ul>
@@ -214,13 +195,8 @@
 			        	<li <?php if($vv['sn_id'] == $_GET['sn_id']){echo 'class="top_nav_barM"';}?> >
 			        	<if condition="empty($vv[sn_url])">
 			        	<a href=" 
-			        	<if condition='($vv[sn_is_list] == 1 and $nav_where)'>
-
-			        	{:U('Article/article_list',array('sn'=>$vv[sn_id]))}
-			        	<elseif condition='$vv[sn_is_list] == 1 and !$nav_where' />
+			        	<if condition='($vv[sn_is_list])'>
 			        	{:U('Store/newsList',array('store_id'=>$store[store_id],'sn'=>$vv[sn_id]))}
-			        	<elseif condition='$nav_where' />
-			        	{:U('Cover/cover',array('sn_id'=>$vv[sn_id]))}
 			        	<else/>
 			        	{:U('Store/store_news',array('store_id'=>$store[store_id],'sn_id'=>$vv[sn_id]))}
 			        	</if>" 
@@ -235,14 +211,7 @@
 		      	<foreach name="link_cat" item="vz">
 					<li <?php if($vz['cat_id'] == $_GET['cat_id']){echo 'class="top_nav_barM"';}?>>
 
-					<a  target="_blank" href="
-
-					<if condition='$nav_where'>
-					{:U('Goods/goods_list',array('cat_id'=>$vz[cat_id]))}
-					<else/>
-					{:U('Store/goods_list',array('store_id'=>$store[store_id],'cat_id'=>$vz[cat_id]))}
-					</if>
-					">{$vz.cat_name}</a> </li>
+					<a  target="_blank" href="{:U('Store/goods_list',array('store_id'=>$store[store_id],'cat_id'=>$vz[cat_id]))}">{$vz.cat_name}</a> </li>
 		      	</foreach>
 
 				<div class="cl"></div>
