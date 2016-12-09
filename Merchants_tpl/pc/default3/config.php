@@ -1,6 +1,6 @@
 <?php
    return array(        
-        'name'=>'云狄商户模板1', // 魔板名称
+        'name'=>'商城主题', // 魔板名称
         'remark'=>'www.ydwzjs.cn',
         'img'=>'a.jpg', // 后台显示魔板缩列图 相对于魔板目录路径
         'version'=>'v1.1', // 模板版本
