@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="zh">
+<head>
+	<title></title>
+    <meta name="keywords" content="{$store.seo_keywords}" />
+    <meta name="description" content="{$store.seo_description}"/>
+<include file="./header" />
+      <!--  banner -->
+        	<div class="list1">
+        <section>
+              <div class="slider">
+                  <ul class="slides">
+                  <foreach name="store['mb_slide']" item="vimg" key="k">
+                  <notempty name="vimg">
+                        <li class="slide">
+                      <a href="{$store['mb_slide_url'][$k]}" class="box"><img src="{$vimg}" alt="{$k+1}"/></a>
+                    </li>
+                 </notempty>
+                 </foreach>
+                  </ul>
+                </div>
+        </section> 
+        	<!--  搜索 -->
+				  <section class="index_search" id="fake-search"> 
+				  	    <div class="index_search_mid">
+				  	    	<span><img src="{:STYLE}/images/icosousuo.png" alt="" onclick="search()"></span>
+				  	    	<input type="text" id="search_text" class="search_text" name="q" placeholder="请输入您所搜索的商品"/>
+				  	    </div>
+				  </section>
+                <!-- content -->
+                 
+                    <section class="product">
+		              <div>
+		                 	 <h2>
+                 	  		<em></em>新品
+                 	  	</h2>
+		              </div>
+                 	 <ul>
+                     <foreach name="new_goods" item="v">
+                 	 	<li>
+                 	 		<a href="{:C('DOMAIN')}{:U('Goods/goodsInfo',array('id'=>$v[goods_id]))}">
+                 	 			<div>
+                 	 				<img src="{$v.original_img}" alt="" >
+                 	 				<span class="product_n">{$v.goods_name}</span>
+                 	 			</div>
+
+                 	 		</a>
+                 	 	</li>
+                     </foreach>
+                 	 	
+                 	 </ul>
+
+                 </section>
+
+                 <section class="news">
+                     <div>
+                     	 <h2>
+                 	  		<em></em>新闻动态
+                 	  	</h2>
+                     </div>
+                 	<ul>
+
+                    <foreach name="news" item="vn">
+                         <li>
+                 		<a href="{:U('newscontent',array('store_id'=>$storeid,'sn'=>$vn['sn_id'],'text'=>$vn['id']))}">
+                 			<div>
+                 				<img src="{$vn.newsimg}"  style="width: 100%;">
+                 			</div>
+                 			<div>
+                 				<div class="news_tle">
+                 					<h2>{:mb_substr($vn[title],0,16,'utf-8')}</h2>
+                 				</div>
+                 				<div class="news_text" style="margin-bottom:5px;">
+                 					 {:mb_substr($vn[description],0,50,'utf-8')}...
+                 				</div>
+                 				
+                 			</div>
+                        </a>
+                                    <span>{$vn.timer|date="Y-m-d",###}</span>
+                        </li>
+
+                    </foreach>
+                 		
+
+                 	</ul>
+                 </section>
+                <section class="Gotop">
+                </section>
+<include file="./footer" />
+
+<script>
+
+// 本店搜索 js
+function search()
+{
+ var keywords = $('input[name=q]').val();
+ if(!keywords){alert('请输入关键字');return;}
+ window.location.href="{:U('search')}?store_id={$store[store_id]}&keywords="+keywords;
+}
+
+
+</script>
+</body>
+</html> 

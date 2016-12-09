@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title></title>
+    <meta name="keywords" content="{$cat_name}" />
+    <meta name="description" content="{$store.seo_description}"/>
+    <link rel="stylesheet" href="{:STYLE}/css/new.css">
+<include file="./header" />
+        <section class="n_list"> 
+            <div>
+                <h2><em></em>{$cat_name}</h2>
+            </div>
+            <ul class="n_list_n clearfix">
+            <foreach name="goods_list" item="vo">
+                 <li>
+                    <a href="{:C('DOMAIN')}{:U('Goods/goodsInfo',array('id'=>$vo[goods_id]))}">
+                     <div><img src="{$vo.original_img}" alt=""><span>{:mb_substr($vo['goods_name'],0,26,'utf-8')}</span></div>  
+                    </a>
+                </li>
+            </foreach>
+            </ul>
+        </section>
+        <section class="page_c">
+                <div><a <?php if($_GET['p'] <= 1){echo 'style="display:none;"';};?> href="{$prev}">上一页</a></div>
+                <div>{$current}/{$num}</div>
+                <div><a <?php if($_GET['p'] >= $num || $num == 1){echo 'style="display:none;"';};?> href="{$next}">下一页</a></div>
+            
+        </section>
+          <section class="Gotop">
+                </section>
+<include file="./footer" />
+</body>
+</html>

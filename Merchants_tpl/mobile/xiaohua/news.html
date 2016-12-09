@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>{$news.title}</title>
+   <meta name="keywords" content="{$news.keyword}" />
+    <meta name="description" content="{$news.description}"/>
+<include file="./header" />
+<style>.n_l_t_c img{width:100%;}</style>
+		<section class="n_l">
+			<div class="n_l_t">
+                  <h2 style="margin-top:10px;margin-bottom: 5px;">{$news.title}</h2>
+                  <span>{$news.timer|date="Y-m-d",###}</span>
+                  <div class="n_l_t_c">
+                  {$news.content|htmlspecialchars_decode}
+                  </div>
+                <div class="n_l_t_t">
+                  <div class="newsSource" style="margin-top:5px;">
+                  	来源:{$news.rep}
+                  </div>
+                  </div>
+			</div>
+		</section>
+
+            <section class="n_page" style="margin-top:5px;">
+            		<a href="{:U('newscontent',array('store_id'=>$store['store_id'],'sn'=>$news[sn_id],'text'=>$next['id']))}"><span>上一篇:</span><span>{$next['title']}</span></a><br><br>
+            		<a href="{:U('newscontent',array('store_id'=>$store['store_id'],'sn'=>$news[sn_id],'text'=>$pre['id']))}"><span>下一篇:</span><span>{$pre['title']}</span></a>
+            </section>
+           <section class="Gotop">
+                </section>
+<include file="./footer" />
+</body>
+</html>

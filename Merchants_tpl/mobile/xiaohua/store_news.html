@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{$news.sn_title}</title>
+    <meta name="keywords" content="{$news.sn_keyword}" />
+    <meta name="description" content="{$news.sn_description}"/>
+    <link rel="stylesheet" href="{:STYLE}/css/new.css">
+<include file="./header" />
+
+           <style>.about_t img{width:100%;} .about_t p{text-indent:2em;}</style>
+          
+         <section class="about_c">
+              <div class="about_c_p"><img src="{$news[sn_pic]}" alt=""></div>
+         	 <h2>{$news.sn_title}</h2>
+         	 <div class="about_t">
+         	 	　　{$news[sn_content]|htmlspecialchars_decode}
+         	 </div>
+         </section>
+
+         <section class="Gotop">
+                	
+ 
+                </section>
+
+       <include file="./footer" />
+</body>
+</html>

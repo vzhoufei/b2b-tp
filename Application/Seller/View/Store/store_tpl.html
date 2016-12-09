@@ -26,7 +26,8 @@
                                <a href="{:U('changeTemplate',array('key'=>$k,'t'=>$tpl,'mtpl'=>$val['mtpl']))}" class="btn btn-success" role="button">启用</a> 
                            <else /> 
                            <a href="{:U('changeTemplate',array('key'=>$k,'t'=>$tpl,'mtpl'=>$val['mtpl']))}" class="btn btn-default" role="button">启用</a> 
-                           </if>                                
+                           </if>   
+                           <a href="http://{$val.remark}" class="btn btn-default" role="button" target="_blank" >查看</a>                             
                        </p>
                      </div>
                    </div>

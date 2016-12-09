@@ -1,0 +1,80 @@
+               <section class="footer">
+     
+						<div><span class="footer_f">{$store['copyright']}</span></div>
+                </section>
+                  <section class="pub_nav">
+                      <a href="http://wpa.qq.com/msgrd?v=3&amp;uin={$store['store_qq']}&amp;site=qq&amp;menu=yes">
+                       <img src="{:STYLE}/images/qq.png" alt="">
+                       <span>QQ</span>   
+                      </a>
+                      <a href="tel:{$store['store_phone']}">
+                      <img src="{:STYLE}/images/tell.png" alt="">
+                      <span>电话</span>
+                      </a>
+                      <a  id="btn"><img src="{:STYLE}/images/001.png" alt=""><span>返回顶部</span> </a>
+                  </section>
+
+            </div><!-- list1 -->
+
+        <!-- 导航 -->
+	    <div class="circle" id="circle"></div>
+			<div class="menu" id="menu">
+            <div class="subNavBox">
+            <div class="subNav">产品中心</div>
+                <ul class="navContent">
+                        <foreach name="goods_class1" item="class1">
+                        <li class="subNav1"> <a href="{:U('goods_list',array('store_id'=>$store[store_id],'cat_id'=>$class1[cat_id]))}">{$class1.cat_name}</a></li>
+                           <ul>
+                            <foreach name="goods_class2[$class1['cat_id']]" item="class2">
+                                <li><a href="{:U('goods_list',array('store_id'=>$store[store_id],'cat_id'=>$class2[cat_id]))}">{$class2.cat_name}</a></li>
+                            </foreach>
+                        </ul>
+                        </foreach>
+                </ul>
+            
+            <foreach name="navigation" item="v">
+            <div class="subNav">
+            <if condition="$v[sn_is_list] eq 1">
+            <a href="{:U('newsList',array('store_id'=>$store[store_id],'sn'=>$v[sn_id]))}">{$v.sn_title}</a>
+            <elseif condition="empty($v[sn_url]) and $v[sn_is_list] eq 0" />
+            <a href="{:U('store_news',array('store_id'=>$store[store_id],'sn_id'=>$v['sn_id']))}">{$v.sn_title}</a>
+            <else/>
+            <a href="{$v.sn_url}">{$v.sn_title}</a>
+            </if>
+            </div>
+            </foreach>
+            <foreach name="goods_class_nav" item="vo">
+              <div class="subNav"><a href="{:U('goods_list',array('store_id'=>$store[store_id],'cat_id'=>$vo[cat_id]))}">{$vo.cat_name}</a></div>
+            </foreach>
+       </div>
+			</div>
+			<div class="burger" id="burger">
+				<div class="x"></div>
+				<div class="y"></div>
+        <div class="z"></div>
+			</div>  
+		</div>	
+	<script src="{:STYLE}/js/stopExecutionOnTimeout.js?t=1"></script>
+    <script src="{:STYLE}/js/jquery-1.9.1.min.js"></script>
+  <script src="{:STYLE}/js/index.js"></script>
+   <script src="{:STYLE}/js/lb.js"></script>
+<script type="text/javascript" src="{:STYLE}/js/jquery.glide.min.js"></script>
+<script type="text/javascript">
+      var glide = $('.slider').glide({
+          //autoplay:true,//是否自动播放 默认值 true如果不需要就设置此值
+          animationTime:500, //动画过度效果，只有当浏览器支持CSS3的时候生效
+          arrows:true, //是否显示左右导航器
+          arrowsWrapperClass: "arrowsWrapper",//滑块箭头导航器外部DIV类名
+          arrowMainClass: "slider-arrow",//滑块箭头公共类名
+          arrowRightClass:"slider-arrow--right",//滑块右箭头类名
+          arrowLeftClass:"slider-arrow--left",//滑块左箭头类名
+          arrowRightText:">",//定义左右导航器文字或者符号也可以是类
+          arrowLeftText:"<",
+
+          nav:true, //主导航器也就是本例中显示的小方块
+          navCenter:true, //主导航器位置是否居中
+          navClass:"slider-nav",//主导航器外部div类名
+          navItemClass:"slider-nav__item", //本例中小方块的样式
+          navCurrentItemClass:"slider-nav__item--current" //被选中后的样式
+        }); 
+    </script>
