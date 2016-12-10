@@ -124,9 +124,7 @@ class StoreController extends Controller
         //     $this->assign('sub_cat', $sub_cat);
         // }
 
-
-
-
+     
         //热门商品排行
         $hot_goods = M('goods')->field('goods_content', true)->where(array('store_id' => $store_id))->order('sales_sum desc')->limit(10)->select();
         //收藏商品排行
@@ -162,10 +160,30 @@ class StoreController extends Controller
         $this->assign('new_goods', $new_goods);
         $this->assign('recomend_goods', $recomend_goods);
         $this->assign('goods_images', $goods_images); //相册图片
+         $this->assign('recommend',$this->recommend());
+
         
 
 
         $this->display('/index');
+    }
+
+
+
+    /**
+     * 首页推荐
+     */
+    public function recommend()
+    {
+        //查询首页推荐栏目
+        $product_m = M('goods');
+        $recommend = M('store_goods_class')->where(array('store_id'=>$this->store['store_id'],'is_show'=>1,'is_recommend'=>1))->select();
+        foreach($recommend as &$v){
+            // 查询推荐商品
+            $v['cat_id_goods'] = $product_m->where('store_cat_id1 = '.$v['cat_id'].' or store_cat_id2 = '.$v['cat_id'])->field('goods_id,goods_name,original_img,shop_price')->limit($v['show_num'])->select();
+        }
+
+        return $recommend;
     }
     
 

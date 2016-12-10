@@ -238,6 +238,37 @@
 						</div>
 
 
+					<foreach name="recommend" item="recomend_goods" >
+						<div class="mian_goodO6R21">
+							<p>{$recomend_goods.cat_name}</p>
+							<ul>
+
+							<foreach name="recomend_goods[cat_id_goods]" item="vvv">
+
+								<li><a target="_blank" href="{:C('DOMAIN')}{:U('Goods/goodsInfo',array('id'=>$vvv[goods_id]))}"><img src="{$vvv.goods_id|goods_thum_images=240,240}"></a>
+									<span class="mian_goodO5M">¥<b>{$vvv.shop_price}</b></span>
+									<a target="_blank" href="{:C('DOMAIN')}{:U('Goods/goodsInfo',array('id'=>$vvv[goods_id]))}" class="mian_goodO5T">{$vvv.goods_name|getSubstr=0,30}</a>
+									<a target="_blank" href="{:C('DOMAIN')}{:U('Goods/goodsInfo',array('id'=>$vvv[goods_id]))}" class="qianggoua">
+
+										<if condition="$vvv[prom_type] gt 0">
+											<div class="qianggou"><span class="qianggou2">
+							                    <if condition="$vvv[prom_type] eq 1">抢购商品</if>
+							                    <if condition="$vvv[prom_type] eq 2">团购商品</if>
+							                    <if condition="$vvv[prom_type] eq 3">限时折扣</if>
+											</span></div>
+							            </if>
+									</a>
+									<span  class="mian_goodO6R1M"><!-- <img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"> --></span>
+									<span class="mian_goodO6R1N">成交{$v.sales_sum}笔</span></li>
+							</foreach>
+								<div class="cl"></div>
+							</ul>
+						</div>
+				    </foreach>
+
+
+
+
 <!-- 
 						<div class="mian_goodO6R22">
 							<p>多米诺精品</p>
