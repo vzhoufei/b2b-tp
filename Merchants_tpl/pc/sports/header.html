@@ -5,7 +5,7 @@
 
 	<div class="headerNav">
 		<ul>
-			<li class="headerN"><a href="#">首页</a></li>
+			<li class="headerN"><a href="{:U('Store/index',array('store_id'=>$store[store_id]))}">首页</a></li>
 			<foreach name="navigation" item="vv" key="kk">
 	        	<li <?php if($vv['sn_id'] == $_GET['sn_id']){echo 'class="top_nav_barM"';}?> >
 	        		<if condition="empty($vv[sn_url])">

@@ -48,6 +48,27 @@
 					</td>
 	            </tr>
 	            <tr>
+	                <td>关键词：</td>
+	                <td>
+	                	<input name="keyword" type="text" value="{$info[keyword]}">
+					</td>
+	            </tr>
+	            <tr>
+	                <td>描述：</td>
+	                <td>
+	                	<textarea name="description" value="1">{$info[description]}</textarea>
+					</td>
+	            </tr>
+	            <tr>
+	                <td>图片：</td>
+	                <td>
+	                	<img style="width:500px;" src="{$info.img}" id="img" alt="">
+                        <input type="hidden" name="img" value="{$info.img}">
+
+                        <input type="button" class="form-control" style="width:100px;" name="" value="上传banner" onClick="GetUploadify(1,'img','seller','callback2')" >
+					</td>
+	            </tr>
+	            <tr>
 	                <td>排序：</td>
 	                <td><input type="text" name="cat_sort" value="{$info.cat_sort}" class="form-control" /></td>
 	            </tr>
@@ -84,6 +105,10 @@
 			}			
 		});		
 	}
+	function callback2(img_str){
+	$('input[name="img"]').val(img_str);
+	$('#img').attr('src',img_str);
+}
 </script>
 </body>
 </html>
