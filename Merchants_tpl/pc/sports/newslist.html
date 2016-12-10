@@ -1,0 +1,77 @@
+<!DOCTYPE >
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<meta name="keywords" content="{$store.seo_keywords}" />
+<meta name="description" content="{$store.seo_description}"/>
+<link rel="shortcut icon" href="favicon.ico"/>
+  <script type="text/javascript" src="{:STYLE}/js/jquery-1.7.1.min.js"></script>
+  <script type="text/javascript" src="{:STYLE}/js/index.js"></script>
+
+  
+  <script type="text/javascript" src="{:STYLE}/js/jquery.banner.revolution.min.js"></script>
+  <script type="text/javascript" src="{:STYLE}/js/banner.js"></script>
+  <link rel="stylesheet" type="text/css" href="{:STYLE}/css/lbt.css">
+  <link rel="stylesheet" type="text/css" href="{:STYLE}/css/index.css">
+<style type="text/css">
+  .max *{
+  max-width: 100%;
+  }
+</style>
+  </head>
+<body>
+
+<!-- 头部开始 -->
+<include file="./header"/>
+<!-- 头部结束 -->
+<div class="banner" id="banner" >
+   <foreach name="store[store_slide]" item="vimg" key="k">
+        <notempty name="vimg">
+  <a  class="d1" style="background:url({$vimg}) center no-repeat;"></a>
+        </notempty>
+      </foreach>
+  <div class="d2" id="banner_id">
+    <ul>
+      <foreach name="store[store_slide]" item="vimg" key="k">
+              <notempty name="vimg">
+          <li></li>
+              </notempty>
+            </foreach>
+    </ul>
+  </div>
+  <script type="text/javascript">banner()</script>
+</div>  
+
+  <div class="wrapper" ><div class='title'><h1>新闻<h1></div><ul class='news'>
+ <foreach name='news' item='v'>
+  <li>
+    <a href="{:U('Store/Newscontent',array('store_id'=>$store[store_id],'sn'=>$sn_id,'text'=>$v[id]))}">
+    <div class='n-title'>
+      《{$v.title|mb_substr=0,20,'utf-8'}》
+    </div>
+    <div class='n-title'>
+      {$v.description|mb_substr=0,20,'utf-8'}...
+    </div>
+    <div class='n-author'>作者：{$v.author}</div>
+    <div class='n-time'>{$v.timer|date='Y-m-d',###}</div>
+    </a>
+  </li>
+  </foreach>
+  <li class='pg'>{$page}</li></ul>
+  </div>
+<style>
+  .wrapper{margin: 0 auto;width: 80%;}
+  .wrapper .title{margin-top: 20px;border-left: 4px solid #000;height: 40px;line-height: 40px;padding-left: 20px;}
+  .wrapper .news{margin-top: 30px;width: 100%;}
+  .wrapper .news li{width: 100%;line-height: 40px;height: 40px;border-bottom: #008BB9 dotted 1px;margin-bottom: -1px;}
+  .wrapper .news li .n-title{float: left;margin-left: 20px;}
+  .wrapper .news li .n-author{width: 30%;float: left;margin-left: 20px;}
+  .wrapper .news li .n-time{margin-right: 10px;float: right;}
+  .news .pg {height: 50px !important;border-bottom: none !important;}
+  .news .pg .paginate_button{border: none;min-width: 40px;width:auto;margin-right: 10px;float:left;}
+  .news .pg .active,.news .pg .active a{background-color: #099;color:#fff;}
+  .news .pg .pagination{margin: 0px auto;height:33px;margin-top: 5px;float: right;text-align: center;}
+</style>
+<include file="./footer"/>
+</html>

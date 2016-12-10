@@ -8,37 +8,24 @@
 			<li class="headerN"><a href="#">首页</a></li>
 			<foreach name="navigation" item="vv" key="kk">
 	        	<li <?php if($vv['sn_id'] == $_GET['sn_id']){echo 'class="top_nav_barM"';}?> >
-	        	<if condition="empty($vv[sn_url])">
-	        	<a href=" 
-	        	<if condition='($vv[sn_is_list] == 1 and $nav_where)'>
-	        	{:U('Store/article_list',array('sn'=>$vv[sn_id]))}
-	        	<elseif condition='$vv[sn_is_list] == 1 and !$nav_where' />
-	        	{:U('Store/newsList',array('store_id'=>$store[store_id],'sn'=>$vv[sn_id]))}
-	        	<elseif condition='$nav_where' />
-	        	{:U('Store/cover',array('sn_id'=>$vv[sn_id]))}
-	        	<else/>
-	        	{:U('Store/store_news',array('store_id'=>$store[store_id],'sn_id'=>$vv[sn_id]))}
-	        	</if>" 
-				title = '{$vv.sn_keyword}'
-	        	>
-	        	<else/>
-	        	<a href="{$vv.sn_url}" title = '{$vv.sn_keyword}'>
-	        	</if>
-	        	{$vv.sn_title}</a>
+	        		<if condition="empty($vv[sn_url])">
+			        	<a href="<if condition='($vv[sn_is_list])'>
+			        		{:U('Store/newsList',array('store_id'=>$store[store_id],'sn'=>$vv[sn_id]))}
+			        	<else/>
+			        		{:U('Store/store_news',array('store_id'=>$store[store_id],'sn_id'=>$vv[sn_id]))}
+			        	</if>">
+			        <else/>
+			        	<a href="{$vv.sn_url}" title = '{$vv.sn_keyword}'>
+			        </if>
+			        {$vv.sn_title}</a>
 	        	</li>
 	      	</foreach>
       	<!-- 分类在导航显示 -->
 	      	<foreach name="link_cat" item="vz">
 				<li <?php if($vz['cat_id'] == $_GET['cat_id']){echo 'class="top_nav_barM"';}?>>
-				<a href="
-				<if condition='$nav_where'>
-				{:U('Store/goods_list',array('cat_id'=>$vz[cat_id]))}
-				<else/>
-				{:U('Store/goods_list',array('store_id'=>$store[store_id],'cat_id'=>$vz[cat_id]))}
-				</if>
-				" title='{$vz.cat_name}'>{$vz.cat_name}</a> </li>
+					<a href="{:U('Store/goods_list',array('store_id'=>$store[store_id],'cat_id'=>$vz[cat_id]))}">{$vz.cat_name}</a>
+				</li>
 	      	</foreach>
 		</ul>
 	</div>
-
 </header>

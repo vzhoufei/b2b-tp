@@ -63,57 +63,6 @@
 								<dd><a href="javascript:;" id="favoriteStore" data-id="{$store['store_id']}" target="_blank">收藏本店铺</a></dd>
 								</dl>
 						</div></li>
-					<!-- <li class="headerMRshow"><a href="#" >诚信通服务</a><i>&gt;</i><span>|</span>
-						<div class="goodService">
-							<dl><dd><a href="#">免费联系我们</a></dd>
-								<dd><a href="#">特权体验馆</a></dd>
-								<dd><a href="#">新会员申请</a></dd>
-								<dd><a href="#">老会员续费</a></dd>
-								<dd><a href="#">优惠活动</a></dd>
-								</dl>
-						</div></li> -->
-					<!-- <li class="headerMRshow"><a href="#" >实力商家</a><i>&gt;</i><span>|</span>
-						<div class="merchants">
-							<dl><dd><a href="#">实力品牌</a></dd>
-								<dd><a href="#">实力工厂</a></dd>
-								<dd><a href="#">商家入驻</a></dd>
-								</dl>
-						</div></li>
-					<li class="headerMRshow"><a href="#" >我是供应商</a><i>&gt;</i><span>|</span>
-						<div class="supplier">
-							<dl><dd><a href="#">诚学堂</a></dd>
-								<dd><a href="#">交易技巧</a></dd>
-								<dd><a href="#">成功经验</a></dd>
-								<dd><a href="#">热门活动</a></dd>
-								<dd><a href="#">千牛工作台</a></dd>
-								<dd><a href="#">网销宝平台</a></dd>
-								</dl>
-						</div></li>
-					<li class="headerMRshow"><a href="#" >客服中心</a><i>&gt;</i><span>|</span>
-						<div class="Customer">
-							<dl><dd><a href="#">诚学堂</a></dd>
-								<dd><a href="#">交易技巧</a></dd>
-								<dd><a href="#">成功经验</a></dd>
-								<dd><a href="#">热门活动</a></dd>
-								<dd><a href="#">千牛工作台</a></dd>
-								<dd><a href="#">网销宝平台</a></dd>
-								</dl>
-						</div></li>
-					<li class="headerMRshow"><a href="#" >网站导航</a><i>&gt;</i>
-						<div class="navigation">
-							<dl><dt><a href="#">行业市场</a></dt>
-									<dd><a href="#">服装内衣</a></dd>
-									<dd><a href="#">鞋包配饰</a></dd>
-									<dd><a href="#">运动户外</a></dd>
-									<dd><a href="#">童装母婴</a></dd>
-									<dd><a href="#">日用百货</a></dd>
-									<dd><a href="#">汽车用品</a></dd>
-									<dd><a href="#">电工电气</a></dd>
-									<dd><a href="#">家装建材</a></dd>
-									<dd><a href="#">数码家电</a></dd>
-									</dl>
-								
-						</div></li> -->
 					<div class="cl"></div>
 				</ul>
 				</div>
@@ -180,12 +129,18 @@
 					><a href="{:U('Store/goods_list',array('store_id'=>$store[store_id]))}">供应产品 ▼</a>
 							<div class="SupplyProducts">
 								<ul>
-									 <foreach name="main_cat" item="v">  <!-- 商品分类 -->
-									<li onmouseover="xs({$v['cat_id']});"><a target="_blank" href="{:U('Store/goods_list',array('store_id'=>$store[store_id],'cat_id'=>$v[cat_id]))}
-									" >{$v.cat_name}</a></li>
-									<foreach name="sub_cat[ $v['cat_id'] ]" item="vs">  <!-- 二级分类 --> 
-									<span style="display: none;" class="xs{$v['cat_id']} xs"><span><a target="_blank"  style="color:#008BB9;" href="{:U('Store/goods_list',array('store_id'=>$store[store_id],'cat_id'=>$vs[cat_id]))}">{$vs.cat_name}</a></span><br/></span>
-									</foreach>
+									<foreach name="main_cat" item="v">  <!-- 商品分类 -->
+									<li onmouseover="xs({$v['cat_id']});">
+										<a target="_blank" href="{:U('Store/goods_list',array('store_id'=>$store[store_id],'cat_id'=>$v[cat_id]))}" >{$v.cat_name}</a>
+									</li>
+										<foreach name="sub_cat[ $v['cat_id'] ]" item="vs">  <!-- 二级分类 --> 
+										<span style="display: none;" class="xs{$v['cat_id']} xs">
+											<span>
+												<a target="_blank"  style="color:#008BB9;" href="{:U('Store/goods_list',array('store_id'=>$store[store_id],'cat_id'=>$vs[cat_id]))}">{$vs.cat_name}</a>
+											</span>
+											<br/>
+										</span>
+										</foreach>
 									</foreach>
 								</ul>
 							</div>

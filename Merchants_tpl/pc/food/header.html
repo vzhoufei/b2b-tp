@@ -1,0 +1,17 @@
+<header>
+	<div class="logo">
+		<span class="logo1"><img width='108px' height='38px' src="{$store.store_logo}"></span>
+	</div>
+	<div class="seach">
+		<input type="text" name="seach" class="seachA"><input type="image" name="sub" src='{:STYLE}/images/soso.jpg' onclick='submits()' class='seachB'>
+	</div>
+	<script type="text/javascript">
+	function submits()
+	{
+	 var keywords = $('input[name=seach]').val();
+	 if(!keywords){alert('请输入关键字');return;}
+	 window.location.href="{:U('Store/search')}?store_id={$store[store_id]}&keywords="+keywords;
+	}	
+	</script>
+	<div class="cl"></div>
+</header>

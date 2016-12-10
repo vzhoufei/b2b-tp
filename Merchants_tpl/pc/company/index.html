@@ -51,6 +51,22 @@
   </div>
   <!-- 模块1 -->
   <div class="center max">{$text[0]|htmlspecialchars_decode}</div>
+
+<foreach name="recommend" item="recomendgoods" >
+      <h2 class="goodsShow">{$recomendgoods.cat_name}</h2>
+          <div id="goodsShow">
+            <ul>
+              <foreach name="recomendgoods[cat_id_goods]" item="vv">
+              <li><a href='{:C('DOMAIN')}{:U('Goods/goodsInfo',array('id'=>$vv[goods_id]))}'><img src="{$vv.goods_id|goods_thum_images=240,240}" ></a></li>
+              </foreach>
+            </ul>
+        </div>
+        <div id="switch">
+          <button class="back"></button>
+          <button class="gogo"></button>
+       </div>
+     </foreach>  
+
   <!-- 模块1结束 -->
   <div class="mo4">
     <div class="center">     

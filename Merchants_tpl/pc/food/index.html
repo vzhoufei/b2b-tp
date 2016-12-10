@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta charset="utf-8">
+	<meta content="网站关键字" name="keywords">
+	<meta content="网站关键字seo" name="description">
+	<script type="text/javascript" src="{:STYLE}/js/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="{:STYLE}/js/index.js"></script>
+	<script type="text/javascript" src="{:STYLE}/js/lbt.js"></script>
+	
+	<link rel="stylesheet" type="text/css" href="{:STYLE}/css/lbt.css">
+
+	<link rel="stylesheet" type="text/css" href="{:STYLE}/css/index.css">
+
+	
+</head>
+<body>
+	<!-- 头部区域 -->
+	<include file='./header' />
+	<!-- 主体区域 -->
+
+	<main class="main">
+
+		<nav class="main_nav">
+			<ul>				
+				<li style="color:#fff;background:#2B2B2B;width:200px;" class="mainmore"><a href="{:U('Store/goods_list',array('store_id'=>$store[store_id]))}">所有食品分类</a>
+					<div class="mainAll">
+						<foreach name="main_cat" item="v">
+							<?php if($key>3){break;} ?>
+						<dl>
+							<dt><a style='color:#000;' href="{:U('Store/goods_list',array('store_id'=>$store[store_id],'cat_id'=>$v[cat_id]))}">{$v.cat_name}</a></dt>
+							 <foreach name="sub_cat[ $v['cat_id'] ]" item="vs">
+							 	<?php if($key>3)break; ?>
+							<dd><a href="{:U('Store/goods_list',array('store_id'=>$store[store_id],'cat_id'=>$vs[cat_id]))}">{$vs.cat_name}</a></dd>
+							</foreach>
+						</dl>
+					</foreach>
+					</div>
+				</li>
+
+
+				<li class="headerN"><a href="#">首页</a></li>
+				<foreach name="navigation" item="vv" key="kk">
+		        	<li <?php if($vv['sn_id'] == $_GET['sn_id']){echo 'class="top_nav_barM"';}?> >
+		        	<if condition="empty($vv[sn_url])">
+		        	<a href=" 
+		        	<if condition='($vv[sn_is_list] == 1 and $nav_where)'>
+		        	{:U('Store/article_list',array('sn'=>$vv[sn_id]))}
+		        	<elseif condition='$vv[sn_is_list] == 1 and !$nav_where' />
+		        	{:U('Store/newsList',array('store_id'=>$store[store_id],'sn'=>$vv[sn_id]))}
+		        	<elseif condition='$nav_where' />
+		        	{:U('Store/cover',array('sn_id'=>$vv[sn_id]))}
+		        	<else/>
+		        	{:U('Store/store_news',array('store_id'=>$store[store_id],'sn_id'=>$vv[sn_id]))}
+		        	</if>" 
+					title = '{$vv.sn_keyword}'
+		        	>
+		        	<else/>
+		        	<a href="{$vv.sn_url}" title = '{$vv.sn_keyword}'>
+		        	</if>
+		        	{$vv.sn_title}</a>
+		        	</li>
+		      	</foreach>
+		      	<foreach name="link_cat" item="vz">
+				<li <?php if($vz['cat_id'] == $_GET['cat_id']){echo 'class="top_nav_barM"';}?>>
+				<a href="
+				<if condition='$nav_where'>
+				{:U('Store/goods_list',array('cat_id'=>$vz[cat_id]))}
+				<else/>
+				{:U('Store/goods_list',array('store_id'=>$store[store_id],'cat_id'=>$vz[cat_id]))}
+				</if>
+				" title='{$vz.cat_name}'>{$vz.cat_name}</a> </li>
+	      	</foreach>
+			<div class="cl"></div>
+			</ul>
+		</nav>
+		<!-- 轮播图 -->
+		   <div class="banner" id="banner" >
+				<foreach name="store[store_slide]" item="vimg" key="k">
+					<notempty name="vimg">
+						<a href="#" class="d1" style="background:url({$vimg}) center no-repeat;background-size:100%;"></a>
+					</notempty>
+				</foreach>
+				<div class="d2" id="banner_id">
+					<ul>
+						<foreach name="store[store_slide]" item="vimg" key="k">
+						<notempty name="vimg">
+						<li></li>
+						</notempty>
+						</foreach>
+					</ul>
+				</div>
+				<script type="text/javascript">banner()</script>
+			</div>
+		    <!--case_box-->
+	<!-- 轮播图结束 -->
+		<div class="s1">
+			{$text[0]|htmlspecialchars_decode}
+			<div class='cl'></div>
+		</div>
+		
+		<div  class="s2">
+			<div class="s2Top">
+				<ul>
+					<li class="s2Nav  s2NaN " i='.tehui'>超值特惠</li>
+					<li class="s2TopM s2NaN " i=".banjia">半价尝新</li>
+					<li class="s2TopM s2NaN " i=".xingping">新品推荐</li>
+					<li class="s2TopM s2NaN " i=".qingcang">特价清仓</li>
+				<div class="cl"></div>
+				</ul>
+			</div>
+			
+			<div class="tehui">
+				<ul>
+					<li><a href="#"><img src="{:STYLE}/image/s2ta.png"></a>
+					<h4>澳洲特产夏威夷果 奶油味</h4>
+					<p><span class='nowM'>￥<b>36</b>.80</span><span class="before"><del>￥38.80</del></span></p>
+					<p class="buy"><a href="#">购买</a></p>
+					</li>
+					
+					<li><a href="#"><img src="{:STYLE}/image/s2ta.png"></a>
+					<h4>澳洲特产夏威夷果 奶油味</h4>
+					<p><span class='nowM'>￥<b>36</b>.80</span><span class="before"><del>￥38.80</del></span></p>
+					<p class="buy"><a href="#">购买</a></p>
+					</li>
+
+					<li><a href="#"><img src="{:STYLE}/image/s2ta.png"></a>
+					<h4>澳洲特产夏威夷果 奶油味</h4>
+					<p><span class='nowM'>￥<b>36</b>.80</span><span class="before"><del>￥38.80</del></span></p>
+					<p class="buy"><a href="#">购买</a></p>
+					</li>
+
+					<li><a href="#"><img src="{:STYLE}/image/s2ta.png"></a>
+					<h4>澳洲特产夏威夷果 奶油味</h4>
+					<p><span class='nowM'>￥<b>36</b>.80</span><span class="before"><del>￥38.80</del></span></p>
+					<p class="buy"><a href="#">购买</a></p>
+					</li>
+
+					<li><a href="#"><img src="{:STYLE}/image/s2ta.png"></a>
+					<h4>澳洲特产夏威夷果 奶油味</h4>
+					<p><span class='nowM'>￥<b>36</b>.80</span><span class="before"><del>￥38.80</del></span></p>
+					<p class="buy"><a href="#">购买</a></p>
+					</li>
+					<div class="cl"></div>
+					</ul>			
+			</div>
+
+
+		</div>
+
+			<div class='s3Top'><p>休闲零食<span class="s3tMoll"><a href="#">更多优惠>></a></span></p></div>
+			<hr>
+			<div class='s3'>
+				<div class="s3L">
+					<a href="#"><img src="{:STYLE}/image/s3l.png"></a>
+				</div>
+				<div class="s3R">
+					<ul>
+						<li><p>澳牧原装进口儿童成长牛奶</p>
+						<a href="#"><img src="{:STYLE}/image/s3R.png"></a></li>
+						<li><p>澳牧原装进口儿童成长牛奶</p>
+						<a href="#"><img src="{:STYLE}/image/s3R.png"></a></li>
+						<li><p>澳牧原装进口儿童成长牛奶</p>
+						<a href="#"><img src="{:STYLE}/image/s3R.png"></a></li>
+						<li><p>澳牧原装进口儿童成长牛奶</p>
+						<a href="#"><img src="{:STYLE}/image/s3R.png"></a></li>
+						<li><p>澳牧原装进口儿童成长牛奶</p>
+						<a href="#"><img src="{:STYLE}/image/s3R.png"></a></li>
+						<li><p>澳牧原装进口儿童成长牛奶</p>
+						<a href="#"><img src="{:STYLE}/image/s3R.png"></a></li>
+					<div class="cl"></div>
+					</ul>
+				</div>
+			<div class='cl'></div>
+			</div>
+			
+			<div class='s3Top'><p>坚果蜜饯<span class="s3tMoll"><a href="#">更多优惠>></a></span></p></div>
+			<hr>
+			<div class='s3'>
+				<div class="s3L">
+					<a href="#"><img src="{:STYLE}/image/s4.png"></a>
+				</div>
+				<div class="s3R">
+					<ul>
+						<li><p>澳牧原装进口儿童成长牛奶</p>
+						<a href="#"><img src="{:STYLE}/image/s4Ra.png"></a></li>
+						<li><p>澳牧原装进口儿童成长牛奶</p>
+						<a href="#"><img src="{:STYLE}/image/s4Ra.png"></a></li>
+						<li><p>澳牧原装进口儿童成长牛奶</p>
+						<a href="#"><img src="{:STYLE}/image/s4Ra.png"></a></li>
+						<li><p>澳牧原装进口儿童成长牛奶</p>
+						<a href="#"><img src="{:STYLE}/image/s4Ra.png"></a></li>
+						<li><p>澳牧原装进口儿童成长牛奶</p>
+						<a href="#"><img src="{:STYLE}/image/s4Ra.png"></a></li>
+						<li><p>澳牧原装进口儿童成长牛奶</p>
+						<a href="#"><img src="{:STYLE}/image/s4Ra.png"></a></li>
+					<div class="cl"></div>
+					</ul>
+				</div>
+			<div class='cl'></div>
+			</div>
+		<div class="s5">
+				<div class='footerA'>
+					<div class="footera1">
+						<img src="{:STYLE}/image/xin.png"><span>正品保障</span>
+						<p>购买后如发现质量问题请不要直接报差评，否则不予任何售后服务。</p>
+					</div>
+					<div class="footera1">
+						<img src="{:STYLE}/image/secha.png"><span>急速物流</span>
+						<p>所有宝贝均为实物拍摄，各显示器显示不同，对色彩要求高的买家请慎拍。</p>
+					</div>
+					<div class="footera1">
+						<img src="{:STYLE}/image/kuaidi.png"><span>无忧售后</span>
+						<p>本店默认中通快递，如需要发其他快递请提前与客服交流。</p>
+					</div>
+					<div class="footera1">
+						<img src="{:STYLE}/image/tuihuan.png"><span>特色服务</span>
+						<p>如宝贝型号不合，顾客自理来回运费调换，如出现商品质量问题，本店承担运费调换。</p>
+					</div>
+			<div class='cl'></div>
+			</div>
+	</div>
+		<div class="cl"></div>
+	</main>
+		<div class="cl"></div>
+<!-- 底部 -->
+	<footer class="footer">
+		
+
+		<!-- <h3><span style="color:grey;font-size:26px;">CLOTHING BRAND</span><span style="color:#fff;margin-left:20px;font-size:26px;">DESIGN</span></h3> -->
+		<h2><a href="#">关于我们</a><a href="#">品牌设计</a><a href="#">新闻资讯</a><a href="#">联系我</a></h2>
+		<p>©2016 网站样板-服装 版权所有</p>
+		<p><a href="#">手机版</a> 	| 	<a href="#">本站使用云狄建站搭建</a> 	| 	<a href="#">管理登录</a></p>
+
+	</footer>
+</body>
+</html>
