@@ -1,0 +1,73 @@
+<!DOCTYPE >
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$news.title}</title>
+<meta name="keywords" content="{$store.seo_keywords}" />
+<meta name="description" content="{$store.seo_description}"/>
+<link rel="shortcut icon" href="favicon.ico"/>
+  <script type="text/javascript" src="{:STYLE}/js/jquery-1.7.1.min.js"></script>
+  <script type="text/javascript" src="{:STYLE}/js/index.js"></script>
+
+  
+  <script type="text/javascript" src="{:STYLE}/js/jquery.banner.revolution.min.js"></script>
+  <script type="text/javascript" src="{:STYLE}/js/banner.js"></script>
+  <link rel="stylesheet" type="text/css" href="{:STYLE}/css/lbt.css">
+  <link rel="stylesheet" type="text/css" href="{:STYLE}/css/index.css">
+<style type="text/css">
+  .max *{
+  max-width: 100%;
+  }
+</style>
+  </head>
+<body>
+
+<!-- 头部开始 -->
+<include file="./header"/>
+<!-- 头部结束 -->
+<div class="banner" id="banner" >
+   <foreach name="store[store_slide]" item="vimg" key="k">
+        <notempty name="vimg">
+  <a  class="d1" style="background:url({$vimg}) center no-repeat;"></a>
+        </notempty>
+      </foreach>
+  <div class="d2" id="banner_id">
+    <ul>
+      <foreach name="store[store_slide]" item="vimg" key="k">
+              <notempty name="vimg">
+          <li></li>
+              </notempty>
+            </foreach>
+    </ul>
+  </div>
+  <script type="text/javascript">banner()</script>
+</div>
+  
+ <div class="center ">
+<section class="main_goods">
+    <!-- 产品部分开始 -->
+    <div class="main_goodsO" style='padding-bottom:40px;'>
+      <div class="mian_goodO6">
+        <div style='text-align:center;font-size:30px;height:50px;line-height:50px;'><h1>{$news.title}</h1></div>
+        <hr style='margin:0px;'>
+        <div class = 'info'>类型：<if condition ='$news[rep] eq null'>原创文章<else/><a href='$news[rep]'>转载</a></if></div><div class = 'info'>时间：{$news.timer|date='Y-m-d',###}</div><div class = 'info'>作者：{$news.author}</div>
+        <div style ='margin-top:50px'>
+        {$news.content|htmlspecialchars_decode}
+        </div>
+      </div>
+
+        <div class='page'>
+          <div class='pre'><if condition='$pre eq null'>没有上一篇<else/><a href="{:U('Store/Newscontent',array('store_id'=>$store[store_id],'sn'=>$sn_id,'text'=>$pre))}">上一篇</a></if></div>
+          <div class='next'><if condition='$next eq null'>没有下一篇<else/><a href="{:U('Store/Newscontent',array('store_id'=>$store[store_id],'sn'=>$sn_id,'text'=>$next))}">下一篇</a></if></div>
+        </div>
+      <style>
+        .info{height: 20px;width: 33.3%;float: left;text-align: center;}
+        .page{height: 30px;position: relative;bottom:-30px;}
+        .page .pre{float: left;text-align: center;width: 50%;}
+        .page .next{border-left:1px solid #099;margin-left: -1px;float: left;text-align: center;width: 50%;position: initial;}
+      </style>
+    </div>
+  </section>
+</div>
+  <include file="./footer"/>
+</html>

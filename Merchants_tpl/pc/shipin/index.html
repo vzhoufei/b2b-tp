@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{$store.store_name}</title>
+	<meta name="keywords" content="{$store.seo_keywords}" />
+	<meta name="description" content="{$store.seo_description}"/>
+	<script type="text/javascript" src="{:STYLE}/js/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="{:STYLE}/js/move3.js"></script>
+	<script type="text/javascript" src="{:STYLE}/js/index.js"></script>
+	
+	<script type="text/javascript" src="{:STYLE}/js/lbt.js"></script>
+	<link rel="stylesheet" type="text/css" href="{:STYLE}/css/lbt.css">
+	<link rel="stylesheet" type="text/css" href="{:STYLE}/css/index.css">
+
+	
+</head>
+<body>
+	<!-- 头部区域 -->
+	<include file='./header' />
+	<!-- 主体区域 -->
+	<main class="main">
+
+		
+		<!-- 轮播图 -->
+		   <div class="banner" id="banner" >
+		   	 <foreach name="store[store_slide]" item="vimg" key="k">
+              <notempty name="vimg">
+				<a  class="d1" style="background:url({$vimg}) center no-repeat;"></a>
+              </notempty>
+            </foreach>
+				<div class="d2" id="banner_id">
+					<ul>
+						<foreach name="store[store_slide]" item="vimg" key="k">
+			              <notempty name="vimg">
+								<li></li>
+			              </notempty>
+			            </foreach>
+					</ul>
+				</div>
+				<script type="text/javascript">banner()</script>
+			</div>
+		    <!--case_box-->
+	<!-- 轮播图结束 -->
+		<div class="s1">
+			<h4>推荐产品</h4>
+			<div id="one">
+				<ul>
+					<foreach name="recomend_goods" item="v">
+					<li><img src="{$v.goods_id|goods_thum_images=130,120}" alt="">
+						<div class="oneAA"> <p>{$v.goods_name|getSubstr=0,15}</p><p>市场价<del>￥{$v.shop_price}</del></p><a href="{:U('Goods/goodsInfo',array('id'=>$v[goods_id]))}">购买</a></div>
+					</li>
+
+					</foreach>
+				</ul>
+			</div>
+			<div id="two">
+				<button class="back">&lt;</button>
+				<button class="next">&gt;</button>
+			</div>
+		</div>
+		
+		<div class="s2">
+			<h4>最新产品</h4>
+			<div id="oneBB">
+				<ul>
+					<foreach name="new_goods" item="v">
+			           	<li><img src="{$v.goods_id|goods_thum_images=240,240}" alt="">
+						 	<p>{$v.goods_name|getSubstr=0,15}</p><p>市场价<del>￥{$v.shop_price}</del></p><a href="{:U('Goods/goodsInfo',array('id'=>$v[goods_id]))}">购买</a></li>
+					</foreach>
+				</ul>
+			</div>
+			<div id="twoB">
+				<button class="back2">&lt;</button>
+				<button class="next2">&gt;</button>
+			</div>
+		</div>
+
+		<foreach name="recommend" item="recomend_goods" >
+		<div class="s2">
+			<h4>{$recomend_goods.cat_name}</h4>
+			<div id="oneBB">
+				<ul>
+					<foreach name="recomend_goods[cat_id_goods]" item="vvv">
+			           	<li><img src="{$vvv.goods_id|goods_thum_images=240,240}" alt="">
+						 	<p>{$vvv.goods_name|getSubstr=0,15}</p><p>市场价<del>￥{$vvv.shop_price}</del></p><a href="{:U('Goods/goodsInfo',array('id'=>$vvv[goods_id]))}">购买</a></li>
+					</foreach>
+				</ul>
+			</div>
+			<div id="twoB">
+				<button class="back2">&lt;</button>
+				<button class="next2">&gt;</button>
+			</div>
+		</div>
+		</foreach>
+
+		<tpshop sql="select * from yd_store_navigation where sn_store_id = $sn_store_id and sn_is_list = 1 limit 1" item="v">
+		<div class="s3">
+				<h4>{$v.sn_title}</h4>
+				<div class="s3L"><img src="{:STYLE}/images/s3aa.jpg"></div>
+				<div class="s3R">
+				<ul id="s3RB">
+					<tpshop sql="select * from yd_store_art where sn_id = $v[sn_id] and is_show = 1 limit 11" item="text">
+					  	<li>
+					  		<a href="<if condition='($nav_where)'>{:U('Store/newscontent',array('text'=>$text[id]))}<else/>{:U('Store/newscontent',array('store_id'=>$sn_store_id,'sn'=>$sn_id,'text'=>$text[id]))}</if>">{$text.title|mb_substr=0,20,'utf-8'}...<span>{$text.timer|date='Y-m-d',###}</span></a>
+					  	</li>
+       				</tpshop>
+				</ul>
+				</div>
+			<div class="cl"></div>
+		</div>
+		</tpshop>
+
+		<div class="cl"></div>
+	</main>
+		<div class="cl"></div>
+		<include file='./footer' />
+</body>
+</html>

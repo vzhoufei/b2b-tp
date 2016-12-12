@@ -25,38 +25,28 @@
 
 		<nav class="main_nav">
 			<ul>
-				<li class="headerN"><a href="#">首页</a></li>
+				<li class="headerN"><a href="{:U('Store/index',array('store_id'=>$store[store_id]))}">首页</a></li>
 				<foreach name="navigation" item="vv" key="kk">
 		        	<li <?php if($vv['sn_id'] == $_GET['sn_id']){echo 'class="top_nav_barM"';}?> >
 		        	<if condition="empty($vv[sn_url])">
-		        	<a href=" 
-		        	<if condition='($vv[sn_is_list] == 1 and $nav_where)'>
-		        	{:U('Store/article_list',array('sn'=>$vv[sn_id]))}
-		        	<elseif condition='$vv[sn_is_list] == 1 and !$nav_where' />
-		        	{:U('Store/newsList',array('store_id'=>$store[store_id],'sn'=>$vv[sn_id]))}
-		        	<elseif condition='$nav_where' />
-		        	{:U('Store/cover',array('sn_id'=>$vv[sn_id]))}
-		        	<else/>
-		        	{:U('Store/store_news',array('store_id'=>$store[store_id],'sn_id'=>$vv[sn_id]))}
-		        	</if>" 
-					title = '{$vv.sn_keyword}'
-		        	>
-		        	<else/>
-		        	<a href="{$vv.sn_url}" title = '{$vv.sn_keyword}'>
-		        	</if>
-		        	{$vv.sn_title}</a>
+			        	<a href=" 
+			        	<if condition='($vv[sn_is_list])'>
+			        	{:U('Store/newsList',array('store_id'=>$store[store_id],'sn'=>$vv[sn_id]))}
+			        	<else/>
+			        	{:U('Store/store_news',array('store_id'=>$store[store_id],'sn_id'=>$vv[sn_id]))}
+			        	</if>" 
+			        	>
+			        	<else/>
+			        	<a href="{$vv.sn_url}" title = '{$vv.sn_keyword}'>
+			        	</if>
+			        	{$vv.sn_title}</a>
 		        	</li>
 		      	</foreach>
       	<!-- 分类在导航显示 -->
 	      	<foreach name="link_cat" item="vz">
 				<li <?php if($vz['cat_id'] == $_GET['cat_id']){echo 'class="top_nav_barM"';}?>>
-				<a href="
-				<if condition='$nav_where'>
-				{:U('Store/goods_list',array('cat_id'=>$vz[cat_id]))}
-				<else/>
-				{:U('Store/goods_list',array('store_id'=>$store[store_id],'cat_id'=>$vz[cat_id]))}
-				</if>
-				" title='{$vz.cat_name}'>{$vz.cat_name}</a> </li>
+				<a href="{:U('Store/goods_list',array('store_id'=>$store[store_id],'cat_id'=>$vz[cat_id]))}">{$vz.cat_name}</a>
+			</li>
 	      	</foreach>
 			<div class="cl"></div>
 			</ul>
@@ -197,6 +187,20 @@
 				<div class="cl"></div>
 			</ul>
 		</div>
+		<foreach name="recommend" item="recomend_goods" >
+		<div class="s5">
+			<div class="s1A">
+					<h3>{$recomend_goods.cat_name}</h3>
+					<h4>Production</h4></div>
+			<ul>
+				<foreach name="recomend_goods[cat_id_goods]" item="vvv">
+				<li><a href="{:U('Goods/goodsInfo',array('id'=>$vvv[goods_id]))}"><img src="{$vvv.goods_id|goods_thum_images=240,240}"></a></li>
+				</foreach>
+				<div class="cl"></div>
+			</ul>
+		</div>
+		</foreach>
+
 
 		<div class="s6"> 
 			<div class="baozhen">

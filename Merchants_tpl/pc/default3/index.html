@@ -197,6 +197,48 @@
             </notempty>
        </div>
     </div>
+
+
+<foreach name="recommend" item="recomend_goods" >
+	<div class="ncs-main-container">
+      <div class="title"><span><a href="{:U('Store/goods_list',array('store_id'=>$store[store_id],'key'=>'is_new'))}" class="more">更多</a></span>
+        <h4>{$recomend_goods.cat_name}</h4>
+      </div>
+      <div class="content ncs-goods-list">
+      		<notempty name="recomend_goods[cat_id_goods]">
+            <ul>
+			<foreach name="recomend_goods[cat_id_goods]" item="vo">
+	           <li>
+	            <dl>
+	              <dt><a href="{:U('Goods/goodsInfo',array('id'=>$vo[goods_id]))}" class="goods-thumb" target="_blank"><img src="{$vo.goods_id|goods_thum_images=240,240}" alt="{$vo.goods_name}"/></a>
+	                <ul class="goods-thumb-scroll-show">
+	                <assign name="i" value="0"/>
+	                <foreach name="goods_images" item="v2" key="k2">
+	                   <if condition="$v2[goods_id] eq $vo[goods_id]">
+	                   	  <li <if condition="$i eq 0">class="selected"</if>><a href="javascript:void(0); rel={$i++}"><img src="{$v2[image_url]}"/></a></li>
+	                   </if>
+	                 </foreach>
+	                 </ul>
+	              </dt>
+	              <dd class="goods-name"><a href="{:U('Goods/goodsInfo',array('id'=>$vo[goods_id]))}" title="{$vo.goods_name}" target="_blank">{$vo.goods_name|getSubstr=0,30}</a></dd>
+	              <dd class="goods-info"><span class="price"><i>&yen;</i> {$vo.shop_price} </span> <span class="goods-sold">已售：<strong>{$vo.sales_sum}</strong> 件</span></dd>
+	              <if condition="$vo[prom_type] gt 0">
+		              <dd class="goods-promotion">
+		              		<span><if condition="$vo[prom_type] eq 1">抢购商品</if><if condition="$vo[prom_type] eq 2">团购商品</if><if condition="$vo[prom_type] eq 3">限时折扣</if></span>
+		              </dd>
+	              </if>
+	            </dl>
+	          </li>
+			</foreach>
+            </ul>
+            <else/>
+            <div class="nothing"><p>很抱歉! 没有找到相关商品</p></div>
+            </notempty>
+       </div>
+    </div>
+</foreach>
+
+
   </div>
   <div class="ncs-sidebar">
     
