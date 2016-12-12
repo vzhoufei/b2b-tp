@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{$cat_name}</title>
+	 <meta name="keywords" content="{$store.seo_keywords}" />
+    <meta name="description" content="{$store.seo_description}"/>
+<include file="./header"/>
+<style>
+
+.selected{background:#f00;}
+
+</style>
+	<section class="main_ban">
+	<if condition="$navlist[banner_show]">
+	<img src="{$navlist.img}" alt="">
+	</if>
+	</section>
+<!-- 产品专区 -->
+ <if condition="($goods_list)"> 
+	<section class="main_goods">
+		<!-- 产品部分开始 -->
+		<div class="main_goodsO">
+		
+				<!-- 产品左右显示部分 -->
+				<div class="mian_goodO6">
+				
+					<!-- 产品右边部分 -->
+					<div class="mian_goodO6Rssss" >
+						<div class="main_list_page">
+						<div class="mian_goodO6ROne">
+				<div class="mian_goodO6ROneC">
+					<ul>
+						<foreach name="link_arr" item="link">
+		        <li <if condition="$link[key] eq $keys">class='selected'</if>>
+		        <a  <if condition="$link[key] eq $keys">class="{$sort}"</if> href="{$link.url}">{$link.name}</a>
+		        </li>
+		      </foreach>
+					
+						<div class="cl"></div>
+					</ul>
+
+							</div>
+						</div>
+			
+
+						<div class="mian_goodlist">
+							<ul>
+
+         						<foreach name="goods_list" item="vo">
+							
+								<li><a target="_blank" href="{:C('DOMAIN')}{:U('Goods/goodsInfo',array('id'=>$vo[goods_id]))}"><img src="{$vo.goods_id|goods_thum_images=240,240}" class="img" /></a>					
+									<span class="mian_goodO5M">¥<b>{$vo.shop_price}</b></span>
+									<a target="_blank" href="{:C('DOMAIN')}{:U('Goods/goodsInfo',array('id'=>$vo[goods_id]))}" class="mian_goodO5T">{$vo.goods_name|getSubstr=0,20}</a>
+									<a target="_blank" href="{:C('DOMAIN')}{:U('Goods/goodsInfo',array('id'=>$vo[goods_id]))}" class="qianggoua">
+
+										<if condition="$vo[prom_type] gt 0">
+									<div class="qianggou"><span class="qianggou2">
+										                    <if condition="$vo[prom_type] eq 1">抢购商品</if>
+										                    <if condition="$vo[prom_type] eq 2">团购商品</if>
+										                    <if condition="$vo[prom_type] eq 3">限时折扣</if>
+									</span></div>
+										            </if>
+
+
+									</a>
+									<span  class="mian_goodO6R1M"><!-- <img src="{:STYLE}/images/1627336_1256177305.png"><img src="{:STYLE}/images/logo_alipay.gif"> --></span>
+									<span class="mian_goodO6R1N">成交{$vo.sales_sum}笔</span>	
+										<div class="jiagou"><a href="{:C('DOMAIN')}{:U('Goods/goodsInfo',array('id'=>$vo[goods_id]))}">加入进货单</a></div>							
+									</li>
+								</foreach>
+
+								
+								<div class="cl"></div>
+							</ul>
+							<div class="lastPage">
+								{$page_show}
+		
+							</div>
+
+						</div>
+					</div>
+
+						<div class="cl"></div>
+					</div>
+
+				<div class="cl"></div>
+				</div>
+
+		</div>
+
+	</section>
+	<else/>
+<div style="width:1200px;margin:0 auto;text-align:center;height:200px;line-height:200px;font-size:20px;"> 抱歉没有找到相关商品!       </div>
+	</if>
+
+	</main>
+
+	<include file="./footer"/>
+	

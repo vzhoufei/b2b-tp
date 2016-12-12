@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta charset="utf-8">
+	<meta content="网站关键字" name="keywords">
+	<meta content="网站关键字seo" name="description">
+	<script type="text/javascript" src="{:STYLE}/js/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="{:STYLE}/js/index.js"></script>
+	<script type="text/javascript" src="{:STYLE}/js/lbt.js"></script>
+	
+	<link rel="stylesheet" type="text/css" href="{:STYLE}/css/lbt.css">
+
+	<link rel="stylesheet" type="text/css" href="{:STYLE}/css/index.css">
+
+	
+</head>
+<body>
+	<!-- 头部区域 -->
+<include file='./header' />
+	<!-- 主体区域 -->
+
+	<main class="main">
+
+		<nav class="main_nav">
+			<ul>
+				<li class="headerN"><a href="#">首页</a></li>
+				<foreach name="navigation" item="vv" key="kk">
+		        	<li <?php if($vv['sn_id'] == $_GET['sn_id']){echo 'class="top_nav_barM"';}?> >
+		        	<if condition="empty($vv[sn_url])">
+		        	<a href=" 
+		        	<if condition='($vv[sn_is_list] == 1 and $nav_where)'>
+		        	{:U('Store/article_list',array('sn'=>$vv[sn_id]))}
+		        	<elseif condition='$vv[sn_is_list] == 1 and !$nav_where' />
+		        	{:U('Store/newsList',array('store_id'=>$store[store_id],'sn'=>$vv[sn_id]))}
+		        	<elseif condition='$nav_where' />
+		        	{:U('Store/cover',array('sn_id'=>$vv[sn_id]))}
+		        	<else/>
+		        	{:U('Store/store_news',array('store_id'=>$store[store_id],'sn_id'=>$vv[sn_id]))}
+		        	</if>" 
+					title = '{$vv.sn_keyword}'
+		        	>
+		        	<else/>
+		        	<a href="{$vv.sn_url}" title = '{$vv.sn_keyword}'>
+		        	</if>
+		        	{$vv.sn_title}</a>
+		        	</li>
+		      	</foreach>
+      	<!-- 分类在导航显示 -->
+	      	<foreach name="link_cat" item="vz">
+				<li <?php if($vz['cat_id'] == $_GET['cat_id']){echo 'class="top_nav_barM"';}?>>
+				<a href="
+				<if condition='$nav_where'>
+				{:U('Store/goods_list',array('cat_id'=>$vz[cat_id]))}
+				<else/>
+				{:U('Store/goods_list',array('store_id'=>$store[store_id],'cat_id'=>$vz[cat_id]))}
+				</if>
+				" title='{$vz.cat_name}'>{$vz.cat_name}</a> </li>
+	      	</foreach>
+			<div class="cl"></div>
+			</ul>
+		</nav>
+		<!-- 轮播图 -->
+		   <div class="banner" id="banner" >
+
+		   		<foreach name="store[store_slide]" item="vimg" key="k">
+					<notempty name="vimg">
+						<a href="{$store[store_slide_url][ $k ]}" class="d1" style="background:url({$vimg}) center no-repeat;"></a>
+					</notempty>
+				</foreach>
+				<div class="d2" id="banner_id">
+					<ul>
+						<foreach name="store[store_slide]" item="vimg" key="k">
+							<notempty name="vimg">
+								<li></li>
+							</notempty>
+						</foreach>
+					</ul>
+				</div>
+				<script type="text/javascript">banner()</script>
+			</div>
+		    <!--case_box-->
+	<!-- 轮播图结束 -->
+		<div class="s1">
+			<div class="s1A">
+				<h3>服装定制</h3>
+				<h4>GARMENT PROCESSING</h4>
+			</div>
+		</div>
+
+		<div class="s2">
+			<div class="s2mainL">
+				<ul>
+					<foreach name="main_cat" item="v">
+						<foreach name="sub_cat[ $v['cat_id'] ]" item="vs">
+						<li class="s2mainAA" i='.list{$vs[cat_id]}' num = '{$vs[cat_id]}'><a href="<if condition='$nav_where'>
+									{:U('Store/goods_list',array('cat_id'=>$vs[cat_id]))}
+									<else/>
+									{:U('Store/goods_list',array('store_id'=>$store[store_id],'cat_id'=>$vs[cat_id]))}
+									</if>">{$vs.cat_name}</a></li>
+						</foreach>
+					</foreach>
+			</ul>		
+			</div>
+
+			<div class="s2mainR">
+				<foreach name="main_cat" item="v">
+					<foreach name="sub_cat[ $v['cat_id'] ]" item="vs">
+					<div class="jiagongA list{$vs[cat_id]}"></div>
+					</foreach>
+				</foreach>
+				<script type="text/javascript">
+				$(function(){
+
+					function Getgoods(type,obj){
+						$.ajax({
+							url: '{:U("Store/getshop",array("store_id"=>$_GET[store_id]))}',
+							type: 'POST',
+							dataType: 'json',
+							data: {type:type,size:6},
+							success:function(result){
+								var html = '<ul>';
+								for (var i = 0; i < result.length; i++) {
+									html+='<li><a href="'+'" title="￥'+result[i]['shop_price']+'"><img width="227px" height="414px" src="'+result[i]['original_img']+'"></a></li>';
+								};
+								html+='</ul>';
+								obj.html(html).show();
+							}
+						});
+					}
+
+
+					$($('.s2mainL >ul li')[0]).removeClass('s2mainAA').addClass('s2mainAAA');
+					Getgoods($($('.s2mainL >ul li')[0]).attr('num'),$($($('.s2mainL >ul li')[0]).attr('i')));
+					$($($('.s2mainL >ul li')[0]).attr('i')).show();
+
+
+					$('.s2mainL >ul li').bind('mouseover',function(){
+
+						$('.s2mainL > ul li').each(function(){				
+
+							if($($(this).attr('i')).html()==''){
+								Getgoods($(this).attr('num'),$($(this).attr('i')));
+							}
+
+							$($(this).attr('i')).css('display','none');				
+							$($(this).attr('i')).hide();
+							$(this).removeClass('s2mainAAA');
+							$(this).addClass('s2mainAA');			
+						})
+
+						$(this).removeClass('s2mainAA');
+						$(this).addClass('s2mainAAA');
+						$($(this).attr('i')).show();
+					});
+				})
+				</script>
+			</div>
+		<div class="cl"></div>
+		</div>
+		
+		<div class="s3">{$text[0]|htmlspecialchars_decode}</div>
+
+		<div class="s4">		
+		<tpshop sql="select * from yd_store_navigation where sn_store_id = $sn_store_id and sn_is_list = 1 limit 2" item="v">
+  	    	<div class="s4Main<if condition='$key eq 0'>L<else/>R</if>">
+				<div class="s1A">
+					<h3>{$v.sn_title}</h3>
+					<h4>{$v.sn_title}</h4></div>
+					<ul>
+						<tpshop sql="select * from yd_store_art where sn_id = $v[sn_id] and is_show = 1 limit 11" item="text">
+
+						<li><a href="<if condition='($nav_where)'>
+	              {:U('Store/newscontent',array('text'=>$text[id]))}
+	              <else/>
+	              {:U('Store/newscontent',array('store_id'=>$sn_store_id,'sn'=>$sn_id,'text'=>$text[id]))}
+	              </if>">{$text.description|mb_substr=0,20,'utf-8'}...<span>{$text.timer|date='Y-m-d',###}</span></a></li>			
+
+						</tpshop>			
+					</ul>
+			</div>
+	    </tpshop>
+
+
+			<div class="cl"></div>
+		</div>
+
+		<div class="s5">
+			<div class="s1A">
+					<h3>推荐产品</h3>
+					<h4>Production</h4></div>
+			<ul>
+				<foreach name="recomend_goods" item="vo">
+				<li><a href="{:U('Goods/goodsInfo',array('id'=>$vo[goods_id]))}"><img src="{$vo.goods_id|goods_thum_images=240,240}"></a></li>
+				</foreach>
+				<div class="cl"></div>
+			</ul>
+		</div>
+
+		<div class="s6"> 
+			<div class="baozhen">
+			<div class="baozhenA"><h3>质量保证</h3>
+				<p>出口各国 品质保证</p></div>			
+				<img src="{:STYLE}/images/bao.png">
+			</div>
+			<div class="songhuo">
+			<div class="baozhenA"><h3>质量保证</h3>
+				<p>出口各国 品质保证</p></div>			
+				<img src="{:STYLE}/images/songhuo.png">
+			</div>
+			<div class="baoz">
+			<div class="baozhenA"><h3>质量保证</h3>
+				<p>出口各国 品质保证</p></div>			
+				<img src="{:STYLE}/images/baoz.png">
+			</div>
+			<div class="ziyuan">
+			<div class="baozhenA"><h3>质量保证</h3>
+				<p>出口各国 品质保证</p></div>			
+				<img src="{:STYLE}/images/ziyuan.png">
+			</div>
+
+
+		</div>
+
+
+	</main>
+		<div class="cl"></div>
+<!-- 底部 -->
+	<include file='./footer' />
+<!-- 轮播图js -->
+	<script src="{:STYLE}/js/jquery.easing.js" type="text/javascript"></script>
+	<script src="{:STYLE}/js/studio.js" type="text/javascript"></script>
+
+</body>
+</html>

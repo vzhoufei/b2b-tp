@@ -1,0 +1,34 @@
+<include file="./header"/>
+<style>.default p{z-index:2em;}</style>
+<img src="{$banner}" style="width:100%;" />
+  <div class="wrapper" ><div class='title'><h1>新闻<h1></div><ul class='news'>
+ <foreach name='news' item='v'>
+	<li>
+		<a href="{:U('Store/Newscontent',array('store_id'=>$store[store_id],'sn'=>$sn_id,'text'=>$v[id]))}">
+		<div class='n-title'>
+			《{$v.title|mb_substr=0,20,'utf-8'}》
+		</div>
+		<div class='n-title'>
+			{$v.description|mb_substr=0,20,'utf-8'}...
+		</div>
+		<div class='n-author'>作者：{$v.author}</div>
+		<div class='n-time'>{$v.timer|date='Y-m-d',###}</div>
+		</a>
+	</li>
+	</foreach>
+  <li class='pg'>{$page}</li></ul>
+  </div>
+<style>
+	.wrapper{margin: 0 auto;width: 80%;}
+	.wrapper .title{margin-top: 20px;border-left: 4px solid #000;height: 40px;line-height: 40px;padding-left: 20px;}
+	.wrapper .news{margin-top: 30px;width: 100%;}
+	.wrapper .news li{width: 100%;line-height: 40px;height: 40px;border-bottom: #008BB9 dotted 1px;margin-bottom: -1px;}
+	.wrapper .news li .n-title{float: left;margin-left: 20px;}
+	.wrapper .news li .n-author{width: 30%;float: left;margin-left: 20px;}
+	.wrapper .news li .n-time{margin-right: 10px;float: right;}
+	.news .pg {height: 50px !important;}
+	.news .pg .paginate_button{border: none;min-width: 40px;width:auto;margin-right: 10px;float:left;}
+	.news .pg .active,.news .pg .active a{background-color: #099;color:#fff;}
+	.news .pg .pagination{margin: 0px auto;height:33px;margin-top: 5px;float: right;text-align: center;}
+</style>
+<include file="./footer"/>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta charset="utf-8">
+	<meta content="网站关键字" name="keywords">
+	<meta content="网站关键字seo" name="description">
+	<script type="text/javascript" src="{:STYLE}/js/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="{:STYLE}/js/index.js"></script>
+	<script type="text/javascript" src="{:STYLE}/js/lbt.js"></script>
+	
+	<link rel="stylesheet" type="text/css" href="{:STYLE}/css/lbt.css">
+
+	<link rel="stylesheet" type="text/css" href="{:STYLE}/css/index.css">
+
+	
+</head>
+<body>
+	<!-- 头部区域 -->
+	<include file="./header"/>
+	<!-- 主体区域 -->
+	<main>
+		<!-- 轮播图 -->
+		   <div class="banner" id="banner" >
+			   	<foreach name="store[store_slide]" item="vimg" key="k">
+					<notempty name="vimg">
+						<a href="{$store[store_slide_url][ $k ]}" class="d1" style="background:url({$vimg}) center no-repeat;"></a>
+					</notempty>
+				</foreach>
+				<div class="d2" id="banner_id">
+					<ul>
+						<foreach name="store[store_slide]" item="vimg" key="k">
+							<notempty name="vimg">
+								<li></li>
+							</notempty>
+						</foreach>
+					</ul>
+				</div>
+				<script type="text/javascript">banner()</script>
+			</div>
+		    <!--case_box-->
+	<!-- 轮播图结束 -->
+		<div class="main1">
+			<!-- 第一屏 -->
+			<div class="s1">
+				{$text[0]|htmlspecialchars_decode}
+			</div>
+			<hr style="margin-top:30px;margin-bottom:30px;">
+		<!-- 第二屏 -->
+			<div class="s2">
+				<!-- <h2>秋冬装备全新上市</h2> -->
+				<h1>产品列表</h1>
+				<ul class="s2nav">
+					<foreach name="main_cat" item="v">
+						<foreach name="sub_cat[ $v['cat_id'] ]" item="vs">
+						<li class="s2List1A" i='.list{$vs[cat_id]}' num = '{$vs[cat_id]}'><a href="<if condition='$nav_where'>
+									{:U('Store/goods_list',array('cat_id'=>$vs[cat_id]))}
+									<else/>
+									{:U('Store/goods_list',array('store_id'=>$store[store_id],'cat_id'=>$vs[cat_id]))}
+									</if>">{$vs.cat_name}</a></li>
+						</foreach>
+					</foreach>
+					<div class="cl"></div>
+				</ul>
+					<foreach name="main_cat" item="v">
+						<foreach name="sub_cat[ $v['cat_id'] ]" item="vs">
+						<div class="s2List2 list{$vs[cat_id]}"></div>
+						</foreach>
+					</foreach>
+					<script type="text/javascript">
+					$(function(){
+
+						function Getgoods(type,obj){
+							$.ajax({
+								url: '{:U("Store/getshop",array("store_id"=>$_GET[store_id]))}',
+								type: 'POST',
+								dataType: 'json',
+								data: {type:type,size:6},
+								success:function(result){
+									var html = '<ul>';
+									for (var i = 0; i < result.length; i++) {
+										html+='<li><div class="s2List1img"><a href="#"><img src="'+result[i]['original_img']+'"></a></div><p class="s2List1title"><a href="#">'+result[i]['goods_name']+'</a></p><p class="s2List1many"><span class="s2List1now">￥'+result[i]['shop_price']+'</span><span class="s2List1befolur"><del>￥'+result[i]['market_price']+'</del></span></p></li>';
+									};
+									html+='</ul>';
+									obj.html(html).show();
+								}
+							});
+						}
+
+						Getgoods($($('.s2List1A')[0]).attr('num'),$($($('.s2List1A')[0]).attr('i')));
+
+						$('.s2List1A').bind('mouseover',function(){
+							$('.s2List1A').each(function(){
+								$($(this).attr('i')).hide();
+							})
+							if($($(this).attr('i')).html()==''){
+								Getgoods($(this).attr('num'),$($(this).attr('i')));
+							}
+							$($(this).attr('i')).show();
+						});
+
+					})
+					</script>
+			</div>
+		</div>
+		<div class="s4">
+			{$text[1]|htmlspecialchars_decode}
+			<!-- <div class="s3main">
+				<h1>运动与激情</h1>
+				<span class="s2mainxian"></span>
+				<p>运动，一种涉及体力和技巧的由一套规则或习惯所约束的活动，通常具有竞争性</p>
+				<p>Movement, involving a physical strength and skills of the activities of the constraint by a set of rules or habits</p>
+			</div>
+					</div>
+					<div class="s4">
+			<ul>
+				<li>
+					<img src="{:STYLE}/images/01.png">
+					<p>运动套装</p>
+					<p>体育锻炼有利于人体骨骼、肌肉的生长，增强心肺功能，改善血液循环系统、呼吸系统和消化系统的机能状况，有利于人体的生长发育…</p>
+					<img src="{:STYLE}/images/01A.jpg">
+				</li>
+				<li>
+					<img src="{:STYLE}/images/02.png">
+					<p>运动上衣</p>
+					<p>体育锻炼有利于人体骨骼、肌肉的生长，增强心肺功能，改善血液循环系统、呼吸系统和消化系统的机能状况，有利于人体的生长发育…</p>
+					<img src="{:STYLE}/images/02A.jpg">
+				</li>
+				<li>
+					<img src="{:STYLE}/images/03.png">
+					<p>运动紧身衣</p>
+					<p>体育锻炼有利于人体骨骼、肌肉的生长，增强心肺功能，改善血液循环系统、呼吸系统和消化系统的机能状况，有利于人体的生长发育…</p>
+					<img src="{:STYLE}/images/03A.jpg">
+				</li>
+			
+				<div class="cl"></div>
+			</ul>			
+					</div>
+					<div class="s5">
+			<div class="s5main">
+				<h3>合作品牌</h3>
+				<ul>
+					<li><a href="#"><img src="{:STYLE}/images/adds.jpg"></a></li>
+					<li><a href="#"><img src="{:STYLE}/images/puma.jpg"></a></li>
+					<li><a href="#"><img src="{:STYLE}/images/361.jpg"></a></li>
+					<li><a href="#"><img src="{:STYLE}/images/linin.jpg"></a></li>
+					<li><a href="#"><img src="{:STYLE}/images/nike.jpg"></a></li>
+				<div class="cl"></div>
+				</ul>
+			
+			</div> -->
+
+		</div>
+
+	
+	</main>
+<!-- 底部 -->
+	<include file='../footer' />
+<!-- 轮播图js -->
+	<script src="{:STYLE}/js/jquery.easing.js" type="text/javascript"></script>
+	<script src="{:STYLE}/js/studio.js" type="text/javascript"></script>
+
+</body>
+</html>

@@ -23,23 +23,67 @@ class StoreController extends BaseController{
 	 */
 	public function store_tpl()
 	{
-		
+		$template = array(
+			'fuzhuang'=>'服装、饰品、个人护理',
+			'wenhua'=>'文化、广告、设计服务',
+			'wujin'=>'五金、设备、工业制品',
+			'it'=>'IT、互联网、行业门户',
+			'jiaoyu'=>'教育、政府、机构组织',
+			'huagong'=>'化工、原材料、农畜牧',
+			'jinrong'=>'金融、运输、工商服务',
+			'shipin'=>'食品、茶饮、养生保健',
+			'shuma'=>'数码、家具、家居百货',
+			'hunqing'=>'婚庆、摄影、生活服务',
+			'canyin'=>'餐饮、酒店、旅游服务',
+			'lipin'=>'礼品、玩具、小商品',
+			);
+		$tpl_class = I('tpl');
 		$tpls = M('store')->where('store_id = '.session('store_id'))->getField('tpl');
 		$tpl = I('t','pc');
-		$arr = scandir("./Merchants_tpl/$tpl/");
+		$arr = scandir("./Merchants_tpl/$tpl/$tpl_class/");
         $m = ($tpl == 'pc') ? 'Home' : 'Mobile';
+
+        $y = 6;//每页显示个数
+		$p = $_GET['p']?$_GET['p']:1;//页码
+        $num = $p * $y;//当前页码乘每页显示的个数 等于当前页显示的最大数
+        $n = $num - $y + 1;//当前显示的最大数减去每页显示的条数加一等于当前页显示的最小数
          foreach($arr as $key => $val)
          {
-                if($val == '.' || $val == '..' )
-                    continue;                 
-                 $template_config[$val] = include "./Merchants_tpl/$tpl/$val/config.php";
+                if($val == '.' || $val == '..' ){continue;}
+                $i += 1;
+                if($i >= $n && $i <= $num){
+                 	$template_config[$val] = include "./Merchants_tpl/$tpl/$tpl_class/$val/config.php";
+                }
+                $count += 1;//总数
          }
-		
+         $number = ceil($count / $y);//共多少页
+         $page = "<li><a href='".$this->mypage(1)."'>首页</a></li>";
+         if($p != 1){$page .= "<li><a href='".$this->mypage($_GET['p']-1)."'>上一页</a></li>";}
+         for($j = 1;$j <= $number;$j++){
+         if($p == $j){ 
+         	$page .= "<li><a class='current' href='".$this->mypage($j)."'>{$j}</a></li>";
+         }else{
+         	$page .= "<li><a href='".$this->mypage($j)."'>{$j}</a></li>";
+         }
+         }
+         if($p != $number){$page .= "<li><a href='".$this->mypage($p+1)."'>下一页</a>";}
+         $page .= "<li><a href='".$this->mypage($number)."'>末页</a></li>";
+         $page .= "<li>{$count}条结果  .  {$p}/{$number}</li>";
+         $this->assign('page',$page);
 		$this->assign('tpl',$tpl);        
+        $this->assign('template',$template);
         $this->assign('default_theme',$tpls);
         $this->assign('template_config',$template_config);
-        // dump($template_config);exit;
         $this->display();
+	}
+
+
+	//处理分页
+	public function mypage($p)
+	{
+		$url = (strstr($_SERVER['REQUEST_URI'],'p='))?$_SERVER['REQUEST_URI']:$_SERVER['REQUEST_URI'].'?p=';
+
+		return str_replace('p='.$_GET['p'], 'p='.$p, $url);
 	}
 
 
@@ -50,8 +94,7 @@ class StoreController extends BaseController{
 	 */
 	 public function changeTemplate()
    {
-   		$key['tpl'] = I('key');
-   		$key['mtpl'] = I('mtpl');
+   		$key['tpl'] = I('tplclass').'/'.I('key');
    		$key['mtpl'] = I('mtpl');
    		$t = I('t','pc');
 
@@ -62,10 +105,10 @@ class StoreController extends BaseController{
 
 		$res = $store->where('store_id = '.session('store_id'))->save($key);
 		if($res){
-   			$this->success("操作成功!!!",U('store_tpl',array('t'=>$t)));
+   			$this->success("操作成功!!!",U('store_tpl',array('t'=>$t,'tpl'=>I('tplclass'))).'?p='.I('p'));
 		}else{
 
-   			$this->success("操作失败!!!",U('store_tpl',array('t'=>$t)));
+   			$this->success("操作失败!!!",U('store_tpl',array('t'=>$t,'tpl'=>I('tplclass'))).'?p='.I('p'));
 		}
 
    }
@@ -306,6 +349,7 @@ DocumentRoot /usr/local/apache2/htdocs/cdcms-websites/
 		}
 	
 		$this->assign('list',$list);
+
 
 		/**
 		*	@author 金龙

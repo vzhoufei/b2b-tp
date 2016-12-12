@@ -1,0 +1,113 @@
+@charset "utf-8";
+/* CSS Document */
+
+.warp{width: 100%;height: auto; }
+.head{ width:100%; height:30px; background:#008BB9;color:#fff;}
+.head .fir{ height:30px;  float:right;}
+.head .fir ul{ width:500px; float:right;}
+.head .fir li{ height:30px; font-size:12px; line-height:30px; float:left; padding:0 10px; color:#FFF;}
+.head .fir li a{ color:#fff;}
+.head .fir img{ float:left;}
+.head .fir span{ float:left; line-height:30px;}
+.head .left{ float:left; margin-left:7%;text-align:right; line-height:30px;}
+
+.logo{ width: 1200px; margin: 0 auto; height:120px;}
+.logo .zuo{ width:800px; height:120px; overflow:hidden; float:left; text-align:left;}
+.logo .right{ width:400px; height:120px; overflow:hidden; float:right;}
+.nav{ width: 1200px; margin: 0 auto;height: 30px; line-height: 30px; position: relative; z-index: 999;}
+.nav li{ width:120px; height: 30px;float: left; text-align: center; font-size: 16px;background:#000; }
+.nav li a{float: left;color:#fff;}
+.nav li a:hover{ color: #ff3f40;}
+.nav span{ float: left;padding-left: 25px;}
+.nav .sybb .dyj{ display: none;}
+.nav .sybb:hover .dyj{ display:block;}
+.nav .sybb .dyj .erer .dej{ margin-left: 80px; display: none;}
+.nav .sybb .dyj .erer:hover .dej{ display:block;}
+/*页头结束*/
+#divSmallBox{overflow:hidden;*display:inline;*zoom:1;width:10px;height:10px;margin:0 5px;border-radius:10px;background:#ffffff;}
+#playBox{ width:100%; height:600px; margin:0 auto; background:#333; position:relative; overflow:hidden;}
+#playBox .oUlplay {max-width:100%; min-width:1920px; position:absolute; left:0; top:0;}
+#playBox .oUlplay li{ float:left; overflow:hidden; min-width:1200px; margin:0 auto; display:inline-block;}
+#playBox .pre{ cursor:pointer; width:45px; height:45px; background:url(../images/l.png) no-repeat; position:absolute; top:45%; left:5%; z-index:10;}
+#playBox .next{ cursor:pointer; width:45px; height:45px; background:url(../images/r.png) no-repeat; position:absolute; top:45%; right:5%; z-index:10;}
+#playBox .smalltitle {width:100%; height:10px; position:absolute; bottom:15px; z-index:10}
+#playBox .smalltitle ul{ width:120px; margin:0 auto;}
+#playBox .smalltitle ul li{ width:10px; height:10px; margin:0 5px; border-radius:10px; background:#ffffff; float:left; overflow:hidden;*display:inline;*zoom:1;}
+#playBox .smalltitle .thistitle{ background:#69aaec;}
+/*banner结束*/
+.bbcl{ width:1200px; height:auto; margin:30px auto}
+.bbcl dl{ width: 300px; float: left; margin-bottom: 30px;}
+.bbcl dl dt{ font-size: 14px; text-align: center; line-height: 30px;}
+.bbcl dl p{ text-align: center;line-height: 20px;font-size: 14px; margin-bottom: 5px;}
+.bbcl dl span{ width: 80px; display: block;  height: 20px;border:2px solid #b4b4b4; color:#b4b4b4; font-size: 12px;text-align: center; line-height: 20px; margin: 0 auto;}
+.bbcl dd .bs{width:300px; height: 100%; background: #e8ecf7; transition:opacity 1s; position:absolute; top:0; opacity: 0; z-index: 999}
+.bbcl dd .qg{ width: 30px; float:right;  height: 31px; background: url(../images/qg.png) no-repeat; right:7%; font-size:14px; color:#FFF; text-align:center; padding:16px 9px 15px; position:absolute; top:0; z-index:99}
+.bbcl dd .none{ display:none;}
+.bbcl dd{ position:relative; cursor: pointer;}
+.bbcl dd:hover .bs{ opacity: 0.5;}
+.bbcl dt a:hover{text-decoration: underline; color:#f00;}
+.sec{ width: 1920px; height: 450px; position: absolute; left: 50%;}
+.sec1{ width: 1920px; height: 450px; position: absolute; left: -50%;}
+.sec3{ height: 450px; width: 100%; overflow: hidden;}
+.fl{ width: 1200px; margin:20px auto}
+.fl .nav{ width: 1200px; height: 60px;margin:30px auto;}
+.fl .nav .left{ width: 450px; float: left; height: 30px; border-bottom: 1px solid #cdd1d4;}
+.fl .nav .mid{ width: 300px; float: left; text-align: center; left: 30px;font-size:20px;}
+.fl .one{width: 1200px; height: 260px;}
+.fl .one .left{ width:350px;height: 260px; float: left; position: relative; margin-right: 20px; }
+.fl .one .left .bt{ font-size: 18px;  width: 350px; height: 40px; background: #000; position: absolute; top:85%;  opacity:0.5;color: #FFFFFF; line-height: 40px;text-align: center;}
+.fl .one .mid{width:650px; height: 260px; float: left;}
+.fl .one .mid li{ width: 305px; float: left; margin:0 20px 20px 0; text-align: center; height:85px; background: #e7f0f9; padding-top: 35px;   font-size: 20px; color: #e33664;}
+.fl .one .mid li a{color: #e33664;}
+.fl .one .right{ width: 180px; height: 260px; float: left;}
+
+.prot{ width:1200px; height:40px; border-bottom:1px solid #b4b4b4; font-size:18px; text-indent:1em; line-height:40px; margin:40px auto 0;}
+.prot a:hover{ color:#ff3f40}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.footer{ width:100%; height:430px; background:#f3f3f3; margin:0; padding-top:50px;}
+.footer .pr{ width:1200px; height:200px; margin:0 auto; border-bottom:1px solid #c7c7c7;}
+.footer dl{ width:220px; height:200px; float:left;}
+.footer dl dt{ height:60px; font-size:15px; line-height:60px;}
+.footer dl dd{ line-height:25px;}
+.footer dl dd a{ color:#757575;}
+.footer .pr .right{ float:right; height:120px; width:259px;text-align:center;  margin-top:35px; border-left:1px solid #c7c7c7;}
+.footer .pr .right h1{ font-size:20px; text-align:center; color:#008cba;}
+.footer .pr .right p{ line-height:40px; font-size:12px; color:#757575;}
+.footer .pr .right .kf{ width:120px; height:30px; border:1px solid #008cba; color:#008cba; line-height:30px; font-size:12px; margin:0 auto; border-radius:5px;}
+.footer h6{ width:1200px; line-height:45px; margin:0 auto; text-align:left; font-size:12px;}
+.footer h6 a{ color:#757575;}
+.footer footer{ text-align: center;}

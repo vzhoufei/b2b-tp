@@ -60,7 +60,7 @@
 					</td>
 	            </tr>
 	            <tr>
-	                <td>图片：</td>
+	                <td>banner图：</td>
 	                <td>
 	                	<img style="width:500px;" src="{$info.img}" id="img" alt="">
                         <input type="hidden" name="img" value="{$info.img}">
@@ -68,6 +68,15 @@
                         <input type="button" class="form-control" style="width:100px;" name="" value="上传banner" onClick="GetUploadify(1,'img','seller','callback2')" >
 					</td>
 	            </tr>
+	             <tr>
+
+                                    <td>banner图片是否显示：</td>
+                                    <td>
+                                        <input type="radio" class="" name="banner_show" value="1"  <if condition="$info[banner_show] eq 1"> checked="checked"</if>>是
+                                        <input type="radio" class="" name="banner_show" value="0"  <if condition="$info[banner_show] eq 0"> checked="checked"</if>>否    
+                                    </td>
+                                   
+                                </tr>
 	            <tr>
 	                <td>排序：</td>
 	                <td><input type="text" name="cat_sort" value="{$info.cat_sort}" class="form-control" /></td>

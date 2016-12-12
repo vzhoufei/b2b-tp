@@ -72,6 +72,10 @@ class StoreController extends Controller {
             define('STYLE',substr(C('VIEW_PATH').C('DEFAULT_THEME'),1));
             C('DOMAIN','http://'.$_SERVER['HTTP_HOST']);
             // zhoufei
+
+            if(!is_mobile()){
+                header("location:".C('DOMAIN').'/Store/index/store_id/'.$store_id);
+            }
 	}
 	
 	public function index()
@@ -158,6 +162,10 @@ class StoreController extends Controller {
             array('key' => 'collect_sum', 'name' => '收藏', 'url' => U('Store/goods_list', array('store_id' => $store_id, 'key' => 'collect_sum', 'sort' => $sort, 'cat_id'=>$cat_id, 'keyword'=>$keyword))),
             array('key' => 'is_recommend', 'name' => '人气', 'url' => U('Store/goods_list', array('store_id' => $store_id, 'key' => 'is_recommend', 'sort' => $sort, 'cat_id'=>$cat_id, 'keyword'=>$keyword)))
         );
+
+        //栏目信息
+        $navlist = M('store_goods_class')->where(array('store_id' => $store_id, 'cat_id' => $cat_id))->find();
+        $this->assign('navlist', $navlist);
         $this->assign('link_arr', $link_arr);
         $this->assign('goods_list', $goods_list);
         $this->assign('goods_images', $goods_images);  //相册图片
@@ -196,8 +204,8 @@ class StoreController extends Controller {
 	{
 		$sn_id = I('sn_id');
 		if(is_numeric($sn_id)){
-	    $news = M('store_navigation')->where(array('sn_store_id' => $this->store['store_id'], 'sn_id' => $sn_id))->find();
-        $this->assign('news', $news);
+	    $navlist = M('store_navigation')->where(array('sn_store_id' => $this->store['store_id'], 'sn_id' => $sn_id))->find();
+        $this->assign('navlist', $navlist);
         $this->display('/store_news');
 		}else{
 			$this->_empty();
@@ -222,10 +230,11 @@ class StoreController extends Controller {
 	        $page = new \Think\Page($count,12);
 	        $this->assign('sn_id',$sn_id);
 	        $this->assign('page',$page->show());
-	        $newslist = M('store_navigation')->where(array('store_id'=>$storeid,'sn_id'=>$sn_id))->find();
+        //栏目信息
+        $navlist = M('store_navigation')->where(array('store_id' => $storeid,'sn_id'=>$sn_id))->find();
+        $this->assign('navlist', $navlist);
 
 	        $this->assign('news',$news);
-	        $this->assign('newslist',$newslist);
 	        $this->display('/newslist');
     	}else{
     		$this->_empty();
@@ -252,7 +261,8 @@ class StoreController extends Controller {
 
         $banner = M('store')->where(array('store_id' => $this->store['store_id']))->getField('store_banner');
         $this->assign('banner', $banner);
-
+        //点击量
+        M('store_art')->where('id='.$text)->setInc('m_click',1);
         $this->assign('pre',$pre);
         $this->assign('next',$next);
         $this->assign('sn_id',$sn_id);

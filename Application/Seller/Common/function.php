@@ -151,9 +151,9 @@ function getMenuList() {
 					array('name' => '店铺设置', 'act'=>'store_setting', 'op'=>'Store'),
 					/*array('name' => '店铺装修', 'act'=>'store_decoration', 'op'=>'Store'),*/
 					array('name' => '店铺装修', 'act'=>'store_mod', 'op'=>'Store'),
-					array('name' => '选择模板', 'act'=>'store_tpl', 'op'=>'Store'),
+					array('name' => '选择模板', 'act'=>'store_tpl?t=pc&tpl=fuzhuang', 'op'=>'Store'),
 					array('name' => '店铺导航', 'act'=>'navigation_list', 'op'=>'Store'),
-					array('name' => '经营类目', 'act'=>'bind_class_list', 'op'=>'Store'),
+					// array('name' => '经营类目', 'act'=>'bind_class_list', 'op'=>'Store'),
 					array('name' => '店铺信息', 'act'=>'store_info', 'op'=>'Store'),
 					array('name' => '店铺分类', 'act'=>'goods_class', 'op'=>'Store'),
 					array('name' => '店铺关注', 'act'=>'store_collect', 'op'=>'Store'),

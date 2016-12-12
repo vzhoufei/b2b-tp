@@ -55,6 +55,23 @@
                                    
                                 </tr> 
                                 <tr>
+                                    <td>此栏目文章显示条数：</td>
+                                    <td >
+                                        <input type="radio" class="" name="sn_is_home" value="1" <if condition="$info[sn_is_home] eq 1"> checked="checked"</if>>是
+                                        <input type="radio" class="" name="sn_is_home" value="0" <if condition="$info[sn_is_home] eq 0"> checked="checked"</if>>否
+                                    文章列表有效
+                                    </td>
+                                   
+                                </tr> 
+                                <tr>
+                                    <td>是否首页推荐：</td>
+                                    <td >
+                                        <input type="text" name="sn_show_num" value="{$info[sn_show_num]}">
+                                    文章列表有效
+                                    </td>
+                                   
+                                </tr> 
+                                <tr>
                                     <td>是否新窗口打开：</td>
                                     <td>
                                			<input type="radio" class="" name="sn_new_open" value="1"  <if condition="$info[sn_new_open] eq 1"> checked="checked"</if>>是
@@ -99,6 +116,15 @@
                                          <input type="hidden" name="sn_pic" value="{$info.sn_pic}">
 
                                         <input type="button" class="form-control" style="width:100px;" name="" value="上传banner" onClick="GetUploadify(1,'sn_pic','seller','callback2')" >  建议图片宽为1920px
+                                    </td>
+                                   
+                                </tr>
+                                  <tr>
+
+                                    <td>banner图片是否显示：</td>
+                                    <td>
+                                        <input type="radio" class="" name="sn_banner_show" value="1"  <if condition="$info[sn_banner_show] eq 1"> checked="checked"</if>>是
+                                        <input type="radio" class="" name="sn_banner_show" value="0"  <if condition="$info[sn_banner_show] eq 0"> checked="checked"</if>>否    
                                     </td>
                                    
                                 </tr>
@@ -160,6 +186,11 @@ $(function () {
     editor = new UE.ui.Editor(options);
     editor.render("post_content");
 });
+
+function callback2(img_str){
+    $('input[name="sn_pic"]').val(img_str);
+    $('#sn_pic').attr('src',img_str);
+}
 
 </script>
 </body>

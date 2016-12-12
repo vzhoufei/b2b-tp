@@ -1,0 +1,171 @@
+<include file="./header"/>
+    <link rel="stylesheet" href="{:STYLE}/css/all.css" type="text/css">
+
+<div  id="portfolio" class="sel_portfolio">
+<div class="container">
+  <div class="main">
+    <div class="ps_box">
+      <div class="pics_switch">
+        <div class="pb">
+
+            <foreach name="store[store_slide]" item="vimg" key="k">
+            <notempty name="vimg">
+          <div class="pic_box"><a class="pic_banner_00{$k+1}" target="_blank" href="{$store[store_slide_url][ $k ]}" style="background-image:url({$vimg}); " ></a></div>
+          </notempty>
+        </foreach>
+        </div>
+        <div class="viewArrows prev">上一张</div>
+        <div class="viewArrows next">下一张</div>
+        <div class="pics_switch_clients">
+          <ul>
+
+         <foreach name="store[store_slide]" item="v" key="kk">
+          <notempty name="v">
+            <li class="li_{$kk+1}"><span class="current">{$kk+1}</span></li>
+          </notempty>
+            </foreach>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    </div><!--banner结束 -->
+
+
+      <!--banner结束 -->
+<!-- 推荐 -->
+    <section class="bbcl">
+      <foreach name="recomend_goods" item="v" key="kg">
+        <dl>
+            <a href="{:U('Goods/goodsInfo',array('id'=>$v[goods_id]))}" target="_blank"> <dd><img src="{$v.goods_id|goods_thum_images=240,240}"/><div class="bs"></div> 
+            <if condition="$v[prom_type] gt 0">
+            <div class="qg">
+                    <if condition="$v[prom_type] eq 1">抢购商品</if>
+                    <if condition="$v[prom_type] eq 2">团购商品</if>
+                    <if condition="$v[prom_type] eq 3">限时折扣</if>
+            </div>
+            </if>
+            </dd></a>
+            <dt><a href="#">{$v.goods_name|getSubstr=0,16}</a> </dt>
+            <p><b>￥{$v.shop_price}</b>&nbsp;<del>{$v.market_price}</del></p>
+            <span>NOW CLICK</span>
+        </dl>
+      </foreach>
+    </section>
+<!-- 推荐 -->
+
+    <div class="cl"></div>
+    <section class="sec3"> <section class="sec">
+          <section class="sec1"><a href="#"><img src="{:STYLE}/images/sec1.jpg"/> </a> </section>
+      </section></section>
+<!-- 最新产品 -->
+    <section class="bbcl">
+          <foreach name="new_goods" item="v" key="kg">
+        <dl>
+            <a href="{:U('Goods/goodsInfo',array('id'=>$v[goods_id]))}" target="_blank"> <dd><img src="{$v.goods_id|goods_thum_images=240,240}"/><div class="bs"></div> 
+            <if condition="$v[prom_type] gt 0">
+            <div class="qg">
+                    <if condition="$v[prom_type] eq 1">抢购商品</if>
+                    <if condition="$v[prom_type] eq 2">团购商品</if>
+                    <if condition="$v[prom_type] eq 3">限时折扣</if>
+            </div>
+            </if>
+            </dd></a>
+            <dt><a href="#">{$v.goods_name|getSubstr=0,16}</a> </dt>
+            <p><b>￥{$v.shop_price}</b>&nbsp;<del>{$v.market_price}</del></p>
+            <span>NOW CLICK</span>
+        </dl>
+      </foreach>
+      </section>
+<!-- 最新产品 -->
+
+    <div class="cl"></div>
+    <section class="sec3">
+        <section class="sec">
+          <section class="sec1"><a href="#"><img src="{:STYLE}/images/sec2.jpg"/> </a> </section>
+      </section>
+    </section>
+    <!-- <section class="fl">
+        <div class="nav">
+            <div class="left"></div>
+            <div class="mid">
+                <p>Category navigation</p>
+                <p>品类导航</p>
+            </div>
+            <div class="left"></div>
+        </div>
+        <div class="one">
+            <div class="left"><a href="#"><img src="{:STYLE}/images/fl1.jpg"/> </a><div class="bt"><span>羽绒服</span></div> </div>
+            <ul class="mid">
+                <li>
+                    <a href="#"><p>------女士皮衣------<br/>
+                        Ms. leather</p></a>
+                </li>
+                <li>
+                    <a href="#"><p>------商场同款------<br/>
+                        Shopping mall</p></a>
+                </li>
+                <li>
+                    <a href="#"><p>------轻薄羽绒服------<br/>
+                        Thin down jacket</p></a>
+                </li>
+                <li>
+                    <a href="#"><p>------手工棉服------<br/>
+                        Handmade cotton</p></a>
+                </li>
+            </ul>
+            <div class="right"><a href="#"><img src="{:STYLE}/images/fl2.jpg"/> </a> </div>
+        </div>
+    </section> -->
+    <!-- 收藏排行榜 -->
+    <section class="bbcl">
+            <foreach name="collect_goods" item="v" key="kg">
+        <dl>
+            <a href="{:U('Goods/goodsInfo',array('id'=>$v[goods_id]))}" target="_blank"> <dd><img src="{$v.goods_id|goods_thum_images=240,240}"/><div class="bs"></div> 
+            <if condition="$v[prom_type] gt 0">
+            <div class="qg">
+                    <if condition="$v[prom_type] eq 1">抢购商品</if>
+                    <if condition="$v[prom_type] eq 2">团购商品</if>
+                    <if condition="$v[prom_type] eq 3">限时折扣</if>
+            </div>
+            </if>
+            </dd></a>
+            <dt><a href="#">{$v.goods_name|getSubstr=0,16}</a> </dt>
+            <p><b>￥{$v.shop_price}</b>&nbsp;<del>{$v.market_price}</del></p>
+            <span>NOW CLICK</span>
+        </dl>
+      </foreach>
+      </section>
+    <!-- 收藏排行榜 -->
+    <div class="cl"></div>
+    <section class="sec3"> <section class="sec">
+          <section class="sec1"><a href="#"><img src="{:STYLE}/images/sec3.jpg"/> </a> </section>
+      </section></section>
+      <!-- 热门 -->
+      <section class="bbcl">
+                    <foreach name="hot_goods" item="v" key="kg">
+        <dl>
+            <a href="{:U('Goods/goodsInfo',array('id'=>$v[goods_id]))}" target="_blank"> <dd><img src="{$v.goods_id|goods_thum_images=240,240}"/><div class="bs"></div> 
+            <if condition="$v[prom_type] gt 0">
+            <div class="qg">
+                    <if condition="$v[prom_type] eq 1">抢购商品</if>
+                    <if condition="$v[prom_type] eq 2">团购商品</if>
+                    <if condition="$v[prom_type] eq 3">限时折扣</if>
+            </div>
+            </if>
+            </dd></a>
+            <dt><a href="#">{$v.goods_name|getSubstr=0,16}</a> </dt>
+            <p><b>￥{$v.shop_price}</b>&nbsp;<del>{$v.market_price}</del></p>
+            <span>NOW CLICK</span>
+        </dl>
+      </foreach>
+      </section>
+      <!-- 热门 -->
+      <div class="cl"></div>
+     
+<include file="./footer"/>
+
+  </section>
+</body>
+</html>

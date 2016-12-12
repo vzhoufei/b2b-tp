@@ -38,7 +38,9 @@ class StoreController extends Controller
             C('DOMAIN','http://'.$_SERVER['HTTP_HOST']);
 
             // zhoufei
-
+            if(is_mobile()){
+                header("location:".C('DOMAIN').'/Mobile/Store/index/store_id/'.$store_id);
+            }
 
             $store_info['store_slide'] = explode(',', $store_info['store_slide']);
             $store_info['store_slide_url'] = explode(',', $store_info['store_slide_url']);
@@ -89,14 +91,7 @@ class StoreController extends Controller
         }
         $this->assign('link_cat',$link_cat);//zhoufei
 
-
-
             // zhoufei
-
-
-
-
-
         } else {
             $this->error('该店铺不存在或者已关闭', U('Index/index'));
         }
@@ -105,25 +100,6 @@ class StoreController extends Controller
     public function index()
     {
         $store_id = $this->store['store_id'];
-
-
-
-        /********************* 注释类容移动到了初始化控制器 _initialize  ***************/
-        //店铺内部分类
-        // $store_goods_class_list = M('store_goods_class')->where(array('store_id' => $store_id,'is_show'=>'1'))->select();//zhoufei 增加了 ,'is_show'=>'1'
-        // if ($store_goods_class_list) {
-        //     $sub_cat = $main_cat = array();
-        //     foreach ($store_goods_class_list as $val) {
-        //         if ($val['parent_id'] == 0) {
-        //             $main_cat[] = $val;
-        //         } else {
-        //             $sub_cat[$val['parent_id']][] = $val;
-        //         }
-        //     }
-        //     $this->assign('main_cat', $main_cat);
-        //     $this->assign('sub_cat', $sub_cat);
-        // }
-
      
         //热门商品排行
         $hot_goods = M('goods')->field('goods_content', true)->where(array('store_id' => $store_id))->order('sales_sum desc')->limit(10)->select();
@@ -138,40 +114,24 @@ class StoreController extends Controller
         if ($goods_id_arr)
             $goods_images = M('goods_images')->where("goods_id in (" . implode(',', $goods_id_arr) . ")")->cache(true)->select();
 
-        /********************* 注释类容移动到了初始化控制器 _initialize  ***************/
-        //店铺分类导航
-        // $link_cat = M('store_goods_class')->where(array('store_id' => $store_id, 'is_nav_show'))->select();
-        // if ($link_cat) {
-        //     $cat_id = get_arr_column($link_cat, 'cat_id');
-        //     $cat_id = implode(',', $cat_id);
-        //     $map = array('store_id' => $store_id, 'is_on_sale' => 1);
-        //     $map['_string'] = "store_cat_id1 in ($cat_id) OR store_cat_id2 in($cat_id)";
-        //     $cat_goods = M('goods')->field('goods_content', true)->where($map)->order('goods_id desc')->select();
-        // }
-        // $this->assign('link_cat',$link_cat);//zhoufei
-
         $text = M('store_mod')->where('store_id = '.$store_id)->select();
         $this->assign('text',unserialize($text[0]['content']));
-
         $this->assign('sn_store_id', $store_id );
-        $this->assign('navigation', $this->navigation);
         $this->assign('hot_goods', $hot_goods);
         $this->assign('collect_goods', $collect_goods);
         $this->assign('new_goods', $new_goods);
         $this->assign('recomend_goods', $recomend_goods);
+        $this->assign('navigation', $this->navigation);
         $this->assign('goods_images', $goods_images); //相册图片
          $this->assign('recommend',$this->recommend());
-
-        
-
-
+         $this->assign('recommend_news',$this->recommend_news());
         $this->display('/index');
     }
 
 
 
     /**
-     * 首页推荐
+     * 首页推荐 产品
      */
     public function recommend()
     {
@@ -182,6 +142,26 @@ class StoreController extends Controller
             // 查询推荐商品
             $v['cat_id_goods'] = $product_m->where('store_cat_id1 = '.$v['cat_id'].' or store_cat_id2 = '.$v['cat_id'])->field('goods_id,goods_name,original_img,shop_price')->limit($v['show_num'])->select();
         }
+
+        return $recommend;
+    }
+
+
+
+    /**
+     * 首页推荐 文章
+     */
+    public function recommend_news()
+    {
+        //查询首页推荐栏目
+        $store_art_m = M('store_art');
+        $recommend = M('store_navigation')->where(array('sn_store_id'=>$this->store['store_id'],'sn_is_list'=>1,'sn_is_show'=>1,'sn_is_home'=>1))->select();
+        foreach($recommend as &$v){
+            // 查询推荐商品
+            $v['news'] = $store_art_m->where('sn_id = '.$v['sn_id'])->field('id,sn_id,title,author,timer,pc_click,keyword,description,newsimg')->limit($v['sn_show_num'])->select(); 
+        }
+        // echo '<pre>';
+        // print_r($recommend);exit;
 
         return $recommend;
     }
@@ -256,6 +236,10 @@ class StoreController extends Controller
             array('key' => 'collect_sum', 'name' => '收藏', 'url' => U('Store/goods_list', array('store_id' => $store_id, 'key' => 'collect_sum', 'sort' => $sort, 'cat_id'=>$cat_id, 'keyword'=>$keyword))),
             array('key' => 'is_recommend', 'name' => '人气', 'url' => U('Store/goods_list', array('store_id' => $store_id, 'key' => 'is_recommend', 'sort' => $sort, 'cat_id'=>$cat_id, 'keyword'=>$keyword)))
         );
+
+        //栏目信息
+        $navlist = M('store_goods_class')->where(array('store_id' => $store_id, 'cat_id' => $cat_id))->find();
+        $this->assign('navlist', $navlist);
         $this->assign('link_arr', $link_arr);
         $this->assign('goods_list', $goods_list);
         $this->assign('goods_images', $goods_images);  //相册图片
@@ -270,10 +254,9 @@ class StoreController extends Controller
     function store_news()
     {
         $sn_id = I('sn_id');
-        $news = M('store_navigation')->where(array('sn_store_id' => $this->store['store_id'], 'sn_id' => $sn_id))->find();
-        $banner = M('store')->where(array('store_id' => $this->store['store_id']))->getField('store_banner');
+        $navlist = M('store_navigation')->where(array('sn_store_id' => $this->store['store_id'], 'sn_id' => $sn_id))->find();
         $this->assign('banner', $banner);
-        $this->assign('news', $news);
+        $this->assign('navlist', $navlist);
         $this->assign('navigation', $this->navigation);
         $this->display('/store_news');
     }
@@ -365,9 +348,10 @@ class StoreController extends Controller
         $collect_goods = M('goods')->field('goods_content', true)->where(array('store_id' => $storeid))->order('collect_sum desc')->limit(10)->select();
         //新品
        
-
-        $banner = M('store')->where(array('store_id' => $this->store['store_id']))->getField('store_banner');
-        $this->assign('banner', $banner);
+        //栏目信息
+        $navlist = M('store_navigation')->where(array('store_id' => $storeid,'sn_id'=>$sn_id))->find();
+        $this->assign('navlist', $navlist);
+        // dump($nav);exit;
 
 
 
@@ -394,7 +378,8 @@ class StoreController extends Controller
         $next = M('store_art')->where('store = '.$storeid.' and sn_id in (0,'. $sn_id.') and id > '.$text)->order('id ASC')->limit(1)->getfield('id');
         $pre = M('store_art')->where('store = '.$storeid.' and  sn_id in (0,'. $sn_id.') and id < '.$text)->order('id DESC')->limit(1)->getfield('id');
 
-
+        //点击量
+        M('store_art')->where('id='.$text)->setInc('pc_click',1);
          $banner = M('store')->where(array('store_id' => $this->store['store_id']))->getField('store_banner');
         $this->assign('banner', $banner);
 
