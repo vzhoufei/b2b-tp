@@ -60,8 +60,10 @@
 				            <li>
                     <if condition="empty($vv[sn_url])">
                       <a  href="
-                        <if condition='($vv[sn_is_list])'>
+                        <if condition='($vv[sn_is_list] eq 1)'>
                         {:U('Store/newsList',array('store_id'=>$store[store_id],'sn'=>$vv[sn_id]))}
+                        <elseif condition='$vv[sn_is_list] eq 2'/>
+                        {:U('Store/photolist',array('store_id'=>$store[store_id]))}
                         <else/>
                         {:U('Store/store_news',array('store_id'=>$store[store_id],'sn_id'=>$vv[sn_id]))}
                         </if>" 

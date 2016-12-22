@@ -8,6 +8,7 @@
             <th align="center" style="text-align:left;">标题</th>
             <th style="text-align:center;">是否显示</th>
             <th style="text-align:center;">在首页展示</th>
+            <th style="text-align:center;">导航展示</th>
             <th style="text-align:center;">操作</th>
         </tr>
             <foreach name="photo" item="v">
@@ -15,6 +16,7 @@
                 <td>{$v.title}</td>
                 <td style="text-align:center;"><button value="{$v['status']}" onclick="status(this,'status','{$v['id']}')"><php>echo ($v['status'])?'是':'否';</php></button></td>
                 <td style="text-align:center;"><button value="{$v['home']}" onclick="status(this,'home','{$v['id']}')"><php>echo ($v['home'])?'是':'否';</php></button></td>
+                <td style="text-align:center;"><button value="{$v['is_nav']}" onclick="status(this,'is_nav','{$v['id']}')"><php>echo ($v['is_nav'])?'是':'否';</php></button></td>
                 <td style="text-align:center;">
                 <button type="button">
                 <a href="{:U('Photo/addphoto',array('id'=>$v['id']))}">编辑/查看</a>
