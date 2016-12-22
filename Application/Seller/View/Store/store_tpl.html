@@ -4,8 +4,14 @@
   <!-- Main content -->
   <style>
     .template li{width:25%;height:30px;line-height: 30px;float:left;list-style-type:none;}
+    .son{width:100px;margin-left:100px;margin-top:-20px;}
+    .son li{width:100px;position:relative;z-index:99999;background:#F5F5F5;text-align:center;}
+    .mbs{
 
-
+    position: relative;
+    z-index: 1
+      
+    }
   </style>
   <section class="content">
     <div class="container-fluid">
@@ -16,12 +22,26 @@
         <div class="panel-body">
         <ul class="template">
         <foreach name="template" item="v" key="key">
-            <li><a href="{:U('store_tpl',array('t'=>'pc','tpl'=>$key))}" <?php if($_GET['tpl'] == $key)echo 'style="color:#f00;"';?>>{$v}</a></li>
+            <li >
+            <a class="tplli" f="{$key}"  href="{:U('store_tpl')}?t=pc&tpl={$v['key']}&layer=1"
+
+            <php>if(stripos($_GET['tpl'],$v{'key'}) == $v{'key'})echo 'style="color:#f00;"';</php>
+
+              >{$v['name']}
+              </a>
+
+                  <ul style="display: none;" class="son son_{$key}">
+                      <foreach name="v['son']" item="vv" key="kk">
+                      <li><a href="{:U('store_tpl',array('t'=>'pc'))}?tpl={$v['key']}/{$kk}">{$vv}</a></li>
+                      </foreach>
+                  </ul>
+              
+            </li>
         </foreach>
         </ul>
-        <br>  <br>  <br>  <br>  <br>
+        <div style="clear:both;height: 20px;"></div>
         <!-- 模板列表 -->
-            <div class="row">   
+            <div class="row mbs" >   
        <?php if($template_config){?>             
 		    <foreach name="template_config" item="val"  key="k" >
                  <div class="col-sm-6 col-md-4">
@@ -35,9 +55,9 @@
                        <p>{$val['remark']}</p>
                        <p>                                
                            <if condition="$default_theme == $_GET['tpl'].'/'.$k">
-                               <a href="{:U('changeTemplate',array('key'=>$k,'t'=>$tpl,'mtpl'=>$val['mtpl'],'tplclass'=>$_GET['tpl'],'p'=>$_GET['p']))}" class="btn btn-success" role="button">启用</a> 
+                               <a href="{:U('changeTemplate')}?key={$k}&t={$tpl}&mtpl={$val['mtpl']}&tplclass={$_GET['tpl']}&p={$_GET['p']}" class="btn btn-success" role="button">启用</a> 
                            <else /> 
-                           <a href="{:U('changeTemplate',array('key'=>$k,'t'=>$tpl,'mtpl'=>$val['mtpl'],'tplclass'=>$_GET['tpl'],'p'=>$_GET['p']))}" class="btn btn-default" role="button">启用</a> 
+                           <a href="{:U('changeTemplate')}?key={$k}&t={$tpl}&mtpl={$val['mtpl']}&tplclass={$_GET['tpl']}&p={$_GET['p']}" class="btn btn-default" role="button">启用</a> 
                            </if>   
                            <a href="http://{$val.remark}" class="btn btn-default" role="button" target="_blank" >查看</a>                             
                        </p>
@@ -68,3 +88,18 @@
 <!-- /.content-wrapper --> 
 </body>
 </html>
+
+<script>
+
+$('.tplli').hover(function(){
+$('.son').css('display','none');
+$(this).css('background','#858585');
+$('.son_'+$(this).attr('f')).css('display','');
+
+},function(){
+$(this).css('background','#fff');
+
+// $('.son_'+$(this).attr('f')).css('display','none');
+
+});
+</script>

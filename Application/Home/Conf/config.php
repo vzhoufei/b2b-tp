@@ -7,6 +7,7 @@ return array(
    // 'DB_SQL_BUILD_LENGTH' => 200, // SQL缓存的队列长度
     //'DATA_CACHE_TIME' => 60,
    // 'DATA_CACHE_TYPE' =>  'File', 
+    
    'URL_MODEL'              =>      2,                            //重写模式
     'LOAD_EXT_CONFIG' => 'html',    // 加载其他自定义配置文件 html.php
     'URL_HTML_SUFFIX'       =>  'html',
@@ -32,4 +33,5 @@ return array(
     //默认成功跳转对应的模板文件
     'TMPL_ACTION_SUCCESS' => 'Public:dispatch_jump',
         
+   'SHOW_PAGE_TRACE'        =>      true,                         //开启页面trace
 );

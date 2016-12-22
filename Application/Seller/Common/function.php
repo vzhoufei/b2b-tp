@@ -124,12 +124,16 @@ function getMenuList() {
 					array('name' => '仓库中的商品', 'act'=>'goodsList?goods_state=0,2,3', 'op'=>'Goods'),
 					//array('name' => '关联版式', 'act'=>'store_plate', 'op'=>'index'),
 					array('name' => '商品规格', 'act' => 'specList', 'op' => 'Goods'),
-                    array('name' => '品牌申请', 'act'=>'brandList', 'op'=>'Goods'),                            
+                    // array('name' => '品牌申请', 'act'=>'brandList', 'op'=>'Goods'),                            
 					//array('name' => '图片空间', 'act'=>'store_album', 'op'=>'album_cate'),
 			)),
 			'news' => array('name' => '文章管理', 'icon'=>'fa-file', 'child' => array(
 					array('name' => '文章发布', 'act'=>'addNews', 'op'=>'News'), ///index.php/Seller/goods/addEditGoods.html'
-					array('name' => '文章查看', 'act'=>'NewsList', 'op'=>'News')
+					array('name' => '文章查看', 'act'=>'newslist', 'op'=>'News')
+			)),
+			'photo' => array('name' => '相册管理', 'icon'=>'fa-camera', 'child' => array(
+					array('name' => '相册发布', 'act'=>'addphoto', 'op'=>'Photo'), ///index.php/Seller/goods/addEditGoods.html'
+					array('name' => '相册查看', 'act'=>'index', 'op'=>'Photo')
 			)),
 			'order' => array('name' => '订单物流', 'icon'=>'fa-money', 'child' => array(
 					array('name' => '订单列表', 'act'=>'index', 'op'=>'Order'),

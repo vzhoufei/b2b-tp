@@ -1,0 +1,86 @@
+
+<link rel="stylesheet" href="{:STYLE}/css/public.css">
+<link rel="stylesheet" href="{:STYLE}/css/result.css">
+<script type="text/javascript" src="{:STYLE}/js/scroll_image.js"></script>
+<script type="text/javascript" src="{:STYLE}/js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="{:STYLE}/js/jquery.banner.revolution.min.js"></script>
+<script type="text/javascript" src="{:STYLE}/js/banner.js"></script>
+<link rel="stylesheet" type="text/css" href="{:STYLE}/css/lbt.css">
+<script type="text/javascript" src="{:STYLE}/js/gujian.js"></script>
+<link rel="stylesheet" href="{:STYLE}/css/erji.css">
+</head>
+<body>
+<a name="returnTop"></a>
+<div id="header" class="header">
+  <div class="head_top">
+    <div class="body_item"> <span class="fl">{$store[store_phone]}</span> </div>
+  </div>
+  <div class="header-cr">
+    <div class="header_l" id="header_l" onClick="return showhidediv('nav')">
+      <div class="company">
+        <dd></dd>
+      </div>
+      <a href="{:U('Store/index',array('store_id'=>$store[store_id]))}" title="{$store.store_name}">
+      <div class="en" style="line-height: 55px;">
+      <img src="{$store.store_logo}" style="height:55px;max-width:300px;"  alt="{$store.store_name}" />
+        <h1 style="font-size:20px;white-space:nowrap;">{$store.store_name}</h1>
+      </div></a>
+    </div>
+
+    <div class="nav" onclick="showhidediv('nav');"   id="nav">
+      <ul>
+        <li><a href="{:U('Store/index',array('store_id'=>$store[store_id]))}" title="网站首页">网站首页</a></li>
+        
+        <if condition="$main_cat">
+            <li><a href="{:U('Store/goods_list',array('store_id'=>$store[store_id]))}" title="供应产品">供应产品☆</a>
+
+                <div class="mollanli" style="background:#48494D;">
+                <ul>
+                   <foreach name="main_cat" item="v">  <!-- 商品分类 -->
+                  <li><a href="{:U('Store/goods_list',array('store_id'=>$store[store_id],'cat_id'=>$v[cat_id]))}" title="{$v.cat_name}">{$v.cat_name}</a>
+                     <div class="mollanlis">
+                        <ul>
+                        <foreach name="sub_cat[ $v['cat_id'] ]" item="vs">  <!-- 二级分类 --> 
+                          <li><a href="{:U('Store/goods_list',array('store_id'=>$store[store_id],'cat_id'=>$vs[cat_id]))}" title="{$vs.cat_name}">{$vs.cat_name}</a></li>
+                          <div class="clear"></div>
+                        </foreach>
+                          <div class="clear"></div>
+                        </ul> 
+                    </div>
+                  </li>
+                 </foreach>
+                  <div class="clear"></div>
+                </ul> 
+                    </div>
+
+            </li>
+        </if>
+                <!-- 自定义导航 -->
+                 <foreach name="navigation" item="vv" key="kk">
+				            <li>
+                    <if condition="empty($vv[sn_url])">
+                      <a  href="
+                        <if condition='($vv[sn_is_list])'>
+                        {:U('Store/newsList',array('store_id'=>$store[store_id],'sn'=>$vv[sn_id]))}
+                        <else/>
+                        {:U('Store/store_news',array('store_id'=>$store[store_id],'sn_id'=>$vv[sn_id]))}
+                        </if>" 
+                        <if condition='($vv[sn_new_open])'>target='_blank'</if> >
+                    <else/>
+                    <a href="{$vv.sn_url}" title='{$vv.sn_keyword}' <if condition='($vv[sn_new_open])'>target='_blank'</if>>
+                    </if>
+                    {$vv.sn_title}</a>
+                    </li>
+                 </foreach>
+
+                 <!-- 分类在导航显示 -->
+                  <foreach name="link_cat" item="vz">
+                    <li>
+                      <a  target="_blank" href="{:U('Store/goods_list',array('store_id'=>$store[store_id],'cat_id'=>$vz[cat_id]))}">{$vz.cat_name}</a> </li>
+                  </foreach>
+      </ul>
+    </div>
+
+  </div>
+</div><div class="clear"></div>
+<div class="headB" style="width:100%;height:30px;background:url({:STYLE}/images/bk.png)repeat-x;""></div>

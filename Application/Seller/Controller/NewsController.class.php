@@ -7,7 +7,7 @@
 namespace Seller\Controller;
 class NewsController extends BaseController {
 
-	public function NewsList()
+	public function newslist()
 	{	
 		$id = (!empty($_GET['type']))?$_GET['type']:0;
 

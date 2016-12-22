@@ -1,0 +1,213 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="applicable-device"content="pc,mobile">
+<meta name="renderer" content="webkit">
+<title>{$store.store_name}</title>
+<meta name="keywords" content="{$store.seo_keywords}">
+<meta name="description" content="{$store.seo_description}">
+<include file="./header" />
+<style>
+ .custom img{max-width: 100%;}
+
+</style>
+<!--轮播图 -->
+ <div id="wrapper">
+        <div class="fullwidthbanner-container">
+          <div class="fullwidthbanner">
+            <ul>
+            <foreach name="store[store_slide]" item="vimg" key="k">
+              <notempty name="vimg">
+              <li data-transition="
+              <if condition='($k eq 0)'>
+              3dcurtain-horizontal
+              <elseif condition='($k eq 1)' />
+              3dcurtain-vertical
+              <elseif condition='($k eq 2)' />
+              papercut
+              <elseif condition='($k eq 3)' />
+              turnoff
+              <else />
+              flyin
+              </if>
+              " data-slotamount="15" data-masterspeed="300">
+                <img style="cursor:pointer;" src="{$vimg}" onclick="window.location.href='{$store[store_slide_url][ $k ]}'" />                  
+              </li>
+              </notempty>
+              </foreach>
+            </ul>
+          </div>
+        </div>
+      </div>  
+      <div class="lubT"></div>
+<div class="clear"></div>
+<div class="xk"></div>
+<div class="clear"></div>
+
+<!-- 自定义模块1 -->
+<div style="width:100%;" class="custom">
+{:htmlspecialchars_decode($text[0])}
+</div>
+<!-- 自定义模块1 -->
+<!--推荐产品-->
+<foreach name="recommend" item="recomend_v" key="k" >
+<notempty name="recomend_v['cat_id_goods']">
+<div class="main-temple gujian">
+<div style="width:200px;margin:0 auto;margin-top:20px;text-align:center;" ><a href="{:U('Store/goods_list',array('store_id'=>$store[store_id],'cat_id'=>$recomend_v[cat_id]))}" title="{$recomend_v['cat_name']}"><h3>{$recomend_v['cat_name']}</h3></a></div>
+  <div class="c">
+	<div class="LeftHandle" id="scrollArrLeft1{$k}"></div>
+	<div class="rollBoxc" id="scrollCont1{$k}" >
+	<div >
+		<div id="conmm" >
+
+              <foreach name="recomend_v[cat_id_goods]" item="vvv">
+														<div class="anli">
+                            <a target="_blank" href="{:C('DOMAIN')}{:U('Goods/goodsInfo',array('id'=>$vvv[goods_id]))}">
+                            <img src="{$vvv.goods_id|goods_thum_images=329,419}" style="width:94%" alt="{$vvv.goods_name}">
+                            <div class="index_title">{$vvv.goods_name|getSubstr=0,35}</div>
+                            </a>
+				                    </div>
+             </foreach>
+        </div>	
+    	</div>					
+
+  </div>
+    <div class="RightHandle" id="scrollArrRight1{$k}">&nbsp;</div>
+</div>
+</div>
+</notempty>
+<script>
+recomend("{$k}");
+
+</script>
+</foreach>
+<!--推荐产品-->
+
+
+
+<!-- 自定义模块2 -->
+<div style="width:100%;"  class="custom">
+{:htmlspecialchars_decode($text[1])}
+</div>
+<!-- 自定义模块2 -->
+<div class="clear"></div>
+
+<div class="kePublic-5">
+<!-- 新品推荐 -->
+<notempty name="recomend_goods">
+<div style="width:200px;margin:0 auto;margin-top:20px;text-align:center;"><h3 style="margin-right:50px;">新品推荐</h3></div>
+<div class="scene">
+<div class="LeftHandle" id="scrollArrLeft2">&nbsp;</div>
+<div class="rollBox-scene" id="scrollCont2">
+		<div class="scrollCont-2">
+			
+        
+      <foreach name="recomend_goods" item="r_v">
+      <div class="pic">
+      <a href="{:C('DOMAIN')}{:U('Goods/goodsInfo',array('id'=>$r_v[goods_id]))}" target="_blank">
+      <img src="{$r_v.goods_id|goods_thum_images=470,592}" alt="{$r_v['goods_name']}" style="width:100%;" /></a>
+      <div class="pic-cn"><a href="{:C('DOMAIN')}{:U('Goods/goodsInfo',array('id'=>$r_v[goods_id]))}" target="_blank">{$r_v['goods_name']|getSubstr=0,35}</a></div>
+      </div>
+      </foreach>
+
+  </div>
+</div>
+<div class="RightHandle" id="scrollArrRight2">&nbsp;</div>
+</div>
+</notempty>
+
+<script>
+news_recomend(2);
+</script>
+<!-- 新品推荐 -->
+
+
+
+
+
+<!-- 新闻 -->
+
+<div class="index_box">
+<foreach name="recommend_news" item="news_v" key="news_k">
+<div class="index_news">
+  <div class="news_title">{$news_v.sn_title}
+  <a href="{:U('Store/newsList',array('store_id'=>$store[store_id],'sn'=>$news_v[sn_id]))}" target="_blank" title="{$news_v.sn_title}">更多 ></a></div>
+    <ul class="news_list">
+    <foreach name="news_v[news]" item="news_vv" key="news_kk">
+        <li><span class="point"></span>
+        <a href="{:U('Store/newscontent',array('store_id'=>$store[store_id],'sn'=>$news_v[sn_id],'text'=>$news_vv[id]))}" target="_blank">{$news_vv.title|getSubstr=0,26}</a><i>{$news_vv.timer|date="Y-m-d",###}</i></li>
+    </foreach>
+    </ul>
+  </div>
+</foreach>
+</div>
+<div class="clear"></div>
+<!-- 新闻 -->
+</div>
+
+
+
+<div class="clear"></div>
+<!-- 自定义模块3 -->
+<div class="team"  class="custom">
+{:htmlspecialchars_decode($text[2])}
+</div>
+<!-- 自定义模块3 -->
+
+<div class="clear"></div>
+<!-- 自定义模块4 -->
+<div class="choice"  class="custom" style="max-width:100%;">
+{:htmlspecialchars_decode($text[3])}
+</div>
+<!-- 自定义模块4 -->
+
+<div class="clear"></div>
+
+<!-- rollbox-->
+
+<!-- 相册 -->
+<foreach name='photo' item="photo_v" key="p_key">
+<div class="rollbox">
+    <div class="c">
+	<div class="title">{$photo_v.title}</div>
+	<div class="LeftHandle" id="scrollArrLeft_{$p_key}"></div>
+	<div class="rollBoxc" id="scrollCont_{$p_key}">
+  <foreach name="photo_v['photoimg']" item="img_v">
+		<div class="anli"><img src="{$img_v.img}" ></div>
+  </foreach>
+  </div>
+  <div class="RightHandle" id="scrollArrRight_{$p_key}"></div>
+</div>
+<script>
+photo("{$p_key}");
+</script>
+</foreach>
+
+
+
+<script type="text/javascript">
+
+
+  window.onload=function(){
+   function adsorption(){
+    var headerWrap=document.getElementById('nav');
+    var scrollTop=0;
+    window.onscroll=function(){
+     scrollTop=document.body.scrollTop||document.documentElement.scrollTop;
+     if(scrollTop>20){
+      document.getElementById('header').style.cssText =" display:none;" 
+     }else{
+     document.getElementById('header').style.cssText ="display:block;" 
+     }
+    }
+   }
+   adsorption();
+  }
+ </script>
+<div style="width:100%;"  class="custom">
+{:htmlspecialchars_decode($text[4])}
+</div>
+
+<include file="./footer"/>

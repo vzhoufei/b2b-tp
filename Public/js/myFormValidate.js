@@ -5,7 +5,6 @@
 */
 before_request = 1; // 标识上一次ajax 请求有没回来, 没有回来不再进行下一次
 function ajax_submit_form(form_id,submit_url){
-
          if(before_request == 0)
             return false;
               

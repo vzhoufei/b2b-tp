@@ -81,24 +81,24 @@ class StoreController extends Controller {
 	public function index()
 	{
 		//热门商品排行
-		$hot_goods = M('goods')->field('goods_content',true)->where(array('store_id'=>$this->store['store_id']))->order('sales_sum desc')->limit(9)->select();
+		$hot_goods = M('goods')->field('goods_content',true)->where(array('store_id'=>$this->store['store_id'],'is_on_sale'=>1))->order('sales_sum desc')->limit(9)->select();
 		//新品
-		$new_goods = M('goods')->field('goods_content',true)->where(array('store_id'=>$this->store['store_id'],'is_new'=>1))->order('goods_id desc')->limit(9)->select();
+		$new_goods = M('goods')->field('goods_content',true)->where(array('store_id'=>$this->store['store_id'],'is_new'=>1,'is_on_sale'=>1))->order('goods_id desc')->limit(9)->select();
 		//推荐商品
-		$recomend_goods = M('goods')->field('goods_content',true)->where(array('store_id'=>$this->store['store_id'],'is_recommend'=>1))->order('goods_id desc')->limit(9)->select();
+		$recomend_goods = M('goods')->field('goods_content',true)->where(array('store_id'=>$this->store['store_id'],'is_recommend'=>1,'is_on_sale'=>1))->order('goods_id desc')->limit(9)->select();
 		//所有商品
-		$total_goods = M('goods')->where(array('store_id'=>$this->store['store_id'],'is_on_sale'=>1))->count();
+		$total_goods = M('goods')->where(array('store_id'=>$this->store['store_id'],'is_on_sale'=>1,'is_on_sale'=>1))->count();
 
 
         //新闻
         $store_navigation = M('store_navigation')->where(array('sn_store_id'=>$this->store['store_id'],'sn_is_list'=>1,'sn_is_show'=>1))->getField('sn_id',true);
-        $news = M('store_art')->where('sn_id in('.implode(',',$store_navigation).')')->order('id desc')->limit(10)->select();
+        $news = M('store_art')->where('(sn_id in('.implode(',',$store_navigation).')) and is_show = 1')->order('id desc')->limit(10)->select();
         $this->assign('news',$news);
 		$this->assign('hot_goods',$hot_goods);
 		$this->assign('new_goods',$new_goods);
 		$this->assign('recomend_goods',$recomend_goods);
 		$this->assign('total_goods',$total_goods);
-		$total_goods = M('goods')->where(array('store_id'=>$this->store['store_id'],'is_on_sale'=>1))->count();
+		$total_goods = M('goods')->where(array('store_id'=>$this->store['store_id'],'is_on_sale'=>1,'is_on_sale'=>1))->count();
 		$this->assign('total_goods',$total_goods);
         $this->assign('recommend',$this->recommend());
 		$this->display('/index');
@@ -117,7 +117,7 @@ class StoreController extends Controller {
         $recommend = M('store_goods_class')->where(array('store_id'=>$this->store_id['store_id'],'is_show'=>1,'is_recommend'=>1))->select();
         foreach($recommend as &$v){
             // 查询推荐商品
-            $v['cat_id_goods'] = $product_m->where('store_cat_id1 = '.$v['cat_id'].' or store_cat_id2 = '.$v['cat_id'])->field('goods_id,goods_name,original_img,shop_price')->limit($v['show_num'])->select();
+            $v['cat_id_goods'] = $product_m->where('('.'store_cat_id1 = '.$v['cat_id'].' or store_cat_id2 = '.$v['cat_id'].')' .'and is_on_sale = 1')->field('goods_id,goods_name,original_img,shop_price')->limit($v['show_num'])->select();
         }
 
         return $recommend;
@@ -145,7 +145,7 @@ class StoreController extends Controller {
         $this->assign('current',$_GET['p']?$_GET['p']:1);//当前页
         $Page = new \Think\Page($count, 12);
         if ($count > 0) {
-            $goods_list = M('goods')->where("goods_id in (" . implode(',', $filter_goods_id) . ")")->order("$key $sort")->limit($Page->firstRow . ',' . $Page->listRows)->select();
+            $goods_list = M('goods')->where("(goods_id in (" . implode(',', $filter_goods_id) . ")) and is_on_sale = 1")->order("$key $sort")->limit($Page->firstRow . ',' . $Page->listRows)->select();
             $filter_goods_id2 = get_arr_column($goods_list, 'goods_id');
             if ($filter_goods_id2) {
                 $goods_images = M('goods_images')->where("goods_id in (" . implode(',', $filter_goods_id2) . ")")->cache(true)->select();
@@ -220,8 +220,8 @@ class StoreController extends Controller {
         $this->page('?');//上一页 下一页 按钮
         $_GET['p'] = isset($_GET['p'])?$_GET['p']:1;
         if(is_numeric($sn_id)){
-	        $news = M('store_art')->where('store = '.$storeid.' and sn_id in (0,'.$sn_id.')')->page($_GET['p'].',12')->select();
-	        $count = M('store_art')->where('store = '.$storeid.' and sn_id in (0,'.$sn_id.')')->count();
+	        $news = M('store_art')->where('(store = '.$storeid.' and sn_id in (0,'.$sn_id.')) and is_show = 1')->page($_GET['p'].',12')->select();
+	        $count = M('store_art')->where('(store = '.$storeid.' and sn_id in (0,'.$sn_id.')) and is_show = 1')->count();
 
             $num = ceil($count / 12);
             $this->assign('num',$num);//页码

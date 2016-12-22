@@ -23,39 +23,220 @@ class StoreController extends BaseController{
 	 */
 	public function store_tpl()
 	{
+		// $template = array(
+			
+		// 	'fuzhuang'=>'服装、饰品、个人护理',
+		// 	'wenhua'=>'文化、广告、设计服务',
+		// 	'wujin'=>'五金、设备、工业制品',
+		// 	'it'=>'IT、互联网、行业门户',
+		// 	'jiaoyu'=>'教育、政府、机构组织',
+		// 	'huagong'=>'化工、原材料、农畜牧',
+		// 	'jinrong'=>'金融、运输、工商服务',
+		// 	'shipin'=>'食品、茶饮、养生保健',
+		// 	'shuma'=>'数码、家具、家居百货',
+		// 	'hunqing'=>'婚庆、摄影、生活服务',
+		// 	'canyin'=>'餐饮、酒店、旅游服务',
+		// 	'lipin'=>'礼品、玩具、小商品',
+		// 	);
+
+
 		$template = array(
-			'fuzhuang'=>'服装、饰品、个人护理',
-			'wenhua'=>'文化、广告、设计服务',
-			'wujin'=>'五金、设备、工业制品',
-			'it'=>'IT、互联网、行业门户',
-			'jiaoyu'=>'教育、政府、机构组织',
-			'huagong'=>'化工、原材料、农畜牧',
-			'jinrong'=>'金融、运输、工商服务',
-			'shipin'=>'食品、茶饮、养生保健',
-			'shuma'=>'数码、家具、家居百货',
-			'hunqing'=>'婚庆、摄影、生活服务',
-			'canyin'=>'餐饮、酒店、旅游服务',
-			'lipin'=>'礼品、玩具、小商品',
-			);
+			array(
+				'name'=>'服装、饰品、个人护理',
+				'key'=>'fuzhuang',
+				'son'=>array(
+					'fuzhuang'=>'服装',
+					'shipin'=>'饰品',
+					'xiemaoxiangbao'=>'鞋帽箱包',
+					'huwaiyongpin'=>'户外用品',
+					'meironghufu'=>'美容护肤',
+					),
+				),
+			array( 
+				'name'=>'文化、广告、设计服务',
+				'key'=>'wenhua',
+				'son'=>array(
+
+						'guanggao'=>'广告',
+						'wenhuachuanmei'=>'文化传媒',
+						'yinshuabaoz'=>'印刷包装',
+						'zhanlansheji'=>'展览设计',
+						'yuanlinsheji'=>'园林设计',
+					),
+
+				),
+			array( 
+				'name'=>'五金、设备、工业制品',
+				'key'=>'wujin',
+				'son'=>array(
+
+						'wujin'=>'广告',
+						'wenhuachuanmei'=>'五金',
+						'menchuangzhaoming'=>'门窗照明',
+						'qichepeijian'=>'汽车汽配',
+						'dianzidiangong'=>'电子电工',
+						'yiqiqicai'=>'仪器器材',
+						'anquanjiankong'=>'安防监控',
+					),
+
+				),
+			array( 
+				'name'=>'it、互联网、行业门户 ',
+				'key'=>'it',
+				'son'=>array(
+					),
+
+				),
+			array( 
+				'name'=>'教育、政府、机构组织',
+				'key'=>'jiaoyu',
+				'son'=>array(
+
+						'xuexiao'=>'学校',
+						'zhengfu'=>'政府',
+						'yiyuan'=>'医院',
+						'jiaoyupeixun'=>'教育培训',
+						'jigouzuzhi'=>'机构组织',
+					),
+
+				),
+			array( 
+				'name'=>'化工、原材料、农畜牧  ',
+				'key'=>'huagong',
+				'son'=>array(
+
+						'jianzhujiancai'=>'建筑建材',
+						'fangzhifuliao'=>'纺织辅料',
+						'huagongtuliao'=>'化工涂料',
+						'xiangjiaosuliao'=>'橡胶塑料',
+						'huanbaohuishou'=>'环保回收',
+						'nongyexumu'=>'农业畜牧',
+					),
+
+				),
+			array( 
+				'name'=>'金融、运输、工商服务  ',
+				'key'=>'jinrong',
+				'son'=>array(
+
+						'maoyi'=>'贸易',
+						'yunshu'=>'运输',
+						'fangdichan'=>'房地产',
+						'jinrongbaoxian'=>'金融保险',
+						'falvfuwu'=>'法律服务',
+					),
+
+				),
+			array( 
+				'name'=>'食品、茶饮、养生保健  ',
+				'key'=>'shipin',
+				'son'=>array(
+
+						'shuguo'=>'蔬果',
+						'chaye'=>'茶叶',
+						'jiulei'=>'酒类',
+						'shipinyinliao'=>'食品饮料',
+					),
+
+				),
+			array( 
+				'name'=>'数码、家具、家居百货  ',
+				'key'=>'shuma',
+				'son'=>array(
+
+						'diannao'=>'电脑',
+						'dianqi'=>'电器',
+						'shoujishuma'=>'手机数码',
+						'jiasijiaju'=>'家私家具',
+						'jiasijiafang'=>'家居家纺',
+						'riyongbaihuo'=>'日用百货',
+					),
+
+				),
+			array( 
+				'name'=>'婚庆、摄影、生活服务',
+				'key'=>'sheying',
+				'son'=>array(
+
+						'xianhua'=>'鲜花',
+						'hunqing'=>'婚庆',
+						'sheying'=>'摄影',
+						'chongwu'=>'宠物',
+						'zhuangxui'=>'装修',
+						'shenghuofuwu'=>'生活服务',
+					),
+
+				),
+			array( 
+				'name'=>'餐饮、酒店、旅游服务',
+				'key'=>'canyin',
+				'son'=>array(
+
+						'yinliao'=>'餐饮',
+						'jiudian'=>'酒店',
+						'lvyou'=>'旅游',
+					),
+
+				),
+			array( 
+				'name'=>'礼品、玩具、小商品',
+				'key'=>'lipin',
+				'son'=>array(
+
+						'lipin'=>'礼品',
+						'wenju'=>'文具',
+						'wanjuyueqi'=>'玩具乐器',
+					),
+
+				),
+
+
+);
 		$tpl_class = I('tpl');
 		$tpls = M('store')->where('store_id = '.session('store_id'))->getField('tpl');
 		$tpl = I('t','pc');
-		$arr = scandir("./Merchants_tpl/$tpl/$tpl_class/");
-        $m = ($tpl == 'pc') ? 'Home' : 'Mobile';
 
+		$layer = I('layer');
+		if($layer){
+
+			$arr = scandir("./Merchants_tpl/$tpl/$tpl_class/");
+			foreach($arr as $v){
+				if($v == '.' || $v == '..'){continue;}
+				if($v == '.' || $v == '..'){continue;}
+				$arrs[ $v ] = scandir("./Merchants_tpl/$tpl/$tpl_class/$v");
+
+			}
+
+			foreach($arrs as $kk=>$vc){
+				foreach($vc as $vb){
+					if($vb != '.' && $vb != '..'){
+
+						$array[] = $kk.'/'.$vb;
+					}
+				}
+			}
+		}else{
+
+				$array = scandir("./Merchants_tpl/$tpl/$tpl_class/");
+		}
+		
+        $m = ($tpl == 'pc') ? 'Home' : 'Mobile';
         $y = 6;//每页显示个数
 		$p = $_GET['p']?$_GET['p']:1;//页码
         $num = $p * $y;//当前页码乘每页显示的个数 等于当前页显示的最大数
         $n = $num - $y + 1;//当前显示的最大数减去每页显示的条数加一等于当前页显示的最小数
-         foreach($arr as $key => $val)
+         foreach($array as $key => $val)
          {
                 if($val == '.' || $val == '..' ){continue;}
                 $i += 1;
+
                 if($i >= $n && $i <= $num){
                  	$template_config[$val] = include "./Merchants_tpl/$tpl/$tpl_class/$val/config.php";
                 }
                 $count += 1;//总数
          }
+
+// dump($template_config);exit;
          $number = ceil($count / $y);//共多少页
          $page = "<li><a href='".$this->mypage(1)."'>首页</a></li>";
          if($p != 1){$page .= "<li><a href='".$this->mypage($_GET['p']-1)."'>上一页</a></li>";}
@@ -70,7 +251,7 @@ class StoreController extends BaseController{
          $page .= "<li><a href='".$this->mypage($number)."'>末页</a></li>";
          $page .= "<li>{$count}条结果  .  {$p}/{$number}</li>";
          $this->assign('page',$page);
-		$this->assign('tpl',$tpl);        
+		$this->assign('tpl',$tpl);   
         $this->assign('template',$template);
         $this->assign('default_theme',$tpls);
         $this->assign('template_config',$template_config);
@@ -81,7 +262,7 @@ class StoreController extends BaseController{
 	//处理分页
 	public function mypage($p)
 	{
-		$url = (strstr($_SERVER['REQUEST_URI'],'p='))?$_SERVER['REQUEST_URI']:$_SERVER['REQUEST_URI'].'?p=';
+		$url = (strstr($_SERVER['REQUEST_URI'],'p='))?$_SERVER['REQUEST_URI']:$_SERVER['REQUEST_URI'].'&p=';
 
 		return str_replace('p='.$_GET['p'], 'p='.$p, $url);
 	}
@@ -105,10 +286,10 @@ class StoreController extends BaseController{
 
 		$res = $store->where('store_id = '.session('store_id'))->save($key);
 		if($res){
-   			$this->success("操作成功!!!",U('store_tpl',array('t'=>$t,'tpl'=>I('tplclass'))).'?p='.I('p'));
+   			$this->success("操作成功!!!");
 		}else{
 
-   			$this->success("操作失败!!!",U('store_tpl',array('t'=>$t,'tpl'=>I('tplclass'))).'?p='.I('p'));
+   			$this->success("操作失败!!!");
 		}
 
    }
@@ -561,9 +742,10 @@ DocumentRoot /usr/local/apache2/htdocs/cdcms-websites/
 
 		$tpls = M('store')->where('store_id = '.session('store_id'))->getField('tpl');
 		$template_config = include "./Merchants_tpl/pc/$tpls/config.php";
-
+		$template_config['mod']  = 5;
 
         $this->assign('template_config',$template_config);
+        // dump($template_config);exit;
 
 
 
