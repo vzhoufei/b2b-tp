@@ -51,7 +51,6 @@ class StoreController extends Controller {
 
 				$this->navigation[] = array('sn_title' => '公司相册', 'sn_is_list' => 2);
 			}
-			// dump($this->navigation);
 			$this->assign('user', session('user'));
 			$decoration_id = I('decoration_id', 0);
 			if ($store_info['store_decoration_switch'] > 0 && $decoration_id == 0) {
@@ -195,6 +194,7 @@ class StoreController extends Controller {
 			$v['photoimg'] = $photoimg->where(array('photoid' => $v['id']))->select();
 		}
 		$this->assign('photolist', $photolist);
+			$this->assign('navigation',$this->navigation);
 		$this->display('/photolist');
 	}
 
