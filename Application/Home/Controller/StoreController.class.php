@@ -285,6 +285,7 @@ class StoreController extends Controller {
 		$sn_id = I('sn_id');
 		$navlist = M('store_navigation')->where(array('sn_store_id' => $this->store['store_id'], 'sn_id' => $sn_id))->find();
 		$this->assign('banner', $banner);
+		$navlist['sn_content'] = htmlspecialchars_decode($navlist['sn_content']);
 		$this->assign('navlist', $navlist);
 		$this->assign('navigation', $this->navigation);
 		// dump($navlist);exit;

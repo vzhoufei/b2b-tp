@@ -278,7 +278,6 @@ class StoreController extends BaseController{
    		$key['tpl'] = I('tplclass').'/'.I('key');
    		$key['mtpl'] = I('mtpl');
    		$t = I('t','pc');
-
    		$tpl = ($t == 'pc')?'Home':'Mobile';
    		$store = M('store');
 		$tpl = $store->where('store_id = '.session('store_id'))->field('tpl')->find();
@@ -291,6 +290,150 @@ class StoreController extends BaseController{
 
    			$this->success("操作失败!!!");
 		}
+
+   }
+
+
+   //为新用户复制数据
+   public function import($store_id)
+   {
+
+
+   	//自定义导航
+   	// $nav = M('store_navigation');
+   	// $article = M('store_art');
+   	// $navigation = $nav->where(array('sn_store_id'=>$store_id))->select();//自定义导航
+   	// if($navigation){
+
+	   // 	foreach($navigation as &$vv){
+	   // 		$sn_id = $vv['sn_id'];
+	   // 		$vv['sn_store_id'] = session('store_id');
+	   // 		unset($vv['sn_id']);
+	   // 		$res = $nav->add($vv);
+	   // 		$articles = $article->where(array('sn_id'=>$sn_id))->select();//文章
+	   // 		if($articles){
+
+		  //  		foreach($articles as &$v_art){
+		  //  			$v_art['store'] = session('store_id');
+		  //  			$v_art['sn_id'] = $res;
+		  //  			unset($v_art['id']);
+		  //  		}
+		  //  		$count = $article->where(array('sn_id'=>$sn_id))->count();
+		  //  		if($count > 1){
+				//    		$article->addAll($articles);
+		   			
+		  //  		}else{
+		  //  			$article->add($articles[0]);
+		  //  		}
+	   // 		}
+
+	   // 	}
+   	// }
+
+
+
+
+
+   	//分类
+   	$class = M('store_goods_class');
+   	$goods_m = M('goods');
+   	$goods_class = $class->where(array('store_id'=>$store_id,'parent_id'=>0))->select();//查询一级分类
+   	if($goods_class){
+   		//循环复制分类
+	   	foreach($goods_class as &$vo){
+	   		$parent_id = $vo['cat_id'];
+	   		$vo['store_id'] = session('store_id');
+	   		unset($vo['cat_id']);
+	   		$res = $class->add($vo);
+	   		$goods = $goods_m->where(array('store_id'=>$store_id,'store_cat_id1'=>$parent_id,'store_cat_id2'=>0))->select();//查询一级分类商品
+	   		if($goods){
+
+	   			foreach($goods as &$v_goods){
+	   				$v_goods['store_id'] = session('store_id');
+	   				$v_goods['store_cat_id1'] = $res;
+	   				$v_goods['goods_id'] = null;
+
+	   			}
+
+	   			$count1 = $goods_m->where(array('store_id'=>$store_id,'store_cat_id1'=>$parent_id,'store_cat_id2'=>0))->count();
+	   			if($count1 > 1){
+	   				$goods_m->addAll($goods);
+	   			}else{
+	   				$goods_m->add($goods[0]);
+	   				
+	   			}
+	   		}
+
+	   		
+	   		$son = $class->where(array('store_id'=>$store_id,'parent_id'=>$parent_id))->select();//查询二级分类
+	   		if($son){
+	   			foreach($son as &$vson){
+	   				$goodsid = $vson['cat_id'];
+		   			$vson['parent_id'] = $res;
+		   			$vson['store_id'] = session('store_id');
+		   			unset($vson['cat_id']);
+		   			$res2 = $class->add($vson);
+		   			$goods2 = $goods_m->where(array('store_id'=>$store_id,'store_cat_id1'=>$parent_id,'store_cat_id2'=>$goodsid))->select();//查询二级分类商品
+			   		if($goods2){
+
+			   			foreach($goods2 as &$v_goods2){
+			   				$v_goods2['store_id'] = session('store_id');
+			   				$v_goods2['store_cat_id1'] = $res;
+			   				$v_goods2['store_cat_id2'] = $res2;
+			   				$v_goods2['goods_id'] = null;
+
+			   			}
+			   			$count2 = $goods_m->where(array('store_id'=>$store_id,'store_cat_id1'=>$parent_id,'store_cat_id2'=>$goodsid))->count();
+			   			if($count2 > 1){
+			   				dump($goods2);
+			   				// $goods_m->addAll($goods2);//添加二级分类商品
+			   				exit;
+			   				
+			   			}else{
+			   				$goods_m->add($goods2[0]);//添加二级分类商品
+
+			   			}
+			   		}
+
+
+	   			}
+
+	   		}
+
+	   	}
+
+
+
+	   		
+   	}
+
+
+
+
+
+
+   	echo '<pre>';
+   	print_r($goods_class);
+
+   		echo '导入';
+   }
+
+
+   /**
+    * 清空用户数据
+    */
+   public function deletedata($store_id)
+   {
+
+   		   	$nav = M('store_navigation');
+   			$article = M('store_art');
+   			$class = M('store_goods_class');
+   			$goods_m = M('goods');
+
+   			$nav->where(array('sn_store_id'=>$store_id))->delete();
+   			$article->where(array('sn_store_id'=>$store_id))->delete();
+   			$class->where(array('store_id'=>$store_id))->delete();
+   			$goods_m->where(array('store_id'=>$store_id))->delete();
 
    }
 
@@ -361,6 +504,9 @@ DocumentRoot /usr/local/apache2/htdocs/cdcms-websites/
             }
 
         }else{
+			// $this->import(9);
+			$this->deletedata(session('store_id'));
+
 
             $this->display();
         }

@@ -73,9 +73,9 @@ class NewsController extends BaseController {
 			$r = M('store_art')->where('id='.$data['id'])->save($data);
 		}
 		if($r){
-			$this->success("操作成功",U('News/NewsList'));
+			$this->success("操作成功",U('News/newslist'));
 		}else{
-			$this->error("操作失败",U('News/NewsList'));
+			$this->error("操作失败",U('News/newslist'));
 		}
 	}
 	/**
