@@ -284,6 +284,12 @@ class StoreController extends BaseController{
 		if(!$tpl){$this->success("请先配置您的店铺!",U('store_setting'));exit;}
 
 		$res = $store->where('store_id = '.session('store_id'))->save($key);
+		if((int)I('tnameid')){
+			// $this->deletedata(session('store_id'));
+			// $this->import((int)I('tnameid'));
+
+
+		}
 		if($res){
    			$this->success("操作成功!!!");
 		}else{
@@ -300,41 +306,38 @@ class StoreController extends BaseController{
 
 
    	//自定义导航
-   	// $nav = M('store_navigation');
-   	// $article = M('store_art');
-   	// $navigation = $nav->where(array('sn_store_id'=>$store_id))->select();//自定义导航
-   	// if($navigation){
+   	$nav = M('store_navigation');
+   	$article = M('store_art');
+   	$navigation = $nav->where(array('sn_store_id'=>$store_id))->select();//自定义导航
+   	if($navigation){
 
-	   // 	foreach($navigation as &$vv){
-	   // 		$sn_id = $vv['sn_id'];
-	   // 		$vv['sn_store_id'] = session('store_id');
-	   // 		unset($vv['sn_id']);
-	   // 		$res = $nav->add($vv);
-	   // 		$articles = $article->where(array('sn_id'=>$sn_id))->select();//文章
-	   // 		if($articles){
+	   	foreach($navigation as &$vv){
+	   		$sn_id = $vv['sn_id'];
+	   		$vv['sn_store_id'] = session('store_id');
+	   		unset($vv['sn_id']);
+	   		$res = $nav->add($vv);
+	   		$articles = $article->where(array('sn_id'=>$sn_id))->select();//文章
+	   		if($articles){
 
-		  //  		foreach($articles as &$v_art){
-		  //  			$v_art['store'] = session('store_id');
-		  //  			$v_art['sn_id'] = $res;
-		  //  			unset($v_art['id']);
-		  //  		}
-		  //  		$count = $article->where(array('sn_id'=>$sn_id))->count();
-		  //  		if($count > 1){
-				//    		$article->addAll($articles);
+		   		foreach($articles as &$v_art){
+		   			$v_art['store'] = session('store_id');
+		   			$v_art['sn_id'] = $res;
+		   			unset($v_art['id']);
+		   		}
+		   		
+				   		$article->addAll($articles);
 		   			
-		  //  		}else{
-		  //  			$article->add($articles[0]);
-		  //  		}
-	   // 		}
+		   		
+	   		}
 
-	   // 	}
-   	// }
+	   	}
+   	}
 
 
 
 
 
-   	//分类
+   	// 分类
    	$class = M('store_goods_class');
    	$goods_m = M('goods');
    	$goods_class = $class->where(array('store_id'=>$store_id,'parent_id'=>0))->select();//查询一级分类
@@ -354,14 +357,12 @@ class StoreController extends BaseController{
 	   				$v_goods['goods_id'] = null;
 
 	   			}
+	   				foreach($goods as $vc){
 
-	   			$count1 = $goods_m->where(array('store_id'=>$store_id,'store_cat_id1'=>$parent_id,'store_cat_id2'=>0))->count();
-	   			if($count1 > 1){
-	   				$goods_m->addAll($goods);
-	   			}else{
-	   				$goods_m->add($goods[0]);
-	   				
-	   			}
+	   					$goods_m->add($vc);
+	   				}
+	   			
+	   			
 	   		}
 
 	   		
@@ -383,16 +384,14 @@ class StoreController extends BaseController{
 			   				$v_goods2['goods_id'] = null;
 
 			   			}
-			   			$count2 = $goods_m->where(array('store_id'=>$store_id,'store_cat_id1'=>$parent_id,'store_cat_id2'=>$goodsid))->count();
-			   			if($count2 > 1){
-			   				dump($goods2);
-			   				// $goods_m->addAll($goods2);//添加二级分类商品
-			   				exit;
 			   				
-			   			}else{
-			   				$goods_m->add($goods2[0]);//添加二级分类商品
+			   				foreach($goods2 as $vz){
 
-			   			}
+			   					$goods_m->add($vz);//添加二级分类商品
+			   				}
+			   				
+			   				
+			   			
 			   		}
 
 
@@ -407,15 +406,52 @@ class StoreController extends BaseController{
 	   		
    	}
 
+   		// 配置数据和幻灯图片
+   		$yd_store = M('store');
+   		$store = $yd_store->where(array('store_id'=>$store_id))->field('store_logo,store_banner,seo_keywords,seo_description,store_zy,store_slide,store_slide_url,mb_slide,mb_slide_url,copyright,store_qq,store_phone,store_aliwangwang,city_id,district,store_address')->find();
+   		if($store){
+   			$yd_store->where(array('store_id'=>session('store_id')))->save();
+   		}
+
+   		//自定义模块
+   		$store_mod = M('store_mod');
+   		$texts = $store_mod->where(array('store_id'=>$store_id))->field('content')->find();
+   		if($texts){
+   			
+	   		if($store_mod->where(array('store_id'=>session('store_id')))->find()){
+	   			$store_mod->where(array('store_id'=>session('store_id')))->save($texts);
+	   		}else{
+		   		$texts['store_id'] = session('store_id');
+		   		$store_mod->add($texts);
+
+	   			
+	   		}
+   		}
 
 
+   		$photo_m = M('photo');
+   		$photoimg_m = M('photoimg');
+   		$photo = $photo_m->where(array('store_id'=>$store_id))->select();
+   		if($photo){
+
+	   		foreach($photo as &$vv){
+	   			$photoimg = $photoimg_m->where(array('photoid'=>$vv['id']))->select();
+	   			$vv['store_id'] = session('store_id');
+	   			unset($vv['id']);
+	   			$res5 = $photo_m->add($vv);
+	   			if($photoimg){
+	   				foreach($photoimg as $vvv){
+	   					unset($vvv['id']);
+	   					$vvv['photoid'] = $res5;
+	   					$photoimg_m->add($vvv);
+	   				}
+	   			}
+
+	   		}
+
+   		}
 
 
-
-   	echo '<pre>';
-   	print_r($goods_class);
-
-   		echo '导入';
    }
 
 
@@ -429,11 +465,26 @@ class StoreController extends BaseController{
    			$article = M('store_art');
    			$class = M('store_goods_class');
    			$goods_m = M('goods');
-
+   			$yd_store = M('store');
+   			$store_mod = M('store_mod');
+   			$photo_m = M('photo');
+   			$photoimg_m = M('photoimg');
+   			$str = 'store_logo,store_banner,seo_keywords,seo_description,store_zy,store_slide,store_slide_url,mb_slide,mb_slide_url,copyright,store_qq,store_phone,store_aliwangwang,city_id,district,store_address';
+   			$arr = explode(',',$str);
+   			foreach($arr as $v){
+   				$data2[$v] = '';
+   			}
+   			$yd_store->where(array('store_id'=>$store_id))->save($data2);
+   			$data['content'] = '';
+   			$store_mod->where(array('store_id'=>$store_id))->save($data);
    			$nav->where(array('sn_store_id'=>$store_id))->delete();
    			$article->where(array('sn_store_id'=>$store_id))->delete();
    			$class->where(array('store_id'=>$store_id))->delete();
    			$goods_m->where(array('store_id'=>$store_id))->delete();
+   			$photo_m->where(array('store_id'=>$store_id))->delete();
+   			$photoimg_m->where(array('store_id'=>$store_id))->delete();
+
+   			
 
    }
 
@@ -504,10 +555,7 @@ DocumentRoot /usr/local/apache2/htdocs/cdcms-websites/
             }
 
         }else{
-			// $this->import(9);
-			$this->deletedata(session('store_id'));
-
-
+			
             $this->display();
         }
    }

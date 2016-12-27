@@ -105,7 +105,7 @@ class StoreController extends Controller {
 		$store_id = $this->store['store_id'];
 
 		//热门商品排行
-		$hot_goods = M('goods')->field('goods_content', true)->where(array('store_id' => $store_id, 'is_on_sale' => 1))->order('sales_sum desc')->limit(10)->select();
+		$hot_goods = M('goods')->field('goods_content', true)->where(array('store_id' => $store_id, 'is_on_sale' => 1,'is_hot'=>1))->order('sales_sum desc')->limit(10)->select();
 		//收藏商品排行
 		$collect_goods = M('goods')->field('goods_content', true)->where(array('store_id' => $store_id, 'is_on_sale' => 1))->order('collect_sum desc')->limit(10)->select();
 		//新品

@@ -55,11 +55,16 @@
                        <p>{$val['remark']}</p>
                        <p>                                
                            <if condition="$default_theme == $_GET['tpl'].'/'.$k">
-                               <a href="{:U('changeTemplate')}?key={$k}&t={$tpl}&mtpl={$val['mtpl']}&tplclass={$_GET['tpl']}&p={$_GET['p']}" class="btn btn-success" role="button">启用</a> 
+                               <a href="{:U('changeTemplate')}?key={$k}&t={$tpl}&mtpl={$val['mtpl']}&tplclass={$_GET['tpl']}&p={$_GET['p']}" class="btn btn-success" role="button">启用此模板</a> 
                            <else /> 
-                           <a href="{:U('changeTemplate')}?key={$k}&t={$tpl}&mtpl={$val['mtpl']}&tplclass={$_GET['tpl']}&p={$_GET['p']}" class="btn btn-default" role="button">启用</a> 
+                           <a href="{:U('changeTemplate')}?key={$k}&t={$tpl}&mtpl={$val['mtpl']}&tplclass={$_GET['tpl']}&p={$_GET['p']}" class="btn btn-default" role="button">启用此模板</a> 
                            </if>   
-                           <a href="http://{$val.remark}" class="btn btn-default" role="button" target="_blank" >查看</a>                             
+                           <a href="http://{$val.remark}" class="btn btn-default" role="button" target="_blank" >查看演示</a>
+                           <?php 
+                            $arr = explode('/',$val['remark']);
+                            $count = count($arr);
+                            $int = (int)$arr[$count-1];?>
+                            <a onclick="if(confirm('此操作将会覆盖原有数据，确定执行吗？')){return ajHref(this);};return false;" href="{:U('changeTemplate')}?key={$k}&t={$tpl}&mtpl={$val['mtpl']}&tplclass={$_GET['tpl']}&tnameid={$int}&p={$_GET['p']}" class="btn btn-default" role="button">复制数据并启动</a>                             
                        </p>
                      </div>
                    </div>
