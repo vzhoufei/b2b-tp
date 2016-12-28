@@ -52,19 +52,19 @@
                      <img src="/Merchants_tpl/{$tpl}/{$_GET['tpl']}/{$k}/{$val['img']}" />
                      <div class="caption">
                        <h3>{$val['name']}</h3>
-                       <p>{$val['remark']}</p>
+                       <p>启用空白模板，保留原数据。 启用演示数据模板，将会用此模板的演示数据覆盖您现有数据。请谨慎操作！</p>
                        <p>                                
                            <if condition="$default_theme == $_GET['tpl'].'/'.$k">
-                               <a href="{:U('changeTemplate')}?key={$k}&t={$tpl}&mtpl={$val['mtpl']}&tplclass={$_GET['tpl']}&p={$_GET['p']}" class="btn btn-success" role="button">启用此模板</a> 
+                               <a href="{:U('changeTemplate')}?key={$k}&t={$tpl}&mtpl={$val['mtpl']}&tplclass={$_GET['tpl']}&p={$_GET['p']}" class="btn btn-success" role="button">启用空白模板</a> 
                            <else /> 
-                           <a href="{:U('changeTemplate')}?key={$k}&t={$tpl}&mtpl={$val['mtpl']}&tplclass={$_GET['tpl']}&p={$_GET['p']}" class="btn btn-default" role="button">启用此模板</a> 
+                           <a href="{:U('changeTemplate')}?key={$k}&t={$tpl}&mtpl={$val['mtpl']}&tplclass={$_GET['tpl']}&p={$_GET['p']}" class="btn btn-default" role="button">启用空白模板</a> 
                            </if>   
                            <a href="http://{$val.remark}" class="btn btn-default" role="button" target="_blank" >查看演示</a>
                            <?php 
                             $arr = explode('/',$val['remark']);
                             $count = count($arr);
                             $int = (int)$arr[$count-1];?>
-                            <a onclick="if(confirm('此操作将会覆盖原有数据，确定执行吗？')){return ajHref(this);};return false;" href="{:U('changeTemplate')}?key={$k}&t={$tpl}&mtpl={$val['mtpl']}&tplclass={$_GET['tpl']}&tnameid={$int}&p={$_GET['p']}" class="btn btn-default" role="button">复制数据并启动</a>                             
+                            <a onclick="if(confirm('此操作将会覆盖原有数据，确定执行吗？')){return ajHref(this);};return false;" href="{:U('changeTemplate')}?key={$k}&t={$tpl}&mtpl={$val['mtpl']}&tplclass={$_GET['tpl']}&tnameid={$int}&p={$_GET['p']}" class="btn btn-default" role="button">启用演示数据模板</a>                             
                        </p>
                      </div>
                    </div>

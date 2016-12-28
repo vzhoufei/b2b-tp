@@ -56,15 +56,21 @@
                </li>
            </if>            
            <li>
-              <a href="/index.php" target="_blank">
+              <a href="{:SITE_URL}{:U('/Store/index',array('store_id'=>STORE_ID))}" target="_blank">
                   <i class="glyphicon glyphicon-home"></i>
-                  <span>网站前台</span>
+                  <span>官网前台</span>
               </a>
            </li>
            <li>
                <a href="{:U('/Seller/Admin/cleanCache')}">
                    <i class="glyphicon glyphicon glyphicon-refresh"></i>
                    <span>清除缓存</span>
+               </a>
+           </li> 
+           <li>
+               <a onclick="return deletedata2()" href="{:U('/Seller/Store/deletedata2')}">
+                   <i class="glyphicon glyphicon glyphicon-remove-circle" style="color:#f00;"></i>
+                   <span>一键清空数据</span>
                </a>
            </li>      
            <li class="dropdown user user-menu">
@@ -77,7 +83,7 @@
                 <li class="user-footer">
                   <div class="pull-left">
 
-                  	<a href="{:SITE_URL}{:U('/Store/index',array('store_id'=>STORE_ID))}" data-url="" target="_blank" class="btn btn-default btn-flat">店铺首页</a>
+                  	<!-- <a href="{:SITE_URL}{:U('/Store/index',array('store_id'=>STORE_ID))}" data-url="" target="_blank" class="btn btn-default btn-flat">店铺首页</a> -->
                    	<a href="{:U('Admin/admin_info',array('seller_id'=>$seller['seller_id']))}" target="rightContent" class="btn btn-default btn-flat">修改密码</a>
                    	<a href="{:U('Admin/logout')}" class="btn btn-default btn-flat">安全退出</a>
                   </div>
@@ -90,3 +96,29 @@
         </div>
      </nav>
 </header> 
+
+<script type="text/javascript">
+
+function deletedata2()
+{
+  if(confirm('此操作将会删除您的所有数据，确定执行吗？由于此操作非常危险，接下来还会在提醒2次！')){
+      if(confirm('此操作将会删除您的所有数据，确定执行吗？由于此操作非常危险，接下来还会在提醒1次！')){
+        if(confirm('此操作将会删除您的所有数据，确定执行吗？你确定要删除所有数据，请点击确定。')){
+
+        }else{
+
+          return false;
+        }
+
+
+      }else{
+
+        return false;
+      }
+  }else{
+
+    return false;
+  }
+}
+
+</script>

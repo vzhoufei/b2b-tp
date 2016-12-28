@@ -236,8 +236,7 @@ class StoreController extends BaseController{
                 $count += 1;//总数
          }
 
-// dump($template_config);exit;
-         $number = ceil($count / $y);//共多少页
+	     $number = ceil($count / $y);//共多少页
          $page = "<li><a href='".$this->mypage(1)."'>首页</a></li>";
          if($p != 1){$page .= "<li><a href='".$this->mypage($_GET['p']-1)."'>上一页</a></li>";}
          for($j = 1;$j <= $number;$j++){
@@ -285,10 +284,9 @@ class StoreController extends BaseController{
 
 		$res = $store->where('store_id = '.session('store_id'))->save($key);
 		if((int)I('tnameid')){
-			// $this->deletedata(session('store_id'));
-			// $this->import((int)I('tnameid'));
 
-
+			$this->deletedata(session('store_id'));//删除原有数据
+			$res = $this->import((int)I('tnameid'));//复制数据
 		}
 		if($res){
    			$this->success("操作成功!!!");
@@ -428,7 +426,7 @@ class StoreController extends BaseController{
 	   		}
    		}
 
-
+   		//相册数据
    		$photo_m = M('photo');
    		$photoimg_m = M('photoimg');
    		$photo = $photo_m->where(array('store_id'=>$store_id))->select();
@@ -451,9 +449,16 @@ class StoreController extends BaseController{
 
    		}
 
-
+   		return true;
    }
 
+   	public function deletedata2()
+   	{
+			$this->deletedata(session('store_id'));//删除原有数据
+
+   			$this->success("成功删除数据!!!");
+
+   	}
 
    /**
     * 清空用户数据
@@ -495,6 +500,7 @@ class StoreController extends BaseController{
    public function store_domain()
    {
    	if(IS_POST){
+   		exit('开发中！');
             $store = M('store');
             $data['domain'] = I('post.domain');
             $domain = $store->where(array('store_id'=>session('store_id')))->field('domain')->find();

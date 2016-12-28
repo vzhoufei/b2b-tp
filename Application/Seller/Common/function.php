@@ -152,16 +152,16 @@ function getMenuList() {
 			array('name' => '代金券管理', 'act' => 'index', 'op' => 'Coupon'),
 			//array('name' => '分销管理', 'act'=>'store_activity', 'op'=>'promotion'),
 		)),
-		'store' => array('name' => '店铺管理', 'icon' => 'fa-cog', 'child' => array(
-			array('name' => '店铺设置', 'act' => 'store_setting', 'op' => 'Store'),
-			/*array('name' => '店铺装修', 'act'=>'store_decoration', 'op'=>'Store'),*/
-			array('name' => '店铺装修', 'act' => 'store_mod', 'op' => 'Store'),
+		'store' => array('name' => '官网管理', 'icon' => 'fa-cog', 'child' => array(
+			array('name' => '官网设置', 'act' => 'store_setting', 'op' => 'Store'),
+			/*array('name' => '官网装修', 'act'=>'store_decoration', 'op'=>'Store'),*/
+			array('name' => '官网装修', 'act' => 'store_mod', 'op' => 'Store'),
 			array('name' => '选择模板', 'act' => 'store_tpl?t=pc&tpl=fuzhuang&layer=1', 'op' => 'Store'),
-			array('name' => '店铺导航', 'act' => 'navigation_list', 'op' => 'Store'),
+			array('name' => '官网导航', 'act' => 'navigation_list', 'op' => 'Store'),
 			// array('name' => '经营类目', 'act'=>'bind_class_list', 'op'=>'Store'),
-			array('name' => '店铺信息', 'act' => 'store_info', 'op' => 'Store'),
-			array('name' => '店铺分类', 'act' => 'goods_class', 'op' => 'Store'),
-			array('name' => '店铺关注', 'act' => 'store_collect', 'op' => 'Store'),
+			array('name' => '官网信息', 'act' => 'store_info', 'op' => 'Store'),
+			array('name' => '官网分类', 'act' => 'goods_class', 'op' => 'Store'),
+			array('name' => '官网关注', 'act' => 'store_collect', 'op' => 'Store'),
 			array('name' => '绑定独立域名', 'act' => 'store_domain', 'op' => 'Store'),
 		)),
 		'consult' => array('name' => '售后服务', 'icon' => 'fa-flag', 'child' => array(
@@ -171,7 +171,7 @@ function getMenuList() {
 			array('name' => '投诉管理', 'act' => 'complain_list', 'op' => 'Comment'),
 		)),
 		'statistics' => array('name' => '统计报表', 'icon' => 'fa-signal', 'child' => array(
-			array('name' => '店铺概况', 'act' => 'index', 'op' => 'Report'),
+			array('name' => '官网概况', 'act' => 'index', 'op' => 'Report'),
 			array('name' => '商品分析', 'act' => 'saleTop', 'op' => 'Report'),
 			array('name' => '运营报告', 'act' => 'finance', 'op' => 'Report'),
 			array('name' => '销售排行', 'act' => 'saleTop', 'op' => 'Report'),
@@ -186,7 +186,7 @@ function getMenuList() {
 			array('name' => '账号列表', 'act' => 'index', 'op' => 'Admin'),
 			array('name' => '账号组', 'act' => 'role', 'op' => 'Admin'),
 			array('name' => '账号日志', 'act' => 'log', 'op' => 'Admin'),
-			//array('name' => '店铺消费', 'act'=>'store_cost', 'op'=>'cost_list'),
+			//array('name' => '官网消费', 'act'=>'store_cost', 'op'=>'cost_list'),
 		)),
 		// http://www.tpshop.com/Admin/Distribut/remittance
 		'finance' => array('name' => '财务管理', 'icon' => 'fa-book', 'child' => array(
