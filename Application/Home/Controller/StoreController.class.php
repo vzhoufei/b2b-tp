@@ -50,6 +50,8 @@ class StoreController extends Controller {
 			if ($photo = M('photo')->where(array('store_id' => $store_id, 'is_nav' => 1, 'status' => 1))->find()) {
 
 				$this->navigation[] = array('sn_title' => '公司相册', 'sn_is_list' => 2);
+				$this->navigation[] = array('sn_title' => '在线留言', 'sn_is_list' => 3);
+
 			}
 			$this->assign('user', session('user'));
 			$decoration_id = I('decoration_id', 0);
@@ -434,5 +436,16 @@ class StoreController extends Controller {
 		}
 
 		$this->ajaxReturn($goodlist);
+	}
+
+
+	/**
+	 * 在线留言页面
+	 */
+	public  function message()
+	{
+		$this->assign('navigation', $this->navigation);
+
+		$this->display('/message');
 	}
 }

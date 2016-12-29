@@ -180,6 +180,7 @@ function getMenuList() {
 		'message' => array('name' => '客服消息', 'icon' => 'fa-comments', 'child' => array(
 			array('name' => '客服设置', 'act' => 'store_service', 'op' => 'Index'),
 			array('name' => '系统消息', 'act' => 'store_msg', 'op' => 'Index'),
+			array('name' => '客户留言', 'act' => 'store_email', 'op' => 'Index'),
 			//array('name' => '聊天记录查询', 'act'=>'store_im', 'op'=>'store'),
 		)),
 		'account' => array('name' => '账号管理', 'icon' => 'fa-home', 'child' => array(

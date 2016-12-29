@@ -64,6 +64,8 @@
                         {:U('Store/newsList',array('store_id'=>$store[store_id],'sn'=>$vv[sn_id]))}
                         <elseif condition='$vv[sn_is_list] eq 2'/>
                         {:U('Store/photolist',array('store_id'=>$store[store_id]))}
+                        <elseif condition='$vv[sn_is_list] eq 3'/>
+                        {:U('Store/message',array('store_id'=>$store[store_id]))}
                         <else/>
                         {:U('Store/store_news',array('store_id'=>$store[store_id],'sn_id'=>$vv[sn_id]))}
                         </if>" 

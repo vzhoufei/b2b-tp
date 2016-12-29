@@ -291,4 +291,18 @@ class IndexController extends BaseController {
         exit($html);
     }     
 
+
+    /**
+     * 邮箱设置
+     */
+    public function store_email()
+    {
+
+        $messages = M('store_message')->where(array('store_id'=>session('store_id')))->select();
+        $this->assign('messages',$messages);
+
+        $this->display();
+
+    }
+
 }
