@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{$cat_name}</title>
+	<meta name="keywords" content="{$store.seo_keywords}" />
+    <meta name="description" content="{$store.seo_description}"/>
+    <!-- 头部页面 -->
+
+	<include file="./header" />
+		
+	<link rel="stylesheet" type="text/css" href="{:STYLE}/css/goodlist.css">
+
+	<!-- 主体区域 -->
+
+	<main class="main">
+
+	<!-- 轮播图结束 -->
+		<!-- 正文开始 -->
+			<div class="goodList ">
+				<div class="goodT">
+					<ul>
+						<foreach name="link_arr" item="link">
+		        			<li <if condition="$link[key] eq $keys">style="background:#f00;"</if>>
+		        				<a  <if condition="$link[key] eq $keys">class="{$sort}"</if> href="{$link.url}">{$link.name}</a>
+		        			</li>
+		      			</foreach>
+					<div class="cl"></div>
+					</ul>
+				</div>
+			<if condition="$goods_list">
+				<div class="goodMain">
+					<ul>
+         			<foreach name="goods_list" item="vo">
+						<li>
+							<a target="_blank" href="{:C('DOMAIN')}{:U('Goods/goodsInfo',array('id'=>$vo[goods_id]))}" title="{$vo.goods_name}">
+							<img src="{$vo.goods_id|goods_thum_images=239,250}" style="width:100%"/></a>
+							<a href="{:C('DOMAIN')}{:U('Goods/goodsInfo',array('id'=>$vo[goods_id]))}" class="qianggoua">
+							<if condition="$vo[prom_type] gt 0">
+									<div class="qianggou">
+									<span class="qianggou2">
+										                    <if condition="$vo[prom_type] eq 1">抢购商品</if>
+										                    <if condition="$vo[prom_type] eq 2">团购商品</if>
+										                    <if condition="$vo[prom_type] eq 3">限时折扣</if>
+									</span>
+									</div>
+							</if>
+
+							</a>
+							<div class="goodMu">
+								<p>¥{$vo.shop_price}<span class="fukuan">{$vo.sales_sum}人付款</span></p>
+								<p><a target="_blank" href="{:C('DOMAIN')}{:U('Goods/goodsInfo',array('id'=>$vo[goods_id]))}">{$vo.goods_name|getSubstr=0,30}</a></p>
+								<div class="goodName">
+								
+							</div>
+							<div class="goodico">
+								<ol><li><a href="http://wpa.qq.com/msgrd?V=1&Uin={$store[store_qq]}&Site={$store.store_name}&Menu=yes">
+									<img border="0" src=http://wpa.qq.com/pa?p=1:{$store[store_qq]}:1 alt="点击这里给我发消息"/></a></li>
+								<div class="cl"></div>
+								</ol>
+							</div>
+							<div class="kefu">
+							<a target="_blank" href="http://amos.im.alisoft.com/msg.aw?v=2&uid={$store[store_aliwangwang]}&site=cntaobao&s=1&charset=utf-8" >
+								<img border="0" src="http://amos.im.alisoft.com/online.aw?v=2&uid={$store[store_aliwangwang]}&site=cntaobao&s=1&charset=utf-8" alt="点击这里给我发消息" /></a>
+							</div>
+						</li>
+					</foreach>
+					<div class="cl"></div>
+					</ul>
+				</div>
+				<else />
+			<div style="width:200px;margin:0 auto;font-size:30px;line-height:200px;">暂无类容</div>
+			</if>
+			</div>
+			<style>
+.dataTables_paginate ul .prev{border:1px solid #ccc;float:left;cursor:pointer;overflow:hidden;height:50px;}
+
+			</style>
+			<br style="clear:both;"/>
+						{$page_show}
+			</main>
+<!-- 底部 -->
+	<include file="./footer"/>

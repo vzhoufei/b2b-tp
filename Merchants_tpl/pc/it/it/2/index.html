@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+<title>{$store.store_name}</title>
+<meta name="keywords" content="{$store.seo_keywords}">
+<meta name="description" content="{$store.seo_description}">
+	<include file="./header" /> 
+	<!-- banner -->
+	<div class="banner wow zoomIn">
+		<div class="slider">
+	<ul class="slides">
+             <foreach name="store[store_slide]" item="vimg" key="k">
+                   <notempty name="vimg">
+		<li class="slide">
+			<div class="box"><img src="{$vimg}" alt=""></div>
+		</li>
+		
+		  </notempty>
+              </foreach>
+
+	</ul>
+</div>
+	</div>
+<!-- 	自定义模块1 --> 
+
+    <div class="custom wow zoomIn">
+		{:htmlspecialchars_decode($text[0])}
+    </div>
+	<!-- 二级 -->
+
+<foreach name="recommend" item="recomend_v" key="k" >
+<notempty name="recomend_v['cat_id_goods']">
+		<div class="news-product">
+		     <div class="tj-tle">{$recomend_v['cat_name']}</div>
+			<div class="picScroll-left">
+			<div class="hd">
+				<a class="prev" href="javascript:void(0)"><img src="{:STYLE}/images/left.jpg" /></a>
+        		<a class="next" href="javascript:void(0)"><img src="{:STYLE}/images/right.jpg"/></a>
+        		
+			</div>
+			<div class="bd">
+				<ul class="picList">
+              <foreach name="recomend_v[cat_id_goods]" item="vvv">
+
+					<li>
+						<div class="pic"><a href="#"><img src="{$vvv.goods_id|goods_thum_images=440,440}" style="width:440px;height:440px;" /></a></div>
+						<div class="title"><a href="#">{$vvv.goods_name|getSubstr=0,35}</a></div>
+					</li>
+					</foreach>
+					
+				</ul>
+			</div>
+		</div>
+		</div>
+
+</notempty>
+</foreach>
+<!-- 	自定义模块2 --> 
+
+ <div class="custom wow lightSpeedIn">{:htmlspecialchars_decode($text[1])}</div>
+
+<!-- 新闻 -->
+          <div class="news-box wow slideInDown">
+          	  <!-- 新闻 -->
+          	  <div class="public-container">
+
+          	  <foreach name="recommend_news" item="news_v" key="news_k">
+                <div class="news-tle clearfix"><p>{$news_v.sn_title} /</p><span>NEW</span></div>
+				<div class="index_box">
+				
+ 
+				<div class="index_news">
+				  <div class="news_title"> <a href="{:U('Store/newsList',array('store_id'=>$store[store_id],'sn'=>$news_v[sn_id]))}" target="_blank" title="{$news_v.sn_title}">更多 ></a></div>
+
+				    <ul class="news_list">
+				      <foreach name="news_v[news]" item="news_vv" key="news_kk">
+				    <li><span class="point"></span>
+				        <a href="{:U('Store/newscontent',array('store_id'=>$store[store_id],'sn'=>$news_v[sn_id],'text'=>$news_vv[id]))}" target="_blank">{$news_vv.title|getSubstr=0,26}</a><i>{$news_vv.timer|date="Y-m-d",###}</i></li></foreach>
+				    </ul>
+				        </div>
+                          </foreach>  
+				 
+
+				 </div>
+				<div class="clear"></div>
+				<!-- 新闻 -->
+				</div>
+				</div>
+
+<!-- 	自定义模块3 --> 
+				<div class="custom wow zoomInUp">
+				{:htmlspecialchars_decode($text[2])}
+				</div>
+
+<notempty name="recomend_goods">
+<div class="news-product">
+		     <div class="tj-tle">推荐产品</div>
+			<div class="picScroll-left">
+			<div class="hd">
+				<a class="prev" href="javascript:void(0)"><img src="{:STYLE}/images/left.jpg" /></a>
+        		<a class="next" href="javascript:void(0)"><img src="{:STYLE}/images/right.jpg"/></a>
+        		 
+			</div>
+			<div class="bd">
+				<ul class="picList"> 
+                  <foreach name="recomend_goods" item="r_v">
+ 					<li>
+						<div class="pic">
+						<a href="{:C('DOMAIN')}{:U('Goods/goodsInfo',array('id'=>$r_v[goods_id]))}" target="_blank"><img src="{$r_v.goods_id|goods_thum_images=470,592}" /></a></div>
+						
+					</li>
+                   </foreach>
+					
+				</ul>
+			</div>
+		</div>
+		</div>
+</notempty>
+
+<!-- 	自定义模块4 -->
+              <div class="custom wow zoomIn" style="margin-top:30px;">
+              {:htmlspecialchars_decode($text[3])}
+				
+                </div>
+
+
+
+<!-- 	相册 -->
+		<foreach name='photo' item="photo_v" key="p_key">
+            <div class="photo-box">
+            	<div class="news-product">
+		     <div class="tj-tle1">{$photo_v.title}</div>
+			<div class="picScroll-left">
+			<div class="hd">
+				<a class="prev" href="javascript:void(0)"><img src="{:STYLE}/images/left.jpg" /></a>
+        		<a class="next" href="javascript:void(0)"><img src="{:STYLE}/images/right.jpg"/></a>
+        		 
+			</div>
+			<div class="bd">
+				<ul class="picList">
+				 <foreach name="photo_v['photoimg']" item="img_v">
+					<li>
+						<div class="pic"><a href="#"><img src="{$img_v.img}" style="height:380px" /></a></div>
+					
+					</li>
+  </foreach>
+				</ul>
+			</div>
+		</div>
+		</div>
+            </div>
+            </foreach>
+<include file="./footer"/>
+
+
+
+

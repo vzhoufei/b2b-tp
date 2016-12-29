@@ -1,0 +1,88 @@
+
+	<footer class="footer">
+		<div id="footer">
+<ul>
+  <li>
+   
+   ☆本站导航
+  <foreach name="navigation" item="vv" key="kk">
+          <if condition="empty($vv[sn_url])">
+                      <a style="color:#666;padding-left: 10px;" href="
+                        <if condition='($vv[sn_is_list])'>
+                        {:U('Store/newsList',array('store_id'=>$store[store_id],'sn'=>$vv[sn_id]))}
+                        <else/>
+                        {:U('Store/store_news',array('store_id'=>$store[store_id],'sn_id'=>$vv[sn_id]))}
+                        </if>" 
+                        <if condition='($vv[sn_new_open])'>target='_blank'</if> >
+                    <else/>
+                    <a href="{$vv.sn_url}" style="color:#666;padding-left: 10px;" title='{$vv.sn_keyword}' <if condition='($vv[sn_new_open])'>target='_blank'</if>>
+                    </if>
+                    {$vv.sn_title}</a>
+  </foreach>
+  </li>
+<li>
+☆产品分类
+<foreach name="main_cat" item="v">  <!-- 商品分类 -->
+  <a href="{:U('Store/goods_list',array('store_id'=>$store[store_id],'cat_id'=>$v[cat_id]))}" title="{$v.cat_name}" style="color:#666;padding-left: 10px;">{$v.cat_name}</a>
+  <foreach name="sub_cat[ $v['cat_id'] ]" item="vs">  <!-- 二级分类 --> 
+ <a href="{:U('Store/goods_list',array('store_id'=>$store[store_id],'cat_id'=>$vs[cat_id]))}" title="{$vs.cat_name}" style="color:#666;padding-left: 10px;">{$vs.cat_name}</a>
+  </foreach>
+</foreach>
+</li>
+
+<li class="wa" style="width:auto;">☆联系方式 &nbsp;电话：{$store[store_phone]}
+&nbsp;<?php $region = C('DB_PREFIX'); $region .= 'region';?>
+        <p>店铺名：{$store.store_name}</p>
+        <p>地址:<tpshop sql="select name from $region where id=$store[province_id] limit 1" item="v">
+          {$v['name']}  <!-- 省 -->
+          </tpshop>
+          <tpshop sql="select name from $region where id=$store[city_id] limit 1" item="v">
+          {$v['name']} <!-- 市 -->
+          </tpshop>
+          <tpshop sql="select name from $region where id=$store[district] limit 1" item="v">
+          {$v['name']} <!-- 区 -->
+          </tpshop>
+         {$store.store_address}  <!-- 详细地址 -->
+		</p>
+</li>
+<li style="width:auto;">
+<dl class="ico">
+<dt>☆版权所有</dt>
+<dd>{$store.copyright}</dd>
+<dd></dd>
+<dd></dd>
+</dl>
+</li>
+
+</ul>
+<div class="clear"></div>
+  <div class="copyRight">
+  </div>
+</div>
+</div>
+<!-- help-box -->
+<!-- <div class="help-box">
+  <ul>
+    <li class="qq"><a target="_blank" href="http://wpa.qq.com/msgrd?V=1&Uin={$store[store_qq]}&Site={$store.store_name}&Menu=yes" class="link" title="点击在线咨询"><i class="fa fa-qq"></i></a></li>
+    <li class="tel"><a href="http://wpa.qq.com/msgrd?V=1&Uin={$store[store_qq]}&Site={$store.store_name}&Menu=yes" class="link" title="联系电话"><i class="fa fa-phone"></i></a>
+      <div class="dialog hide">
+        <div class="arrow"></div>
+        <div class="item">业务咨询:  {$store[store_phone]}</div>
+        <div class="item">业务咨询:  {$store[store_phone]}</div>
+      </div>
+    </li>
+
+    <li class="feedback"><a href="#" target="_blank" data-toggle="modal" data-target="#feedbackModal" class="link" title="装修咨询"><i class="fa fa-comment"></i></a></li>
+    <li class="back2top"><a href="#"" title="返回顶部"><i class="fa fa-comment"></i></a></li>
+  </ul>
+</div>
+<div class="message" id="gotop1">
+   <div class="message-c">
+    <span>
+  <a href="tel:4000308710" class="dh">电话咨询</a>
+  <a href="#" class="home">预约设计</a>
+  <a href="#" class="ifh">关于我们</a>
+  </span>
+   </div>
+</div> -->
+	</footer>

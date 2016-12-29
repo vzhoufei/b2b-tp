@@ -1,0 +1,28 @@
+	<footer class="footer">
+		
+	
+
+		<!-- <h3><span style="color:grey;font-size:26px;">CLOTHING BRAND</span><span style="color:#fff;margin-left:20px;font-size:26px;">DESIGN</span></h3> -->
+		<h2><a href="{:U('Store/index',array('store_id'=>$store[store_id]))}" title="{$store.store_name}" >首页</a>	<foreach name="main_cat" item="v">  <!-- 商品分类 -->
+  			<a href="{:U('Store/goods_list',array('store_id'=>$store[store_id],'cat_id'=>$v[cat_id]))}" title="{$v.cat_name}">{$v.cat_name}</a>		
+</foreach></h2>
+
+电话：{$store[store_phone]}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+店铺名：<?php $region = C('DB_PREFIX'); $region .= 'region';?>{$store.store_name} 
+        <p>地址：
+        <tpshop sql="select name from $region where id=$store[province_id] limit 1" item="v">
+          {$v['name']}  <!-- 省 -->
+          </tpshop>
+          <tpshop sql="select name from $region where id=$store[city_id] limit 1" item="v">
+          {$v['name']} <!-- 市 -->
+          </tpshop>
+          <tpshop sql="select name from $region where id=$store[district] limit 1" item="v">
+          {$v['name']} <!-- 区 -->
+          </tpshop>
+         {$store.store_address}  <!-- 详细地址 -->
+
+
+<dd>{$store.copyright}</dd>
+
+
+</footer>

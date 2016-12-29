@@ -1,0 +1,70 @@
+<link rel="stylesheet" type="text/css" href="{:STYLE}/css/index.css">
+<link rel="stylesheet" type="text/css" href="{:STYLE}/css/animate.min.css">
+<script type="text/javascript" src="{:STYLE}/js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="{:STYLE}/js/index.js"></script>
+<script type="text/javascript" src="{:STYLE}/js/wow.min.js"></script>
+<script type="text/javascript" src="{:STYLE}/js/gujian.js"></script>
+<script type="text/javascript" src="{:STYLE}/js/scroll_image.js"></script>
+</head>
+<body>
+<!------header------>
+<div class="header">
+	<div class="logo">
+    	<a href="{:U('Store/index',array('store_id'=>$store[store_id]))}" title="{$store.store_name}">
+        	<img src="{$store.store_logo}" alt="logo" />
+        </a>
+    </div>
+    <div class="nav">
+    	<div>
+            <ul>
+            	<li><a href="{:U('Store/index',array('store_id'=>$store[store_id]))}">首页</a></li>
+            	<if condition="$main_cat">
+		            <li><a href="{:U('Store/goods_list',array('store_id'=>$store[store_id]))}" title="供应产品">供应产品☆</a>
+		                <dl>
+		                   <foreach name="main_cat" item="v">  <!-- 商品分类 -->
+			                    <dd>
+			                   		<a href="{:U('Store/goods_list',array('store_id'=>$store[store_id],'cat_id'=>$v[cat_id]))}" title="{$v.cat_name}">{$v.cat_name}</a>
+			                        <ul>
+				                        <foreach name="sub_cat[ $v['cat_id'] ]" item="vs">  <!-- 二级分类 --> 
+				                            <li>
+				                          		<a href="{:U('Store/goods_list',array('store_id'=>$store[store_id],'cat_id'=>$vs[cat_id]))}" title="{$vs.cat_name}">{$vs.cat_name}</a>
+				                            </li>
+				                        </foreach>
+			                        </ul> 
+			                    </dd>
+		                    </foreach>
+		                </dl> 
+		            </li>
+		        </if>
+            	<!-- 自定义导航 -->
+	             <foreach name="navigation" item="vv" key="kk">
+				    <li>
+	                <if condition="empty($vv[sn_url])">
+	                  <a  href="
+	                    <if condition='($vv[sn_is_list] eq 1)'>
+	                    {:U('Store/newsList',array('store_id'=>$store[store_id],'sn'=>$vv[sn_id]))}
+	                    <elseif condition='$vv[sn_is_list] eq 2'/>
+	                    {:U('Store/photolist',array('store_id'=>$store[store_id]))}
+	                    <else/>
+	                    {:U('Store/store_news',array('store_id'=>$store[store_id],'sn_id'=>$vv[sn_id]))}
+	                    </if>" 
+	                    <if condition='($vv[sn_new_open])'>target='_blank'</if> >
+	                <else/>
+	                <a href="{$vv.sn_url}" title='{$vv.sn_keyword}' <if condition='($vv[sn_new_open])'>target='_blank'</if>>
+	                </if>
+	                {$vv.sn_title}</a>
+	                </li>
+	             </foreach>
+
+	             <!-- 分类在导航显示 -->
+	              <foreach name="link_cat" item="vz">
+	                <li>
+	                    <a  target="_blank" href="{:U('Store/goods_list',array('store_id'=>$store[store_id],'cat_id'=>$vz[cat_id]))}">{$vz.cat_name}</a>
+	                </li>
+	              </foreach>
+	              
+            </ul>
+        </div>
+    </div>
+
+</div>

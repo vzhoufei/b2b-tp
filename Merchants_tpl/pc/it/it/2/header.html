@@ -1,0 +1,124 @@
+<link rel="stylesheet" href="{:STYLE}/css/reset.css">
+	<link rel="stylesheet" href="{:STYLE}/css/public.css">
+	<link rel="stylesheet" href="{:STYLE}/css/index.css">
+	<link rel="stylesheet" href="{:STYLE}/css/animate.min.css">
+	 <link rel="stylesheet" href="{:STYLE}/css/style.css" type="text/css" media="screen">
+     <link rel="stylesheet" href="{:STYLE}/css/erji.css">
+    	<link rel="stylesheet" href="{:STYLE}/css/goodlist.css">
+    	<link rel="stylesheet" href="{:STYLE}/css/indexmoll.css">
+    	<link rel="stylesheet" href="{:STYLE}/css/lbt.css">
+    	<link rel="stylesheet" href="{:STYLE}/css/list.css">
+    	<link rel="stylesheet" href="{:STYLE}/css/news.css">
+    	<link rel="stylesheet" href="{:STYLE}/css/resul.css">
+    	<link rel="stylesheet" href="{:STYLE}/css/animate.min.css">
+
+</head> 
+<body>
+<!-- help-box -->
+					<div class="help-box">
+					  <ul>
+					    <li class="qq"><a target="_blank" href="#" class="link" title="点击在线咨询"><i class="fa fa-qq"></i></a></li>
+					    <li class="tel"><a href="javascript:void(0);" class="link" title="联系电话" id="tel1"><i class="fa fa-phone"></i></a>
+					      <div class="dialog">
+					      <!--   <div class="arrow"></div> -->
+					        <div class="item">业务咨询:  400-030-8710</div>
+					        <div class="item">业务咨询:  010-84308710</div>
+					      </div>
+					    </li>
+					    <li class="weixin"><a href="javascript:void(0);" class="link" title="扫码关注微信" id="wx1"><i class="fa fa-weixin"></i></a>
+					      <div class="dialog1">
+					       <!--  <div class="arrow"></div> -->
+					        <div class="qrcode"><img src="Picture/shouji.jpg" alt="微信二维码" width="150"><br>微信扫一扫 关注洪雅轩</div>
+					      </div>
+					    </li>
+					    <li>
+					      <div class="bdsharebuttonbox"> <a title="#" href="#" class="bds_tsina" data-cmd="tsina"></a> </div>
+					    </li>
+					    <li class="feedback"><a href="#" target="_blank" data-toggle="modal" data-target="#feedbackModal" class="link" title="装修咨询"><i class="fa fa-comment"></i></a></li>
+					    <li class="back2top"><a href="#"" title="返回顶部"><i class="fa fa-comment"></i></a></li>
+					  </ul>
+					</div>
+
+					<div class="message" id="gotop1" style="display: none">
+					   <div class="message-c">
+					    <span>
+						<a href="tel:4000308710" class="dh">电话咨询</a>
+						<a href="#" class="home">预约设计</a>
+						<a href="#" class="ifh">关于我们</a>
+						</span>
+					   </div>
+					</div>
+
+	<header>
+	<div class="public-container">
+		<div class="logo">
+			<img src="{$store.store_logo}" alt="{$store.store_name}">
+		</div>
+	    
+	    <ul>
+	    <div class="menu">
+	<ul>
+		<li>
+		<a class="hide" href="{:U('Store/index',array('store_id'=>$store[store_id]))}" title="首页">首页</a>
+		</li>
+        <if condition="$main_cat">  
+		<li>
+			<a class="hide" href="{:U('Store/goods_list',array('store_id'=>$store[store_id]))}" title="案例展示">案例展示</a>
+			
+		<ul>
+			<foreach name="main_cat" item="v">  <!-- 商品分类 -->
+				<li>
+					<a class="hide" href="{:U('Store/goods_list',array('store_id'=>$store[store_id],'cat_id'=>$v[cat_id]))}" title="{$v.cat_name}" style="margin-left: 103px;">{$v.cat_name}</a>
+					
+					<ul class="right_side">
+					 <foreach name="sub_cat[ $v['cat_id'] ]" item="vs">  <!-- 二级分类 --> 
+						<li><a href="{:U('Store/goods_list',array('store_id'=>$store[store_id],'cat_id'=>$vs[cat_id]))}" title="{$vs.cat_name}" style="margin-left: 103px;">{$vs.cat_name}</a></li>
+				</foreach>
+					</ul>
+					
+				</li>
+				
+			</ul>
+			
+		</li>
+</foreach>
+</if>
+
+
+		 
+
+ 
+
+ <!-- 自定义导航 -->
+                 <foreach name="navigation" item="vv" key="kk">
+				            <li>
+                    <if condition="empty($vv[sn_url])">
+                      <a  href="
+                        <if condition='($vv[sn_is_list] eq 1)'>
+                        {:U('Store/newsList',array('store_id'=>$store[store_id],'sn'=>$vv[sn_id]))}
+                        <elseif condition='$vv[sn_is_list] eq 2'/>
+                        {:U('Store/photolist',array('store_id'=>$store[store_id]))}
+                        <else/>
+                        {:U('Store/store_news',array('store_id'=>$store[store_id],'sn_id'=>$vv[sn_id]))}
+                        </if>" 
+                        <if condition='($vv[sn_new_open])'>target='_blank'</if> >
+                    <else/>
+                    <a href="{$vv.sn_url}" title='{$vv.sn_keyword}' <if condition='($vv[sn_new_open])'>target='_blank'</if>>
+                    </if>
+                    {$vv.sn_title}</a>
+                    </li>
+                 </foreach>
+                 
+             <!-- 分类在导航显示 -->
+                  <foreach name="link_cat" item="vz">
+                    <li>
+                      <a  target="_blank" href="{:U('Store/goods_list',array('store_id'=>$store[store_id],'cat_id'=>$vz[cat_id]))}">{$vz.cat_name}</a> </li>
+                  </foreach>
+		
+			</ul>
+			</li>
+			</ul>
+			</div>
+		    </ul>
+		    </div>
+	</header>

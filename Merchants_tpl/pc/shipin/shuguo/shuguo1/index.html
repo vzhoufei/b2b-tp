@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{$store.store_name}</title>
+	<meta name="keywords" content="{$store.seo_keywords}">
+<meta name="description" content="{$store.seo_description}">
+<include file="./header" /> 
+ 
+	<!-- banner -->
+	<div class="banner wow zoomIn">
+		<div class="slider">
+	<ul class="slides">
+	 <foreach name="store[store_slide]" item="vimg" key="k">
+                   <notempty name="vimg">
+		<li class="slide">
+			<div class="box"><img src="{$vimg}" alt=""></div>
+		</li>
+		 </notempty>
+              </foreach>
+	</ul>
+</div>
+	</div>
+<!-- 	自定义模块1 --> 
+
+    <div class="custom">
+		<div class="custom-1 wow lightSpeedIn">
+			{:htmlspecialchars_decode($text[0])}</div>
+	</div>
+	<!-- 二级 -->
+
+<foreach name="recommend" item="recomend_v" key="k" >
+<notempty name="recomend_v['cat_id_goods']">
+		<div class="news-product">
+		     <div class="tj-tle">{$recomend_v['cat_name']}</div>
+			<div class="picScroll-left">
+			<div class="hd">
+				<a class="prev" href="javascript:void(0)"><img src="{:STYLE}/images/left.jpg" /></a>
+        		<a class="next" href="javascript:void(0)"><img src="{:STYLE}/images/right.jpg"/></a>
+        		
+			</div>
+			<div class="bd">
+				<ul class="picList">
+              <foreach name="recomend_v[cat_id_goods]" item="vvv">
+
+					<li>
+						<div class="pic"><a href="#"><img src="{$vvv.goods_id|goods_thum_images=440,440}" style="width:440px;height:440px;" /></a></div>
+						<div class="title"><a href="#">{$vvv.goods_name|getSubstr=0,35}</a></div>
+					</li>
+					</foreach>
+					
+				</ul>
+			</div>
+		</div>
+		</div>
+
+</notempty>
+</foreach>
+<!-- 	自定义模块2 --> 
+
+    <div class="custom">
+		<div class="custom-2 wow lightSpeedIn">
+		{:htmlspecialchars_decode($text[1])}
+		 </div>
+           </div>
+
+
+<!-- help-box -->
+					<div class="help-box wow lightSpeedIn">
+					  <ul>
+					    <li class="qq"><a target="_blank" href="#" class="link" title="点击在线咨询"><i class="fa fa-qq"></i></a></li>
+					    <li class="tel"><a href="javascript:void(0);" class="link" title="联系电话" id="tel1"><i class="fa fa-phone"></i></a>
+					      <div class="dialog">
+					      <!--   <div class="arrow"></div> -->
+					        <div class="item">业务咨询:  400-030-8710</div>
+					        <div class="item">业务咨询:  010-84308710</div>
+					      </div>
+					    </li>
+					    <li class="weixin"><a href="javascript:void(0);" class="link" title="扫码关注微信" id="wx1"><i class="fa fa-weixin"></i></a>
+					      <div class="dialog1">
+					       <!--  <div class="arrow"></div> -->
+					        <div class="qrcode"><img src="Picture/shouji.jpg" alt="微信二维码" width="150"><br>微信扫一扫 关注洪雅轩</div>
+					      </div>
+					    </li>
+					    <li>
+					      <div class="bdsharebuttonbox"> <a title="#" href="#" class="bds_tsina" data-cmd="tsina"></a> </div>
+					    </li>
+					    <li class="feedback"><a href="#" target="_blank" data-toggle="modal" data-target="#feedbackModal" class="link" title="装修咨询"><i class="fa fa-comment"></i></a></li>
+					    <li class="back2top"><a href="#"" title="返回顶部"><i class="fa fa-comment"></i></a></li>
+					  </ul>
+					</div>
+
+					<div class="message" id="gotop1" style="display: none">
+					   <div class="message-c">
+					    <span>
+						<a href="tel:4000308710" class="dh">电话咨询</a>
+						<a href="#" class="home">预约设计</a>
+						<a href="#" class="ifh">关于我们</a>
+						</span>
+					   </div>
+					</div>
+
+
+               <div class="custom31">
+              <!-- 	自定义模块3 --> 
+				<div class="custom wow zoomIn">
+                        {:htmlspecialchars_decode($text[2])}
+				
+
+			                    <!-- 新闻 -->
+							          <div class="news-box wow zoomIn">
+							          	  <!-- 新闻 -->
+							          	  <div class="public-container">
+
+							          	  <foreach name="recommend_news" item="news_v" key="news_k">
+							                <div class="news-tle clearfix"><p>{$news_v.sn_title} /</p><span>NEW</span></div>
+											<div class="index_box">
+											
+							 
+											<div class="index_news">
+											  <div class="news_title"> <a href="{:U('Store/newsList',array('store_id'=>$store[store_id],'sn'=>$news_v[sn_id]))}" target="_blank" title="{$news_v.sn_title}">更多 ></a></div>
+
+											    <ul class="news_list">
+											      <foreach name="news_v[news]" item="news_vv" key="news_kk">
+											    <li><span class="point"></span>
+											        <a href="{:U('Store/newscontent',array('store_id'=>$store[store_id],'sn'=>$news_v[sn_id],'text'=>$news_vv[id]))}" target="_blank">{$news_vv.title|getSubstr=0,26}</a><i>{$news_vv.timer|date="Y-m-d",###}</i></li></foreach>
+											    </ul>
+											        </div>
+							                          </foreach>  
+											 
+
+											 </div>
+											<div class="clear"></div>
+											<!-- 新闻 -->
+						                 </div>
+                                         </div>
+
+ 				</div>  	
+                </div>  
+			
+<!--  -->
+
+
+
+
+			<notempty name="recomend_goods">
+			<div class="news-product wow zoomIn">
+		     <div class="tj-tle">新品推荐</div>
+			<div class="picScroll-left">
+			<div class="hd">
+				<a class="prev" href="javascript:void(0)"><img src="{:STYLE}/images/left.jpg" /></a>
+        		<a class="next" href="javascript:void(0)"><img src="{:STYLE}/images/right.jpg"/></a>
+        		 
+			</div>
+			<div class="bd">
+				<ul class="picList"> 
+                  <foreach name="recomend_goods" item="r_v">
+ 					<li>
+						<div class="pic">
+						<a href="{:C('DOMAIN')}{:U('Goods/goodsInfo',array('id'=>$r_v[goods_id]))}" target="_blank"><img src="{$r_v.goods_id|goods_thum_images=470,592}" /></a></div>
+						
+					</li>
+                   </foreach>
+					
+				</ul>
+			</div>
+		</div>
+		</div>
+</notempty>
+
+
+
+<!-- 	相册 -->
+		<foreach name='photo' item="photo_v" key="p_key">
+            <div class="photo-box wow zoomIn">
+            	<div class="news-product">
+		     <div class="tj-tle1">{$photo_v.title}</div>
+			<div class="picScroll-left">
+			<div class="hd">
+				<a class="prev" href="javascript:void(0)"><img src="{:STYLE}/images/left.jpg" /></a>
+        		<a class="next" href="javascript:void(0)"><img src="{:STYLE}/images/right.jpg"/></a>
+        		 
+			</div>
+			<div class="bd">
+				<ul class="picList">
+				 <foreach name="photo_v['photoimg']" item="img_v">
+					<li>
+						<div class="pic"><a href="#"><img src="{$img_v.img}" style="height:380px" /></a></div>
+					
+					</li>
+  </foreach>
+				</ul>
+			</div>
+		</div>
+		</div>
+            </div>
+            </foreach>
+
+<include file="./footer"/>

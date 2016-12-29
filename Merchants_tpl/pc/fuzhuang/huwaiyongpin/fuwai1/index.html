@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{$store.store_name}</title>
+	<meta charset="utf-8">
+	<meta content="{$store.seo_keywords}" name="keywords">
+	<meta content="{$store.seo_description}" name="description">
+	<include file="./header" />
+	<!-- 主体区域 -->
+	<main>
+		<!-- 轮播图 -->
+		   <div class="banner" id="banner" >
+				<foreach name="store[store_slide]" item="vimg" key="k">
+              		<notempty name="vimg">
+				<a href="#" class="d1" style="background:url({$vimg}) center no-repeat;background-size:100%;"></a>
+				   </notempty>
+              </foreach>
+              <!-- 获取下面的切换按钮 -->
+				<div class="d2" id="banner_id">
+					<ul>					
+						<foreach name="store[store_slide]" item="vimg" key="k">
+						<notempty name="vimg">
+							<li></li>
+						</notempty>
+						</foreach>	
+					</ul>
+				</div>
+				<script type="text/javascript">banner()</script>
+			</div>
+		    <!--case_box-->
+	<!-- 轮播图结束 -->
+		<div class="main1">
+			<!-- 第一屏 -->
+			<!-- 自定义模块1 -->
+				
+
+			<div class="s1">
+				<div style="width:100%;" class="custom">
+				{:htmlspecialchars_decode($text[0])}
+				</div>
+
+			</div>
+			<hr style="margin-top:30px;margin-bottom:30px;">
+		<!-- 第二屏 -->
+			<div class="s2">
+				<h2>全新上市</h2>
+				<h1>我们不求做的最好 只求做到更好</h1>
+					<div class="s2List1">
+							<ul>
+								 <foreach name="recomend_goods" item="r_v">
+							     	<li><a href="{:C('DOMAIN')}{:U('Goods/goodsInfo',array('id'=>$r_v[goods_id]))}" target="_blank">
+							     	<img src="{$r_v.goods_id|goods_thum_images=280,288}" alt="{$r_v['goods_name']}"></a>
+									<p class="s1Text" style="margin-top: 20px;">{$r_v['goods_name']}</p>
+									<p >本店价<span style="color:#f00">¥</span><span class="s1M" style="margin-right: 20px;color:#f00;font-size:18px;font-weight:bold;">{$r_v.shop_price}</span>市场价<del>¥{$r_v.market_price}</del></p>
+								</li>
+				      		</foreach>
+								<div class="cl"></div>
+							</ul>				
+						</div>
+
+			</div>
+			
+				<div style="width:100%;" class="custom">
+				{:htmlspecialchars_decode($text[1])}
+				</div>
+
+
+		<div class="s4">
+		
+			<foreach name="recommend_news" item="news_v" key="news_k">
+			    <ul >
+			    <foreach name="news_v[news]" item="news_vv" key="news_kk">
+			        <li><span class="point"></span>
+			        <img src="{$news_vv.id|news_thum_images=120,90}">
+			        <p><a href="{:U('Store/newscontent',array('store_id'=>$store[store_id],'sn'=>$sn_id,'text'=>$v[id]))}">{$news_vv.title|getSubstr=0,50}</a></p>
+			       	<p>{$news_vv.keyword|getSubstr=0,150}</p>
+					<img src="{$news_vv.newsimg}"></li>
+			    </foreach>
+			    <div class="cl"></div>
+			    </ul>
+			</foreach>
+		</div>
+<!-- 相册 -->
+		<foreach name='photo' item="photo_v" key="p_key">
+		<div class="s5">
+	    <div class="s5main">
+		<h3>{$photo_v.title}</h3>
+		<ul>
+		<div class="LeftHandle" id="scrollArrLeft_{$p_key}"></div>
+	  <foreach name="photo_v['photoimg']" item="img_v">
+			<li><img src="{$img_v.img}" ></li>
+	  </foreach>
+	  <div class="RightHandle" id="scrollArrRight_{$p_key}"></div>
+	  	<div class="cl"></div>
+	  </ul>
+	  </div>
+	</div>
+		<script>
+			photo("{$p_key}");
+		</script>
+	</foreach>
+
+	</main>
+		<div class="cl"></div>
+<!-- 底部 -->
+
+<include file="./footer" />
+
+</body>
+</html>

@@ -1,0 +1,96 @@
+/**********公共样式************/
+*{margin:0;padding:0;}
+body,button,input,select,textarea{font:14px/2 Verdana, 微软雅黑, Helvetica, sans-serif;}
+h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;margin: 0px;}
+address,cite,dfn,em,var,i{font-style:normal;}
+code,kbd,pre,samp{font-family:courier new,courier,monospace;word-wrap: break-word; white-space: normal;}
+small{font-size:12px;}
+ul,ol{list-style:none;}
+a{cursor: pointer;text-decoration: none!important;outline: none;border: 0;star:expression(this.onFocus=this.blur());}
+a:link,a:visited{color: deepskyblue;text-decoration:none;}
+a:focus {outline:none;}
+a:active{outline: none;star:expression(this.onFocus=this.blur());border: 0;}
+sup{vertical-align:text-top;}
+sub{vertical-align:text-bottom;}
+fieldset{border:0;}
+legend{color:#666;}
+img{vertical-align:middle;border:0 none;}
+button,input,select,textarea{font-size:100%;}
+table{border-collapse:collapse;border-spacing:0;}
+b{font-weight: normal;}
+
+.mg{width: 1200px;margin: 0 auto;}
+
+
+/*************正文部分*********************/
+.mybanner{width: 100%;height: 600px;text-align:center;position: relative;overflow: hidden;cursor: pointer;}
+.mybanner a{display: block;}
+.mybanner .bd,.mybanner .bd li{width: 100%;height: 600px;position: absolute;left: 0;top: 0;}
+.mybanner .bd li a img{max-width: 100%;height: 600px;}
+.mybanner .hd{width: 100%;position: absolute;left: 0;bottom: 20px;}
+.mybanner .hd li{display: inline-block;width: 20px;height: 20px;background: #DBD4CD;margin: 0 6px;border-radius: 50%;transition: all .2s}
+.mybanner .hd li.on{background: #C3074D;}
+.mybanner>a{position: absolute;top: 50%;margin-top: -28px;z-index: 200;}
+.mybanner .prev{left: 0;}
+.mybanner .next{right: 0;}
+.mybanner .adorn{width: 860px;height: 102px;border: 10px solid rgb(19, 19, 19);position: absolute;left: 50%;
+margin-left: -430px;bottom: 100px;z-index: 100;}
+.mybanner .adorn span{display: block;position: absolute;}
+.mybanner .adorn span:nth-child(1),.mybanner .adorn span:nth-child(7){width: 12px;height: 49px;background: rgb(195, 7, 77);top: 26px;}
+.mybanner .adorn span:nth-child(1){left: 20px;}
+.mybanner .adorn span:nth-child(7){right: 20px;}
+.mybanner .adorn span:nth-child(2),.mybanner .adorn span:nth-child(6){top: 24px;font-size: 24px;color: rgb(19, 19, 19);line-height: 26px;}
+.mybanner .adorn span:nth-child(2){left: 40px;}
+.mybanner .adorn span:nth-child(6){right: 40px;}
+.mybanner .adorn span:nth-child(3),.mybanner .adorn span:nth-child(5){font-size: 70px;color: rgb(19, 19, 19);top: -20px;}
+.mybanner .adorn span:nth-child(3){left: 160px;}
+.mybanner .adorn span:nth-child(5){right: 160px;}
+.mybanner .adorn span:nth-child(4){left: 39%;top: -56px;font-size: 104px;color: #fff;
+background: url(../images/tp.png) no-repeat center center;}
+
+.index_product{overflow: hidden;clear: both;margin: 20px auto 40px;}
+.index_product h1{color: rgb(19, 19, 19);width: 442px;margin: 0 auto 20px;overflow: hidden;clear: both;}
+.index_product h1 span{float: left;display: block;text-align: center;}
+.index_product h1 span strong{font-size: 42px;line-height: 90px;}
+.index_product ul{text-align: center;}
+.index_product ul li{width: 122px;height: 80px;background: #131313;color: #646464;text-align: center;
+line-height: 80px;font-size: 24px;cursor: pointer;display: inline-block;margin: 30px 10px 20px;}
+.index_product ul li.active{background: #c3074d;color: #fff;}
+.index_product .show{display: none;text-align: center;}
+.index_product .show span{display: inline-block;width: 255px;margin: 0 10px;}
+.index_product .show span a{display: block;color: #131313;font-weight: bold;}
+.index_product .show span a img{max-width: 100%;display: block;}
+.index_product .show span em{color: #c3074d;font-size: 12px;}
+
+.recommend{position: relative;}
+.recommend h1{font-size: 42px;color: rgb(19, 19, 19);text-align: center;}
+.recommend .pic{width: 1052px;overflow: hidden;margin: 10px auto 30px;}
+.recommend ul{text-align: center;width: 100000px;height: 444px;}
+.recommend ul li{float: left;width: 255px;margin-right: 20px;}
+.recommend ul li span,.recommend ul li a{display: block;}
+.recommend ul li img{max-width: 100%;}
+.recommend ul li a{color: #5A5A5A;font-weight: bold;font-size: 14px;}
+.recommend>a{position: absolute;display: block;top: 40%;width: 50px;height: 100px;z-index: 100;font-size: 80px;
+line-height: 100px;text-align: center;color: #000000;}
+.recommend>a:hover{color: rgb(195,7,77);}
+.recommend .prev{left: 0px;}
+.recommend .next{right: 0px;}
+
+.index_brand{overflow: hidden;clear: both;margin: 120px auto 20px;}
+.index_brand .brand{float: left;width: 700px;}
+.index_brand>span{float: right;border: 6px solid rgb(230, 230, 230);}
+.index_brand>span img{display: block;max-width: 100%;}
+.index_brand .brand .title{width: 100%;text-align: center;line-height: 40px;}
+.index_brand .brand .title span{display: inline-block;*display: inline;*zoom: 1;}
+.index_brand .brand .title span:nth-child(odd){width: 246px;height: 2px;background: #000;}
+.index_brand .brand .title span strong{font-size: 42px;}
+.index_brand .brand ul{margin-top: 20px;overflow: hidden;}
+.index_brand .brand ul li{width: 100%;clear: both;overflow: hidden;padding: 10px 0 20px 40px;border-bottom: 1px dotted #dbd4cd;}
+.index_brand .brand ul li span{width: 60px;height: 50px;background: rgb(195,7,77);display: block;margin-top: 14px;
+text-align: center;line-height: 20px;color: #fff;font-size: 12px;padding-top: 10px;float: left;}
+.index_brand .brand ul li div{width: 560px;float: left;padding-left: 30px;font-size: 12px;}
+.index_brand .brand ul li div h2{font-size: 24px;}
+.index_brand .brand ul li div h2 a{color: #000;}
+.index_brand .brand ul li div h2 a:hover{color: rgb(195,7,77);}
+.index_brand .brand ul li div p{color: #666666;line-height: 20px;}
+

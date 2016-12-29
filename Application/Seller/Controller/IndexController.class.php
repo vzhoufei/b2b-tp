@@ -293,16 +293,41 @@ class IndexController extends BaseController {
 
 
     /**
-     * 邮箱设置
+     * 留言列表
      */
     public function store_email()
     {
 
-        $messages = M('store_message')->where(array('store_id'=>session('store_id')))->select();
+        $message = M('store_message');
+        $count = $message->where(array('store_id'=>session('store_id')))->count();
+        $num        = 10;//每页显示条数
+        $number     = ceil($count / $num);//页数
+        $page       = new \Think\Page($count,$num);// 
+        $show       = $page->show();// 分页显示输出
+        $messages    = $message->where(array('store_id'=>session('store_id')))->limit($page->firstRow.','.$page->listRows)->select();
+        $this->assign('show',$show);//分页
+        $this->assign('count',$count);
         $this->assign('messages',$messages);
-
         $this->display();
 
+    }
+
+
+
+    /**
+     * 删除留言
+     */
+    public function message_delete()
+    {
+            $id = (int)I('id',0);
+            $message = M('store_message');
+            $res = $message->where(array('id'=>$id,'store_id'=>session('store_id')))->delete();
+            if($res){
+                $this->success('操作成功');
+            }else{
+                $this->error('删除失败！');
+            }
+            
     }
 
 }

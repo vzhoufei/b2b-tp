@@ -1,0 +1,23 @@
+
+/******二级菜单*********/
+#nav ul li{position:relative;}
+.mollanli{position:absolute;top:50px;background:#fff;z-index: 998;display:none;left: 0;width: 171px;}
+.mollanli > ul li{line-height:50px;margin-bottom:0px;position:relative;text-align: center;}
+#nav .mollanli > ul li a{color:#fff;}
+#nav .mollanli > ul >li:hover{color:#f00;background: #FFFFFF;}
+#nav .mollanli > ul >li:hover>a{color: #000}
+.mollanlis{position:absolute;top:0;width:171px; background:#fff;z-index: 998;left:171px;display:none;}
+#nav ul li  .mollanlis > ul li{line-height:50px;position:relative;}
+#nav ul li  .mollanlis > ul li a{color:#fff;}
+#nav >ul >li  .mollanlis > ul >li:hover{color:#000;background: #FFFFFF;}
+#nav >ul >li  .mollanlis > ul >li:hover>a{color:#000;}
+#nav ul li:hover .mollanli{display:block;}
+#nav .mollanli ul li:hover .mollanlis{display:block;}
+
+
+
+
+
+
+
+

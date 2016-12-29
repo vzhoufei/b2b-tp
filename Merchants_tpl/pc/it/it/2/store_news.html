@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{$navlist.sn_title}</title>
+	<meta name="keywords" content="{$navlist.sn_keyword}" />
+    <meta name="description" content="{$navlist.sn_description}"/>
+	<include file="./header" />
+	<link rel="stylesheet" type="text/css" href="{:STYLE}/css/indexmoll.css">
+	<link rel="stylesheet" type="text/css" href="{:STYLE}/css/list.css">
+
+	<!-- 主体区域 -->
+
+	<main class="main">
+
+		<!-- banner图 -->
+		  <div id="wrapper" class="wrapper">
+				<if condition="$navlist[sn_banner_show]">
+				<img src="{$navlist.sn_pic}" style="width:100%;float:none;" alt="">
+				</if>
+			</div>	
+			<div class="lubT"></div>
+
+<style>.listMain img{max-width:100%;}</style>
+		<!-- 正文开始 -->
+		<div class="listMain" style="width:100%;min-width:1200px;text-align:center;">
+				{$navlist.sn_content|htmlspecialchars_decode}
+
+		</div>
+	<!-- 第七屏结束 -->
+	
+
+		<div class="cl"></div>
+	</main>
+<!-- 底部 -->
+		<include file="./footer"/>

@@ -1,0 +1,31 @@
+<!------footer------>
+	     <div class="foot">
+	     	<div class="copyright">
+	     		<span>
+		     		 <a href="{:U('Store/index',array('store_id'=>$store[store_id]))}" title="古建筑修缮设计">首页</a>
+ 					 <if condition="$main_cat">
+			         <a href="{:U('Store/goods_list',array('store_id'=>$store[store_id]))}" title="供应产品">供应产品☆</a>
+			        </if>
+ 					<!-- 自定义导航 -->
+	                <foreach name="navigation" item="vv" key="kk">
+	                    <if condition="empty($vv[sn_url])">
+	                      <a  href="
+	                        <if condition='($vv[sn_is_list] eq 1)'>
+	                        {:U('Store/newsList',array('store_id'=>$store[store_id],'sn'=>$vv[sn_id]))}
+	                        <elseif condition='$vv[sn_is_list] eq 2'/>
+	                        {:U('Store/photolist',array('store_id'=>$store[store_id]))}
+	                        <else/>
+	                        {:U('Store/store_news',array('store_id'=>$store[store_id],'sn_id'=>$vv[sn_id]))}
+	                        </if>" 
+	                        <if condition='($vv[sn_new_open])'>target='_blank'</if> >
+	                    <else/>
+	                    <a href="{$vv.sn_url}" title='{$vv.sn_keyword}' <if condition='($vv[sn_new_open])'>target='_blank'</if>>
+	                    </if>
+	                    {$vv.sn_title}</a>
+	                </foreach>
+	     		</span>
+	     		<p>{$store.copyright}</p>
+	     	</div>
+	     </div>
+	</body>
+<html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{$store.store_name}</title>
+	<meta charset="utf-8">
+	<meta content="网站关键字" name="{$store.seo_keywords}">
+	<meta content="网站关键字seo" name="{$store.seo_description}">
+
+<include file="./header" />
+	<!-- 主体区域 -->
+
+	<main class="main"><!-- 
+		
+
+		<!-- 轮播图 -->
+		   <div class="banner" id="banner" >
+				<foreach name="store[store_slide]" item="vimg" key="k">
+              		<notempty name="vimg">
+				<a href="#" class="d1" style="background:url({$vimg}) center no-repeat;background-size:100%;"></a>
+				   </notempty>
+              </foreach>
+              <!-- 获取下面的切换按钮 -->
+				<div class="d2" id="banner_id">
+					<ul>					
+						<foreach name="store[store_slide]" item="vimg" key="k">
+						<notempty name="vimg">
+							<li></li>
+						</notempty>
+						</foreach>	
+
+					</ul>
+				</div>
+				<script type="text/javascript">banner()</script>
+			</div>
+		    <!--case_box-->
+	<!-- 轮播图结束 -->
+		<div class="s1">
+			<div class="s1R">
+<?php $region = C('DB_PREFIX'); $region .= 'goods'; $get = $_GET['store_id'];?>
+				<ul>
+				
+				<tpshop sql="select * from $region where store_id = $get limit 4" item="vv">
+					<li><a href="{:U('Goods/goodsInfo',array('id'=>$vv[goods_id]))}"><img src="{$vv.goods_id|goods_thum_images=290,180}"></a></li>
+				</tpshop>
+
+				<div class='cl'></div>
+				</ul>
+			</div>
+			<div class='cl'></div>
+		</div>
+
+<!-- 自定义模块1 -->
+<div style="width:100%;" class="custom">
+{:htmlspecialchars_decode($text[0])}
+</div>
+
+
+</div>
+
+<!--推荐产品-->
+<foreach name="recommend" item="recomend_v" key="k" >
+<notempty name="recomend_v['cat_id_goods']">
+
+		<div class="s2">
+			<h2>{$k+1}F/{$recomend_v['cat_name']}</h2>
+			<div class='s2B'>
+				<ul>
+				<foreach name="recomend_v[cat_id_goods]" item="v" key="key">
+					<if condition="$key eq 0">
+
+					<li style="width:467px;border:none;padding:0;height:417px;margin-top:-76px;overflow:hidden;">
+					<a href="{:U('Goods/goodsInfo',array('id'=>$v[goods_id]))}">
+					<img src="{$v.goods_id|goods_thum_images=452,300}" style="width:452px;height:345px;"/></a></li>
+
+					<else />
+
+					<li>
+					<a href="{:U('Goods/goodsInfo',array('id'=>$v[goods_id]))}">
+					<php><h3>{$v['goods_name']}</h3><p>{$v['goods_remark']}</p>
+					<img src="{$v.goods_id|goods_thum_images=153,138}"/></a></li>
+					</if>
+			</foreach>
+				<div class='cl'></div>
+				</ul></div>
+			<div class='cl'></div>
+		</div>
+</notempty>
+<script>
+recomend("{$k}");
+</script>
+</foreach>
+
+		<div class='s3'>
+		<!-- <a href="#"><img src="./image/banner.jpg"></a> -->
+		</div>
+
+		<div class="s2">
+			<h2>热销专区</h2>
+			<div class='s2B'>
+				<ul>
+				<foreach name="hot_goods" item="vh" key="key">
+					<if condition="$key eq 0">
+						
+					<li style="width:467px;border:none;padding:0;height:417px;margin-top:-76px;overflow:hidden;">
+					<a href="{:U('Goods/goodsInfo',array('id'=>$vh[goods_id]))}">
+					<img src="{$vh.goods_id|goods_thum_images=452,300}" style="width:452px;height:345px;"/></a></li>
+
+					<else />
+
+					<li>
+					<a href="{:U('Goods/goodsInfo',array('id'=>$vh[goods_id]))}">
+					<php><h3>{$vh['goods_name']}</h3><p>{$vh['goods_remark']}</p>
+					<img src="{$vh.goods_id|goods_thum_images=153,138}"/></a></li>
+					</if>								
+					</foreach>
+				<div class='cl'></div>
+				</ul></div>
+			<div class='cl'></div>
+		</div>
+		
+		<div class="s2">
+			<h2>新品推荐</h2>
+			<div class='s2B'>
+				<ul>
+				<foreach name="new_goods" item="vh" key="key">
+
+					<if condition="$key eq 0">					
+					<li style="width:467px;border:none;padding:0;height:417px;margin-top:-76px;overflow:hidden;">
+					<a href="{:U('Goods/goodsInfo',array('id'=>$vh[goods_id]))}">
+					<img src="{$vh.goods_id|goods_thum_images=452,300}" style="width:452px;height:345px;"/></a></li>
+					<else />
+
+					<li>
+					<a href="{:U('Goods/goodsInfo',array('id'=>$vh[goods_id]))}">
+					<php><h3>{$vh['goods_name']}</h3><p>{$vh['goods_remark']}</p>
+					<img src="{$vh.goods_id|goods_thum_images=153,138}"/></a></li>
+					</if>								
+					</foreach>
+				<div class='cl'></div>
+				</ul></div>
+			<div class='cl'></div>
+		</div>
+
+		<div class='s4'>
+			<dl>
+				<dt>常用服务</dt>
+				<dd>问题咨询</dd>
+				<dd>订单查询</dd>
+				<dd>保修退换货</dd>
+				<dd>上门安装</dd>
+				</dl>
+			<dl>
+				<dt>购物联盟</dt>
+				<dd>怎么购物</dd>
+				<dd>积分查询</dd>
+				<dd>礼品卡介绍</dd>
+				</dl>
+			<dl>
+				<dt>付款条例</dt>
+				<dd>在线付款</dd>
+				<dd>货到付款</dd>
+				<dd>发票说明</dd>
+				<dd>其他支付方式</dd>
+				</dl>
+			<dl>
+				<dt>配送方式</dt>
+				<dd>易速快递</dd>
+				<dd>上门自提</dd>
+				<dd>价格保护</dd>
+				</dl>
+			<dl>
+				<dt>售后服务</dt>
+				<dd>退换货流程</dd>
+				<dd>售后服务政策</dd>
+				<dd>特色服务指南</dd>
+				</dl>
+		
+		<div class="cl"></div>
+		</div>
+		
+		<div class="cl"></div>
+	</main>
+		<div class="cl"></div>
+
+
+<!-- 底部 -->
+<include file="./footer" />
+	
+
+
+
+</body>
+</html>

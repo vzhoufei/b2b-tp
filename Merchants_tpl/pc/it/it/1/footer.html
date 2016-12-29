@@ -1,0 +1,74 @@
+<!-- 底部 -->
+       <footer class="wow zoomIn">
+       <div class="public-container wow fadeInUp">
+         <ul> 
+          <li>
+          <div>网页 </div> 
+          <foreach name="navigation" item="vv" key="kk">
+     
+          <span>
+           <if condition="empty($vv[sn_url])">
+                    <a  href="
+                        <if condition='($vv[sn_is_list])'>
+                        {:U('Store/newsList',array('store_id'=>$store[store_id],'sn'=>$vv[sn_id]))}
+                        <else/>
+                        {:U('Store/store_news',array('store_id'=>$store[store_id],'sn_id'=>$vv[sn_id]))}
+                        </if>" 
+                        <if condition='($vv[sn_new_open])'>target='_blank'</if> >
+                    <else/>
+                    <a href="{$vv.sn_url}" title='{$vv.sn_keyword}' <if condition='($vv[sn_new_open])'>target='_blank'</if>>
+                    </if>
+                    {$vv.sn_title}</a>
+           </span>
+          </foreach>
+          </li> 
+          <li>
+          <div>服务</div>
+          <foreach name="main_cat" item="v">  <!-- 商品分类 -->
+  <dd><a href="{:U('Store/goods_list',array('store_id'=>$store[store_id],'cat_id'=>$v[cat_id]))}" title="{$v.cat_name}">{$v.cat_name}</a></dd>
+  <foreach name="sub_cat[ $v['cat_id'] ]" item="vs">  <!-- 二级分类 --> 
+  <dd><a href="{:U('Store/goods_list',array('store_id'=>$store[store_id],'cat_id'=>$vs[cat_id]))}" title="{$vs.cat_name}">{$vs.cat_name}</a></dd>
+  </foreach>
+</foreach>
+       
+          </li>
+          <li>
+     <div>联系方式</div>
+          <span><a href="">电话：{$store[store_phone]}</a></span>
+        <?php $region = C('DB_PREFIX'); $region .= 'region';?>
+          <span><a href="">{$store.store_name} 地址:
+             <tpshop sql="select name from $region where id=$store[province_id] limit 1" item="v">
+          {$v['name']}  <!-- 省 -->
+          </tpshop>
+          <tpshop sql="select name from $region where id=$store[city_id] limit 1" item="v">
+          {$v['name']} <!-- 市 -->
+          </tpshop>
+          <tpshop sql="select name from $region where id=$store[district] limit 1" item="v">
+          {$v['name']} <!-- 区 -->
+          </tpshop>
+
+         {$store.store_address}  <!-- 详细地址 -->
+           </a></span>
+          
+          </li>
+          <li>
+          <div>版权所有</div>
+         <span>{$store.copyright}</span>
+          </li>
+         </ul>
+         </div>
+       </footer>
+       <script src="{:STYLE}/js/wow.min.js"></script>
+        <script>new WOW().init();</script>
+       <script type="text/javascript" src="{:STYLE}/js/jquery.js"></script>
+     <script type="text/javascript" src="{:STYLE}/js/jquery.SuperSlide.2.1.1.js"></script>
+     <script type="text/javascript" src="{:STYLE}/js/wowslider.js"></script>
+     <script type="text/javascript" src="{:STYLE}/js/script.js"></script> 
+ 
+  <script type="text/javascript">
+      jQuery(".picScroll-left").slide({titCell:".hd ul",mainCell:".bd ul",autoPage:true,effect:"left",autoPlay:true,vis:3,trigger:"click"});
+</script>
+  <script src="{:STYLE}/js/helpbox.js"></script>
+
+</body>   
+</html> 

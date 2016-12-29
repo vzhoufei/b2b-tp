@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{$navlist.sn_title}</title>
+	<meta name="keywords" content="{$navlist.sn_keyword}" />
+    <meta name="description" content="{$navlist.sn_description}"/>
+	<include file="./header" />
+	<link rel="stylesheet" type="text/css" href="{:STYLE}/css/indexmoll.css">
+	<link rel="stylesheet" type="text/css" href="{:STYLE}/css/list.css">
+
+	<!-- 主体区域 -->
+
+	<main class="main">
+
+		<!-- banner图 -->
+		  <div id="wrapper" class="wrapper">
+				<if condition="$navlist[sn_banner_show]">
+				<img src="{$navlist.sn_pic}" style="width:100%;float:none;" alt="">
+				</if>
+			</div>	
+			<div class="lubT"></div>
+
+	<!-- 轮播图结束 -->
+	<!-- 轮播图结束 -->
+		<!-- 正文开始 -->
+		<div class="listMain">
+			<div class="listT" style="height:20px;">
+			</div>
+			<if condition="$news">
+			<div class="newList">
+				<ul>
+					
+					<foreach name='news' item='v'>
+					<li>
+						<img src="{$v.id|news_thum_images=243,223}">
+						<div class="news">
+							<h2><a href="{:U('Store/newscontent',array('store_id'=>$store[store_id],'sn'=>$sn_id,'text'=>$v[id]))}">{$v.title|getSubstr=0,50}</a></h2>
+							<p>{$v.description|getSubstr=0,150}</p>
+							<h3 style="font-size:15px;">
+								作者：<a href="#">{$v.author}</a> &nbsp;&nbsp;
+							 	发布日期：<a href="#">{$v.timer|date='Y-m-d',###}</a>&nbsp;&nbsp;
+							  	pc端点击量：<a href="#">{$v.pc_click}</a>&nbsp;&nbsp;
+							  <span><a href="{:U('Store/newscontent',array('store_id'=>$store[store_id],'sn'=>$sn_id,'text'=>$v[id]))}">查看详情&gt;&gt;</a>
+							  </span>
+							  </h3>
+						</div>
+						<div class="cl"></div>
+					</li>
+					</foreach>
+					</ul>
+			</div>
+			<else />
+			<div style="width:200px;margin:0 auto;font-size:30px;line-height:200px;">暂无类容</div>
+			</if>
+			<div class="listPage">
+				{$page}
+
+			</div>
+
+		</div>
+	<!-- 第七屏结束 -->
+	
+
+		<div class="cl"></div>
+	</main>
+<!-- 底部 -->
+		<include file="./footer"/>

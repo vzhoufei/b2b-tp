@@ -1,0 +1,64 @@
+		<div class="footer">
+			<div class="mg">
+				<div class="logo">
+					<a href="">
+						<img src="{:STYLE}/images/logo2.png"/>
+						<strong>某某服饰</strong>
+					</a>
+				</div>
+				<dl class="wow slideLeft">
+					<dt><a href="">新手指南</a></dt>
+					<dd><a href="">用户注册</a></dd>
+					<dd><a href="">购物流程</a></dd>
+				</dl>
+				<dl class="wow slideInLeft">
+					<dt><a href="">支付方式</a></dt>
+					<dd><a href="">在线支付</a></dd>
+					<dd><a href="">货到付款</a></dd>
+				</dl>
+				<dl class="wow slideInLeft">
+					<dt><a href="">配送方式</a></dt>
+					<dd><a href="">配送说明</a></dd>
+					<dd><a href="">运费说明</a></dd>
+					<dd><a href="">验货签收</a></dd>
+				</dl>
+				<dl class="wow slideInLeft">
+					<dt><a href="">售后服务</a></dt>
+					<dd><a href="">退换货政策</a></dd>
+					<dd><a href="">退换货流程</a></dd>
+				</dl>
+				<dl class="wow slideInLeft">
+					<dt><a href="">关于我们</a></dt>
+					<dd><a href="">公司简介</a></dd>
+					<dd><a href="">品牌资讯</a></dd>
+					<dd><a href="">联系我们</a></dd>
+				</dl>
+				
+				<h2>联系方式</h2>
+				<ul class="wow rollIn">					
+					<li>电话：{$store[store_phone]}</li>
+					<li>店铺名称：{$store.store_name}</li>
+					<li>地址:
+					    <?php $region = C('DB_PREFIX'); $region .= 'region';?>
+					    <tpshop sql="select name from $region where id=$store[province_id] limit 1" item="v">
+					      {$v['name']}  <!-- 省 -->
+					      </tpshop>
+					      <tpshop sql="select name from $region where id=$store[city_id] limit 1" item="v">
+					      {$v['name']} <!-- 市 -->
+					      </tpshop>
+					      <tpshop sql="select name from $region where id=$store[district] limit 1" item="v">
+					      {$v['name']} <!-- 区 -->
+					      </tpshop>
+					     {$store.store_address}  <!-- 详细地址 -->
+					</li>
+				</ul>
+
+				<b></b>
+				
+				<!-- 版权 -->
+				<p>{$store.copyright}</p>
+			</div>
+		</div>
+
+	</body>
+</html>

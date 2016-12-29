@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="keywords" content="{$store.seo_keywords}">
+		<meta name="description" content="{$store.seo_description}">
+		<title>{$store.store_name}</title>
+		<include file="./header" />
+		
+		<!--banner-->
+		<div class="mybanner">
+			<ul class="bd">
+				<foreach name="store[store_slide]" item="vimg" key="k">
+					<notempty name="vimg">
+						<li><a href=""><img src="{:STYLE}/images/banner.jpg"/></a></li>				
+					</notempty>
+				</foreach>
+			</ul>			
+			<ul class="hd">
+				<li class="on"></li>
+				<li></li>
+				<li></li>
+			</ul>
+			<a href="javascript:;" class="prev"><img src="{:STYLE}/images/prev.png"></a>
+			<a href="javascript:;" class="next"><img src="{:STYLE}/images/next.png"></a>
+			
+			<div class="adorn">
+				<span class="wow bounceInLeft"></span>
+				<span class="wow bounceInLeft">购买满5件<br />及以上5折</span>
+				<span class="wow bounceInLeft">HOT</span>
+				<span class="wow bounceInDown">5折</span>
+				<span class="wow bounceInRight">SALE</span>
+				<span class="wow bounceInRight">欢迎新老顾<br />客前来选购</span>
+				<span class="wow bounceInRight"></span>
+			</div>			
+		</div>
+		
+		<!-- 自定义模块1 -->
+		<div style="width:100%;" class="custom">
+			{:htmlspecialchars_decode($text[0])}
+		</div>
+				
+		<!-- 自定义模块2 -->
+		<div style="width:100%;" class="custom">
+			{:htmlspecialchars_decode($text[1])}
+		</div>
+
+		<!--推荐产品-->		
+		<div class="index_product mg">
+			<!-- <h1>
+				<span class="wow bounceInLeft"><img src="{:STYLE}/images/pt1.png"/></span>
+				<span class="wow bounceInDown"><strong>产品展示</strong></span>
+				<span class="wow bounceInRight"><img src="{:STYLE}/images/pt2.png"/></span>
+			</h1> -->
+
+			<ul>		
+				<foreach name="recommend" item="recomend_v" key="k" >
+				<notempty name="recomend_v['cat_id_goods']">
+				<li><strong>{$recomend_v.cat_name}</strong></li>								
+				</notempty>
+				</foreach>
+			</ul>
+
+			<foreach name="recommend" item="recomend_v" key="k">
+			<notempty name="recomend_v['cat_id_goods']">				
+				<div class="show">
+					<foreach name="recomend_v[cat_id_goods]" item="vvv">
+					<span>
+						<a href="{:C('DOMAIN')}{:U('Goods/goodsInfo',array('id'=>$vvv[goods_id]))}">
+							<img src="{$vvv.goods_id|goods_thum_images=329,419}"/>
+							{$vvv.goods_name|getSubstr=0,35}
+						</a>
+						<em>价格: 0.00</em>
+					</span>
+					</foreach>
+				</div>
+			</notempty>
+			</foreach>
+		</div>							
+		
+		<!-- 新品推荐 -->
+		<notempty name="recomend_goods">
+		<div class="recommend clear mg">			
+			<h1><strong>新品推荐</strong><br />NEW PRODUCTS</h1>
+			<div class="pic">
+				<ul>
+					<foreach name="recomend_goods" item="r_v">
+					<li><a href="{:C('DOMAIN')}{:U('Goods/goodsInfo',array('id'=>$r_v[goods_id]))}"><img src="{$r_v.goods_id|goods_thum_images=255,325}" alt="{$r_v['goods_name']}"/><span>{$r_v['goods_name']|getSubstr=0,35}</span></a></li>
+					</foreach>
+				</ul>
+			</div>	
+			<a href="javascript:;" class="prev"><</a>	
+			<a href="javascript:;" class="next">></a>			
+		</div>
+		</notempty>
+
+		<!-- 自定义模块3 -->
+		<div style="width:100%;" class="custom">
+			{:htmlspecialchars_decode($text[2])}
+		</div>		
+
+		<!-- 自定义模块4 -->
+		<div style="width:100%;" class="custom">
+			{:htmlspecialchars_decode($text[3])}
+		</div>	
+			
+		<div class="index_brand mg">
+			<div class="brand">
+				<div class="title wow slideInDown">
+					<span></span>
+					<span><strong>品牌资讯</strong><br />BRAND INFORMATION</span>
+					<span></span>
+				</div>				
+
+				<ul class="wow rollIn">
+				<foreach name="recommend_news" item="news_v" key="news_k">			
+					<foreach name="news_v[news]" item="news_vv" key="news_kk">
+					<li>
+						<span><strong>{$news_vv.timer|date="Y-m-d",###}</strong></span>
+						<div>
+							<h2><a href="{:U('Store/newscontent',array('store_id'=>$store[store_id],'sn'=>$news_v[sn_id],'text'=>$news_vv[id]))}">{$news_vv.title|getSubstr=0,26}</a></h2>
+							<p>{$news_vv.description|getSubstr=0,71}</p>
+						</div>
+					</li>
+					</foreach>
+				</foreach>					
+				</ul>			
+			</div>
+			<span class="wow lightSpeedIn"><img src="{:STYLE}/images/index_brand.jpg"/></span>
+		</div>	
+
+		<!-- 相册 -->
+		<foreach name='photo' item="photo_v" key="p_key">
+		<div class="rollbox">
+		    <div class="c">
+				<div class="title">{$photo_v.title}</div>
+				<div class="LeftHandle" id="scrollArrLeft_{$p_key}"></div>
+				<div class="rollBoxc" id="scrollCont_{$p_key}">
+				  <foreach name="photo_v['photoimg']" item="img_v">
+						<div class="anli"><img src="{$img_v.img}" ></div>
+				  </foreach>
+			    </div>
+			  	<div class="RightHandle" id="scrollArrRight_{$p_key}"></div>
+			</div>
+		</div>	
+		<script>
+			photo("{$p_key}");
+		</script>
+		</foreach>
+		
+		<include file="./footer"/>
+
+
+

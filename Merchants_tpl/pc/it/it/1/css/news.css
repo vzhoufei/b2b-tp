@@ -1,0 +1,50 @@
+/***********新闻详情页**************/
+.newsMain{width:1200px;margin:0 auto;}
+
+.newstatle{margin-bottom: 20px;}
+.newstatle span a:hover{color:#f00;text-decoration: underline;}
+
+.newsM{width:100%;height:80px;margin:30px auto;text-align: center;font-family:'宋体';line-height:30px;}
+.newsM h2{color:#000;font-size:20px;margin-bottom: 10px;}
+.newsM h4{font-size:16px;margin-bottom: 10px;}
+
+.content{width:1198px;border:1px solid #ccc;color:#000;font-size:16px;margin-bottom: 30px;}
+.conternMain{width:1150px;margin:0 auto;text-align:content;}
+.conternMain p{margin-top: 10px;}
+.conternMain p img{float:none;}
+
+
+
+.contentFoot{margin-bottom: 30px;height:30px;width:100%;}
+.contentFoot ul{float:right;}
+.contentFoot ul li{float:left;width:80px;background:#E95A85;margin-left: 10px;line-height: 30px;cursor:pointer;}
+.contentFoot ul li a{color:#fff;display:block;}
+.contentFoot ul li :hover{background:#ccc;transition:background 1s;}
+
+.newsFooter{border-bottom: 1px dashed #ccc;padding-bottom: 10px;margin-bottom: 30px;}
+.newsFL{width:49%;float:left;}
+.newsFL p{padding-bottom: 10px;}
+.newsFL p a:hover{color:#f00;}
+
+.newsFR{width:49%;float:right;}
+.newsFR a{display:inline-block;width:35px;height:35px;float:right;margin-right: 5px;}
+.newsFR .weix{background:url(../image/icons_0_32.png)0px -50px no-repeat;}
+.newsFR .weibo{background:url(../image/icons_0_32.png)0px -258px  no-repeat;}
+.newsFR .douban{background:url(../image/icons_0_32.png)0px -466px no-repeat;}
+.newsFR .xinglang{background:url(../image/icons_0_32.png)0px -102px  no-repeat;}
+.newsFR .wangyi{background:url(../image/icons_0_32.png)0px -829px  no-repeat;}
+.newsFR .biling{background:url(../image/icons_0_32.png)0px -2181px  no-repeat;}
+.newsFR .renren{background:url(../image/icons_0_32.png)0px -2805px  no-repeat;}
+.newsFR .koukou{background:url(../image/icons_0_32.png)0px -2649px  no-repeat;}
+
+
+.newsFoot{height:100px;width:100%;}
+.newsL{float:left;width:500px;}
+.newsL img{float:left;}
+
+.dianhuas{display:inline-block;width:140px;height:50px;background:#ccc;border-radius:5px;text-align: center;line-height: 50px;margin-left: 5px;cursor:pointer;}
+.dianhuas a{color:#fff;font-size: 18px;}
+.dianhuas:hover{background:#A53B4F;transition:background 1s;}
+
+.newsR{float:right;margin-right: 10px;}
+

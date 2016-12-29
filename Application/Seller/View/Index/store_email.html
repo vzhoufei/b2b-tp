@@ -2,7 +2,12 @@
 <html>
 <head>
 	<title>客户留言</title>
-	<style type="text/css">td{text-align:center;width:10%;}</style>
+	<style type="text/css">td{text-align:center;width:10%;}
+	.page li{display:inline-block;min-width:50px;height: 30px;background:#868686;line-height:30px;margin-left:5px;}
+	.page li a{color:#000;font-size:20px;}
+	.page .active a{color:#f00;}
+
+	</style>
 </head>
 <body>
 <table border="1">
@@ -23,12 +28,13 @@
 <td >{$message['qq']}</td>
 <td >{$message['addtime']|date='Y-m-d H:i:s',###}</td>
 <td style="width:40%;text-align:left;word-break:break-all;">{$message['text']}</td>
-<td ><a href="">删除</a></td>
+<td ><a href="{:U('Index/message_delete',array('id'=>$message['id']))}">删除</a></td>
 </tr>
 </foreach>
 
 </table>
 
+<div class="page" style="width:100%;text-align:center;">{$show}<li>共{$count}条数据</li></div>
 
 </body>
 </html>

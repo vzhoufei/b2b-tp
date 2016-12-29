@@ -1,0 +1,110 @@
+		<link rel="stylesheet" href="{:STYLE}/css/animate.min.css" />
+		<link rel="stylesheet" href="{:STYLE}/css/style.css" />
+		<script type="text/javascript" src="{:STYLE}/js/jquery-1.7.1.min.js" ></script>
+		<script type="text/javascript" src="{:STYLE}/js/scroll_image.js" ></script>
+		<script type="text/javascript" src="{:STYLE}/js/wow.min.js" ></script>
+		<script type="text/javascript" src="{:STYLE}/js/gujian.js" ></script>
+		<script type="text/javascript" src="{:STYLE}/js/index.js" ></script>
+	</head>
+	<body>
+		<div class="header">
+			<div class="top">
+				<div class="top_logo">
+					<a href="{:U('Store/index',array('store_id'=>$store[store_id]))}"><img src="{$store.store_logo}"></a>
+					<div class="logo_text">
+						<h1>{$store.store_name}</h1>
+						<p>hardware</p>
+					</div>
+				</div>
+				<div class="top_content">
+					<p>灵感源自于生活，功能与时尚并在</p>
+				</div>
+				<div class="top_contact">
+					<div class="mailbox">
+						<img src="{:STYLE}/images/1_14.jpg">
+						<p>xx@xx.com</p>
+					</div>
+					<div class="phone">
+						<img src="{:STYLE}/images/1_11.jpg">
+						<p>{$store[store_phone]}</p>
+					</div>
+				</div>
+			</div>
+			<div class="navorsearch">
+				<div class="mg">
+					<div class="nav" id="nav">
+						<ul>
+							<li><a href="{:U('Store/index',array('store_id'=>$store[store_id]))}">网站首页</a></li>
+							<!--二级导航-->
+								<if condition="$main_cat">
+						            <li><a href="{:U('Store/goods_list',array('store_id'=>$store[store_id]))}" title="供应产品">产品中心</a>
+
+						                <div class="mollanli" style="background:#48494D;">
+						                <ul>
+						                   <foreach name="main_cat" item="v">  <!-- 商品分类 -->
+						                  <li><a href="{:U('Store/goods_list',array('store_id'=>$store[store_id],'cat_id'=>$v[cat_id]))}" title="{$v.cat_name}">{$v.cat_name}</a>
+						                     <div class="mollanlis">
+						                        <ul>
+						                        <foreach name="sub_cat[ $v['cat_id'] ]" item="vs">  <!-- 二级分类 --> 
+						                          <li><a href="{:U('Store/goods_list',array('store_id'=>$store[store_id],'cat_id'=>$vs[cat_id]))}" title="{$vs.cat_name}">{$vs.cat_name}</a></li>
+						                        </foreach>
+						                        </ul> 
+						                    </div>
+						                  </li>
+						                 </foreach>
+						                </ul> 
+						               </div>
+						            </li>
+						        </if>
+
+							
+							<!-- 自定义导航 -->
+			                 <foreach name="navigation" item="vv" key="kk">
+								<li>
+									<if condition="empty($vv[sn_url])">
+										<a href="
+		                        <if condition='($vv[sn_is_list] eq 1)'>
+		                        {:U('Store/newsList',array('store_id'=>$store[store_id],'sn'=>$vv[sn_id]))}
+		                        <elseif condition='$vv[sn_is_list] eq 2'/>
+		                        {:U('Store/photolist',array('store_id'=>$store[store_id]))}
+		                        <else/>
+		                        {:U('Store/store_news',array('store_id'=>$store[store_id],'sn_id'=>$vv[sn_id]))}
+		                        </if>" <if condition='($vv[sn_new_open])'>target='_blank'</if> >
+									<else/>
+									<a href="{$vv.sn_url}" title='{$vv.sn_keyword}' <if condition='($vv[sn_new_open])'>target='_blank'</if>>
+										</if>
+										{$vv.sn_title}</a>
+								</li>
+							</foreach>
+
+			                 <!-- 分类在导航显示 -->
+			                  <foreach name="link_cat" item="vz">
+			                    <li>
+			                      <a  target="_blank" href="{:U('Store/goods_list',array('store_id'=>$store[store_id],'cat_id'=>$vz[cat_id]))}">{$vz.cat_name}</a> </li>
+			                  </foreach>
+						</ul>
+					</div>
+
+
+					<div class="search">
+						<form>
+							<input name="q" type="text" placeholder="请输入关键字" />
+							<button class="submitS" onclick="submits();" type="submit">搜索</button>
+							<!-- 本店搜索js -->
+							<script type="text/javascript">
+								function submits()
+								{
+									var keywords = $('input[name=q]').val();
+									if(!keywords)
+									{
+										alert('请输入关键字');
+										return;
+									}
+									window.location.href="{:U('Home/Store/search')}?store_id={$store[store_id]}&keywords="+keywords;
+								}
+							</script>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>

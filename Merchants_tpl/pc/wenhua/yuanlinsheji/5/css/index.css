@@ -1,0 +1,126 @@
+*{margin:0;padding:0;}
+li{list-style:none;}
+a{text-decoration:none;outline:none;}
+img{border:none;outline:none;}
+.mg {width: 1200px;margin: 0 auto;}
+.ng {width: 1000px;margin: 0 auto;}
+.ov {overflow: hidden;}
+.left {float: left;display: inline;}
+.right {float: right;display: inline;}
+.hide{display: none;}
+.show{display: block;}
+/************header***********/
+.header{position:relative;z-index:2;width:1200px;height:120px;margin:0 auto;}
+.header .logo{float:left;}
+.header .logo a{display: table-cell;vertical-align:middle;text-align:center;*display: block;*font-size: 105px;*font-family:Arial;height:120px;}/*约为高度的0.873，200*0.873 约为175*/
+.header .logo a img {vertical-align:middle;}
+.header .nav{height: 50px;float: right;margin: 33px 0;}
+.header .nav ul li{font-family:Microsoft YaHei;float:left;font-size:16px;text-align:center;margin-left:4px;width:120px;height:50px;line-height:120px;}
+.header .nav ul li a{display:block;width:120px;line-height:50px;height:50px;color:#5A5656;}
+.header .nav ul li dl{display:none;width:120px;padding-top:1px; }
+.header .nav ul li dl dd{background-color:#000000;height:50px;line-height:50px;}
+.header .nav ul li dl dd a{color: #ffffff;}
+.header .nav ul li dl dd:hover a{background-color:#ffffff;color: #000000;}
+.header .nav ul li dl dd:hover li a{background-color:#000000;color: #ffffff;}
+.header .nav ul li dl dd ul{display:none;overflow: auto;position: relative;left: 120px;top:-50px;}
+.header .nav ul li dl dd ul li{margin-left: 0;background-color:#000000;}
+.header .nav ul li dl dd ul li a{color: #ffffff;}
+.header .nav ul li dl dd ul li:hover a{background-color:#ffffff;color: #000000;}
+.header .nav .on2{background-color:#02b2b5;color:#fefefe;}
+.header .nav  ul  li:hover a{border-bottom: 2px solid #000000;}
+.header .nav  ul  li:hover dl a{border: none;}
+/************banner***********/
+.banner{width: 100%;height: 580px;position: relative;overflow: hidden;}
+.banner .bd{position: absolute;left: 0;top:0;width: 100%;height: 520px;}
+.banner .bd li{width: 100%;height: 580px;overflow: hidden;position: absolute;top:0;}
+.banner .hd{width: 100%;position: absolute;text-align: center;bottom:20px;}
+.banner .hd ul{display: inline-block;*display: inline;*zoom:1;}
+.banner .hd li{opacity: 0.6;width:30px;height: 8px;background:#ffffff;display: inline;float: left;margin: 0 10px;cursor: pointer;}
+.banner .hd li.on{background:  #1E1C1C;opacity: 1;}
+
+/************content***********/
+.content{font-family:Microsoft YaHei;}
+
+.content .mod1{padding-bottom: 40px;height: 500px;text-align:center;overflow: hidden;}
+.content .mod1 .title{padding: 60px;text-align: center;}
+.content .mod1 .title h3{font-size: 24px;font-weight: 100;color: #626262;}
+.content .mod1 ul{overflow: hidden;}
+.content .mod1 ul li{float: left;text-align: center;width: 400px;}
+.content .mod1 ul li span{font-size: 60px;color: #666666;font-family: 黑体, SimHei;}
+.content .mod1 ul li p{font-size: 14px;color: #999999;}
+ 
+.content .gray_bg{background: #f5f5f5;}
+.content .server{padding:  0 0 50px;}
+.content .gray_bg .title{padding: 60px;text-align: center;}
+.content .gray_bg .title h3{font-size: 24px;font-weight: 100;color: #626262;}
+.content .server ul{overflow: hidden;}
+.content .server li{float: left;width: 320px;margin: 20px 40px;text-align: center;}
+.content .server li .server_txt{padding:26px 40px 34px;background: #ffffff;} 
+.content .server li h3{font-size: 18px;font-weight: 100;text-align: center;margin: 30px 0;}
+.content .server li h3 a{color: #212121;}
+.content .server li div{width: 320px;height: 180px;overflow: hidden;}
+.content .server li div img{width: 320px;}
+.content .server .w_bg{background: #fff;margin-top: 6px;}
+.content .server .outb{border: 2px solid #7A7575;width: 256px;height: 134px;margin:20px auto;}
+.content .server .inb{border: 1px solid #7A7575;width: 228px;height: 112px;margin: 10px auto;}
+
+.content .good li{overflow: hidden;text-align: center;}
+.content .good .title{padding: 60px;text-align: center;}
+.content .good .title h3{font-size: 24px;font-weight: 100;color: #626262;}
+.content .good .gf_top{width: 447px;background: #DCE6CA;height: 124px;padding: 50px 0;}
+.content .good .gf_top h3{font-weight: 100;font-family: 微软雅黑;font-size: 24px;color: #676767;}
+.content .good .gf_top span{margin: 10px;display: block;font-family: 'Arial Serif';color: #676767;font-size: 20px;margin-bottom: 10px;}
+.content .good .gf_top p{font-size: 14px;color: #999999;}
+.content .good .gf_bot{font-family: 'Arial Serif';color: #DCE6CA;font-size: 50px;margin-top: 46px;}
+.content .good .gs_top{width: 447px;background: #9DBFDE;height: 124px;padding: 50px 0;color: #ffffff;}
+.content .good .gs_top h3{font-weight: 100;font-family: 微软雅黑;font-size: 24px;}
+.content .good .gs_top span{margin: 10px;display: block;font-family: 'Arial Serif';font-size: 20px;margin-bottom: 10px;}
+.content .good .gs_top p{font-size: 14px;}
+.content .good .gs_bot{font-family: 'Arial Serif';}
+.content .good .gs_bot p{color: #9DBFDE;font-size: 50px;margin: 46px 0 20px;}
+.content .good .gs_bot span	{font-size: 14px;color:#AFB9C2;}
+
+.content .news{padding-bottom: 50px;}
+.content .news .title{margin: 60px;text-align: center;}
+.content .news .title h3{font-size: 24px;font-weight: 100;color: #626262;}
+.content .news p{color: #666666;font-size: 14px;}
+.content .news ul{overflow: hidden;}
+.content .news li{overflow: hidden;float: left;margin: 20px 50px;width: 500px}
+.content .news li .left{width: 150px;height: 115px;}
+.content .news li .left img{width: 100%;}
+.content .news li .right{width:320px;height: 115px;margin-left: 30px;overflow: hidden;}
+.content .news li h3{font-weight: 100;height: 31px;}
+.content .news li h3 a{color: #333333;}
+.content .news li span{display: block;margin: 6px 0;color: #666666;text-align: right;}
+
+.content .show ul{margin: 50px 0;background-color: #333333;}
+.content .show .title{margin-top: 60px;text-align: center;}
+.content .show .title h3{font-size: 24px;font-weight: 100;color: #626262;}
+.content .show li{float: left;margin: 20px;height: 200px;overflow: hidden;}/*约为高度的0.873，200*0.873 约为175*/
+.content .show li div{display: table-cell;vertical-align:middle;text-align:center;*display: block;*font-size: 175px;*font-family:Arial;height:200px;width: 200px;}
+.content .show li div img{width: 100%;}
+.content .show li:hover div img{width:150%; margin:-25%;}
+
+/* rollbox */
+.content  .ph{overflow: hidden;height: 410px;}
+.content .rollbox{float:left; width:100%; min-width:1200px; height: 410px;position:relative; padding-top:0px;}
+.content .rollbox .explain{font: 300 20px/40px "微软雅黑";   text-align:center;display:block;height: 110px;}
+.content .rollbox .title{font-size: 24px;font-weight: 100;text-align:center;padding-top:90px;}
+.content .rollbox .title h3{font-weight: 100; }
+.content .rollbox .c{ position:relative;width: 900px;margin: 0 auto;}
+.content .rollbox .LeftHandle{height: 132px;width: 60px;background: transparent url("../images/tb.png") no-repeat scroll 0px -10px;position: absolute;cursor: pointer;left: -150px;top:70px;}
+.content .rollbox .RightHandle { height: 132px;width: 60px; background: transparent url(../images/tb.png) no-repeat scroll -99px -10px;; position: absolute;cursor: pointer;right: -117px;top:70px;}
+
+.content .rollbox .rollBoxc{	width:1200px;overflow:hidden;padding:0px ;height: 200px;padding-top: 30px;}
+.content .rollbox .rollBoxc .PhotoCell{width:120px;float:left;margin-left:10px;display:inline;}
+.content .rollbox .rollBoxc .PhotoCell img{background:#FFF;padding:1px;border:1px solid #666;margin-bottom:3px;}
+.content .rollbox .rollBoxc .anli{ background:#fff; width:220px;  float:left; margin-right:0px;margin-bottom: 20px;}
+.content .rollbox .rollBoxc .anli .index_title { padding:0 10px; font-size:16px; text-align:center}
+.content .rollbox .rollBoxc .anli img  {  padding: 4px; background: #FFF ; border: 1px solid #DDD; display: block;  margin: 0px auto; width: 200px; height:150px;}
+
+/************footer***********/
+.foot{font-size:14px;font-family: Microsoft YaHei;background: #2B2B2B;color: rgb(169, 169, 169);padding: 44px 0 10px;}
+.foot .copyright{text-align: center;}
+.foot .copyright a{color: #aaaaaa;padding: 10px 24px;font-size: 16px;}
+.foot .copyright a:hover{color: #ffffff;}
+.foot .copyright p{color:#827E7E;line-height: 30px;margin: 0 auto;width: 500px;border-top: 1px solid;margin-top: 20px;}

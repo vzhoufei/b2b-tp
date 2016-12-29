@@ -1,0 +1,135 @@
+<div class="footer">
+			<div class="footernav">
+				<div class="mg">
+					<ul>
+						<li><a href="{:U('Store/index',array('store_id'=>$store[store_id]))}">网站首页</a></li>
+						<!-- 自定义导航 -->
+						<foreach name="navigation" item="vv" key="kk">
+							<li>
+								<if condition="empty($vv[sn_url])">
+									<a href="
+	                        <if condition='($vv[sn_is_list] eq 1)'>
+	                        {:U('Store/newsList',array('store_id'=>$store[store_id],'sn'=>$vv[sn_id]))}
+	                        <elseif condition='$vv[sn_is_list] eq 2'/>
+	                        {:U('Store/photolist',array('store_id'=>$store[store_id]))}
+	                        <else/>
+	                        {:U('Store/store_news',array('store_id'=>$store[store_id],'sn_id'=>$vv[sn_id]))}
+	                        </if>" <if condition='($vv[sn_new_open])'>target='_blank'</if> >
+								<else/>
+								<a href="{$vv.sn_url}" title='{$vv.sn_keyword}' <if condition='($vv[sn_new_open])'>target='_blank'</if>>
+									</if>
+									{$vv.sn_title}</a>
+							</li>
+						</foreach>
+
+						<!-- 分类在导航显示 -->
+						<foreach name="link_cat" item="vz">
+							<li>
+								<a target="_blank" href="{:U('Store/goods_list',array('store_id'=>$store[store_id],'cat_id'=>$vz[cat_id]))}">{$vz.cat_name}</a>
+							</li>
+						</foreach>
+					</ul>
+				</div>
+			</div>
+			<div class="bottom">
+				<div class="mg">
+					<div class="footerleft">
+						<div class="code">
+							<img src="{:STYLE}/images/qr_layerCF44AE118ABF4A5DCE55EC42ACEED091_3fo6.png">
+							<p>扫一扫，关注我们</p>
+						</div>
+					</div>
+					<div class="footercent">
+						<div class="footerlogo">
+							<img src="{$store.store_logo}" alt="{$store.store_logo}">
+							<p>某某五金有限公司</p>
+						</div>
+						<div class="footersearch">
+							<div class="select">
+								<p>产品　</p>
+								<div class="sel">
+									<p>文章　</p>
+								</div>
+							</div>
+							<input name="q" type="text" placeholder="请输入关键字" />
+							<button class="submitS" onclick="submits();" type="submit">搜索</button>
+							<!-- 本店搜索js -->
+							<script type="text/javascript">
+								function submits()
+								{
+									var keywords = $('input[name=q]').val();
+									if(!keywords)
+									{
+										alert('请输入关键字');
+										return;
+									}
+									window.location.href="{:U('Home/Store/search')}?store_id={$store[store_id]}&keywords="+keywords;
+								}
+							</script>
+						</div>
+					</div>
+					<div class="footerright">
+						<span>服务热线：</span>
+						<h3>{$store[store_phone]}</h3>
+						<div>
+							<img src="{:STYLE}/images/4-add.png">
+							<p>地址：
+								<?php $region = C('DB_PREFIX'); $region .= 'region';?>
+								<tpshop sql="select name from $region where id=$store[province_id] limit 1" item="v">
+						          {$v['name']}  <!-- 省 -->
+						          </tpshop>
+						          <tpshop sql="select name from $region where id=$store[city_id] limit 1" item="v">
+						          {$v['name']} <!-- 市 -->
+						          </tpshop>
+						          <tpshop sql="select name from $region where id=$store[district] limit 1" item="v">
+						          {$v['name']} <!-- 区 -->
+						          </tpshop>{$store.store_address}  <!-- 详细地址 --></p>
+							<!-- <p class="address">{$store.store_name}地址：中国上海市XXX区XXX路12号MOUMOU大厦</p> -->
+							</p>
+						</div>
+						<div>
+							<img src="{:STYLE}/images/4-tel.png">
+							<p>电话：+86-021-12345678</p>
+						</div>
+						<div>
+							<img src="{:STYLE}/images/4-email.png">
+							<p>邮箱：xxx@xxxx.com</p>
+						</div>
+						<div>
+							<img src="{:STYLE}/images/4-fax.png">
+							<p>传真：+86-021-123456X8</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- help-box -->
+		<div class="help-box">
+		  <ul>
+		    <li class="qq"><a target="_blank" href="http://wpa.qq.com/msgrd?V=1&Uin={$store[store_qq]}&Site={$store.store_name}&Menu=yes" class="link" title="点击在线咨询"><i class="fa fa-qq"></i></a></li>
+		    <li class="tel"><a href="http://wpa.qq.com/msgrd?V=1&Uin={$store[store_qq]}&Site={$store.store_name}&Menu=yes" class="link" title="联系电话"><i class="fa fa-phone"></i></a>
+		      <div class="dialog hide">
+		        <div class="arrow"></div>
+		        <div class="item">业务咨询:  {$store[store_phone]}</div>
+		        <div class="item">业务咨询:  {$store[store_phone]}</div>
+		      </div>
+		    </li>
+		    <li class="feedback"><a href="#" target="_blank" data-toggle="modal" data-target="#feedbackModal" class="link" title="装修咨询"><i class="fa fa-comment"></i></a></li>
+    		<li class="back2top"><a href="#" title="返回顶部"><i class="fa fa-comment"></i></a></li>
+		  </ul>
+		</div>
+		<div class="message" id="gotop1">
+		   <div class="message-c">
+		    <span>
+			<a href="tel:4000308710" class="dh">电话咨询</a>
+			<a href="#" class="home">预约设计</a>
+			<a href="#" class="ifh">关于我们</a>
+			</span>
+		   </div>
+		</div>
+
+
+
+	</body>
+</html>

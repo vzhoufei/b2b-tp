@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{$navlist.sn_title}</title>
+    <meta name="keywords" content="{$navlist.sn_keyword}" />
+    <meta name="description" content="{$navlist.sn_description}"/>
+    <include file="./header" />
+<link rel="stylesheet" href="{:STYLE}/css/baguettebox.min.css">
+<link rel="stylesheet" href="{:STYLE}/css/lrtk.css">
+<script src="{:STYLE}/js/baguettebox.min.js"></script>
+
+<style>figure img{float:none;}</style>
+
+<foreach name="photolist" item="v">
+<h2 style="line-height:50px;color:#000;">{$v.title}</h2>
+<div class="baguetteBoxOne gallery">
+
+    <foreach name="v[photoimg]" item="vv">
+        <a href="{$vv.img}"><img src="{$vv.img}"></a>
+    </foreach>
+   
+</div>
+</foreach>
+
+
+<script>
+baguetteBox.run('.baguetteBoxOne', {
+    animation: 'fadeIn',
+});
+</script>
+<include file="./footer"/>

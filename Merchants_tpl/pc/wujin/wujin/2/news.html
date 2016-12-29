@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{$news.title}</title>
+	<meta name="keywords" content="{$news.keyword}" />
+    <meta name="description" content="{$news.description}"/>
+	<include file="./header" />
+	<link rel="stylesheet" type="text/css" href="{:STYLE}/css/indexmoll.css">
+	<link rel="stylesheet" type="text/css" href="{:STYLE}/css/news.css">
+	<!-- 主体区域 -->
+
+	<main class="main">
+
+			<div class="lubT"></div>
+
+	<!-- 轮播图结束 -->
+		<!-- 正文开始 -->
+			<div class="newsMain">
+				<div class="newstatle">
+					<!-- <p>您当前位置：<span class="index"><a href="#">古建筑设计首页</a>&gt;</span><span class="indexs"><a href="#">工程项目</a>&gt;</span></p> -->
+				</div>
+				
+				<div class="newsM">
+					<h2>{$news.title}</h2>
+					<h4>{$news.author} 时间：<span class="time">{$news.timer|date='Y-m-d',###}</span></h4>
+				</div>
+				
+				<div class="content">
+					<div class="conternMain">
+						{$news.content|htmlspecialchars_decode}
+					</div>
+			<br style="clear:both;"/>
+				</div>
+
+				<div class="newsFooter">				
+					<div class="newsFL">
+						<p>上一篇：<a href="{:U('Store/newscontent',array('store_id'=>$store[store_id],'sn'=>$pre[sn_id],'text'=>$pre[id]))}">{$pre.title|getSubstr=0,30}</a></p>
+						<p>下一篇：<a href="{:U('Store/newscontent',array('store_id'=>$store[store_id],'sn'=>$next[sn_id],'text'=>$next[id]))}">{$next.title|getSubstr=0,30}</a></p>
+					</div>
+				
+			
+			<br style="clear:both;"/>
+			</div>
+			<!-- <br style="clear:both;"/> -->
+	<!-- 第七屏结束 -->
+		<div class="cl"></div>
+	</main>
+	<br style="clear:both;"/>
+<!-- 底部 -->
+		<include file="./footer"/>

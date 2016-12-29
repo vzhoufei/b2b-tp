@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>首页</title>
+		<include file="./header" />
+	   <!------banner------>
+	    <div class="banner">
+	        <div class="bd">
+				<ul>
+					<foreach name="store[store_slide]" item="vimg" key="k">
+	              		<notempty name="vimg">
+							<li><a href="javascript:;"><img src="{$vimg}" ></a></li>
+					 	</notempty>
+             		 </foreach>
+				</ul>
+			</div>
+			<div class="hd">
+				<ul>
+					<foreach name="store[store_slide]" item="vimg" key="k">
+		              	<notempty name="vimg">
+							<li></li>
+						</notempty>
+	             	</foreach>
+				</ul>
+			</div>
+	    </div>
+	    <!------content------>
+	    <div class="content">
+	   		<!------mod1------>
+	   		<div class="mod1">
+	   			<div class="mg">
+		   			<div class="title">
+		   				<h3>园林景观</h3>
+		   			</div>
+
+		   			<ul>
+		   				<li>
+		   					<span>612</span>
+		   					<p>盆栽设计</p>
+		   				</li>
+		   				<li>
+		   					<span>369</span>
+		   					<p>景观园林</p>
+		   				</li>
+		   				<li>
+		   					<span>123</span>
+		   					<p>新品工艺</p>
+		   				</li>
+		   			</ul>
+		   			<div>
+		   				<img src="{:STYLE}/images/mod_01.png">
+		   			</div>
+	   			</div>
+	   		</div>
+	   		<!------show------>
+	   		<foreach name="recommend" item="recomend_v" key="k" >
+			<notempty name="recomend_v['cat_id_goods']">
+    	 	<div class="show">
+    	 		<div class="mg">
+    	 			<div class="title">
+			    		<h3>{$recomend_v.cat_name}</h3>
+			    	</div>
+
+    	 			<ul class="ov">
+    	 			 <foreach name="recomend_v[cat_id_goods]" item="vvv">
+    	 				<li>
+		 					<div>
+		 						<a target="_blank" href="{:C('DOMAIN')}{:U('Goods/goodsInfo',array('id'=>$vvv[goods_id]))}">
+			    				<img  src="{$vvv.goods_id|goods_thum_images=200,200}" alt="{$vvv.goods_name}"></a>
+		 					</div>
+    	 				</li>
+    	 			</foreach>
+    	 			</ul>
+    	 		</div>
+    	 	</div>
+    	 	</notempty>
+			</foreach>
+    	 	<!------good------>
+	    	<div class="good">
+	    		<div class="mg">
+	    			<div class="title">
+	    				<h3>优秀景观</h3>
+	    			</div>
+	    			<ul>
+	    				<li>
+	    					<div class="right">
+		    					<div class="gf_top">
+		    						<h3>植物公园景观</h3>	
+		    						<span>BOTANICAL GARDEN</span>
+		    						<p>园林设计的最终目的是要创造出景色</br>
+		    						如画、环境舒适、健康文明的游憩境域。一方面，园林</br>是反映社会意识形态…</p>
+		    					</div>
+		    					<div class="gf_bot">
+		    						<p>American</p>
+			    					<p>Pastoral</p>
+		    					</div>
+		    				</div>
+	    					<div class="left">
+		    					<img src="{:STYLE}/images/good1.png">
+		    				</div>
+	    				</li>
+
+	    				<li>
+	    					<div class="right">
+		    					<img src="{:STYLE}/images/good2.png">
+		    				</div>
+		    				<div class="left">
+		    					<div class="gs_top">
+		    						<h3>水景景观</h3>	
+		    						<span>WATER LANDSCAPE</span>
+		    						<p>园林设计的最终目的是要创造出景色</br>
+		    						如画、环境舒适、健康文明的游憩境域。一方面，园林</br>是反映社会意识形态…</p>
+		    					</div>
+		    					<div class="gs_bot">
+		    						<p>MR.WATER</p>
+			    					<span>Nature&Live 水先生的设计</span>
+		    					</div>
+		    				</div>
+	    				</li>
+	    				
+	    			</ul>
+	    		</div>
+	    	</div>
+	    	<!------server------>
+	    	<notempty name="recomend_goods">
+	    	<div class="gray_bg">
+	    		<div class="mg">
+	    			<div class="title">
+			    		<h3>新品推荐</h3>
+			    	</div>
+			    	<div class="server">
+			    		<ul>
+			    			<foreach name="recomend_goods" item="r_v">
+			    			<li>
+			    				<div>
+			    					<a href="{:C('DOMAIN')}{:U('Goods/goodsInfo',array('id'=>$r_v[goods_id]))}" target="_blank"><img src="{$r_v.goods_id|goods_thum_images=320,180}" alt="{$r_v['goods_name']}" style="width:100%;" />
+			    				</div>
+			    				<div class="w_bg">
+			    					<div class="outb">
+				    					<div class="inb">
+				    						<h3>
+						    					<a href="{:C('DOMAIN')}{:U('Goods/goodsInfo',array('id'=>$r_v[goods_id]))}" target="_blank">{$r_v['goods_name']|getSubstr=0,35}</a>
+						    				</h3>
+				    					</div>
+				    				</div>
+				    			</div>
+			    			</li>
+			    			</foreach>
+			    		</ul>
+			    	</div>
+	    		</div>
+	    		
+	    	</div>
+	    	</notempty>
+	    	<!------news------>
+	    	<foreach name="recommend_news" item="news_v" key="news_k">
+	    	<div class="news">
+	    		<div class="mg">
+	    			<div class="title">
+	    				<h3>{$news_v.sn_title}</h3>
+	    			</div>
+	    			<ul>
+	    				<foreach name="news_v[news]" item="news_vv" key="news_kk">
+	    				<li>
+	    					<div class="left">
+	    						<a href="{:U('Store/newscontent',array('store_id'=>$store[store_id],'sn'=>$news_v[sn_id],'text'=>$news_vv[id]))}" target="_blank"><img src="{$news_vv.id|news_thum_images=150,115}"></a>
+	    					</div>
+	    					<div class="right">
+	    						<h3><a href="{:U('Store/newscontent',array('store_id'=>$store[store_id],'sn'=>$news_v[sn_id],'text'=>$news_vv[id]))}" target="_blank">{$news_vv.title|getSubstr=0,10}</a></h3>
+	    						<p>{$news_vv.description|getSubstr=0,150}</p>
+	    						<span>--{$news_vv.timer|date="Y-m-d",###}</span>
+	    					</div>
+	    				</li>
+	    				</foreach>
+	    			</ul>
+	    		</div>
+	    	</div>
+	    	</foreach>
+	    	<!-- 相册 -->
+	    	<foreach name='photo' item="photo_v" key="p_key">
+	    	<div>
+	    		<div class="mg ph">
+		    		
+						<div class="rollbox">
+							<div class="title">
+								<h3>{$photo_v.title}</h3>
+							</div>
+						    <div class="c">
+								<div class="LeftHandle" id="scrollArrLeft_{$p_key}"></div>
+								<div class="rollBoxc" id="scrollCont_{$p_key}">
+							  		<foreach name="photo_v['photoimg']" item="img_v">
+										<div class="anli"><img src="{$img_v.img}" ></div>
+							  		</foreach>
+						  		</div>
+						  		<div class="RightHandle" id="scrollArrRight_{$p_key}"></div>
+							</div>
+						</div>
+						<script>
+							photo("{$p_key}");
+						</script>
+					
+		    	</div>
+	    	</div>
+	    	</foreach>
+	    </div>
+	    <include file="./footer"/>
+	    
+

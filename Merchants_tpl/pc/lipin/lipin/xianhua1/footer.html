@@ -1,0 +1,55 @@
+
+<footer class="footer">
+
+
+
+		
+		<dt>☆联系方式</dt>
+		 <foreach name="navigation" item="vv" key="kk">
+          		<if condition="empty($vv[sn_url])">
+                      <a  href="
+                        <if condition='($vv[sn_is_list])'>
+                        {:U('Store/newsList',array('store_id'=>$store[store_id],'sn'=>$vv[sn_id]))}
+                        <else/>
+                        {:U('Store/store_news',array('store_id'=>$store[store_id],'sn_id'=>$vv[sn_id]))}
+                        </if>" 
+                        <if condition='($vv[sn_new_open])'>target='_blank'</if> >
+                    <else/>
+                    <a href="{$vv.sn_url}" title='{$vv.sn_keyword}' <if condition='($vv[sn_new_open])'>target='_blank'</if>>
+                    </if>
+                    {$vv.sn_title}</a>
+  			</foreach>
+			<ul>
+				<li class="wa" style="width:auto;">
+					<dl>
+					
+					<dd>电话：{$store[store_phone]}</dd>
+					<dd></dd>
+					<dd>店铺名称：<?php $region = C('DB_PREFIX'); $region .= 'region';?>{$store.store_name}<br>
+
+					        <p> 地址:
+					        <tpshop sql="select name from $region where id=$store[province_id] limit 1" item="v">
+					          {$v['name']}  <!-- 省 -->
+					          </tpshop>
+					          <tpshop sql="select name from $region where id=$store[city_id] limit 1" item="v">
+					          {$v['name']} <!-- 市 -->
+					          </tpshop>
+					          <tpshop sql="select name from $region where id=$store[district] limit 1" item="v">
+					          {$v['name']} <!-- 区 -->
+					          </tpshop>
+
+					         {$store.store_address}  <!-- 详细地址 -->
+
+					</dd>
+					</dl>
+					</li>
+					<li style="width:auto;">
+					<dl class="ico">
+					<dt>☆版权所有</dt>
+					<dd>{$store.copyright}</dd>
+					<dd></dd>
+					<dd></dd>
+					</dl>
+					</li>
+			</ul>
+	</footer>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>首页</title>
+		<include file="./header" />
+	    <!------banner------>
+	    <div class="banner">
+	        <div class="bd">
+				<ul>
+					<foreach name="store[store_slide]" item="vimg" key="k">
+	              		<notempty name="vimg">
+							<li><a href="javascript:;"><img src="{$vimg}" ></a></li>
+					 	</notempty>
+             		 </foreach>
+				</ul>
+			</div>
+			<div class="hd">
+				<ul>
+					<foreach name="store[store_slide]" item="vimg" key="k">
+		              	<notempty name="vimg">
+							<li></li>
+						</notempty>
+	             	</foreach>
+				</ul>
+			</div>
+	    </div>
+	    <!------content------>
+	    <div class="content">
+	   		 <!------company------>
+	   		  <!-- 自定义模块1 -->
+			<div style="width:100%;"  class="custom">
+			{:htmlspecialchars_decode($text[0])}
+			</div>
+			<!-- 自定义模块1 -->
+	    	
+	    	<!------server------>
+	    	<foreach name="recommend" item="recomend_v" key="k" >
+			<notempty name="recomend_v['cat_id_goods']">
+	    	<div class="gray_bg">
+	    		<div class="mg">
+	    			<div class="title">
+			    		<h3>{$recomend_v.cat_name}</h3>
+			    	</div>
+			    	<div class="server">
+			    		<ul>
+			    		 <foreach name="recomend_v[cat_id_goods]" item="vvv">
+			    			<li>
+			    				<div>
+			    					<a target="_blank" href="{:C('DOMAIN')}{:U('Goods/goodsInfo',array('id'=>$vvv[goods_id]))}">
+			    					<img  src="{$vvv.goods_id|goods_thum_images=366,264}" alt="{$vvv.goods_name}"></a>
+			    				</div>
+	    						<h3>
+			    					<a target="_blank" href="{:C('DOMAIN')}{:U('Goods/goodsInfo',array('id'=>$vvv[goods_id]))}">{$vvv.goods_name|getSubstr=0,35}</a>
+			    				</h3>
+			    			</li>
+			    		</foreach>
+			    		</ul>
+			    	</div>
+	    		</div>
+	    	</div>
+	    	</notempty>
+			</foreach>
+	    	<!------news------>
+	    	<div class="news">
+	    		<div class="mg">
+	    			<foreach name="recommend_news" item="news_v" key="news_k">
+		    			<div class="title">
+		    				<h3>{$news_v.sn_title}</h3>
+		    			</div>
+		    			<ul>
+		    				<foreach name="news_v[news]" item="news_vv" key="news_kk">
+		    				<li>
+		    					<div class="left">
+		    						<a href="{:U('Store/newscontent',array('store_id'=>$store[store_id],'sn'=>$news_v[sn_id],'text'=>$news_vv[id]))}" target="_blank"><img src="{$news_vv.id|news_thum_images=150,115}"></a>
+		    					</div>
+		    					<div class="right">
+		    						<h3><a href="{:U('Store/newscontent',array('store_id'=>$store[store_id],'sn'=>$news_v[sn_id],'text'=>$news_vv[id]))}" target="_blank">{$news_vv.title|getSubstr=0,10}</a></h3>
+		    						<span>{$news_vv.timer|date="Y-m-d",###}</span>
+		    						<p>{$news_vv.description|getSubstr=0,150}</p>
+		    					</div>
+		    				</li>
+		    				</foreach>
+		    			</ul>
+	    			</foreach>
+	    		</div>
+	    	</div>
+	    	<!-- 新品推荐 -->
+			<div class="mg">
+				<notempty name="recomend_goods">
+				<div class="sce_title">
+		    		<h3>新品推荐</h3>
+		    	</div>
+				<div class="scene">
+				<div class="LeftHandle" id="scrollArrLeft2">&nbsp;</div>
+				<div class="rollBox-scene" id="scrollCont2">
+					<div class="scrollCont-2">
+					    <foreach name="recomend_goods" item="r_v">
+					      <div class="pic">
+					      <a href="{:C('DOMAIN')}{:U('Goods/goodsInfo',array('id'=>$r_v[goods_id]))}" target="_blank">
+					      <img src="{$r_v.goods_id|goods_thum_images=470,592}" alt="{$r_v['goods_name']}" style="width:100%;" /></a>
+					      <div class="pic-cn"><a href="{:C('DOMAIN')}{:U('Goods/goodsInfo',array('id'=>$r_v[goods_id]))}" target="_blank">{$r_v['goods_name']|getSubstr=0,35}</a></div>
+					      </div>
+					    </foreach>
+
+				  </div>
+				</div>
+				<div class="RightHandle" id="scrollArrRight2">&nbsp;</div>
+				</div>
+				</notempty>
+				<script>
+				news_recomend(2);
+				</script>
+			</div>   
+	    	<!------show------>
+	    	<foreach name='photo' item="photo_v" key="p_key">
+    	 	<div class="show">
+    	 		<div class="mg">
+    	 			<div class="title">
+			    		<h3>{$photo_v.title}</h3>
+			    	</div>
+
+    	 			<ul class="ov">
+    	 			 <foreach name="photo_v['photoimg']" item="img_v">
+    	 				<li>
+    	 					<div>
+    	 						<img src="{$img_v.img}">
+    	 					</div>
+    	 				</li>
+    	 				</foreach>
+    	 			</ul>
+    	 		</div>
+    	 	</div>
+    	 	</foreach>
+	    	<!------work------>
+	    	 <!-- 自定义模块2 -->
+			<div style="width:100%;"  class="custom">
+			{:htmlspecialchars_decode($text[1])}
+			</div>
+			<!-- 自定义模块2 -->
+	    	
+	   		
+	    </div>
+	    <include file="./footer"/>
+	    
+

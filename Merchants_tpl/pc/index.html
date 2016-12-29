@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="keywords" content="{$store.seo_keywords}">
+		<meta name="description" content="{$store.seo_description}">
+		<title>{$store.store_name}</title>
+		<include file="./header" />
+		
+		<!--banner-->
+		<div class="banner">
+			<ul class="bd">
+				<foreach name="store[store_slide]" item="vimg" key="k">
+					<notempty name="vimg">
+						<li><a href=""><img src="{:STYLE}/images/banner.jpg"/></a></li>				
+					</notempty>
+				</foreach>
+			</ul>			
+			<ul class="hd">
+				<li class="on"></li>
+				<li></li>
+				<li></li>
+			</ul>
+			<a href="javascript:;" class="prev"><img src="{:STYLE}/images/prev.png"></a>
+			<a href="javascript:;" class="next"><img src="{:STYLE}/images/next.png"></a>
+			
+			<div class="adorn">
+				<span class="wow bounceInLeft"></span>
+				<span class="wow bounceInLeft">购买满5件<br />及以上5折</span>
+				<span class="wow bounceInLeft">HOT</span>
+				<span class="wow bounceInDown">5折</span>
+				<span class="wow bounceInRight">SALE</span>
+				<span class="wow bounceInRight">欢迎新老顾<br />客前来选购</span>
+				<span class="wow bounceInRight"></span>
+			</div>			
+		</div>
+		
+		<!-- 自定义模块1 -->
+		<div style="width:100%;" class="custom">
+			{:htmlspecialchars_decode($text[0])}
+		</div>
+				
+		<foreach name="recomend_goods" item="r_v">
+		<notempty name="recomend_goods">
+		<div class="index_vogue mg">
+			<ul>
+				<li class="wow slideInLeft"><a href=""><img src="{:STYLE}/images/x1.jpg"/></a></li>
+				<li class="wow slideInLeft"><a href=""><img src="{:STYLE}/images/x3.jpg"/></a></li>
+				<!-- <li>
+					<div class="center_txt">
+						<span></span>
+						<strong class="wow flipInY">NEW<br />12月12日上新</strong>
+						<p>逢周二/五10:00上新<br />全场包邮</p>
+						<a href="" class="wow swing"><!-- 查看全部上新 -->{$r_v['goods_name']|getSubstr=0,35}</a>
+						<span></span>
+					</div>
+				</li> -->
+				<li class="wow slideInRight"><a href=""><img src="{:STYLE}/images/x2.jpg"/></a></li>
+				<li class="wow slideInRight"><a href=""><img src="{:STYLE}/images/x4.jpg"/></a></li>
+			</ul>
+		</div>
+		</notempty>
+		</foreach>		
+
+		<!--推荐产品-->
+		<foreach name="recommend" item="recomend_v" key="k" >
+		<notempty name="recomend_v['cat_id_goods']">
+		<div class="index_product mg">
+			<h1>
+				<span class="wow bounceInLeft"><img src="{:STYLE}/images/pt1.png"/></span>
+				<span class="wow bounceInDown"><strong>{$recomend_v['cat_name']}</strong></span>
+				<span class="wow bounceInRight"><img src="{:STYLE}/images/pt2.png"/></span>
+			</h1>
+			<ul>
+				<li class="active"><strong>女装</strong></li>
+				<li><strong>男装</strong></li>
+				<li><strong>童装</strong></li>
+			</ul>
+			<foreach name="recomend_v[cat_id_goods]" item="vvv">
+				<h2>{$vvv.goods_name|getSubstr=0,35}</h2>
+				<div class="show">
+					<span>
+						<a href="">
+							<img src="{:STYLE}/images/index_pro01.jpg"/>
+							女装|轻盈舒适可选色压线半高领夹克
+						</a>
+						<em>价格: 0.00</em>
+					</span>
+					<span>
+						<a href="">
+							<img src="{:STYLE}/images/index_pro02.jpg"/>
+							女装|梯形边饰插肩套头运动衫
+						</a>
+						<em>价格: 0.00</em>
+					</span>
+					<span>
+						<a href="">
+							<img src="{:STYLE}/images/index_pro03.jpg"/>
+							女装|舒适几何图案圆领直筒针织上衣
+						</a>
+						<em>价格: 0.00</em>
+					</span>
+					<span>
+						<a href="">
+							<img src="{:STYLE}/images/index_pro04.jpg"/>
+							女装|精致镂空七分袖上衣
+						</a>
+						<em>价格: 0.00</em>
+					</span>
+				</div>
+			</foreach>
+			
+			<!-- <div class="show">
+				<span>
+					<a href="">
+						<img src="{:STYLE}/images/index_pro05.jpg"/>
+						男装|纯棉仿鼹鼠皮西装式外套
+					</a>
+					<em>价格: 0.00</em>
+				</span>
+				<span>
+					<a href="">
+						<img src="{:STYLE}/images/index_pro06.jpg"/>
+						男装|休闲横纹抓绒直筒套头连帽衫
+					</a>
+					<em>价格: 0.00</em>
+				</span>
+				<span>
+					<a href="">
+						<img src="{:STYLE}/images/index_pro07.jpg"/>
+						男装|羊毛混纺衣袖条纹圆领毛衣
+					</a>
+					<em>价格: 0.00</em>
+				</span>
+				<span>
+					<a href="">
+						<img src="{:STYLE}/images/index_pro08.jpg"/>
+						男装|纯棉格纹修身西部风牛仔衬衫
+					</a>
+					<em>价格: 0.00</em>
+				</span>
+			</div>
+			<div class="show">
+				<span>
+					<a href="">
+						<img src="{:STYLE}/images/index_pro09.jpg"/>
+						男孩|防风拉链连帽夹克
+					</a>
+					<em>价格: 0.00</em>
+				</span>
+				<span>
+					<a href="">
+						<img src="{:STYLE}/images/index_pro10.jpg"/>
+						女孩|简约混色抓绒开襟卫衣
+					</a>
+					<em>价格: 0.00</em>
+				</span>
+				<span>
+					<a href="">
+						<img src="{:STYLE}/images/index_pro11.jpg"/>
+						男孩|前胸条纹长袖圆领针织衫
+					</a>
+					<em>价格: 0.00</em>
+				</span>
+				<span>
+					<a href="">
+						<img src="{:STYLE}/images/index_pro12.jpg"/>
+						女孩|牛仔系列星星图案牛仔衬衫
+					</a>
+					<em>价格: 0.00</em>
+				</span>
+			</div>
+		</div> -->
+		</notempty>
+		</foreach>
+
+		<div class="index_about">
+			<h1 class="wow rollIn"><strong>关于我们</strong><br />ABOUT US</h1>
+			<b></b>
+			<div class="product">
+				<div class="mg">
+					<span></span>
+					<span><img src="{:STYLE}/images/index_about.jpg"/></span>
+					<p>源自英伦，立足中国，领先的定制品牌。<br />
+					创于2007年10月，<br />
+					致力于提供世界一流定制服务，<br />
+					由一群拥有非凡创意和执着追求的年青创想家打造而成。<br />
+					某某尊重差异，敢为人先，独立特行，<br />
+					用服饰敲开人类个性之门，<br />
+					对自然，创造充满激情的表率。<br />
+					品牌风格即低调而个性，经典而细致。</p>
+					<a href="" class="wow bounceInDown">MORE+</a>
+					<strong>低调而个性，经典而细致。</strong>
+					<div class="tel">全国服务热线：<br /><h2>400-000-0000</h2></div>
+				</div>			
+			</div>			
+		</div>
+		
+		<!-- 自定义模块2 -->
+		<div style="width:100%;" class="custom">
+			{:htmlspecialchars_decode($text[1])}
+		</div>		
+		
+		<div class="index_brand mg">
+			<div class="brand">
+				<div class="title wow slideInDown">
+					<span></span>
+					<span><strong>品牌资讯</strong><br />BRAND INFORMATION</span>
+					<span></span>
+				</div>
+				
+				<ul class="wow rollIn">
+					<li>
+						<span><strong>09</strong><br />2016-12</span>
+						<div>
+							<h2><a href="">巧搭兔毛皮草 穿出迷人气质</a></h2>
+							<p>兔毛皮草是寒冷冬季中最能穿出气质的百搭单品，而且还舒适保暖。兔毛皮不仅仅舒适保暖，还很显贵气，演绎了新潮流。兔毛皮草款式太多使人眼花缭乱？那么衣联网小编挑出几款我比较......</p>
+						</div>
+					</li>
+					<li>
+						<span><strong>09</strong><br />2016-12</span>
+						<div>
+							<h2><a href="">选择新款棉裤 助你修饰双腿比例</a></h2>
+							<p>深蓝色的棉裤，不仅有着不错的显瘦效果，它的保暖功能也很出色。穿着者将它与紫灰色的雪地靴配合在一起，在颜色的过渡上很自然，并且让整体的风格更偏向于少女，清纯气息浓厚。</p>
+						</div>
+					</li>
+					<li>
+						<span><strong>09</strong><br />2016-12</span>
+						<div>
+							<h2><a href="">换上女士外套 彰显冬季浪漫</a></h2>
+							<p>极具冬日气息的一款外套，它的颜色为米白色，而袖口、领口位置的毛毛，则是奶白色，能够看出服饰设计的层次感，同时也带来温暖的感觉，很适合下雪天穿着，会显得你仙气十足。</p>
+						</div>
+					</li>
+					<li>
+						<span><strong>09</strong><br />2016-12</span>
+						<div>
+							<h2><a href="">穿上冬季卫衣 散发休闲风的魅力</a></h2>
+							<p>圆领翻领设计的卫衣，显得特别有个性，层次感也越发地明显。而在配色方面，则是以浅粉色和冰淇淋粉色为主，使穿着者显得青春无敌，尽显甜美气息，同时又不失搭配的层次性。</p>
+						</div>
+					</li>
+					<li>
+						<span><strong>09</strong><br />2016-12</span>
+						<div>
+							<h2><a href="">冬季羽绒服 给你十足的安全感</a></h2>
+							<p>纯黑色的羽绒服，超长款的设计，尤其适合下半身较为丰满的女生，可以帮助你达到显瘦的效果 。另外，搭配同样是深色系的裤子，可让整体的穿搭更加统一。</p>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<span class="wow lightSpeedIn"><img src="{:STYLE}/images/index_brand.jpg"/></span>
+		</div>
+		
+		<!-- 自定义模块3 -->
+		<div class="custom">
+			{:htmlspecialchars_decode($text[2])}
+		</div>		
+		
+		<include file="./footer"/>
+
+
+

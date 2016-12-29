@@ -1,0 +1,102 @@
+<link rel="stylesheet" href="{:STYLE}/css/animate.min.css" />
+<link rel="stylesheet" href="{:STYLE}/css/index.css" />
+		<script type="text/javascript" src="{:STYLE}/js/jquery-1.7.1.min.js" ></script>
+		<script type="text/javascript" src="{:STYLE}/js/wow.min.js" ></script>
+		<script type="text/javascript" src="{:STYLE}/js/scroll_image.js" ></script>
+		<script type="text/javascript" src="{:STYLE}/js/gujian.js" ></script>
+		<script type="text/javascript" src="{:STYLE}/js/index.js" ></script>
+		<script>
+			new WOW().init();
+		</script>
+	</head>
+	<body>
+		<div class="header">
+			<div class="top">
+				<div class="mg">
+					<div class="top_left">
+						<a class="top_login" href="">登录</a>
+						<span>|</span>
+						<a class="top_register" href="">注册</a>
+					</div>
+					<div class="top_right">
+						<p>欢迎进入某某五金公司官方网站！</p>
+					</div>
+				</div>
+			</div>
+			<div class="center">
+				<div class="logo">
+					<a href="{:U('Store/index',array('store_id'=>$store[store_id]))}"><img src="{$store.store_logo}" alt="{$store.store_logo}"></a>
+				</div>
+				<div class="contact">
+					<div class="phone">
+						<img src="{:STYLE}/images/tel_qxpd.png">
+						<h3>全国服务咨询热线</h3>
+						<p>{$store[store_phone]}</p>
+					</div>
+					<div class="code">
+						<img src="{:STYLE}/images/qr_layer2b62b7bd98b665092abf22dfd770f60f_f5ne.png">
+					</div>
+				</div>
+			</div>
+			<div class="nav" id="nav">
+				<div class="mg">
+					<ul>
+						<li><a href="{:U('Store/index',array('store_id'=>$store[store_id]))}">网站首页</a></li>
+
+						<!--二级导航-->
+
+					<if condition="$main_cat">
+						<li>
+							<a href="{:U('Store/goods_list',array('store_id'=>$store[store_id]))}" title="供应产品">产品展示</a>
+							<div class="mollanli" style="background: #c40000;">
+								<ul>
+									<foreach name="main_cat" item="v">
+										<!-- 商品分类 -->
+										<li>
+											<a href="{:U('Store/goods_list',array('store_id'=>$store[store_id],'cat_id'=>$v[cat_id]))}" title="{$v.cat_name}">{$v.cat_name}</a>
+											<div class="mollanlis" style="background: #c40000;">
+												<ul>
+													<foreach name="sub_cat[ $v['cat_id'] ]" item="vs">
+														<!-- 二级分类 -->
+														<li>
+															<a href="{:U('Store/goods_list',array('store_id'=>$store[store_id],'cat_id'=>$vs[cat_id]))}" title="{$vs.cat_name}">{$vs.cat_name}</a>
+														</li>
+													</foreach>
+												</ul>
+											</div>
+										</li>
+									</foreach>
+								</ul>
+							</div>
+						</li>
+					</if>
+
+					<!-- 自定义导航 -->
+					<foreach name="navigation" item="vv" key="kk">
+						<li>
+							<if condition="empty($vv[sn_url])">
+								<a href="
+                        <if condition='($vv[sn_is_list] eq 1)'>
+                        {:U('Store/newsList',array('store_id'=>$store[store_id],'sn'=>$vv[sn_id]))}
+                        <elseif condition='$vv[sn_is_list] eq 2'/>
+                        {:U('Store/photolist',array('store_id'=>$store[store_id]))}
+                        <else/>
+                        {:U('Store/store_news',array('store_id'=>$store[store_id],'sn_id'=>$vv[sn_id]))}
+                        </if>" <if condition='($vv[sn_new_open])'>target='_blank'</if> >
+							<else/>
+							<a href="{$vv.sn_url}" title='{$vv.sn_keyword}' <if condition='($vv[sn_new_open])'>target='_blank'</if>>
+								</if>
+								{$vv.sn_title}</a>
+						</li>
+					</foreach>
+
+					<!-- 分类在导航显示 -->
+					<foreach name="link_cat" item="vz">
+						<li>
+							<a target="_blank" href="{:U('Store/goods_list',array('store_id'=>$store[store_id],'cat_id'=>$vz[cat_id]))}">{$vz.cat_name}</a>
+						</li>
+					</foreach>
+					</ul>
+				</div>
+			</div>
+		</div>

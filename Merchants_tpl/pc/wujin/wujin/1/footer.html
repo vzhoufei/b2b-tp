@@ -1,0 +1,55 @@
+<div class="footer">
+	<ul>
+		<foreach name="navigation" item="vv" key="kk">
+			<li>
+				<a href="{$vv.sn_url}">{$vv.sn_title}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+			</li>
+		</foreach>
+	</ul>
+	<div class="code">
+		<img src="{:STYLE}/images/qr_layer7BE890C48670AF855A50C5AC35ADD286_igbu.png">
+	</div>
+	<p class="email">联系邮箱：qweretry@qq.com</p>
+	<p class="copyright">{$store.copyright}</p>
+	<p class="address">{$store.store_name}地址：
+		<?php $region = C('DB_PREFIX'); $region .= 'region';?>
+		<tpshop sql="select name from $region where id=$store[province_id] limit 1" item="v">
+          {$v['name']}  <!-- 省 -->
+          </tpshop>
+          <tpshop sql="select name from $region where id=$store[city_id] limit 1" item="v">
+          {$v['name']} <!-- 市 -->
+          </tpshop>
+          <tpshop sql="select name from $region where id=$store[district] limit 1" item="v">
+          {$v['name']} <!-- 区 -->
+          </tpshop>{$store.store_address}  <!-- 详细地址 --></p>
+	<!-- <p class="address">{$store.store_name}地址：中国上海市XXX区XXX路12号MOUMOU大厦</p> -->
+</div>
+
+
+<!-- help-box -->
+		<div class="help-box">
+		  <ul>
+		    <li class="qq"><a target="_blank" href="http://wpa.qq.com/msgrd?V=1&Uin={$store[store_qq]}&Site={$store.store_name}&Menu=yes" class="link" title="点击在线咨询"><i class="fa fa-qq"></i></a></li>
+		    <li class="tel"><a href="http://wpa.qq.com/msgrd?V=1&Uin={$store[store_qq]}&Site={$store.store_name}&Menu=yes" class="link" title="联系电话"><i class="fa fa-phone"></i></a>
+		      <div class="dialog hide">
+		        <div class="arrow"></div>
+		        <div class="item">业务咨询:  {$store[store_phone]}</div>
+		        <div class="item">业务咨询:  {$store[store_phone]}</div>
+		      </div>
+		    </li>
+		    <li class="feedback"><a href="#" target="_blank" data-toggle="modal" data-target="#feedbackModal" class="link" title="装修咨询"><i class="fa fa-comment"></i></a></li>
+    		<li class="back2top"><a href="#" title="返回顶部"><i class="fa fa-comment"></i></a></li>
+		  </ul>
+		</div>
+		<div class="message" id="gotop1">
+		   <div class="message-c">
+		    <span>
+			<a href="tel:4000308710" class="dh">电话咨询</a>
+			<a href="#" class="home">预约设计</a>
+			<a href="#" class="ifh">关于我们</a>
+			</span>
+		   </div>
+		</div>
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+		<div class="footer">
+			<div class="mg clear">
+				<dl>
+					<dt>联系我们</dt>
+					<dd>电话：{$store[store_phone]}</dd>
+					<dd>店铺名称：{$store.store_name}</dd>
+					<dd>地址：<?php $region = C('DB_PREFIX'); $region .= 'region';?>
+					    <tpshop sql="select name from $region where id=$store[province_id] limit 1" item="v">
+					      {$v['name']}  <!-- 省 -->
+					      </tpshop>
+					      <tpshop sql="select name from $region where id=$store[city_id] limit 1" item="v">
+					      {$v['name']} <!-- 市 -->
+					      </tpshop>
+					      <tpshop sql="select name from $region where id=$store[district] limit 1" item="v">
+					      {$v['name']} <!-- 区 -->
+					      </tpshop>
+					     {$store.store_address}  <!-- 详细地址 --></dl>
+				</dl>
+				<p>{$store.copyright}</p>
+			</div>
+		</div>	
+	</body>
+</html>

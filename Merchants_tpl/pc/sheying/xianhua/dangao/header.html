@@ -1,0 +1,91 @@
+
+	<script type="text/javascript" src="{:STYLE}/js/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="{:STYLE}/js/index.js"></script>
+	<link rel="stylesheet" href="{:STYLE}/css/base.css" />
+	<link rel="stylesheet" type="text/css" href="./{:STYLE}/css/default.css">
+	<link rel="stylesheet" href="{:STYLE}/css/osslider.css" />
+	<link rel="stylesheet" type="text/css" href="{:STYLE}/css/index.css">
+</head>
+<body>
+	<!-- 头部区域 -->
+	<header>
+		<div class="logo">
+		<a href="{:U('Store/index',array('store_id'=>$store[store-id]))}" title="{$store.store_name}">
+			<span class="logo1"><img src="{$store.store_logo}" alt="{$store.store_name}" /></span></a>
+			</div>
+
+		<div class="seach">
+
+			<input type="text" name="seach" class="seachA" placeholder="最新">
+			<input type="image" name="sub" onclick="submits();" src='{:STYLE}/images/soso.jpg' class='seachB'>
+		</div>
+		<script type="text/javascript">
+				function submits()
+					{
+					 var keywords = $('input[name=seach]').val();
+					 if(!keywords){alert('请输入关键字');return;}
+					 window.location.href="{:U('Home/Store/search')}?store_id={$store[store_id]}&keywords="+keywords;
+					}
+		</script>
+	<div class="cl"></div>
+	</header>
+	<!-- 主体区域 -->
+	
+	<main class="main">
+		<nav class="main_nav">
+			<ul>							
+				<li class="headerN"><a href="{:U('Store/index',array('store_id'=>$store[store_id]))}">网站首页</a></li>
+					
+					<if condition="$main_cat">
+
+						<li><a href="{:U('Store/goods_list',array('store_id'=>$store[store_id]))}" title="全部鲜花">所有产品☆</a>
+						<div class="navlist">
+							<ul>
+			                   <foreach name="main_cat" item="v">  <!-- 商品分类 -->
+			                  <li><a href="{:U('Store/goods_list',array('store_id'=>$store[store_id],'cat_id'=>$v[cat_id]))}" title="{$v.cat_name}">{$v.cat_name}</a>
+			                     <div class="navlists">
+                       				 <ul>
+                       				 <foreach name="sub_cat[ $v['cat_id'] ]" item="vs">  <!-- 二级分类 --> 
+                     			  <li><a href="{:U('Store/goods_list',array('store_id'=>$store[store_id],'cat_id'=>$vs[cat_id]))}" title="{$vs.cat_name}">{$vs.cat_name}</a>
+
+									<div class="clear"></div>
+                     			  </li>
+                         			 
+                        		</foreach>
+								 <div class="clear"></div>
+                      		  </ul> 
+							 </div>
+							 <div class="clear"></div>
+                 		 </li>
+                 		 </foreach>
+                 	 <div class="clear"></div>
+               	 </ul> 
+               	 </div>
+				</if>
+
+					<!-- 自定义导航 -->
+                 <foreach name="navigation" item="vv" key="kk">
+				            <li>
+                    <if condition="empty($vv[sn_url])">
+                      <a  href="
+                        <if condition='($vv[sn_is_list])'>
+                        {:U('Store/newsList',array('store_id'=>$store[store_id],'sn'=>$vv[sn_id]))}
+                        <else/>
+                        {:U('Store/store_news',array('store_id'=>$store[store_id],'sn_id'=>$vv[sn_id]))}
+                        </if>" 
+                        <if condition='($vv[sn_new_open])'>target='_blank'</if> >
+                    <else/>
+                    <a href="{$vv.sn_url}" title='{$vv.sn_keyword}' <if condition='($vv[sn_new_open])'>target='_blank'</if>>
+                    </if>
+                    {$vv.sn_title}</a>
+                    </li>
+                 </foreach>
+
+                 <!-- 分类在导航显示 -->
+                  <foreach name="link_cat" item="vz">
+                    <li>
+                      <a  target="_blank" href="{:U('Store/goods_list',array('store_id'=>$store[store_id],'cat_id'=>$vz[cat_id]))}">{$vz.cat_name}</a> </li>
+                  </foreach>
+			<div class="cl"></div>
+			</ul>
+		</nav>

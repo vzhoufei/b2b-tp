@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>{$store.store_name}</title>
+		<include file="./header" />
+		<style>
+			.custom img {
+				max-width: 100%;
+			}
+		</style>
+		<div class="content">
+			<!--轮播图 -->
+			<div class="banner">
+				<ul>
+					<foreach name="store[store_slide]" item="vimg" key="k">
+						<notempty name="vimg">
+							<li>
+								<a href="{$store[store_slide_url][ $k ]}"><img src="{$vimg}"></a>
+								<div class="bannerbtn">
+									<a href="{$store[store_slide_url][ $k ]}">查看产品</a>
+								</div>
+							</li>
+						</notempty>
+					</foreach>
+				</ul>
+				<a href="javascript:;" class="prev"><img src="{:STYLE}/images/left1.png"></a>
+				<a href="javascript:;" class="next"><img src="{:STYLE}/images/right1.png"></a>
+			</div>
+			<!--热销产品-->
+
+			<!-- 自定义模块1 -->
+			<div style="width:100%;" class="custom">
+				{:htmlspecialchars_decode($text[0])}
+			</div>
+			<!-- 自定义模块1 -->
+			
+			<div class="hotcakes">
+				<div class="hottitle">
+					<div class="hottitlebg"><img src="{:STYLE}/images/line.gif"></div>
+					<div class="titlefont">
+						<h1>热销<span>产品</span></h1>
+						<p>Hot-sale product</p>
+					</div>
+				</div>
+				<div class="hotcon">
+					<div class="mg">
+						<div class="hotconleft wow fadeInLeft" id="pictitle">
+							<div class="bg">
+								<ul>
+									<foreach name="recommend" item="recomend_v" key="k">
+									<notempty name="recomend_v['cat_id_goods']">
+									<li><a href="{:U('Store/goods_list',array('store_id'=>$store[store_id],'cat_id'=>$recomend_v[cat_id]))}">{$recomend_v['cat_name']}</a></li>
+									</notempty>
+									</foreach>
+								</ul>
+							</div>
+						</div>
+						<div class="hotconright" id="piclist">
+							<foreach name="recommend" item="recomend_v" key="k">
+							<notempty name="recomend_v['cat_id_goods']">
+							<ul style="display:none;">
+								<foreach name="recomend_v[cat_id_goods]" item="vvv">
+								<li>
+									<div class="img">
+										<a href="{:C('DOMAIN')}{:U('Goods/goodsInfo',array('id'=>$vvv[goods_id]))}"><img src="{$vvv.goods_id|goods_thum_images=400,250}" alt="{$vvv.goods_name}"></a>
+									</div>
+									<p>{$vvv.goods_name|getSubstr=0,35}</p>
+								</li>
+								</foreach>
+							</ul>
+							</notempty>
+							</foreach>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- 自定义模块2 -->
+			<div style="width:100%;" class="custom">
+				{:htmlspecialchars_decode($text[1])}
+			</div>
+			<!-- 自定义模块2 -->
+
+			<!-- 自定义模块3 -->
+			<div style="width:100%;" class="custom">
+				{:htmlspecialchars_decode($text[2])}
+			</div>
+			<!-- 自定义模块3 -->
+
+			<!-- 新品推荐 -->
+			<notempty name="recomend_goods">
+				<div style="width:200px;margin:0 auto;margin-top:20px;text-align:center;">
+					<h3 style="margin-right:50px;font-weight: bold;font-family: Microsoft YaHei;font-size: 32px;color: #000000;">新品推荐</h3></div>
+				<div class="scene">
+					<div class="LeftHandle" id="scrollArrLeft2">&nbsp;</div>
+					<div class="rollBox-scene" id="scrollCont2">
+						<div class="scrollCont-2">
+
+							<foreach name="recomend_goods" item="r_v">
+								<div class="pic">
+									<a href="{:C('DOMAIN')}{:U('Goods/goodsInfo',array('id'=>$r_v[goods_id]))}" target="_blank">
+										<img src="{$r_v.goods_id|goods_thum_images=470,592}" alt="{$r_v['goods_name']}" style="width:100%;" /></a>
+									<div class="pic-cn">
+										<a href="{:C('DOMAIN')}{:U('Goods/goodsInfo',array('id'=>$r_v[goods_id]))}" target="_blank">{$r_v['goods_name']|getSubstr=0,35}</a>
+									</div>
+								</div>
+							</foreach>
+
+						</div>
+					</div>
+					<div class="RightHandle" id="scrollArrRight2">&nbsp;</div>
+				</div>
+			</notempty>
+
+			<script>
+				news_recomend(2);
+			</script>
+			<!-- 新品推荐 -->
+
+
+			<!-- 自定义模块4 -->
+			<div style="width:100%;" class="custom">
+				{:htmlspecialchars_decode($text[3])}
+			</div>
+			<!-- 自定义模块4 -->
+
+			
+
+
+			<!-- 新闻 -->
+
+			<div class="news" id="newshov">
+				<div class="newstitle">
+					<div class="newstitlebg"><img src="{:STYLE}/images/line.gif"></div>
+					<div class="newstitlefont">
+						<h1><span>新闻</span>动态</h1>
+						<p>News information</p>
+					</div>
+				</div>
+				<div class="newscon" id="newscon">
+					<ul>
+						<foreach name="recommend_news" item="news_v" key="news_k">
+							<foreach name="news_v[news]" item="news_vv" key="news_kk">
+						<li class="wow fadeInLeft">
+							
+								<a href="{:U('Store/newscontent',array('store_id'=>$store[store_id],'sn'=>$news_v[sn_id],'text'=>$news_vv[id]))}" class="pic"><img src="{$news_vv.id|news_thum_images=340,165}"></a>
+								<a href="{:U('Store/newscontent',array('store_id'=>$store[store_id],'sn'=>$news_v[sn_id],'text'=>$news_vv[id]))}" class="font">{$news_vv.title|getSubstr=0,23}</a>
+								<span class="time">{$news_vv.timer|date="Y-m-d",###}</span>
+								<p>{$news_vv.description|getSubstr=0,71}</p>
+								<a class="more" href="{:U('Store/newsList',array('store_id'=>$store[store_id],'sn'=>$news_v[sn_id]))}">MORE +</a>	
+							
+						</li>
+						</foreach>
+						</foreach>
+					</ul>
+				</div>
+			</div>
+
+			<!-- 相册 -->
+			<foreach name='photo' item="photo_v" key="p_key">
+				<div class="rollbox">
+					<div class="c">
+						<div class="title">{$photo_v.title}</div>
+						<div class="LeftHandle" id="scrollArrLeft_{$p_key}"></div>
+						<div class="rollBoxc" id="scrollCont_{$p_key}">
+							<foreach name="photo_v['photoimg']" item="img_v">
+								<div class="anli"><img src="{$img_v.img}"></div>
+							</foreach>
+						</div>
+						<div class="RightHandle" id="scrollArrRight_{$p_key}"></div>
+					</div>
+					<script>
+						photo("{$p_key}");
+					</script>
+			</foreach>
+
+
+			
+		</div>
+		<script>
+			$(document).ready(function() {
+				$(".banner>a.prev").hover(function() {
+					$(this).find("img").attr("src", "{:STYLE}/images/left2.png");
+				}, function() {
+					$(this).find("img").attr("src", "{:STYLE}/images/left1.png");
+				})
+				$(".banner>a.next").hover(function() {
+						$(this).find("img").attr("src", "{:STYLE}/images/right2.png");
+					}, function() {
+						$(this).find("img").attr("src", "{:STYLE}/images/right1.png");
+					})
+					//首页banner轮播
+				var winW = $(".banner").width();
+				var len = $('.banner li').length;
+				var lun = null;
+				var index = 0;
+				var bool = true;
+				var num = -(len - 2) * parseInt(winW);
+				for(var i = 0; i < len; i++) {
+					$('.banner li').eq(i).css('left', i * winW + 'px');
+				}
+				$(".banner>a.next").click(function() {
+					if(bool) {
+						bool = false;
+						if(parseInt($(".banner ul").position().left) < num) {
+							$(".banner ul li:first-child").appendTo($(".banner ul"));
+							$(".banner ul").stop(false, true).css({
+								left: num + 'px'
+							});
+							for(var i = 0; i < len; i++) {
+								$('.banner li').eq(i).css('left', i * winW + 'px');
+							}
+						}
+						$(".banner ul").stop(false, true).animate({
+							left: '-=' + winW + 'px'
+						}, 300, function() {
+							bool = true;
+						});
+					}
+				})
+				$(".banner>a.prev").click(function() {
+					if(bool) {
+						bool = false;
+						if(parseInt($(".banner ul").position().left) == 0) {
+							$(".banner ul li:last-child").prependTo($(".banner ul"));
+							$(".banner ul").stop(false, true).css({
+								left: '-' + winW + 'px'
+							});
+							for(var i = 0; i < len; i++) {
+								$('.banner li').eq(i).css('left', i * winW + 'px');
+							}
+						}
+						$(".banner ul").stop(false, true).animate({
+							left: '+=' + winW + 'px'
+						}, 300, function() {
+							bool = true;
+						});
+					}
+				})
+				move();
+
+				function move() {
+					lun = setInterval(function() {
+						if(parseInt($(".banner ul").position().left) < num) {
+							$(".banner ul li:first-child").appendTo($(".banner ul"));
+							$(".banner ul").stop(false, true).css({
+								left: num + 'px'
+							});
+							for(var i = 0; i < len; i++) {
+								$('.banner li').eq(i).css('left', i * winW + 'px');
+							}
+						}
+						$(".banner ul").stop(false, true).animate({
+							left: '-=' + winW + 'px'
+						}, 300);
+					}, 4000)
+				}
+				$(".banner").hover(function() {
+					clearInterval(lun);
+					$(".banner>a.prev").fadeIn(300);
+					$(".banner>a.next").fadeIn(300);
+				}, function() {
+					move();
+					$(".banner>a.prev").fadeOut(300);
+					$(".banner>a.next").fadeOut(300);
+				})
+			})
+		</script>
+	<include file="./footer" />

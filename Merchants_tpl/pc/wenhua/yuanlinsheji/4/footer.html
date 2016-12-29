@@ -1,0 +1,60 @@
+<!------footer------>
+	     <div class="foot">
+	     	<div class="logo">
+	     		<img src="{$store.store_logo}">
+	     	</div>
+	     	<div class="copyright">
+	     		<span>
+		     		 <a href="{:U('Store/index',array('store_id'=>$store[store_id]))}" title="古建筑修缮设计">首页</a>
+ 					 <if condition="$main_cat">
+			         <a href="{:U('Store/goods_list',array('store_id'=>$store[store_id]))}" title="供应产品">供应产品☆</a>
+			        </if>
+ 					<!-- 自定义导航 -->
+	                <foreach name="navigation" item="vv" key="kk">
+	                    <if condition="empty($vv[sn_url])">
+	                      <a  href="
+	                        <if condition='($vv[sn_is_list] eq 1)'>
+	                        {:U('Store/newsList',array('store_id'=>$store[store_id],'sn'=>$vv[sn_id]))}
+	                        <elseif condition='$vv[sn_is_list] eq 2'/>
+	                        {:U('Store/photolist',array('store_id'=>$store[store_id]))}
+	                        <else/>
+	                        {:U('Store/store_news',array('store_id'=>$store[store_id],'sn_id'=>$vv[sn_id]))}
+	                        </if>" 
+	                        <if condition='($vv[sn_new_open])'>target='_blank'</if> >
+	                    <else/>
+	                    <a href="{$vv.sn_url}" title='{$vv.sn_keyword}' <if condition='($vv[sn_new_open])'>target='_blank'</if>>
+	                    </if>
+	                    {$vv.sn_title}</a>
+	                </foreach>
+	     		</span>
+	     		<p>{$store.copyright}</p>
+	     	</div>
+	     </div>
+
+
+	     <!-- help-box -->
+		<div class="help-box">
+		  <ul>
+		    <li class="qq"><a target="_blank" href="http://wpa.qq.com/msgrd?V=1&Uin={$store[store_qq]}&Site={$store.store_name}&Menu=yes" class="link" title="点击在线咨询"><i class="fa fa-qq"></i></a></li>
+		    <li class="tel"><a href="http://wpa.qq.com/msgrd?V=1&Uin={$store[store_qq]}&Site={$store.store_name}&Menu=yes" class="link" title="联系电话"><i class="fa fa-phone"></i></a>
+		      <div class="dialog hide">
+		        <div class="arrow"></div>
+		        <div class="item">业务咨询:  {$store[store_phone]}</div>
+		        <div class="item">业务咨询:  {$store[store_phone]}</div>
+		      </div>
+		    </li>
+		   <!--  <li class="weixin"><a href="javascript:void(0);" class="link" title="扫码关注微信"><i class="fa fa-weixin"></i></a>
+		      <div class="dialog hide">
+		        <div class="arrow"></div>
+		        <div class="qrcode"><img src="Picture/shouji.jpg" alt="微信二维码" width="150"><br>微信扫一扫 关注洪雅轩</div>
+		      </div>
+		    </li> -->
+		  <!--   <li>
+		      <div class="bdsharebuttonbox"> <a title="#" href="#" class="bds_tsina" data-cmd="tsina"></a> </div>
+		    </li> -->
+		    <li class="feedback"><a href="#" target="_blank" data-toggle="modal" data-target="#feedbackModal" class="link" title="装修咨询"><i class="fa fa-comment"></i></a></li>
+		    <li class="back2top"><a href="#"" title="返回顶部"><i class="fa fa-comment"></i></a></li>
+		  </ul>
+		</div>
+	</body>
+<html>

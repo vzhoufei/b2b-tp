@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{$store.store_name}</title>
+	<meta charset="utf-8">
+	<meta content="网站关键字" name="keywords">
+	<meta content="网站关键字seo" name="description">
+	<script type="text/javascript" src="{:STYLE}/js/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="{:STYLE}/js/index.js"></script>
+	<script type="text/javascript" src="{:STYLE}/js/lbt.js"></script>
+	
+	<link rel="stylesheet" type="text/css" href="{:STYLE}/css/lbt.css">
+
+	<link rel="stylesheet" type="text/css" href="{:STYLE}/css/index.css">
+
+	
+</head>
+<body>
+	<!-- 头部区域 -->
+	<header>
+		<div class="logo">
+			<span class="logo1"><a href="{:U('Store/index',array('store_id'=>$store[store_id]))}" title="{$store.store_name}"></span><span class="logo2">{$store.store_name}</span></div>
+
+
+
+		<div class="seach">
+			<input type="text" name="seach" class="seachA" placeholder="卧室"><input type="image" name="sub" src='{:STYLE}/images/soso.jpg' class='seachB'>
+		</div>
+	<div class="cl"></div>
+	</header>
+	<!-- 主体区域 -->
+
+	<main class="main">
+
+		<nav class="main_nav">
+			<ul>				
+				<li class="headerN"><a href="{:U('Store/index',array('store_id'=>$store[store_id]))}">首页</a></li>
+					<li><a href="{:U('Store/goods_list',array('store_id'=>$store[store_id]))}">供应产品</a>
+						<div class="navlist">
+							<ul>
+
+                   			<foreach name="main_cat" item="v">  <!-- 商品分类 -->
+								<li><a href="{:U('Store/goods_list',array('store_id'=>$store[store_id],'cat_id'=>$v[cat_id]))}">{$v.cat_name}</a>
+									<div class="navlists">
+										<ul>
+                       					 <foreach name="sub_cat[ $v['cat_id'] ]" item="vs">  <!-- 二级分类 --> 
+											<li><a href="{:U('Store/goods_list',array('store_id'=>$store[store_id],'cat_id'=>$vs[cat_id]))}">{$vs.cat_name}</a></li>
+										</foreach>
+											</ul>
+
+									</div>
+								</li>
+							</foreach>
+
+								
+							</ul>
+						</div>
+
+					</li>
+
+                 <foreach name="navigation" item="vv" key="kk">
+					<li>
+						 <if condition="empty($vv[sn_url])">
+                      <a  href="
+                        <if condition='($vv[sn_is_list] eq 1)'>
+                        {:U('Store/newsList',array('store_id'=>$store[store_id],'sn'=>$vv[sn_id]))}
+                        <elseif condition='$vv[sn_is_list] eq 2'/>
+                        {:U('Store/photolist',array('store_id'=>$store[store_id]))}
+                        <else/>
+                        {:U('Store/store_news',array('store_id'=>$store[store_id],'sn_id'=>$vv[sn_id]))}
+                        </if>" 
+                        <if condition='($vv[sn_new_open])'>target='_blank'</if> >
+                    <else/>
+                    <a href="{$vv.sn_url}" title='{$vv.sn_keyword}' <if condition='($vv[sn_new_open])'>target='_blank'</if>>
+                    </if>
+                    {$vv.sn_title}</a>
+					</li>
+				</foreach>
+ 				<!-- 分类在导航显示 -->
+                  <foreach name="link_cat" item="vz">
+                    <li>
+                      <a  target="_blank" href="{:U('Store/goods_list',array('store_id'=>$store[store_id],'cat_id'=>$vz[cat_id]))}">{$vz.cat_name}</a> </li>
+                  </foreach>
+			<div class="cl"></div>
+			</ul>
+		</nav>
+		<!-- 轮播图 -->
+		   <div class="banner" id="banner" >
+		   <foreach name="store[store_slide]" item="vimg" key="k">
+		   <notempty name="vimg">
+				<a href="'{$store[store_slide_url][ $k ]}'" class="d1" style="background:url({$vimg}) center no-repeat;"></a>
+			</notempty>
+			</foreach>
+				<div class="d2" id="banner_id">
+					<ul>
+					  <foreach name="store[store_slide]" item="vimg" key="k">
+		   				<notempty name="vimg">
+						<li></li>
+						</notempty>
+					  </foreach>
+					</ul>
+				</div>
+				<script type="text/javascript">banner()</script>
+			</div>
+		    <!--case_box-->
+	<!-- 轮播图结束 -->
+
+	<!--自定义模块1-->
+		<div class="s1">
+			<div class="s1L">
+			</div>
+			<div class="s1R">
+				<ul>
+					{:htmlspecialchars_decode($text[0])}
+				<div class='cl'></div>
+				</ul>
+			</div>
+			<div class='cl'></div>
+		</div>
+	<!--自定义模块1-->
+
+	<!--推荐产品-->
+	<div class="s1">
+			<div class="s1L">
+			</div>
+			<div style="width:200px;margin:0 auto;margin-top:20px;text-align:center;"><h3 style="margin-right:50px;">推荐产品</h3></div>		
+			</div>
+		</div>
+
+			<ul>
+				<li>
+				<foreach name="recomend_goods" item="r_v">
+				<a href="{:C('DOMAIN')}{:U('Goods/goodsInfo',array('id'=>$r_v[goods_id]))}"><img src="{$r_v.goods_id|goods_thum_images=150,100}"></a>
+				</foreach>
+				</li>
+				</ul>
+
+		</div>
+
+		<!--分类-->
+		<foreach name="recommend" item="recomend_v" key="k" >
+		<notempty name="recomend_v['cat_id_goods']">
+		<div class="s3">
+		
+			<h2><span class="s3AA"></span>{$recomend_v.cat_name}</h2>
+			<div class="S3R">
+					<ul>
+
+              <foreach name="recomend_v[cat_id_goods]" item="vvv" key="kkk">
+				<php>if($kkk == 0){</php>
+					<div class="s3L">
+				<a href="{:C('DOMAIN')}{:U('Goods/goodsInfo',array('id'=>$vvv[goods_id]))}" title="{$recomend_v['cat_name']}"><img src="{$vvv.goods_id|goods_thum_images=462,330}"></a>
+				<div class='s3La'>{$vvv.goods_name|getSubstr=0,35}</div>
+				</div>
+				<php>}else{</php>
+
+
+						<li><a href="{:C('DOMAIN')}{:U('Goods/goodsInfo',array('id'=>$vvv[goods_id]))}"><img src="{$vvv.goods_id|goods_thum_images=222,156}"></a><div class="s3Ra">{$vvv.goods_name|getSubstr=0,35}</div></li>
+				<php>}</php>
+					</foreach>
+
+					<div class="cl"></div>
+					</ul>					
+			</div>
+			<div class='cl'></div>
+		</div>
+		</notempty>
+		</foreach>
+
+	
+	<!--自定义模块2-->
+
+	<div style="width:100%;"  class="custom">
+	{:htmlspecialchars_decode($text[1])}
+	</div>
+
+<div class="index_box">
+<foreach name="recommend_news" item="news_v" key="news_k">
+<div class="index_news">
+  <div class="news_title">{$news_v.sn_title}
+  <a href="{:U('Store/newsList',array('store_id'=>$store[store_id],'sn'=>$news_v[sn_id]))}" target="_blank" title="{$news_v.sn_title}">更多 ></a></div>
+    <ul class="news_list">
+    <foreach name="news_v[news]" item="news_vv" key="news_kk">
+        <li><span class="point"></span>
+        <a href="{:U('Store/newscontent',array('store_id'=>$store[store_id],'sn'=>$news_v[sn_id],'text'=>$news_vv[id]))}" target="_blank">{$news_vv.title|getSubstr=0,26}</a><i>{$news_vv.timer|date="Y-m-d",###}</i></li>
+    </foreach>
+    </ul>
+  </div>
+</foreach>
+</div>
+<div class="clear"></div>
+<!-- 新闻 -->
+</div>
+
+
+
+
+
+
+
+
+
+
+
+		
+		
+		
+<!-- 底部 -->
+	<footer class="footer">
+		
+
+		<!-- <h3><span style="color:grey;font-size:26px;">CLOTHING BRAND</span><span style="color:#fff;margin-left:20px;font-size:26px;">DESIGN</span></h3> -->
+		<h2><a href="#">关于我们</a><a href="#">品牌设计</a><a href="#">新闻资讯</a><a href="#">联系我</a></h2>
+		<p>©2016 网站样板-服装 版权所有</p>
+		<p><a href="#">手机版</a> 	| 	<a href="#">本站使用云狄建站搭建</a> 	| 	<a href="#">管理登录</a></p>
+
+	</footer>
+</body>
+</html>

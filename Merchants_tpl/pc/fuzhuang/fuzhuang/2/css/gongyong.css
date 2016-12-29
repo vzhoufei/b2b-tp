@@ -1,0 +1,32 @@
+
+.header{width: 100%;}
+.logo{width: 310px;margin: 0 auto;height: 90px;line-height: 90px;}
+.logo a{display: block;overflow: hidden;clear: both;}
+.logo a img{max-width: 100%;float: left;padding-top: 22px;}
+.logo a strong{font-size: 40px;font-weight: 600;color: rgb(19, 19, 19);
+font-family: 幼圆;float: right;}
+
+.header .nav{width: 100%;height: 40px;line-height: 40px;background: rgb(19, 19, 19);}
+.header .nav>ul{width: 1200px;margin: 0 auto;height: 40px;text-align: center;}
+.header .nav>ul>li{display: inline-block;*display: inline;*zoom: 1;width: 80px;}
+.header .nav>ul>li a{display: block;color: #fff;}
+.header .nav>ul li:hover{background: rgb(195,7,77);}
+.header .nav .navA,.header .nav .navB{display: none;background: rgb(19, 19, 19);width: 80px;z-index: 100;}
+.header .nav>ul>li:nth-child(2){position: relative;}
+.header .nav>ul>li:nth-child(2):hover .navA{display: block;}
+.header .nav>ul>li:nth-child(2) .navA>li:hover .navB{display: block;}
+.header .nav .navA{left: 0;top: 40px;position: absolute;}
+.header .nav .navA>li{position: relative;}
+.header .nav .navB{left: 80px;top: 0px;position: absolute;}
+
+.footer{width: 100%;overflow: hidden;clear: both;background: rgb(46, 46, 46);text-align: center;}
+.footer .logo a strong{color: #fff;}
+.footer dl{display: inline-block;*display: inline;*zoom: 1;vertical-align: text-top;margin: 0 10px;}
+.footer dl dt{width: 145px;height: 32px;line-height: 32px;font-size: 20px;background: #fff;display: block;}
+.footer dl dt a{color: #000;}
+.footer dl dd a{color: #fff;}
+.footer b{display: block;width: 70%;height: 1px;background: #666;margin: 10px auto;}
+.footer p{color: #666;}
+.footer h2{font-size: 20px;margin: 20px 0 0;color: #fff;}
+.footer ul{width: 600px;margin: 0px auto;color: #fff;text-align: center;}
+.footer ul li{display: inline-block;margin: 0 10px;}

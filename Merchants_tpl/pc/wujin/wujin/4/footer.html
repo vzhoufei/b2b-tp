@@ -1,0 +1,96 @@
+<div class="footer">
+			<div class="footer_info">
+				<div class="footernav">
+					<ul>
+						<li><a href="{:U('Store/index',array('store_id'=>$store[store_id]))}">网站首页</a></li>
+
+						<!-- 自定义导航 -->
+		                 <foreach name="navigation" item="vv" key="kk">
+							<li>
+								<if condition="empty($vv[sn_url])">
+									<a href="
+	                        <if condition='($vv[sn_is_list] eq 1)'>
+	                        {:U('Store/newsList',array('store_id'=>$store[store_id],'sn'=>$vv[sn_id]))}
+	                        <elseif condition='$vv[sn_is_list] eq 2'/>
+	                        {:U('Store/photolist',array('store_id'=>$store[store_id]))}
+	                        <else/>
+	                        {:U('Store/store_news',array('store_id'=>$store[store_id],'sn_id'=>$vv[sn_id]))}
+	                        </if>" <if condition='($vv[sn_new_open])'>target='_blank'</if> >
+								<else/>
+								<a href="{$vv.sn_url}" title='{$vv.sn_keyword}' <if condition='($vv[sn_new_open])'>target='_blank'</if>>
+									</if>
+									{$vv.sn_title}</a>
+							</li>
+						</foreach>
+
+		                 <!-- 分类在导航显示 -->
+		                  <foreach name="link_cat" item="vz">
+		                    <li>
+		                      <a  target="_blank" href="{:U('Store/goods_list',array('store_id'=>$store[store_id],'cat_id'=>$vz[cat_id]))}">{$vz.cat_name}</a> </li>
+		                  </foreach>
+					</ul>
+				</div>
+				<div class="footer_logo">
+					<a href="{:U('Store/index',array('store_id'=>$store[store_id]))}"><img src="{$store.store_logo}"></a>
+					<h1>{$store.store_name}</h1>
+					<h2>Kitchen <uten></uten>sils</h2>
+				</div>
+				<div class="footer_address">
+					<p class="add">地址：
+						<span>
+							<?php $region = C('DB_PREFIX'); $region .= 'region';?>
+					        <tpshop sql="select name from $region where id=$store[province_id] limit 1" item="v">
+					           {$v['name']}  <!-- 省 -->
+					          </tpshop>
+					          <tpshop sql="select name from $region where id=$store[city_id] limit 1" item="v">
+					          {$v['name']} <!-- 市 -->
+					          </tpshop>
+					          <tpshop sql="select name from $region where id=$store[district] limit 1" item="v">
+					          {$v['name']} <!-- 区 -->
+					          </tpshop>
+
+					         {$store.store_address}  <!-- 详细地址 -->
+						</span>
+					</p>
+					<p class="phone">电话：+86-21-888888X&nbsp;&nbsp;&nbsp;&nbsp;传真：+86-21-877778X</p>
+					<p class="email">客服：{$store[store_phone]}&nbsp;&nbsp;&nbsp;&nbsp;邮箱：Service@yourdomain.com</p>
+				</div>
+				<div class="footer_code">
+					<span><img src="{:STYLE}/images/qr_layer00EE63CA9C46155C4F0EFBF287C2228E.png"></span>
+					<div>
+						<p>微信</p>
+						<p>官方公众号</p>
+					</div>
+				</div>
+			</div>
+			<div class="copyright">
+				<p>{$store.copyright}</p>
+			</div>
+		</div>
+
+		<!-- help-box -->
+		<div class="help-box">
+		  <ul>
+		    <li class="qq"><a target="_blank" href="http://wpa.qq.com/msgrd?V=1&Uin={$store[store_qq]}&Site={$store.store_name}&Menu=yes" class="link" title="点击在线咨询"><i class="fa fa-qq"></i></a></li>
+		    <li class="tel"><a href="http://wpa.qq.com/msgrd?V=1&Uin={$store[store_qq]}&Site={$store.store_name}&Menu=yes" class="link" title="联系电话"><i class="fa fa-phone"></i></a>
+		      <div class="dialog hide">
+		        <div class="arrow"></div>
+		        <div class="item">业务咨询:  {$store[store_phone]}</div>
+		        <div class="item">业务咨询:  {$store[store_phone]}</div>
+		      </div>
+		    </li>
+		    <li class="feedback"><a href="#" target="_blank" data-toggle="modal" data-target="#feedbackModal" class="link" title="装修咨询"><i class="fa fa-comment"></i></a></li>
+    		<li class="back2top"><a href="#" title="返回顶部"><i class="fa fa-comment"></i></a></li>
+		  </ul>
+		</div>
+		<div class="message" id="gotop1">
+		   <div class="message-c">
+		    <span>
+			<a href="tel:4000308710" class="dh">电话咨询</a>
+			<a href="#" class="home">预约设计</a>
+			<a href="#" class="ifh">关于我们</a>
+			</span>
+		   </div>
+		</div>
+	</body>
+</html>
