@@ -79,6 +79,16 @@
                                     <td>邮箱：</td>
                                     <td colspan="2"><input type="text" name="email" class="input-sm" value="{$store.email}"></td>
                                 </tr>
+                                 <tr>
+                                    <td>二维码：</td>
+                                    <td><div style="width: 200px;height: 80px;">
+                                             <img height="80" id="erweima" src="<empty name='store.erweima'><else/>{$store.erweima}</empty>" nc_type="store_label">
+                                         </div>
+                                         <input type="hidden" name="erweima" value="{$store.erweima}">
+                                        <input type="button" class="button" onClick="GetUploadify(1,'erweima','seller','callback3')"  value="上传二维码"/>
+                                   </td>
+                                    <td  class="text-warning">建议使用宽200像素-高60像素内的GIF或PNG透明图片；点击下方"提交"按钮后生效。</td>
+                                </tr>   
                                 <tr>
                                 	<td>店铺地址：</td>
                                 	<td colspan="2">
@@ -169,6 +179,10 @@ function callback1(img_str){
 function callback2(img_str){
 	$('input[name="store_banner"]').val(img_str);
 	$('#store_banner').attr('src',img_str);
+}
+function callback3(img_str){
+    $('input[name="erweima"]').val(img_str);
+    $('#erweima').attr('src',img_str);
 }
 </script>
 </body>
